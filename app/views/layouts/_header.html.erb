@@ -1,11 +1,15 @@
 <nav class="navbar-expand-lg navbar-light bg-light">
   <div class="d-flex justify-content-between">
-      <%= button_to "Nos Créat.rices.eurs", root_path, class: "mt-4 ml-2 btn btn-primary" %>
-      <%= link_to root_path do %>
-        <%= image_tag "fond_logo_transparent.png", class: "logo nav-item" %>
-      <% end %>
-      <h1 class="mt-2 mr-2">Log in</h1>
+    <%= button_to "Nos Créat.rices.eurs", root_path, class: "mt-4 ml-2 btn btn-primary" %>
+    <%= link_to root_path do %>
+    <%= image_tag "fond_logo_transparent.png", class: "" %>
+    <% end %>
+    <div class="mt-3 mr-2">
+      <%= link_to "", root_path, :class=>"m-2 fas fa-shopping-cart fa-2x", :style => "color:#1e185f", :id => "cart-navbar-icon" %>
+      <%= link_to "", root_path, :class=>"m-2 fas fa-user fa-2x", :style => "color:#1e185f", :id => "cart-navbar-icon" %>
+    </div>
   </div>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
