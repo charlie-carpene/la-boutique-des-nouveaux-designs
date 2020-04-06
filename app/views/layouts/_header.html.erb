@@ -1,10 +1,12 @@
 <nav class="navbar-expand-lg navbar-light bg-light">
   <div class="d-flex justify-content-between">
-    <%= button_to "Nos Créat.rices.eurs", root_path, class: "mt-4 ml-2 btn btn-primary" %>
-    <%= link_to root_path do %>
-    <%= image_tag "fond_logo_transparent.png", class: "" %>
+    <div class="container mt-4">
+      <%= button_to "Nos Créat.rices.eurs", root_path, class: "btn btn-primary" %>
+    </div>
+    <%= link_to root_path, class: "mt-2 container d-flex justify-content-center" do %>
+      <%= image_tag "fond_logo_transparent.png" %>
     <% end %>
-    <div class="mt-3 mr-2">
+    <div class="container d-flex justify-content-end mt-3">
       <%= link_to "", root_path, :class=>"m-2 fas fa-shopping-cart fa-2x", :style => "color:#1e185f", :id => "cart-navbar-icon" %>
       <%= link_to "", root_path, :class=>"m-2 fas fa-user fa-2x", :style => "color:#1e185f", :id => "cart-navbar-icon" %>
     </div>
