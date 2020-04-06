@@ -1,22 +1,36 @@
 <nav class="navbar-expand-lg navbar-light bg-light">
   <div class="d-flex justify-content-between">
     <div class="container mt-4">
-      <%= button_to "Nos Créat.rices.eurs", root_path, class: "btn btn-primary" %>
+      <%= button_to "Nos artisans", root_path, class: "btn btn-primary" %>
     </div>
-    <%= link_to root_path, class: "mt-2 container d-flex justify-content-center" do %>
+    <div class="container d-flex justify-content-center">
       <%= image_tag "fond_logo_transparent.png" %>
-    <% end %>
+      <div class="logo-overlay">
+        <%= link_to(content_tag(:i, nil), root_path, class: "text-success logo-icon") %>
+      </div>
+    </div>
     <div class="container d-flex justify-content-end mt-3">
-      <%= link_to "", root_path, :class=>"m-2 fas fa-shopping-cart fa-2x", :style => "color:#1e185f", :id => "cart-navbar-icon" %>
-      <%= link_to "", root_path, :class=>"m-2 fas fa-user fa-2x", :style => "color:#1e185f", :id => "cart-navbar-icon" %>
+      <% if user_signed_in? %>
+        <%= link_to "", root_path, :class=>"m-2 fas fa-shopping-cart fa-2x" %>
+        <%= link_to "", root_path, :class=>"m-2 fas fa-user fa-2x text-success", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false"  %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class=>"nav-link dropdown-item" %>
+        </div>
+      <% else %>
+        <%= link_to "", root_path, :class => "m-2 fas fa-user fa-2x", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false" %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Se connecter", new_user_session_path, :class=>"nav-link dropdown-item" %>
+          <%= link_to "S'inscrire", new_user_registration_path, :class=>"nav-link dropdown-item" %>
+        </div>
+      <% end %>
     </div>
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-    <ul class="navbar-nav">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav justify-content-around container">
       <li class="nav-item">
         <a class="nav-link" href="#">Catégorie1</a>
       </li>

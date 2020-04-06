@@ -1,0 +1,33 @@
+/****** header ******/
+
+.logo-overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: flex; /* Hidden by default */
+  justify-content: center;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  width: 100%; /* Full width (cover the whole page) */
+  top: 15px;
+  left: 1px;
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.logo-icon::before {
+  font-style: normal;
+  font-variant: normal;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f015";
+  font-size: 1.3em;
+}
+
+.logo-icon:hover:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f004";
+  font-size: 1.3em;
+  color: #fda928;
+}
