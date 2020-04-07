@@ -1,18 +1,16 @@
 /****** header ******/
 
 .logo-overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: flex; /* Hidden by default */
+  position: absolute;
+  display: flex;
   justify-content: center;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  width: 100%; /* Full width (cover the whole page) */
+  width: 100%;
   top: 23px;
-  left: 1px;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
 }
 
 .logo-icon::before {
