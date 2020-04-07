@@ -1,4 +1,4 @@
-<nav class="navbar-expand-lg navbar-light bg-light">
+<nav class="navbar-expand-lg navbar-light bg-light pt-2">
   <div class="d-flex justify-content-between">
     <div class="container mt-4">
       <%= button_to "Nos artisans", root_path, class: "btn btn-primary" %>
@@ -29,8 +29,8 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav justify-content-around container">
+  <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav"> <!-- to be change when the Table Category will be added: when flex activated, dropdown doesn't work -->
+    <ul class="navbar-nav justify-content-around w-50">
       <li class="nav-item">
         <a class="nav-link" href="#">Catégorie1</a>
       </li>
