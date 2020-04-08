@@ -4,22 +4,31 @@
   position: absolute;
   display: flex;
   justify-content: center;
+  align-items: center;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  width: 100%;
-  top: 23px;
+  left: 50%;
+  top: 40px;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
 }
 
+.logo-bg {
+  position: absolute;
+  left: -30px;
+}
+
 .logo-icon::before {
+  position: absolute;
   font-style: normal;
   font-variant: normal;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f015";
   font-size: 1.3em;
+  left: -8px;
+  top: -16px;
 }
 
 .logo-icon:hover:before {
