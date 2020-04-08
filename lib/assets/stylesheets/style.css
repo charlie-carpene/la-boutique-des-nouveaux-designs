@@ -27,14 +27,17 @@
   font-weight: 900;
   content: "\f015";
   font-size: 1.3em;
-  left: -8px;
-  top: -16px;
+  left: -9px;
+  top: -17px;
 }
 
 .logo-icon:hover:before {
+  position: absolute;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f004";
   font-size: 1.3em;
   color: #fda928;
+  left: -7px;
+  top: -16px;
 }

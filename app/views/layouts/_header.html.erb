@@ -10,16 +10,13 @@
     </div>
     <div class="container d-flex justify-content-end mt-3">
       <% if user_signed_in? %>
-        <%= button_to root_path, :class=>"btn" do %>
-          <%= content_tag(:a, nil, class: "fas fa-shopping-cart fa-2x text-primary") %>
-        <% end %>
-        <%= button_to root_path, {:class=>"btn", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false"} do %>
-          <%= content_tag(:a, nil, class: "fas fa-user fa-2x text-primary") %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Mon profil", edit_user_registration_path, :class=>"nav-link dropdown-item" %>
-            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class=>"nav-link dropdown-item" %>
-          </div>
-          <% end %>
+        <%= link_to "", root_path, class: "m-2 fas fa-shopping-cart fa-2x text-primary" %>
+        <%= link_to "", "#", :class => "m-2 fas fa-user fa-2x text-primary", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false" %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Mon profil", edit_user_registration_path, :class=>"nav-link dropdown-item" %>
+          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class=>"nav-link dropdown-item" %>
+        </div>
+
       <% else %>
         <%= link_to "", root_path, :class => "m-2 fas fa-user fa-2x", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false" %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
