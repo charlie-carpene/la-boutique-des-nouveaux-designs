@@ -9,7 +9,7 @@ module DeviseHelper
         <span aria-hidden="true">&times;</span>
       </button>
       <strong>
-       Attention il y a #{pluralize(resource.errors.count, "erreur")} :
+       Attention, #{t("errors.messages.not_saved", count: resource.errors.count)}
       </strong>
       #{messages}
     </div>
