@@ -14,8 +14,8 @@
     <% end %>
 
     <div class="field mt-4">
-      <%= f.label 'Nouveau mot de passe' %> <i>(laisser blanc si vous ne shouaitez pas le modifier)</i><br />
-      <%= f.password_field :password, class: "form-control" %>
+      <%= f.label 'Nouveau mot de passe' %> <i>(laisser blanc si vous ne souhaitez pas le modifier)</i><br />
+      <%= f.password_field :password, autocomplete: "nouveau mot de passe", class: "form-control" %>
       <% if @minimum_password_length %>
         <em><%= @minimum_password_length %> caractères minimum</em>
       <% end %>
