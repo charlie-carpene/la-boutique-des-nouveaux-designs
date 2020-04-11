@@ -1,8 +1,10 @@
-<h2 class="mt-4 text-center text-primary">Salut <%= @user.addresses.last.first_name %></h2>
-<p>Voici tes adresse actuelles :</p>
-<% current_user.addresses.each do |address| %>
-  <%= link_to "Adresse n°#{address.id} #{address.first_name} #{address.last_name} #{address.address_line_2} #{address.address_line_1} #{address.zip_code} #{address.city}", edit_address_path(address.id), class: "nav-link dropdown-item" %></li>
-<% end %>
+<h2 class="mt-4 text-center text-primary">Salut <% if @user.addresses.present? %><%= @user.addresses.last.first_name %><% end %></h2>
 
+<% if @user.addresses.present? %>
+  <p>Voici tes adresse actuelles :</p>
+  <% current_user.addresses.each do |address| %>
+    <%= link_to "Adresse n°#{address.id} #{address.first_name} #{address.last_name} #{address.address_line_2} #{address.address_line_1} #{address.zip_code} #{address.city}", edit_address_path(address.id), class: "nav-link dropdown-item" %></li>
+  <% end %>
+<% end %>
 
 <%= link_to "Editer mon mail et mot de passe", edit_user_registration_path, :class=>"btn btn-warning" %>
