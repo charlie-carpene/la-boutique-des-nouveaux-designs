@@ -1,9 +1,17 @@
 <h2 class="mt-4 text-center text-primary">Salut <% if @user.addresses.present? %><%= @user.addresses.last.first_name %><% end %></h2>
 
+<%= button_to "Ajouter une nouvelle adresse", new_address_path, method: "get", class: "btn btn-info" %>
+
 <% if @user.addresses.present? %>
   <p>Voici tes adresse actuelles :</p>
   <% current_user.addresses.each do |address| %>
-    <%= link_to "Adresse n°#{address.id} #{address.first_name} #{address.last_name} #{address.address_line_2} #{address.address_line_1} #{address.zip_code} #{address.city}", edit_address_path(address.id), class: "nav-link dropdown-item" %></li>
+    <div class="d-flex justify-content-center">
+      <%= link_to "Adresse n°#{address.id} #{address.first_name} #{address.last_name} #{address.address_line_2} #{address.address_line_1} #{address.zip_code} #{address.city}", edit_address_path(address.id), class: "nav-link dropdown-item" %>
+      <div class="d-flex">
+        <%= button_to "Editer", edit_address_path(address.id), method: "get", class: "btn btn-info" %>
+        <%= button_to "Supprimer", address_path(address.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "btn btn-danger" %>
+      </div>
+    </div>
   <% end %>
 <% end %>
 

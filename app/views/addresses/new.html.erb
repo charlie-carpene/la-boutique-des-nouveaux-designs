@@ -1,0 +1,19 @@
+<h1 class="mt-4 text-center text-primary">Ajouter une nouvelle adresse</h1>
+
+<%= form_for(:address, url: addresses_path, html: { method: :post }) do |f| %>
+
+  <div class="field mt-4">
+    <%= f.label 'Prénom' %><br />
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+
+
+  <div class="field mt-4">
+    <%= f.label 'Nom de famille' %><br />
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="actions mt-4">
+    <%= f.submit "Créer l'adresse", class: "btn btn-primary" %>
+  </div>
+<% end %>
