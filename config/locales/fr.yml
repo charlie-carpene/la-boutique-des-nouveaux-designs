@@ -1,1 +1,7 @@
 fr:
+  first_name: "Le prénom"
+  last_name: "Le nom de famille"
+  address_line_1: "L'adresse"
+  address_line_2: "Le complément d'adresse"
+  zip_code: "Le code postal"
+  city: "La ville"

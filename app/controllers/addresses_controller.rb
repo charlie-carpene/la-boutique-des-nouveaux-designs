@@ -1,11 +1,20 @@
 class AddressesController < ApplicationController
+  def new
+  end
+
   def create
     @user = User.find(current_user.id)
-    @address = Address.create(address_permitted_params)
+    @address = Address.new(address_permitted_params)
     @user.addresses.push(@address)
-    @user.save
-
-    redirect_to user_path(current_user.id)
+    if @address.save
+      if @user.save
+        flash[:success] = "L'adresse a bien ajouté"
+        redirect_to user_path(@user)
+      end
+    else
+      flash.now[:error] = translate_error_messages(@address.errors)
+      render new_address_path
+    end
   end
 
   def show
@@ -24,7 +33,7 @@ class AddressesController < ApplicationController
   private
 
   def address_permitted_params
-    params.require(:address).permit(:first_name, :last_name)
+    params.require(:address).permit(:first_name, :last_name, :address_line_1, :address_line_2, :zip_code, :city)
   end
 
 end

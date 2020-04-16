@@ -5,7 +5,15 @@
         <span aria-hidden="true">&times;</span>
       </button>
       <strong>
-        <%= value %>
+        <% if value.class == Array %>
+          <ul class="list-unstyled">
+            <% value.each do |content| %>
+              <li><%= content %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <%= value %>
+        <% end %>
       </strong>
     </div>
   <% end %>

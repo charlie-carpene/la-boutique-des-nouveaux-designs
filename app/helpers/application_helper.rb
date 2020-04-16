@@ -13,5 +13,4 @@ module ApplicationHelper
         "alert alert-primary"
     end
   end
-
 end

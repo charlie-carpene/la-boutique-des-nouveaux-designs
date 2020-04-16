@@ -94,3 +94,8 @@ fr:
           less_than_or_equal_to: "doit être plus petit ou égal à %{count}"
           odd: "doit être impair"
           even: "doit être pair"
+  activemodel:
+    errors:
+      models:
+        address:
+          first_name: "Prénom"
