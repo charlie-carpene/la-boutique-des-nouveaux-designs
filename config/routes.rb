@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show]
-  resources :addresses, only: [:new, :create, :show, :edit, :destroy]
+  resources :addresses, only: [:new, :create, :show, :edit, :update, :destroy]
 end

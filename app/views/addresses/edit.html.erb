@@ -1,1 +1,55 @@
-<h2 class="mt-4 text-center text-primary">Editer mon adresse n°<%= @address.id %></h2>
+<div class="container w-50">
+  <h2 class="mt-4 text-center text-primary">Modifier l'adresse</h2>
+
+  <%= form_with model: @address, url: address_path(@address), method: "put" do |f| %>
+
+    <div class="row">
+      <div class="col-6">
+        <%= f.label 'Prénom' %>
+      </div>
+      <div class="col-6">
+        <%= f.label 'Nom' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-6">
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+      <div class="col-6">
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field mt-4">
+      <%= f.label 'Complément d\'adresse' %><br />
+      <%= f.text_field :address_line_2, class: "form-control" %>
+    </div>
+
+
+    <div class="field mt-4">
+      <%= f.label 'Adresse' %><br />
+      <%= f.text_field :address_line_1, class: "form-control" %>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <%= f.label 'Code postal' %>
+      </div>
+      <div class="col-6">
+        <%= f.label 'Ville' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-6">
+        <%= f.text_field :zip_code, class: "form-control" %>
+      </div>
+      <div class="col-6">
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="actions mt-4">
+      <%= f.submit "Modifier l'adresse", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

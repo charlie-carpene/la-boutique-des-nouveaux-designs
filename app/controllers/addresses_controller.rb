@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
     @user.addresses.push(@address)
     if @address.save
       if @user.save
-        flash[:success] = "L'adresse a bien ajouté"
+        flash[:success] = "L'adresse a bien été ajoutée"
         redirect_to user_path(@user)
       end
     else
@@ -23,6 +23,19 @@ class AddressesController < ApplicationController
 
   def edit
     @address = Address.find(params[:id])
+  end
+
+  def update
+    @address = Address.find(params[:id])
+    @address.assign_attributes(address_permitted_params)
+
+    if @address.save
+      flash[:success] = "Les changements ont bien été pris en compte"
+      redirect_to user_path(current_user)
+    else
+      flash[:error] = translate_error_messages(@address.errors)
+      redirect_to edit_address_path(@address.id)
+    end
   end
 
   def destroy
