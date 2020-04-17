@@ -1,7 +1,7 @@
 <div class="container w-50">
   <h2 class="mt-4 text-center text-primary">Modifier l'adresse</h2>
 
-  <%= form_with model: @address, url: address_path(@address), method: "put" do |f| %>
+  <%= form_with model: @address, url: user_address_path(current_user.id, @address.id), method: "put" do |f| %>
 
     <div class="row">
       <div class="col-6">

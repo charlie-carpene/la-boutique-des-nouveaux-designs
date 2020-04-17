@@ -1,7 +1,7 @@
 <div class="container w-50">
   <h2 class="mt-4 text-center text-primary">Ajouter une nouvelle adresse</h2>
 
-  <%= form_for(:address, url: addresses_path, html: { method: :post }) do |f| %>
+  <%= form_for(:address, url: user_addresses_path(current_user.id), html: { method: :post }) do |f| %>
 
     <div class="row">
       <div class="col-6">
