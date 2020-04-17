@@ -1,11 +1,11 @@
 class AddressesController < ApplicationController
   load_and_authorize_resource
+  skip_load_resource only: :create
 
   def new
   end
 
   def create
-
     @user = User.find(current_user.id)
     @address = Address.new(address_permitted_params)
     @user.addresses.push(@address)
@@ -15,21 +15,18 @@ class AddressesController < ApplicationController
         redirect_to user_path(@user)
       end
     else
-      flash.now[:error] = translate_error_messages(@address.errors)
-      render new_address_path
+      flash[:error] = translate_error_messages(@address.errors)
+      redirect_to new_user_address_path(@user.id)
     end
   end
 
   def show
-    can? :manage, Address
   end
 
   def edit
-    can? :manage, Address
   end
 
   def update
-    can? :manage, Address
     @address.assign_attributes(address_permitted_params)
 
     if @address.save
@@ -49,10 +46,6 @@ class AddressesController < ApplicationController
   private
 
   def address_permitted_params
-    puts "-" * 30
-    puts "ok"
-    puts "-" * 30
-
     params.require(:address).permit(:first_name, :last_name, :address_line_1, :address_line_2, :zip_code, :city)
   end
 
