@@ -32,7 +32,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'table_print'
-  gem 'faker'
 end
 
 group :development do
@@ -60,3 +59,5 @@ gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 gem 'devise'
 
 gem 'cancancan'
+
+gem 'faker'
