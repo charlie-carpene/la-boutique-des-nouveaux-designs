@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :addresses, only: [:new, :create, :show, :edit, :update, :destroy]
   end
+
+  resources :categories, only: [:show]
+
 end

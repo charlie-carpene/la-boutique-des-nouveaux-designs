@@ -27,20 +27,18 @@
     </div>
   </div>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav"> <!-- to be change when the Table Category will be added: when flex activated, dropdown doesn't work -->
-    <ul class="navbar-nav justify-content-around w-50">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Catégorie1</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Catégorie2</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Catégorie3</a>
-      </li>
-    </ul>
+  <div class="d-flex justify-content-around">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav w-50 d-flex justify-content-around">
+        <% returnAllCategories.each do |category| %>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%= category.name %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>

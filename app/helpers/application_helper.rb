@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def returnAllCategories
+     Category.all
+  end
+
   def flash_class(level)
     case level
       when 'notice'

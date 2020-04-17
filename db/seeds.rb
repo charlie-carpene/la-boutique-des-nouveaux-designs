@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+Category.destroy_all
+puts "Seed destroyed"
+
+Category.create(name: "Mode")
+Category.create(name: "Maison")
+Category.create(name: "Vie Quotidienne")
+Category.create(name: "Enfant")
+puts "Categories created"
