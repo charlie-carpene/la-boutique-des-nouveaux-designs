@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :addresses
-  has_one :maker
+  has_one :shop
 
 end

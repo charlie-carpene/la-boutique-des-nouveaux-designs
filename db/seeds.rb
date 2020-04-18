@@ -8,7 +8,7 @@
 require 'faker'
 
 Category.destroy_all
-Maker.destroy_all
+Shop.destroy_all
 puts "Seed destroyed"
 
 Category.create(name: "Mode")
@@ -17,4 +17,4 @@ Category.create(name: "Vie Quotidienne")
 Category.create(name: "Enfant")
 puts "Categories created"
 
-Maker.create(brand: "Best Brand Ever", website: "www.showerchiott.es", description: Faker::Quote.famous_last_words, user: User.find_by(email: "charlie@yopmail.com"))
+Shop.create(brand: "Best Brand Ever", website: "www.showerchiott.es", description: Faker::Quote.famous_last_words, user: User.all.first)
