@@ -1,4 +1,4 @@
-/****** header ******/
+/****** HEADER ******/
 
 .logo-overlay {
   position: absolute;
@@ -40,4 +40,9 @@
   color: #fda928;
   left: -7px;
   top: -16px;
+}
+
+/****** BALISES ******/
+p {
+  font-family: inherit;
 }
