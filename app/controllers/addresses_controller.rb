@@ -27,6 +27,8 @@ class AddressesController < ApplicationController
   end
 
   def update
+    puts "-" * 30
+    puts "-" * 30
     @address.assign_attributes(address_permitted_params)
 
     if @address.save
@@ -34,7 +36,7 @@ class AddressesController < ApplicationController
       redirect_to user_path(current_user)
     else
       flash[:error] = translate_error_messages(@address.errors)
-      redirect_to edit_address_path(@address.id)
+      redirect_to edit_user_address_path(@address.user.id, @address.id)
     end
   end
 

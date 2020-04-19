@@ -42,7 +42,24 @@
   top: -16px;
 }
 
-/****** BALISES ******/
+/****** BALISE ******/
 p {
   font-family: inherit;
+}
+
+/****** CARD ******/
+.delete-icon {
+  position: absolute;
+  left: 79%;
+  z-index: 1;
+
+}
+
+/****** COLORS ******/
+.color-change-to-danger {
+  color: #1e185f;
+}
+
+.color-change-to-danger:hover {
+  color: #d9534f;
 }

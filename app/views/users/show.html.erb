@@ -1,33 +1,26 @@
 <div class="container">
   <h2 class="mt-4 text-center text-primary">Mon profil</h2>
 
-  <div>
+  <div class="">
     <h3>Mes identifiants de connection</h3>
-    <div class="row">
-      <div class="col">
-        <p class="corp-test">Mon adresse mail et mon mot de passe</p>
-      </div>
-      <div class="col d-flex justify-content-end">
-        <%= @user.email %>
-      </div>
+    <div class="d-flex justify-content-between border border-primary rounded p-3 m-2">
+        <div>Mon adresse mail et mon mot de passe</div>
+        <div><%= @user.email %></div>
     </div>
-    <div class="row d-flex justify-content-end">
-      <%= link_to "Editer mon mail et mot de passe", edit_user_registration_path, :class=>"btn btn-warning" %>
+    <div class="d-flex justify-content-end">
+      <%= link_to "Modifier", edit_user_registration_path, :class=>"btn btn-warning" %>
     </div>
   </div>
-  <%= button_to "Ajouter une nouvelle adresse", new_user_address_path(current_user.id), method: "get", class: "btn btn-info" %>
 
-  <% if @user.addresses.present? %>
-    <p>Voici tes adresse actuelles :</p>
-    <% current_user.addresses.each do |address| %>
-      <div class="d-flex justify-content-center">
-        <%= link_to "Adresse n°#{address.id} #{address.first_name} #{address.last_name} #{address.address_line_2} #{address.address_line_1} #{address.zip_code} #{address.city}", edit_user_address_path(current_user.id, address.id), class: "nav-link dropdown-item" %>
-        <div class="d-flex">
-          <%= button_to "Modifier", edit_user_address_path(current_user.id, address.id), method: "get", class: "btn btn-info" %>
-          <%= button_to "Supprimer", user_address_path(current_user.id, address.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "btn btn-danger" %>
-        </div>
-      </div>
+  <h3>Me(s) adresse(s) de livraison</h3>
+  <div class="d-flex flex-wrap">
+    <% if @user.addresses.present? %>
+      <% current_user.addresses.each do |address| %>
+        <%= render 'addresses/address_card', address: address %>
+      <% end %>
     <% end %>
-  <% end %>
-
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= button_to "Ajouter une adresse", new_user_address_path(current_user.id), method: "get", class: "btn btn-info" %>
+  </div>
 </div>
