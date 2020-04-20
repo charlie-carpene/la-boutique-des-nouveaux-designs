@@ -8,6 +8,7 @@ class Ability
     if user.present?
       can :manage, User, id: user.id
       can :manage, Address, user_id: user.id
+      can :create, Shop
     end
     # Define abilities for the passed in user here. For example:
     #
