@@ -67,7 +67,7 @@ fr:
     attributes:
       user:
         current_password: Le mot de passe actuel
-        email: L'adresse mail
+        email: L'email
         password: Le mot de passe
         password_confirmation: La confirmation du mot de passe
         remember_me: Se souvenir de moi ?
