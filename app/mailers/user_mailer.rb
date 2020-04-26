@@ -5,7 +5,22 @@ class UserMailer < ApplicationMailer
     @user = user
     @url  = 'https://boutique-des-nouveaux-designs.herokuapp.com/users/sign_in'
 
-    # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
-    mail(to: @user.email, subject: 'Bienvenue chez nous !')
+    Mailjet::Send.create(messages: [{
+      'From'=> {
+        'Email'=> 'solunacisv@gmail.com',
+        'Name'=> 'l\'AdND'
+      },
+      'To'=> [{
+        'Email'=> @user.email,
+        'Name'=> 'You'
+      }],
+      'Variables' => {
+        'url' => @url
+      },
+      'TemplateID'=> 1378192,
+      'TemplateLanguage'=> true,
+      'Subject'=> 'Bienvenue à la Boutique des Nouveaux Designs',
+    }])
   end
+
 end
