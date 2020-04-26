@@ -1,3 +1,30 @@
 <div class="container w-50">
-  <h2 class="mt-4 text-center text-primary">Formulaire de demande</h2>
+  <% if current_user.shop.present? %>
+    <%= render 'has_a_shop_already' %>
+  <% else %>
+    <h2 class="mt-4 text-center text-primary">Formulaire de demande</h2>
+
+    <%= form_for(:shop, url: shops_path(current_user.id), html: { method: :post }) do |f| %>
+
+      <div class="field mt-4">
+        <%= f.label 'Nom de marque' %><br />
+        <%= f.text_field :brand, class: "form-control" %>
+      </div>
+
+      <div class="field mt-4">
+        <%= f.label 'Site web' %><br />
+        <%= f.text_field :website, class: "form-control" %>
+      </div>
+
+      <div class="field mt-4">
+        <%= f.label 'Description' %><br />
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="actions mt-4">
+        <%= f.submit "Envoyer le formulaire", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% end %>
+
 </div>
