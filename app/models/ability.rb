@@ -9,6 +9,9 @@ class Ability
       can :manage, User, id: user.id
       can :manage, Address, user_id: user.id
       can :create, Shop
+      if user.is_maker == true
+        can :manage, Shop, id: user.id
+      end
     end
     # Define abilities for the passed in user here. For example:
     #

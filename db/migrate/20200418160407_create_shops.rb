@@ -4,6 +4,7 @@ class CreateShops < ActiveRecord::Migration[6.0]
       t.belongs_to :user, foreign_key: true
       t.string :brand
       t.string :website
+      t.string :email_pro
       t.text :description
 
       t.timestamps

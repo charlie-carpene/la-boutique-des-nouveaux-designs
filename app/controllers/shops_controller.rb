@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  authorize_resource
 
   def new
     unless current_user.present?
@@ -12,7 +13,9 @@ class ShopsController < ApplicationController
     unless @user.shop.present?
       @user.shop = Shop.create(shop_permitted_params)
       if @user.save
-        flash[:success] = "Votre demande a bien été envoyé"
+        AdminMailer.new_shop_request(@user).deliver_now
+        UserMailer.new_shop_request(@user).deliver_now
+        flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
         redirect_to user_path(@user)
       else
         flash[:error] = translate_error_messages(@user.shop.errors)
@@ -24,10 +27,24 @@ class ShopsController < ApplicationController
     end
   end
 
+  def destroy
+    @user = Shop.find(params[:id]).user
+    @shop = @user.shop
+    @user.shop.destroy
+    if @user.save
+      UserMailer.new_shop_request_denied(@shop).deliver_now
+      flash[:success] = "La demande a bien été rejetée et un mail pour avertir #{@shop.brand} a été envoyé à #{@shop.email_pro}."
+      redirect_to root_path
+    else
+      flash[:error] = translate_error_messages(@user.shop.errors)
+      redirect_to root_path
+    end
+  end
+
   private
 
   def shop_permitted_params
-    params.require(:shop).permit(:brand, :website, :description)
+    params.require(:shop).permit(:brand, :website, :email_pro, :description)
   end
 
 end

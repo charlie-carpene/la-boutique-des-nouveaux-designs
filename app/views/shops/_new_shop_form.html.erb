@@ -1,0 +1,49 @@
+<div class="container w-75 mt-4">
+
+  <%= form_for(:shop, url: shops_path(current_user.id), html: { method: :post }) do |f| %>
+
+    <div class="row">
+      <div class="col">
+        <%= f.label 'Nom de ta marque' %>
+      </div>
+      <div class="col">
+        <%= f.label 'Email profesionnel' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <%= f.text_field :brand, class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.text_field :email_pro, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-9">
+        <%= f.label 'Site web' %>
+      </div>
+      <div class="col-3">
+        <%= f.label '(ajouter des img)' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-9">
+        <%= f.text_field :website, class: "form-control" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :img, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field mt-4">
+      <%= f.label 'Description' %><br />
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="actions mt-4">
+      <%= f.submit "Envoyer le formulaire", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+</div>

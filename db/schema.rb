@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_160407) do
     t.bigint "user_id"
     t.string "brand"
     t.string "website"
+    t.string "email_pro"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
