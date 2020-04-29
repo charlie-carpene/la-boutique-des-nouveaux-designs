@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  authorize_resource
   load_resource :only => :show
+  authorize_resource
 
   def show
   end
