@@ -4,7 +4,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
+    user ||= User.new
+    
     if user.present?
       can :manage, User, id: user.id
       can :manage, Address, user_id: user.id
@@ -12,6 +13,10 @@ class Ability
       if user.is_maker == true
         can :manage, Shop, id: user.id
       end
+    end
+
+    if user.is_admin?
+
     end
     # Define abilities for the passed in user here. For example:
     #

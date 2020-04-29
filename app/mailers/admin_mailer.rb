@@ -4,7 +4,7 @@ class AdminMailer < ApplicationMailer
   def new_shop_request(user)
     Mailjet::Send.create(messages: [{
       'To'=> [{
-        'Email'=> 'solunacisv@gmail.com',
+        'Email'=> 'atelier@nouveauxdesigns.fr',
         'Name'=> 'You'
       }],
       'Variables' => {

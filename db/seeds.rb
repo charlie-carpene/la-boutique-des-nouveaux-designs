@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+Admin.destroy_all
 Category.destroy_all
 Shop.destroy_all
 Address.destroy_all
@@ -19,15 +20,21 @@ Category.create(name: "Vie Quotidienne")
 Category.create(name: "Enfant")
 puts "Categories created"
 
-User.create(email: "charlie@yopmail.com", password: "password", password_confirmation: "password", is_maker: true)
-puts "Maker charlie@yopmail.com created"
+User.create(email: "atelier@nouveauxdesigns.fr", password: "password", password_confirmation: "password", is_maker: true)
+Admin.create(user: User.find_by(email: "atelier@nouveauxdesigns.fr"))
+puts "Admin & Maker (atelier@nouveauxdesigns.fr) created"
 
-Address.create(first_name: "Charlie", last_name: "Carpene", address_line_1: "31 rue du 4 aout 1789", address_line_2: "", zip_code: "69100", city: "Villeurbanne", user: User.find_by(email: "charlie@yopmail.com"))
-Address.create(first_name: "Jonas", last_name: "Thevenon", address_line_1: "Rue  de panam", address_line_2: "", zip_code: "75020", city: "Paris", user: User.find_by(email: "charlie@yopmail.com"))
-puts "charlie@yopmail.com addresses created"
+Address.create(first_name: "Charlie", last_name: "Carpene", address_line_1: "31 rue du 4 aout 1789", address_line_2: "", zip_code: "69100", city: "Villeurbanne", user: User.find_by(email: "atelier@nouveauxdesigns.fr"))
+Address.create(first_name: "Jonas", last_name: "Thevenon", address_line_1: "Rue de panam", address_line_2: "", zip_code: "75020", city: "Paris", user: User.find_by(email: "atelier@nouveauxdesigns.fr"))
+puts "atelier@nouveauxdesigns.fr addresses created"
 
-Shop.create(brand: "ShowerChiottes", website: "www.showerchiott.es", email_pro: "charlie@yopmail.com", description: Faker::Quote.famous_last_words, user: User.find_by(email: "charlie@yopmail.com"))
+Shop.create(brand: "ShowerChiottes", website: "www.showerchiott.es", email_pro: "atelier@nouveauxdesigns.fr", description: Faker::Quote.famous_last_words, user: User.find_by(email: "atelier@nouveauxdesigns.fr"))
 puts "Shop created"
+
+User.create(email: "gradya@yopmail.com", password: "password", password_confirmation: "password")
+Shop.create(brand: "Gradya bg compagny", website: "www.showerchiott.es", email_pro: "gradya@yopmail.com", description: Faker::Quote.famous_last_words, user: User.find_by(email: "gradya@yopmail.com"))
+puts "Common user and her shop created"
+
 
 puts "-" * 30
 puts "Seed success"

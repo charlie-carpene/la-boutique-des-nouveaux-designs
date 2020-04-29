@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
   def welcome_email(user)
     Mailjet::Send.create(messages: [{
       'From'=> {
-        'Email'=> 'solunacisv@gmail.com',
+        'Email'=> 'atelier@nouveauxdesigns.fr',
         'Name'=> 'l\'AdND'
       },
       'To'=> [{
