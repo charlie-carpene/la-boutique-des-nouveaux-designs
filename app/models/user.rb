@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  after_create :welcome_send
+  #after_create :welcome_send
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
