@@ -5,13 +5,13 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    
+
     if user.present?
       can :manage, User, id: user.id
       can :manage, Address, user_id: user.id
       can :create, Shop
       if user.is_maker == true
-        can :manage, Shop, id: user.id
+        can :manage, Shop, id: user.shop.id
       end
     end
 
