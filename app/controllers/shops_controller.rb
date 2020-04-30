@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  load_resource :only => [:show, :edit]
   authorize_resource
 
   def new
@@ -25,6 +26,12 @@ class ShopsController < ApplicationController
       flash[:error] = "Vous avez déjà une Boutique enregistrée"
       redirect_to user_path(@user)
     end
+  end
+
+  def show
+  end
+
+  def edit
   end
 
   def destroy

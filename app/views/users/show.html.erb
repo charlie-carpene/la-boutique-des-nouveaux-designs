@@ -21,6 +21,25 @@
     <% end %>
   </div>
   <div class="d-flex justify-content-end">
-    <%= button_to "Ajouter une adresse", new_user_address_path(current_user.id), method: "get", class: "btn btn-info" %>
+    <%= button_to "Ajouter une adresse", new_user_address_path(current_user.id), method: "get", class: "btn btn-primary" %>
   </div>
+
+  <% if @user.is_maker? %>
+    <div class="mt-3">
+      <h3>Ma boutique <%= @user.shop.brand %></h3>
+      <div class="border border-primary rounded p-3 m-2">
+        <div class="d-flex justify-content-between">
+          <div>Mon adresse mail professionnelle</div>
+          <div><%= @user.shop.email_pro %></div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div>Mon site web</div>
+          <div><%= @user.shop.website %></div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <%= link_to "Accéder", shop_path(current_user.shop.id), :class=>"btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
 </div>

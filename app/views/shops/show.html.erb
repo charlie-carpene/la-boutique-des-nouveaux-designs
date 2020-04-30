@@ -1,0 +1,12 @@
+<div class="bg-primary">
+  <div class="container">
+    <h2 class="pt-4 text-center text-light"><%= @shop.brand %></h2>
+    <p class="text-center text-light"><%= @shop.description %></p>
+    <div class="d-flex justify-content-around">
+      <p class="text-light"><%= @shop.website %></p>
+      <p class="text-light"><%= @shop.email_pro %></p>
+  </div>
+  <div class="pb-4 d-flex justify-content-end">
+    <%= link_to "Modifier", edit_shop_path(@shop.id), :class=>"btn btn-outline-warning" %>
+  </div>
+</div>
