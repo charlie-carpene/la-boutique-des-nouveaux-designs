@@ -1,6 +1,6 @@
 <div class="container w-75 mt-4">
 
-  <%= form_for(:shop, url: shops_path(current_user.id), html: { method: :post }) do |f| %>
+  <%= form_for(:shop, url: shops_path(current_user.id), html: { method: :post, enctype: "multipart/form-data" }) do |f| %>
 
     <div class="row">
       <div class="col">
@@ -32,7 +32,7 @@
         <%= f.text_field :website, class: "form-control" %>
       </div>
       <div class="col-3">
-        <%= f.text_field :img, class: "form-control" %>
+        <%= file_field_tag "files[]", multiple: true %>
       </div>
     </div>
 

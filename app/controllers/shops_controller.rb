@@ -11,11 +11,19 @@ class ShopsController < ApplicationController
 
   def create
     @user = User.find(current_user.id)
+
+    # if needed, check https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
+    new_shop_images_attributes = params[:files].inject({}) do |hash, file|
+      hash.merge!(SecureRandom.hex => { image: file })
+    end
+    shop_images_attributes = shop_permitted_params[:shop_images_attributes].to_h.merge(new_shop_images_attributes)
+    shop_permitted_attributes  = shop_permitted_params.merge(shop_images_attributes: shop_images_attributes)
+
     unless @user.shop.present?
-      @user.shop = Shop.create(shop_permitted_params)
+      @user.shop = Shop.create(shop_permitted_attributes)
       if @user.save
-        AdminMailer.new_shop_request(@user).deliver_now
-        UserMailer.new_shop_request(@user).deliver_now
+        #AdminMailer.new_shop_request(@user).deliver_now
+        #UserMailer.new_shop_request(@user).deliver_now
         flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
         redirect_to user_path(@user)
       else
@@ -51,7 +59,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_permitted_params
-    params.require(:shop).permit(:brand, :website, :email_pro, :description)
+    params.require(:shop).permit(:brand, :website, :email_pro, :description, :shop_images_attributes)
   end
 
 end
