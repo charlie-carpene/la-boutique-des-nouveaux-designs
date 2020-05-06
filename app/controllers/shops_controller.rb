@@ -17,11 +17,11 @@ class ShopsController < ApplicationController
       hash.merge!(SecureRandom.hex => { image: file })
     end
     shop_images_attributes = shop_permitted_params[:shop_images_attributes].to_h.merge(new_shop_images_attributes)
-    shop_permitted_attributes  = shop_permitted_params.merge(shop_images_attributes: shop_images_attributes)
-
-    unless @user.shop.present?
-      @user.shop = Shop.create(shop_permitted_attributes)
-      if @user.save
+    shop_permitted_attributes = shop_permitted_params.merge(shop_images_attributes: shop_images_attributes)
+    if @user.shop.blank?
+      shop = Shop.new(shop_permitted_attributes)
+      shop.user = @user
+      if shop.save
         #AdminMailer.new_shop_request(@user).deliver_now
         #UserMailer.new_shop_request(@user).deliver_now
         flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
