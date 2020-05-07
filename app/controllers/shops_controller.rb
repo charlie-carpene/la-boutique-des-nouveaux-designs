@@ -13,26 +13,31 @@ class ShopsController < ApplicationController
     @user = User.find(current_user.id)
 
     # if needed, check https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
-    new_shop_images_attributes = params[:files].inject({}) do |hash, file|
-      hash.merge!(SecureRandom.hex => { image: file })
-    end
-    shop_images_attributes = shop_permitted_params[:shop_images_attributes].to_h.merge(new_shop_images_attributes)
-    shop_permitted_attributes = shop_permitted_params.merge(shop_images_attributes: shop_images_attributes)
-    if @user.shop.blank?
-      shop = Shop.new(shop_permitted_attributes)
-      shop.user = @user
-      if shop.save
-        #AdminMailer.new_shop_request(@user).deliver_now
-        #UserMailer.new_shop_request(@user).deliver_now
-        flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
-        redirect_to user_path(@user)
-      else
-        flash[:error] = translate_error_messages(@user.shop.errors)
-        redirect_to new_shop_path
-      end
+    if params[:files].blank?
+      flash[:error] = "Vous n'avez ajouter aucun document"
+      redirect_to new_shop_path
     else
-      flash[:error] = "Vous avez déjà une Boutique enregistrée"
-      redirect_to user_path(@user)
+      new_shop_images_attributes = params[:files].inject({}) do |hash, file|
+        hash.merge!(SecureRandom.hex => { image: file })
+      end
+      shop_images_attributes = shop_permitted_params[:shop_images_attributes].to_h.merge(new_shop_images_attributes)
+      shop_permitted_attributes = shop_permitted_params.merge(shop_images_attributes: shop_images_attributes)
+      if @user.shop.blank?
+        shop = Shop.new(shop_permitted_attributes)
+        shop.user = @user
+        if shop.save
+          #AdminMailer.new_shop_request(@user).deliver_now
+          #UserMailer.new_shop_request(@user).deliver_now
+          flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
+          redirect_to user_path(@user)
+        else
+          flash[:error] = translate_error_messages(@user.shop.errors)
+          redirect_to new_shop_path
+        end
+      else
+        flash[:error] = "Vous avez déjà une Boutique enregistrée"
+        redirect_to user_path(@user)
+      end
     end
   end
 
