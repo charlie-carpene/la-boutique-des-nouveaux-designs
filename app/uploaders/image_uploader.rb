@@ -9,7 +9,7 @@ class ImageUploader < Shrine
 
   Attacher.validate do
     validate_mime_type %w[image/jpeg image/png application/pdf], message: "doit être un jpeg, un png ou un pdf"
-    validate_max_size 5*1024*1024
+    validate_max_size 3*1024*1024, message: "doi(ven)t être chacun inférieur à 3 Mo"
     validate_extension_inclusion %w[jpg jpeg png pdf], message: "doit être un jpeg, un png ou un pdf"
   end
 
