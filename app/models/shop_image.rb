@@ -10,7 +10,7 @@ class ShopImage < ApplicationRecord
   def images_limite_nbr
     limit = 7
     if self.shop.shop_images.size > limit
-      errors.add(:image, "must be lower than #{limit}")
+      errors.add(:image_nbr_sent, "doit être inférieur à #{limit}.")
     end
   end
 end
