@@ -11,4 +11,4 @@
     </div>
   </div>
 </div>
-<%= image_tag @shop.shop_images[0].image_url %>
+<%= @shop.shop_images[0].image.metadata['mime_type'] %>
