@@ -27,7 +27,7 @@ class ShopsController < ApplicationController
         shop.user = @user
         if shop.save
           #AdminMailer.new_shop_request(@user).deliver_now
-          #UserMailer.new_shop_request(@user).deliver_now
+          UserMailer.new_shop_request(@user).deliver_now
           flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
           redirect_to user_path(@user)
         else

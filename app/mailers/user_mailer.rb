@@ -23,7 +23,7 @@ class UserMailer < ApplicationMailer
   def new_shop_request(user)
     Mailjet::Send.create(messages: [{
       'To'=> [{
-        'Email'=> user.email,
+        'Email'=> user.shop.email_pro,
         'Name'=> 'You'
       }],
       'Variables' => {
@@ -34,6 +34,7 @@ class UserMailer < ApplicationMailer
       'TemplateID'=> 1383918,
       'TemplateLanguage'=> true,
       'Subject'=> 'La Boutique des Nouveaux Designs',
+      'Attachments'=> add_attached_files(user) #method in application_mailer.
     }])
   end
 

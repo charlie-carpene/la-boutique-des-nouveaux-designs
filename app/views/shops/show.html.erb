@@ -11,4 +11,6 @@
     </div>
   </div>
 </div>
-<%= @shop.shop_images[0].image.metadata['mime_type'] %>
+<% @shop.shop_images.each do |shop_image| %>
+  <%= image_tag shop_image.image_url %>
+<% end  %>
