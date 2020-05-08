@@ -15,6 +15,7 @@ class AdminMailer < ApplicationMailer
       'TemplateID'=> 1383469,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nvlle demande de créateur - la Boutique des Nouveaux Designs',
+      'Attachments'=> add_attached_files(user) #method in application_mailer.
     }])
   end
 
