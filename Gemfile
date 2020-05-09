@@ -67,3 +67,4 @@ gem 'shrine', '~> 3.2', '>= 3.2.1'
 gem 'fastimage', '~> 2.1', '>= 2.1.7'
 gem 'image_processing', '~> 1.10', '>= 1.10.3'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
+gem "aws-sdk-s3", require: false
