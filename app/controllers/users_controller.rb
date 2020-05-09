@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user_to_validate = User.find(params[:id])
     @user_to_validate.is_maker = true
     if load_user.is_admin? && @user_to_validate.save
-      UserMailer.new_shop_request_accepted(@user_to_validate).deliver_now
+      #UserMailer.new_shop_request_accepted(@user_to_validate).deliver_now
       flash[:success] = "La validation a bien été effectuée et un mail a été envoyé à #{@user_to_validate.shop.email_pro}."
       redirect_to root_path
     else
