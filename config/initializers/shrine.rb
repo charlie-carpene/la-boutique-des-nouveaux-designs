@@ -9,8 +9,8 @@ if Rails.env.development? || Rails.env.test?
 else
   require "shrine/storage/s3"
   s3_options = {
-    access_key_id:     Rails.application.secrets.s3_access_key_id,
-    secret_access_key: Rails.application.secrets.s3_secret_access_key,
+    access_key_id:     ENV['AMAZON_ACCESS_KEY_ID'],
+    secret_access_key: ENV['AMAZON_SECRET_ACCESS_KEY'],
     region:            "eu-west-3",
     bucket:            "la-boutique-des-nouveaux-designs"
   }
