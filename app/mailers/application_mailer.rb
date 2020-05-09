@@ -13,7 +13,7 @@ class ApplicationMailer < ActionMailer::Base
       }
       content_array.push(content)
     end
-    return content_array.join(", ")
+    return content_array
   end
 
 end
