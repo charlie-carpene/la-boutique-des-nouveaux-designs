@@ -1,5 +1,6 @@
 class ImageUploader < Shrine
   # plugins and uploading logic
+  plugin :upload_options, cache: { move: true }, store: { move: true }
   plugin :store_dimensions
   plugin :determine_mime_type
   plugin :pretty_location
