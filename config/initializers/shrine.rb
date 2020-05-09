@@ -14,6 +14,7 @@ else
     region:            Rails.application.secrets.s3_region,
     bucket:            Rails.application.secrets.s3_bucket
   }
+  
   Shrine.storages = {
     cache: Shrine::Storage::S3.new(prefix: "cache", **s3_options),
     store: Shrine::Storage::S3.new(prefix: "store", **s3_options)
