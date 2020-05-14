@@ -6,11 +6,13 @@
       <p class="text-light"><%= @shop.website %></p>
       <p class="text-light"><%= @shop.email_pro %></p>
     </div>
-    <div class="pb-4 d-flex justify-content-end">
-      <%= link_to "Modifier", edit_shop_path(@shop.id), :class=>"btn btn-outline-warning" %>
+    <div class="d-flex justify-content-between">
+      <ul class="list-unstyled text-white d-flex">
+        <% @shop.shop_images.each do |shop_image| %>
+          <li class="m-3"><%= shop_image.image.metadata['filename'] %></li>
+        <% end  %>
+      </ul>
+      <%= button_to "Modifier", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
     </div>
   </div>
 </div>
-<% @shop.shop_images.each do |shop_image| %>
-  <%= image_tag shop_image.image_url %>
-<% end  %>

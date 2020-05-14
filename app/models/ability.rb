@@ -10,7 +10,7 @@ class Ability
       can :manage, User, id: user.id
       can :manage, Address, user_id: user.id
       can :create, Shop
-      if user.is_maker == true
+      if user.is_maker
         can :manage, Shop, id: user.shop.id
       end
     end

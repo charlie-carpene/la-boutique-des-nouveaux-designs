@@ -24,7 +24,7 @@
     <%= button_to "Ajouter une adresse", new_user_address_path(current_user.id), method: "get", class: "btn btn-primary" %>
   </div>
 
-  <% if @user.is_maker? %>
+  <% if @user.is_maker %>
     <div class="mt-3">
       <h3>Ma boutique <%= @user.shop.brand %></h3>
       <div class="border border-primary rounded p-3 m-2">

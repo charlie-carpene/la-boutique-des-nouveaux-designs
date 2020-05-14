@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:show]
-  resources :shops, only: [:new, :create, :show, :edit, :destroy]
+  resources :shops, only: [:new, :create, :show, :edit, :update, :destroy]
 
 end

@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  load_resource :only => [:show, :edit]
+  load_resource :only => [:show, :edit, :update]
   authorize_resource
 
   def new
@@ -10,6 +10,9 @@ class ShopsController < ApplicationController
   end
 
   def create
+    puts "-" * 30
+    p params[:shop]
+    puts "-" * 30
     @user = User.find(current_user.id)
 
     # if needed, check https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
@@ -47,6 +50,16 @@ class ShopsController < ApplicationController
   def edit
   end
 
+  def update
+    if @shop.update(shop_permitted_params)
+      flash[:success] = "Les informations de votre boutique ont bien été mises à jour."
+      redirect_to shop_path(@shop.id)
+    else
+      flash.now[:error] = translate_error_messages(@shop.errors)
+      render 'edit'
+    end
+  end
+
   def destroy
     @user = Shop.find(params[:id]).user
     @shop = @user.shop
@@ -64,7 +77,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_permitted_params
-    params.require(:shop).permit(:brand, :website, :email_pro, :description, :shop_images_attributes)
+    params.require(:shop).permit(:brand, :website, :email_pro, :description, :terms_of_service, :shop_images_attributes)
   end
 
 end
