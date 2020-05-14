@@ -1,0 +1,48 @@
+<div class="container">
+  <h2 class="mt-4 text-center text-primary">Ajouter un nouveau produit</h2>
+
+  <div class="mt-4">
+
+    <%= form_for(:item, url: items_path, html: { method: :post }) do |f| %>
+
+      <div class="field mt-4">
+        <%= f.label 'Nom du produit' %><br />
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col">
+          <%= f.label 'Prix' %>
+        </div>
+        <div class="col">
+          <%= f.label 'Quantité disponible' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <%= f.number_field :price, placeholder: 30, in: 0.01..5000.00, step: 0.01, class: "form-control" %>
+        </div>
+        <div class="col">
+          <%= f.number_field :available_qty, value: 1, step: 1, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="field mt-4">
+        <%= f.label 'Catégorie' %><br />
+        <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name') %>
+      </div>
+
+      <div class="field mt-4">
+        <%= f.label 'Description' %><br />
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <%= f.hidden_field :shop_id, :value => current_user.shop.id %>
+
+      <div class="actions d-flex justify-content-end mt-4">
+        <%= f.submit "Créer un nouveau produit", class: "btn btn-success" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

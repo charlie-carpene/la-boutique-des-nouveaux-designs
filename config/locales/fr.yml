@@ -10,7 +10,12 @@ fr:
   brand: "Le nom de la marque"
   email_pro: "L'email professionel"
   description: "La description"
+
   terms_of_service: "Les conditions générales de vente"
+
+  available_qty: "La quantité disponible"
+  price: "Le prix"
+  name: "Le nom"
 
   shop_images:
     image: "Le(s) document(s)"
