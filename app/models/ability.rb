@@ -9,9 +9,10 @@ class Ability
     if user.present?
       can :manage, User, id: user.id
       can :manage, Address, user_id: user.id
-      can :create, Shop
+      can [:read, :create], Shop
       if user.is_maker
         can :manage, Shop, id: user.shop.id
+        can :manage, ShopImage, shop_id: user.shop.id
       end
     end
 

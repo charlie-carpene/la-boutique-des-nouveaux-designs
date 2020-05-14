@@ -6,13 +6,15 @@
       <p class="text-light"><%= @shop.website %></p>
       <p class="text-light"><%= @shop.email_pro %></p>
     </div>
-    <div class="d-flex justify-content-between">
-      <ul class="list-unstyled text-white d-flex">
-        <% @shop.shop_images.each do |shop_image| %>
-          <li class="m-3"><%= shop_image.image.metadata['filename'] %></li>
-        <% end  %>
-      </ul>
-      <%= button_to "Modifier", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
-    </div>
+    <% if can? :manage, Shop %>
+      <div class="d-flex justify-content-between">
+        <ul class="list-unstyled d-flex">
+          <% @shop.shop_images.each do |shop_image| %>
+            <li class="m-3"><%= link_to shop_image.image.metadata['filename'], shop_image_path(shop_image.id),class: "text-warning" %></li>
+          <% end  %>
+        </ul>
+        <%= button_to "Modifier", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
+      </div>
+    <% end %>
   </div>
 </div>
