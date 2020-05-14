@@ -15,7 +15,7 @@ class Ability
       end
     end
 
-    if user.is_admin?
+    if user.admin.present?
 
     end
     # Define abilities for the passed in user here. For example:
