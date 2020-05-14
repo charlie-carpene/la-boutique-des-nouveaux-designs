@@ -10,6 +10,9 @@ class ShopsController < ApplicationController
   end
 
   def create
+    puts "-" * 30
+    p params[:shop]
+    puts "-" * 30
     @user = User.find(current_user.id)
 
     # if needed, check https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
@@ -26,8 +29,8 @@ class ShopsController < ApplicationController
         shop = Shop.new(shop_permitted_attributes)
         shop.user = @user
         if shop.save
-          #AdminMailer.new_shop_request(@user).deliver_now
-          #UserMailer.new_shop_request(@user).deliver_now
+          AdminMailer.new_shop_request(@user).deliver_now
+          UserMailer.new_shop_request(@user).deliver_now
           flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
           redirect_to user_path(@user)
         else
@@ -74,7 +77,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_permitted_params
-    params.require(:shop).permit(:brand, :website, :email_pro, :description, :shop_images_attributes)
+    params.require(:shop).permit(:brand, :website, :email_pro, :description, :terms_of_service, :shop_images_attributes)
   end
 
 end

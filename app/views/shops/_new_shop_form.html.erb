@@ -40,9 +40,17 @@
       <%= file_field_tag "files[]", multiple: true %>
     </div>
 
+    <div class="field mt-4">
+      <%= f.check_box(:terms_of_service) %>
+      <%= f.label(:terms_of_service, 'J\'accepte les conditions générales de vente') %>
+    </div>
 
-    <div class="actions mt-4">
-      <%= f.submit "Envoyer le formulaire", class: "btn btn-primary" %>
+    <div  class="d-flex justify-content-between mt-4">
+      <%= button_to "Voir les CGVs (pas encore branché)", root_path, {method: :get, :class=>"btn btn-primary"} %>
+
+      <div class="actions">
+        <%= f.submit "Envoyer le formulaire", class: "btn btn-success" %>
+      </div>
     </div>
   <% end %>
 
