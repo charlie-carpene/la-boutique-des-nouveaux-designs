@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  load_resource :only => [:show, :edit]
+  load_resource :only => [:show, :edit, :update]
   authorize_resource
 
   def new
@@ -26,8 +26,8 @@ class ShopsController < ApplicationController
         shop = Shop.new(shop_permitted_attributes)
         shop.user = @user
         if shop.save
-          AdminMailer.new_shop_request(@user).deliver_now
-          UserMailer.new_shop_request(@user).deliver_now
+          #AdminMailer.new_shop_request(@user).deliver_now
+          #UserMailer.new_shop_request(@user).deliver_now
           flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
           redirect_to user_path(@user)
         else
@@ -45,6 +45,16 @@ class ShopsController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    if @shop.update(shop_permitted_params)
+      flash[:success] = "Les informations de votre boutique ont bien été mises à jour."
+      redirect_to shop_path(@shop.id)
+    else
+      flash.now[:error] = translate_error_messages(@shop.errors)
+      render 'edit'
+    end
   end
 
   def destroy

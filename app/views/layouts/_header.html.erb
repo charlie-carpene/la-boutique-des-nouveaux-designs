@@ -14,7 +14,7 @@
         <%= link_to "", "#", :class => "m-2 fas fa-user fa-2x text-success", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false" %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <%= link_to "Mon profil", user_path(current_user.id), :class=>"nav-link dropdown-item" %>
-          <% if current_user.is_maker? %>
+          <% if current_user.is_maker %>
             <%= link_to "Ma Boutique", shop_path(current_user.shop.id), :class=>"nav-link dropdown-item" %>
           <% end %>
           <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class=>"nav-link dropdown-item" %>

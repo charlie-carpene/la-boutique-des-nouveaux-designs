@@ -1,1 +1,38 @@
-<h1>On pourra ajouter  un formulaire pour editer les infos de la boutique sur cette page</h1>
+<div class="container">
+  <h2 class="mt-4 text-center text-primary">Modifier les informations de ma boutique</h2>
+
+  <%= form_for(:shop, url: shop_path(current_user.shop.id), html: { method: :put, enctype: "multipart/form-data", class: "mt-4" }) do |f| %>
+
+    <div class="row">
+      <div class="col">
+        <%= f.label 'Nom de ma marque' %>
+      </div>
+      <div class="col">
+        <%= f.label 'Mon email profesionnel' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <%= f.text_field :brand, class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.text_field :email_pro, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field mt-4">
+      <%= f.label 'Mon site web' %><br />
+      <%= f.text_field :website, placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits", class: "form-control" %>
+    </div>
+
+    <div class="field mt-4">
+      <%= f.label 'Ma description' %><br />
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="actions mt-4 d-flex justify-content-end">
+      <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
+    </div>
+  <% end %>
+
+</div>
