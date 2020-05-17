@@ -3,7 +3,7 @@
 
   <div class="mt-4">
 
-    <%= form_for(:item, url: items_path, html: { method: :post }) do |f| %>
+    <%= form_for(:item, url: items_path, html: { enctype: "multipart/form-data", method: :post }) do |f| %>
 
       <div class="field mt-4">
         <%= f.label 'Nom du produit' %><br />
@@ -35,6 +35,11 @@
       <div class="field mt-4">
         <%= f.label 'Description' %><br />
         <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="field mt-4">
+        <%= f.label 'Ajouter des photos : ', class: "font-weight-bold" %>
+        <%= file_field_tag "files[]", multiple: true %>
       </div>
 
       <%= f.hidden_field :shop_id, :value => current_user.shop.id %>

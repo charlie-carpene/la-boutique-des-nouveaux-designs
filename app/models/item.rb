@@ -7,4 +7,6 @@ class Item < ApplicationRecord
 
   belongs_to :shop
   belongs_to :category
+  has_many :item_pictures, dependent: :destroy
+  accepts_nested_attributes_for :item_pictures, allow_destroy: true
 end
