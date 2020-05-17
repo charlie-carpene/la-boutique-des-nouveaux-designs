@@ -5,6 +5,9 @@ class PictureUploader < Shrine
   plugin :pretty_location
   plugin :remove_invalid
   plugin :validation_helpers
+  plugin :versions
+  plugin :processing
+  plugin :delete_raw
 
   Attacher.validate do
     validate_mime_type %w[image/jpeg image/png application/pdf], message: "doi(ven)t être un jpeg, un png ou un pdf"
@@ -22,6 +25,19 @@ class PictureUploader < Shrine
     version =  context[:version] === :original ? '' : "_#{context[:version]}"
     directory = context[:record].class.name.downcase.pluralize
     "#{directory}/#{@filename}#{version}#{extension}"
+  end
+
+  process(:store) do |io, **options|
+    versions = { original: io } # retain original
+
+    io.download do |original|
+      pipeline = ImageProcessing::MiniMagick.source(original)
+
+      versions[:card] = pipeline.resize_to_fill!(200, 300)
+      versions[:small]  = pipeline.resize_to_limit!(300, 300)
+    end
+
+    versions # return the hash of processed files
   end
 
 end
