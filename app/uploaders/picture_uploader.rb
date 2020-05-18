@@ -34,7 +34,7 @@ class PictureUploader < Shrine
       pipeline = ImageProcessing::MiniMagick.source(original)
 
       versions[:card] = pipeline.resize_to_fill!(200, 300)
-      versions[:small]  = pipeline.resize_to_limit!(300, 300)
+      versions[:item_show]  = pipeline.resize_to_fill!(600, 500)
     end
 
     versions # return the hash of processed files

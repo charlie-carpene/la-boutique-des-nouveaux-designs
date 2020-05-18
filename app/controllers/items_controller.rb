@@ -33,6 +33,17 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def update
+    if @item.update(item_permitted_params)
+      flash[:success] = "Les informations de #{@item.name} ont bien été mises à jour."
+      redirect_to item_path(@item.id)
+    else
+      flash.now[:error] = translate_error_messages(@shop.errors)
+      render 'edit'
+    end
+
+  end
+
   private
 
   def item_permitted_params

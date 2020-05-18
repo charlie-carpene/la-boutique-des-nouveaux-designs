@@ -1,1 +1,48 @@
-<h1><%= @item.name %></h1>
+<div class="container">
+  <h2 class="mt-4 text-center text-primary">Modifier <%= @item.name %></h2>
+
+  <%= form_for(:item, url: item_path(@item.id), html: { method: :put, enctype: "multipart/form-data", class: "mt-4" }) do |f| %>
+
+    <div class="field mt-4">
+      <%= f.label 'Nom du produit' %><br />
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col">
+        <%= f.label 'Prix' %>
+      </div>
+      <div class="col">
+        <%= f.label 'Quantité disponible' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= f.number_field :price, in: 0.01..5000.00, step: 0.01, class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.number_field :available_qty, step: 1, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field mt-4">
+      <%= f.label 'Catégorie' %><br />
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name') %>
+    </div>
+
+    <div class="field mt-4">
+      <%= f.label 'Description' %><br />
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="field mt-4">
+      <%= f.label 'Ajouter des photos : ', class: "font-weight-bold" %>
+      <%= file_field_tag "files[]", multiple: true %>
+    </div>
+
+    <div class="actions mt-4 d-flex justify-content-end">
+      <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
+    </div>
+  <% end %>
+
+</div>

@@ -11,7 +11,7 @@
         <ul class="list-unstyled d-flex">
           <% @shop.shop_images.each do |shop_image| %>
             <li class="m-3"><%= link_to shop_image.image.metadata['filename'], shop_image_path(shop_image.id),class: "text-warning" %></li>
-          <% end  %>
+          <% end %>
         </ul>
         <%= button_to "Modifier", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
       </div>
@@ -21,11 +21,12 @@
 
 <div>
   <div class="container">
-    <% @shop.items.each do |item| %>
-      <%= render 'items/item_card', item: item %>
-    <% end %>
+    <div class="row row-cols">
+      <% @shop.items.each do |item| %>
+        <%= render 'items/item_card', item: item %>
+      <% end %>
+    </div>
   </div>
-
   <% if can? :manage, @shop %>
     <div class="d-flex justify-content-end">
       <%= button_to "Ajouter un produit", new_item_path, {method: 'get', form_class: "m-2 pt-1", class: "btn btn-success" } %>

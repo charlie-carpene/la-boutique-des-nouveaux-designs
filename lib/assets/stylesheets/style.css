@@ -63,3 +63,11 @@ p {
 .color-change-to-danger:hover {
   color: #d9534f;
 }
+
+.color-change-to-warning {
+  color: #1e185f;
+}
+
+.color-change-to-warning:hover {
+  color: #fda928;
+}
