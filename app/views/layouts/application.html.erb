@@ -17,13 +17,13 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <%= render 'layouts/header' %>
+  <body class="vh-100 d-flex flex-column justify-content-between">
+    <%= render 'layouts/header' %>
 
-  <body>
     <%= render 'layouts/messages' %>
     <%= yield %>
-  </body>
 
-  <%= render 'layouts/footer' %>
+    <%= render 'layouts/footer' %>
+  </body>
 
 </html>

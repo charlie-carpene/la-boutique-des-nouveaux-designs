@@ -1,2 +1,9 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="container">
+  <h2 class="pt-4 text-center text-primary"><%= @category.name %></h2>
+
+  <div class="row row-cols">
+    <% @items.each do |item| %>
+      <%= render 'items/item_card', item: item %>
+    <% end %>
+  </div>
+</div>
