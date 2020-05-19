@@ -19,13 +19,11 @@
   </div>
 </div>
 
-<div>
-  <div class="container">
-    <div class="row row-cols">
-      <% @shop.items.each do |item| %>
-        <%= render 'items/item_card', item: item %>
-      <% end %>
-    </div>
+<div class="container">
+  <div class="row row-cols">
+    <% @shop.items.each do |item| %>
+      <%= render 'items/item_card', item: item %>
+    <% end %>
   </div>
   <% if can? :manage, @shop %>
     <div class="d-flex justify-content-end">

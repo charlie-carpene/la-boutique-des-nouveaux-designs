@@ -6,7 +6,7 @@
 
   <div class="d-flex">
     <div class="container mt-4">
-      <%= button_to "Nos créateurs", root_path, class: "btn btn-primary" %>
+      <%= button_to "Nos créateurs", shops_path, { method: 'get', class: "btn btn-primary" } %>
     </div>
     <div class="container d-flex justify-content-end mt-3">
       <% if user_signed_in? %>

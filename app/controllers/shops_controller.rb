@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  load_resource :only => [:show, :edit, :update]
+  load_resource :only => [:show, :edit, :update, :index]
   authorize_resource
 
   def new
@@ -72,6 +72,9 @@ class ShopsController < ApplicationController
       flash[:error] = translate_error_messages(@user.shop.errors)
       redirect_to root_path
     end
+  end
+
+  def index
   end
 
   private

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'maker/index'
   root 'static_pages#index'
   get "become_maker" => 'static_pages#become_maker'
 
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:show]
-  resources :shops, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :shops
   resources :shop_images, only: [:show]
   resources :items
 
