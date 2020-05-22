@@ -21,7 +21,10 @@
     <%= render 'layouts/header' %>
 
     <%= render 'layouts/messages' %>
-    <%= yield %>
+
+    <div class="h-100">
+      <%= yield %>
+    </div>
 
     <%= render 'layouts/footer' %>
   </body>

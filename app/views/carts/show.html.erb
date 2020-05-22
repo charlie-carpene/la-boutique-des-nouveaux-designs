@@ -1,2 +1,5 @@
-<h1>Panier de <%= @cart.user.email %></h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<div class="container">
+  <h2 class="pt-4 text-center text-primary">Votre Panier</h2>
+
+  <%= render 'items/item_row', cart: @cart %>
+</div>

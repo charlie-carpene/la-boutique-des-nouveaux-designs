@@ -71,3 +71,11 @@ p {
 .color-change-to-warning:hover {
   color: #fda928;
 }
+
+.color-change-to-success {
+  color: #1e185f;
+}
+
+.color-change-to-success:hover {
+  color: #14ca61;
+}
