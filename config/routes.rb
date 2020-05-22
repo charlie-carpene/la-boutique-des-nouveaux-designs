@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
   resources :shops
-  resources :shop_images, only: [:show]
+  resources :shop_images, only: [:show, :edit, :update]
   resources :items
 
 end

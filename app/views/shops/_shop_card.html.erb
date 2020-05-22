@@ -1,5 +1,10 @@
-<div class="card bg-light text-dark m-5" style="height:400px;width:300px">
-  <img src="..." class="card-img" alt="...">
+<div class="card bg-light text-dark" style="height:400px;width:300px">
+  <div class="h-100 d-flex justify-content-center mt-5 pt-1">
+    <%= image_tag "fond_logo_transparent.png", class: "card-img", style: "max-height:150px;max-width:150px" %>
+    <div class="card-img-overlay d-flex justify-content-center mt-5 pt-5">
+      <p class="card-text text-warning font-weight-bold">Nouveau<br> créateur</p>
+    </div>
+  </div>
   <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">
     <%= button_to shop.brand, shop_path(shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-primary" } %>
   </div>

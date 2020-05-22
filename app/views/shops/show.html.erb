@@ -1,16 +1,18 @@
 <div class="bg-primary">
   <div class="container">
     <h2 class="pt-4 text-center text-light"><%= @shop.brand %></h2>
-    <p class="text-center text-light"><%= @shop.description %></p>
+    <p class="text-center text-light"><%= @shop.website %></p>
     <div class="d-flex justify-content-around">
-      <p class="text-light"><%= @shop.website %></p>
-      <p class="text-light"><%= @shop.email_pro %></p>
+      <p class="text-light"><%= @shop.description %></p>
+      <% if can? :manage, @shop %>
+        <%= render 'shop_card',shop: @shop %>
+      <% end %>
     </div>
     <% if can? :manage, @shop %>
       <div class="d-flex justify-content-between">
         <ul class="list-unstyled d-flex">
           <% @shop.shop_images.each do |shop_image| %>
-            <li class="m-3"><%= link_to shop_image.image.metadata['filename'], shop_image_path(shop_image.id),class: "text-warning" %></li>
+            <li class="m-3"><%= link_to shop_image.image.metadata['filename'], edit_shop_image_path(shop_image.id),class: "text-warning" %></li>
           <% end %>
         </ul>
         <%= button_to "Modifier", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>

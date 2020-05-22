@@ -1,12 +1,12 @@
-  <div class="card bg-light text-dark m-5" style="height:300px;width:200px">
-    <img src="<%= p item.item_pictures.last.picture[:card].url %>" class="card-img" alt="...">
+  <div class="card border-0 bg-light text-dark m-5" style="height:300px;width:200px">
+    <img src="<%= item.item_pictures.last.picture[:card].url %>" class="card-img" alt="...">
     <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">
       <%= button_to item.name, item_path(item.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-primary" } %>
     </div>
     <% if can? :manage, item %>
       <div class="delete-icon">
-        <%= link_to "", item_path(item.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "fas fa-trash color-change-to-danger mt-2" %>
         <%= link_to "", edit_item_path(item.id), class: "fas fa-edit color-change-to-warning mt-2" %>
+        <%= link_to "", item_path(item.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "fas fa-trash color-change-to-danger mt-2" %>
       </div>
     <% end %>
   </div>

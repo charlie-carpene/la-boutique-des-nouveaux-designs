@@ -26,11 +26,34 @@
     </div>
 
     <div class="field mt-4">
+      <%= f.label 'Mes documents' %><br />
+      <div class="row">
+        <% @shop.shop_images.each do |shop_image| %>
+          <div class="card border-top-0 border-right-0 m-3" style="height:150px;width:150px">
+            <div class="h-100 d-flex justify-content-center align-items-center">
+              <% if shop_image.image.metadata['mime_type'] == "application/pdf" %>
+                <%= image_tag "fond_logo_transparent.png", class: "card-img", style: "max-height:100px;max-width:100px" %>
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                  <p class="card-text text-white font-weight-bold">PDF</p>
+                </div>
+              <% else %>
+                <%= image_tag shop_image.image_url, class: "card-img", style: "max-height:100px;max-width:100px" %>
+              <% end %>
+            </div>
+            <%= link_to "", edit_shop_image_path(shop_image.id), class: "fas fa-edit color-change-to-warning mt-2 delete-icon" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="field mt-4">
       <%= f.label 'Ma description' %><br />
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
-    <div class="actions mt-4 d-flex justify-content-end">
+    <div class="actions mt-4 d-flex justify-content-between">
+      <%= link_to "Retour", shop_path(@shop.id), {method: "get", class: "btn btn-primary" } %>
+
       <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
     </div>
   <% end %>
