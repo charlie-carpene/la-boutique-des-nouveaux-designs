@@ -50,7 +50,8 @@ p {
 /****** CARD ******/
 .delete-icon {
   position: absolute;
-  left: 88%;
+  left: 100%;
+  margin-left: -25px; 
   z-index: 1;
 
 }

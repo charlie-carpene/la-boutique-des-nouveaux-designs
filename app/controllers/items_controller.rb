@@ -41,7 +41,12 @@ class ItemsController < ApplicationController
       flash.now[:error] = translate_error_messages(@shop.errors)
       render 'edit'
     end
+  end
 
+  def destroy
+    @item.destroy
+    flash[:error] = "L'article a bien été supprimé."
+    redirect_back(fallback_location: root_path)
   end
 
   private

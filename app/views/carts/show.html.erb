@@ -1,5 +1,9 @@
 <div class="container">
   <h2 class="pt-4 text-center text-primary">Votre Panier</h2>
 
-  <%= render 'items/item_row', cart: @cart %>
+  <% if @cart.cart_items.present? %>
+    <%= render 'items/item_row', cart: @cart %>
+  <% else %>
+    <p class="text-center">Vous n'avez encore rien ajouté à votre panier</p>
+  <% end %>
 </div>

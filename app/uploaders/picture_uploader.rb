@@ -34,6 +34,7 @@ class PictureUploader < Shrine
       pipeline = ImageProcessing::MiniMagick.source(original)
 
       versions[:card] = pipeline.resize_to_fill!(200, 300)
+      versions[:cart] = pipeline.resize_to_fill!(100, 100)
       versions[:item_show]  = pipeline.resize_to_fill!(600, 500)
     end
 
