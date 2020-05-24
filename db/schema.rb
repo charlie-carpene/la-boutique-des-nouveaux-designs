@@ -79,15 +79,6 @@ ActiveRecord::Schema.define(version: 2020_05_24_120649) do
     t.index ["shop_id"], name: "index_items_on_shop_id"
   end
 
-  create_table "shop_images", force: :cascade do |t|
-    t.bigint "shop_id", null: false
-    t.string "label"
-    t.text "image_data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["shop_id"], name: "index_shop_images_on_shop_id"
-  end
-
   create_table "shops", force: :cascade do |t|
     t.bigint "user_id"
     t.string "brand"
@@ -121,6 +112,5 @@ ActiveRecord::Schema.define(version: 2020_05_24_120649) do
   add_foreign_key "item_pictures", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "shops"
-  add_foreign_key "shop_images", "shops"
   add_foreign_key "shops", "users"
 end

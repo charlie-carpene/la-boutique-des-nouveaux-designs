@@ -27,8 +27,6 @@ class AddressesController < ApplicationController
   end
 
   def update
-    puts "-" * 30
-    puts "-" * 30
     @address.assign_attributes(address_permitted_params)
 
     if @address.save

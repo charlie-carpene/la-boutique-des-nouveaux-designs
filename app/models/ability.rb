@@ -14,7 +14,6 @@ class Ability
       can :read, Cart, user: user
       if user.is_maker
         can :manage, Shop, id: user.shop.id
-        can :manage, ShopImage, shop_id: user.shop.id
         can :manage, Item, shop_id: user.shop.id
       end
     end
