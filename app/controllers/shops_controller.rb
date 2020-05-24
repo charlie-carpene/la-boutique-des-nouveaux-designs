@@ -10,27 +10,18 @@ class ShopsController < ApplicationController
   end
 
   def create
-    puts "-" * 30
-    p params[:shop]
-    puts "-" * 30
     @user = User.find(current_user.id)
 
-    # if needed, check https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
+    # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
     if params[:files].blank?
       flash[:error] = "Vous n'avez ajouter aucun document"
       redirect_to new_shop_path
     else
-      new_shop_images_attributes = params[:files].inject({}) do |hash, file|
-        hash.merge!(SecureRandom.hex => { image: file })
-      end
-      shop_images_attributes = shop_permitted_params[:shop_images_attributes].to_h.merge(new_shop_images_attributes)
-      shop_permitted_attributes = shop_permitted_params.merge(shop_images_attributes: shop_images_attributes)
       if @user.shop.blank?
-        shop = Shop.new(shop_permitted_attributes)
-        shop.user = @user
-        if shop.save
-          AdminMailer.new_shop_request(@user).deliver_now
-          UserMailer.new_shop_request(@user).deliver_now
+        @user.shop = Shop.new(shop_permitted_params)
+        if @user.save
+          AdminMailer.new_shop_request(@user, params[:files]).deliver_now
+          UserMailer.new_shop_request(@user, params[:files]).deliver_now
           flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
           redirect_to user_path(@user)
         else
@@ -51,9 +42,12 @@ class ShopsController < ApplicationController
   end
 
   def update
+    puts "-" * 30
+    puts shop_permitted_params.inspect
+    puts "-" * 30
     if @shop.update(shop_permitted_params)
       flash[:success] = "Les informations de votre boutique ont bien été mises à jour."
-      redirect_to shop_path(@shop.id)
+      redirect_to edit_shop_path(@shop.id)
     else
       flash.now[:error] = translate_error_messages(@shop.errors)
       render 'edit'
@@ -80,7 +74,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_permitted_params
-    params.require(:shop).permit(:brand, :website, :email_pro, :description, :terms_of_service, :shop_images_attributes)
+    params.require(:shop).permit(:brand, :website, :email_pro, :description, :terms_of_service, :image)
   end
 
 end

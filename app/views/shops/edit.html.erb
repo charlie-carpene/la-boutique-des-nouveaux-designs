@@ -1,60 +1,57 @@
 <div class="container">
   <h2 class="mt-4 text-center text-primary">Modifier les informations de ma boutique</h2>
 
-  <%= form_for(:shop, url: shop_path(current_user.shop.id), html: { method: :put, enctype: "multipart/form-data", class: "mt-4" }) do |f| %>
+  <%= form_for(:shop, url: shop_path(current_user.shop.id), html: { method: :put, enctype: "multipart/form-data" }) do |f| %>
 
     <div class="row">
-      <div class="col">
-        <%= f.label 'Nom de ma marque' %>
-      </div>
-      <div class="col">
-        <%= f.label 'Mon email profesionnel' %>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <div class="col">
-        <%= f.text_field :brand, class: "form-control" %>
-      </div>
-      <div class="col">
-        <%= f.text_field :email_pro, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="field mt-4">
-      <%= f.label 'Mon site web' %><br />
-      <%= f.text_field :website, placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits", class: "form-control" %>
-    </div>
-
-    <div class="field mt-4">
-      <%= f.label 'Mes documents' %><br />
-      <div class="row">
-        <% @shop.shop_images.each do |shop_image| %>
-          <div class="card border-top-0 border-right-0 m-3" style="height:150px;width:150px">
-            <div class="h-100 d-flex justify-content-center align-items-center">
-              <% if shop_image.image.metadata['mime_type'] == "application/pdf" %>
-                <%= image_tag "fond_logo_transparent.png", class: "card-img", style: "max-height:100px;max-width:100px" %>
-                <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                  <p class="card-text text-white font-weight-bold">PDF</p>
-                </div>
-              <% else %>
-                <%= image_tag shop_image.image_url, class: "card-img", style: "max-height:100px;max-width:100px" %>
-              <% end %>
-            </div>
-            <%= link_to "", edit_shop_image_path(shop_image.id), class: "fas fa-edit color-change-to-warning mt-2 delete-icon" %>
+      <div class="col-12 col-lg-9 mt-4">
+        <div class="row">
+          <div class="col">
+            <%= f.label 'Nom de ma marque' %>
           </div>
-        <% end %>
+          <div class="col">
+            <%= f.label 'Mon email profesionnel' %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <%= f.text_field :brand, class: "form-control" %>
+          </div>
+          <div class="col">
+            <%= f.text_field :email_pro, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="field mt-4">
+          <%= f.label 'Mon site web' %><br />
+          <%= f.text_field :website, placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits", class: "form-control" %>
+        </div>
+      </div>
+      <div class="col col-lg-3 mt-4">
+        <%= f.label 'Image de ma boutique' %><br />
+        <div class="card border-0 m-3" style="height:266px;width:200px">
+          <%= image_tag @shop.show_image(@shop), class: "card-img" %>
+          <div class="card-img-overlay d-flex flex-column justify-content-end">
+            <div class="rounded bg-primary d-flex flex-column">
+              <div class="text-center text-white">Modifier :</div>
+              <%= f.file_field :image, class: "btn btn-sm text-primary" %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="field mt-4">
-      <%= f.label 'Ma description' %><br />
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
+    <div class="container">
+      <div class="field mt-4">
+        <%= f.label 'Ma description' %><br />
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
 
-    <div class="actions mt-4 d-flex justify-content-between">
-      <%= link_to "Retour", shop_path(@shop.id), {method: "get", class: "btn btn-primary" } %>
+      <div class="actions mt-4 d-flex justify-content-between">
+        <%= link_to "Retour", shop_path(@shop.id), {method: "get", class: "btn btn-primary" } %>
 
-      <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
+        <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
+      </div>
     </div>
   <% end %>
 

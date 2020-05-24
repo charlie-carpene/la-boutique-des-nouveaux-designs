@@ -51,9 +51,19 @@ p {
 .delete-icon {
   position: absolute;
   left: 100%;
-  margin-left: -25px; 
+  margin-left: -25px;
   z-index: 1;
 
+}
+
+/****** IMAGES ******/
+
+.img-opacity {
+  opacity: 0.7;
+}
+
+.img-opacity:hover {
+  opacity: 1.0;
 }
 
 /****** COLORS ******/

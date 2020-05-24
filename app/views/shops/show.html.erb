@@ -11,9 +11,7 @@
     <% if can? :manage, @shop %>
       <div class="d-flex justify-content-between">
         <ul class="list-unstyled d-flex">
-          <% @shop.shop_images.each do |shop_image| %>
-            <li class="m-3"><%= link_to shop_image.image.metadata['filename'], edit_shop_image_path(shop_image.id),class: "text-warning" %></li>
-          <% end %>
+            <li class="m-3 text-warning">info visible uniquement par l'artisant</li>
         </ul>
         <%= button_to "Modifier", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
       </div>

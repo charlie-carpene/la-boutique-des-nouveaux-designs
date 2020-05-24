@@ -1,4 +1,6 @@
 class Shop < ApplicationRecord
+  include ImageUploader::Attachment(:image)
+
   validates :brand, presence: true
   validates :description, presence: true
   validates :email_pro, presence: true, format: { with: /\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "doit être un site web valide" }
@@ -7,8 +9,13 @@ class Shop < ApplicationRecord
 
   belongs_to :user
   has_one :address
-  has_many :shop_images, dependent: :destroy
-  accepts_nested_attributes_for :shop_images, allow_destroy: true
   has_many :items
 
+  def show_image(shop)
+    if shop.image.present?
+      return shop.image[:shop].url
+    else
+      return "shop_card.png"
+    end
+  end
 end

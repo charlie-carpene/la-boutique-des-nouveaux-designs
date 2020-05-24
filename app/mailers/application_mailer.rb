@@ -2,16 +2,20 @@ class ApplicationMailer < ActionMailer::Base
   default from: 'from@example.com'
   layout 'mailer'
 
-  def add_attached_files(user)
+  def add_attached_files(shop_images)
     content_array = []
 
-    user.shop.shop_images.each_with_index do |content, index|
-      content = {
-        "ContentType"=> user.shop.shop_images[index].image.metadata["mime_type"],
-        "Filename"=> user.shop.shop_images[index].image.metadata["filename"],
-        "Base64Content"=> Base64.encode64(open(user.shop.shop_images[index].image) { |io| io.read })
+    shop_images.each do |shop_image|
+      puts "-" * 30
+      puts shop_image.content_type
+      puts "-" * 30
+
+      attached_file_content = {
+        "ContentType"=> shop_image.content_type,
+        "Filename"=> shop_image.original_filename,
+        "Base64Content"=> Base64.encode64(File.open(shop_image.tempfile, "rb").read)
       }
-      content_array.push(content)
+      content_array.push(attached_file_content)
     end
     return content_array
   end
