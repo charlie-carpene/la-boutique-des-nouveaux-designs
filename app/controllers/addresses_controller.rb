@@ -6,17 +6,14 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @user = User.find(current_user.id)
     @address = Address.new(address_permitted_params)
-    @user.addresses.push(@address)
+    @address.user = User.find(params[:user_id])
     if @address.save
-      if @user.save
-        flash[:success] = "L'adresse a bien été ajoutée"
-        redirect_to user_path(@user)
-      end
+      flash[:success] = "L'adresse a bien été ajoutée"
+      redirect_to user_path(@address.user)
     else
       flash[:error] = translate_error_messages(@address.errors)
-      redirect_to new_user_address_path(@user.id)
+      redirect_to new_user_address_path(params[:user_id])
     end
   end
 
