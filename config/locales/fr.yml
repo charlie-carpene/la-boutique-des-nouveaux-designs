@@ -10,6 +10,7 @@ fr:
   brand: "Le nom de la marque"
   email_pro: "L'email professionel"
   description: "La description"
+  compagny_id: "Le numéro de SIRET"
 
   terms_of_service: "Les conditions générales de vente"
 

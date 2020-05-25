@@ -84,7 +84,7 @@ fr:
           blank: "ne peut pas être vide"
           too_long: "est trop long (maximum %{count} caractères)"
           too_short: "est trop court (minimum %{count} caractères)"
-          wrong_length: "n'est pas de la bonne longueure (doit être de %{count} characters)"
+          wrong_length: "n'est pas de la bonne longueur  (doit être de %{count} caractères)"
           taken: "est déjà pris"
           not_a_number: "n'est pas un chiffre"
           greater_than: "doit être plus grand que %{count}"

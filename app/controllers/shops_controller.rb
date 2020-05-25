@@ -71,7 +71,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_permitted_params
-    params.require(:shop).permit(:brand, :website, :email_pro, :description, :terms_of_service, :image)
+    params.require(:shop).permit(:brand, :website, :email_pro, :description, :compagny_id, :terms_of_service, :image)
   end
 
 end

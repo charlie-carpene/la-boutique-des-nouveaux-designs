@@ -41,17 +41,20 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="field mt-4">
-        <%= f.label 'Ma description' %><br />
-        <%= f.text_area :description, class: "form-control" %>
-      </div>
+    <div class="field mt-4">
+      <%= f.label 'Numéro de SIRET' %><br />
+      <%= f.text_field :compagny_id, placeholder: "n° à 14 chiffres", class: "form-control" %>
+    </div>
 
-      <div class="actions mt-4 d-flex justify-content-between">
-        <%= link_to "Retour", shop_path(@shop.id), {method: "get", class: "btn btn-primary" } %>
+    <div class="field mt-4">
+      <%= f.label 'Ma description' %><br />
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
 
-        <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
-      </div>
+    <div class="actions mt-4 d-flex justify-content-between">
+      <%= link_to "Retour", shop_path(@shop.id), {method: "get", class: "btn btn-primary" } %>
+
+      <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
     </div>
   <% end %>
 
