@@ -19,9 +19,19 @@
       </div>
     </div>
 
-    <div class="field mt-4">
-      <%= f.label 'Site web' %><br />
-      <%= f.text_field :website, placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits", class: "form-control" %>
+    <div class="row">
+      <div class="col-9">
+        <%= f.label 'Site web' %>
+      </div>
+      <div class="col-3">
+        <%= f.label 'Ajouter les photos :', class: "font-weight-bold" %>
+      </div>
+      <div class="col-9">
+        <%= f.text_field :website, placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits", class: "form-control" %>
+      </div>
+      <div class="col-3">
+        <%= file_field_tag "files[]", multiple: true %>
+      </div>
     </div>
 
     <div class="field mt-4">
@@ -35,14 +45,7 @@
     </div>
 
     <div class="field mt-4">
-      Nous avons également besoin que tu nous envoies :
-      <ul>
-        <li>Ton Kbis pour que nous verifions que ton activité est bien professionelle</li>
-        <li>Ton RIB pro pour que nous puissions te faire les virements correspondant à tes ventes chaque mois</li>
-        <li>Jusqu'à 5 photos de tes produits si tu n'as pas de site web pour que nous puissions voir à quoi ressemble tes créations</li>
-      </ul>
-      <%= f.label 'Ajouter les documents : ', class: "font-weight-bold" %>
-      <%= file_field_tag "files[]", multiple: true %>
+      Pour recevoir l'argent de tes ventes, il te faudra ensuite garder à jour tes informations bancaire directement depuis ton compte.
     </div>
 
     <div class="field mt-4">
