@@ -11,27 +11,20 @@ class ShopsController < ApplicationController
 
   def create
     @user = User.find(current_user.id)
-
-    # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
-    if params[:files].blank?
-      flash[:error] = "Vous n'avez ajouter aucun document"
-      redirect_to new_shop_path
-    else
-      if @user.shop.blank?
-        @user.shop = Shop.new(shop_permitted_params)
-        if @user.save
-          AdminMailer.new_shop_request(@user, params[:files]).deliver_now
-          UserMailer.new_shop_request(@user, params[:files]).deliver_now
-          flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
-          redirect_to user_path(@user)
-        else
-          flash[:error] = translate_error_messages(@user.shop.errors)
-          redirect_to new_shop_path
-        end
-      else
-        flash[:error] = "Vous avez déjà une Boutique enregistrée"
+    if @user.shop.blank?
+      @user.shop = Shop.new(shop_permitted_params)
+      if @user.save
+        #AdminMailer.new_shop_request(@user, params[:files]).deliver_now
+        UserMailer.new_shop_request(@user, params[:files]).deliver_now
+        flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
         redirect_to user_path(@user)
+      else
+        flash[:error] = translate_error_messages(@user.shop.errors)
+        redirect_to new_shop_path
       end
+    else
+      flash[:error] = "Vous avez déjà une Boutique enregistrée"
+      redirect_to user_path(@user)
     end
   end
 

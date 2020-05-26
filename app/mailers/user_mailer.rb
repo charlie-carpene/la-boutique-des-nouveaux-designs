@@ -34,7 +34,10 @@ class UserMailer < ApplicationMailer
       'TemplateID'=> 1383918,
       'TemplateLanguage'=> true,
       'Subject'=> 'La Boutique des Nouveaux Designs',
-      'Attachments'=> add_attached_files(shop_images) #method in application_mailer.
+      'Attachments'=>
+      unless shop_images.blank?
+        add_attached_files(shop_images) #method in application_mailer.
+      end
     }])
   end
 

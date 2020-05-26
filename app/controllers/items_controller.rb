@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
       flash[:error] = "Vous n'avez ajouter aucune photos"
       render 'new'
     else
+      # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
       new_item_pictures_attributes = params[:files].inject({}) do |hash, file|
         hash.merge!(SecureRandom.hex => { picture: file })
       end
