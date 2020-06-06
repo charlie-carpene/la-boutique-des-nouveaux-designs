@@ -8,6 +8,8 @@ class Shop < ApplicationRecord
   validates :terms_of_service, acceptance: { message: 'doivent être acceptées' }
   validates :compagny_id, presence: true, format: { with: /\A\d+\z/, message: "doit être uniquement des chiffres"}, length: { is: 14 }
 
+  devise :omniauthable, :omniauth_providers => [:stripe_connect]
+
   belongs_to :user
   has_one :address
   has_many :items
@@ -18,5 +20,9 @@ class Shop < ApplicationRecord
     else
       return "shop_card.png"
     end
+  end
+
+  def can_receive_payments?
+    uid? && provider? && access_code? && publishable_key?
   end
 end

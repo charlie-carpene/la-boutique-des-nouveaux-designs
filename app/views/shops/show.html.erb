@@ -9,25 +9,35 @@
       <% end %>
     </div>
     <% if can? :manage, @shop %>
-      <div class="d-flex justify-content-between">
-        <ul class="list-unstyled d-flex">
-            <li class="m-3 text-warning">info visible uniquement par l'artisant</li>
-        </ul>
-        <%= button_to "Modifier", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
+      <div class="d-flex justify-content-center">
+        <%= button_to "Toutes mes informations", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
       </div>
     <% end %>
   </div>
 </div>
 
 <div class="container">
+  <% if can? :manage, @shop %>
+    <div class="d-flex justify-content-center">
+      <% if @shop.can_receive_payments? %>
+
+<!--
+Support documentation relative to Stripe connect payment method:
+  - https://medium.com/@ThatGuyTinus/stripe-connect-rails-part-2-9751c0e553f9
+  - https://github.com/heartcombo/devise/wiki/OmniAuth:-Overview
+-->
+        <%= button_to "Ajouter un nouveau produit", new_item_path, {method: 'get', form_class: "mt-4 pt-1", class: "btn btn-success" } %>
+      <% else %>
+        <div class="mt-4 p-4 d-flex flex-column align-items-center bg-warning rounded ">
+          <p class="text-center text-primary font-italic font-weight-bold">Pour pouvoir ajouter et vendre vos produits veuillez d'abord créer (ou connecter) un compte Stripe :</p>
+          <%= link_to 'Connecter Stripe à votre boutique', stripe_url, class: 'btn btn-success', target: '_blank' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
   <div class="row row-cols">
     <% @shop.items.each do |item| %>
       <%= render 'items/item_card', item: item %>
     <% end %>
   </div>
-  <% if can? :manage, @shop %>
-    <div class="d-flex justify-content-end">
-      <%= button_to "Ajouter un produit", new_item_path, {method: 'get', form_class: "m-2 pt-1", class: "btn btn-success" } %>
-    </div>
-  <% end %>
 </div>
