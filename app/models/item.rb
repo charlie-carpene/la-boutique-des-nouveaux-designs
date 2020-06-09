@@ -11,4 +11,5 @@ class Item < ApplicationRecord
   has_many :carts, through: :cart_items
   has_many :item_pictures, dependent: :destroy
   accepts_nested_attributes_for :item_pictures, allow_destroy: true
+  has_many :order_items
 end

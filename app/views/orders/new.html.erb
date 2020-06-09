@@ -1,0 +1,11 @@
+<h1>Récap' de la commande :</h1>
+<% @order.user.cart.items.each do |item| %>
+  <ul>
+    <li><%= item.name %> créé part <%= item.shop.brand %> à <%= item.price %>€</li>
+  </ul>
+<% end %>
+
+<script src="https://js.stripe.com/v3"></script>
+<%= button_to 'Commander', nil, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
+
+<%= javascript_include_tag :stripe %>
