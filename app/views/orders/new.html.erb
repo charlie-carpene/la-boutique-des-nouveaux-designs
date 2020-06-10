@@ -6,6 +6,6 @@
 <% end %>
 
 <script src="https://js.stripe.com/v3"></script>
-<%= button_to 'Commander', nil, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
+<%= button_to 'Commander', orders_path, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
 
 <%= javascript_include_tag :stripe %>

@@ -13,6 +13,7 @@ class Ability
       can :read, Category
       can :read, Cart, user: user
       can :read, Item
+      can [:read, :create], Order, user: user
       if user.is_maker
         can :manage, Shop, id: user.shop.id
         can :manage, Item, shop_id: user.shop.id

@@ -6,10 +6,6 @@ class ApplicationMailer < ActionMailer::Base
     content_array = []
 
     shop_images.each do |shop_image|
-      puts "-" * 30
-      puts shop_image.content_type
-      puts "-" * 30
-
       attached_file_content = {
         "ContentType"=> shop_image.content_type,
         "Filename"=> shop_image.original_filename,
