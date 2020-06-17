@@ -3,9 +3,10 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
 
-  def create_ordered_items
+  def create_ordered_items(shop)
     ordered_items = Array.new
-    self.user.cart.items.each_with_index do |item, index|
+    items = self.user.cart.items.where(shop: shop)
+    items.each_with_index do |item, index|
       ordered_items[index] = OrderItem.create(order: self, item: item)
     end
     return ordered_items
@@ -21,5 +22,13 @@ class Order < ApplicationRecord
       items_array.push(item_info)
     end
     return items_array
+  end
+
+  def total_price(ordered_items)
+    total_price = 0
+    ordered_items.each do |order_item|
+      total_price += order_item.item.price
+    end
+    return total_price
   end
 end

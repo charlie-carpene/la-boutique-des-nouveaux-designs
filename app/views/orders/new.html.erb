@@ -1,5 +1,5 @@
 <h1>Récap' de la commande :</h1>
-<% @order.user.cart.items.each do |item| %>
+<% @order.items.each do |item| %>
   <ul>
     <li><%= item.name %> créé part <%= item.shop.brand %> à <%= item.price %>€</li>
   </ul>

@@ -2,11 +2,9 @@
   <h2 class="pt-4 text-center text-primary">Votre Panier</h2>
 
   <% if @cart.cart_items.present? %>
-    <%= render 'items/item_row', cart: @cart %>
+    <%= render 'cart_shop', shops: @cart.get_items_shops, cart: @cart %> <!-- to be able to show items in their own shop since Stripe doesn't allow to split a payement between shops -->
   <% else %>
     <p class="text-center">Vous n'avez encore rien ajouté à votre panier</p>
   <% end %>
-
-  <%= link_to 'Passer commande', new_order_path, class: 'btn btn-success' %>
 
 </div>

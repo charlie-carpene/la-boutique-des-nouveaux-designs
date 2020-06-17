@@ -19,5 +19,4 @@ class CartItem < ApplicationRecord
       return false
     end
   end
-
 end

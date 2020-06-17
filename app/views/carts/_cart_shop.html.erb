@@ -1,0 +1,8 @@
+<% shops.each do |shop| %>
+  <ul class="list-group mt-4">
+    <% cart.get_cart_items_from_a_specific_shop(shop).each do |cart_item| %>
+      <%= render 'items/item_row', cart_item: cart_item %>
+    <% end %>
+  </ul>
+  <%= button_to "Passer commande à #{shop.brand}", new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
+<% end %>
