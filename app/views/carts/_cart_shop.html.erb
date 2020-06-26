@@ -1,8 +1,18 @@
 <% shops.each do |shop| %>
-  <ul class="list-group mt-4">
-    <% cart.get_cart_items_from_a_specific_shop(shop).each do |cart_item| %>
-      <%= render 'items/item_row', cart_item: cart_item %>
-    <% end %>
-  </ul>
-  <%= button_to "Passer commande à #{shop.brand}", new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
+  <div class="m-5 p-4 border-top border-bottom border-dark bg-light">
+    <div class="d-flex justify-content-center">
+      <%= image_tag shop.show_image(shop), class: "cart-shop-img-resize" %>
+    </div>
+    <ul class="list-group mt-4">
+      <% cart.get_cart_items_from_a_specific_shop(shop).each do |cart_item| %>
+        <%= render 'items/item_row', cart_item: cart_item %>
+      <% end %>
+    </ul>
+    <div class="m-3 d-flex justify-content-end">
+      <strong>prix total : <%= cart.get_total_price_from_a_specific_shop(shop) %>€</strong>
+    </div>
+    <div class="d-flex justify-content-end">
+      <%= button_to "Passer commande à #{shop.brand}", new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
+    </div>
+  </div>
 <% end %>

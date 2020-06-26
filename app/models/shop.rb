@@ -18,7 +18,7 @@ class Shop < ApplicationRecord
     if shop.image.present?
       return shop.image[:shop].url
     else
-      return "shop_card.png"
+      return "logo_transparent.png"
     end
   end
 

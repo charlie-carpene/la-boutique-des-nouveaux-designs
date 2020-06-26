@@ -53,7 +53,16 @@ p {
   left: 100%;
   margin-left: -25px;
   z-index: 1;
+}
 
+.shop-resize {
+  height: 350px;
+  width: 250px;
+}
+
+.cart-shop-img-resize {
+  height: 100px;
+  width: 100px;
 }
 
 /****** IMAGES ******/

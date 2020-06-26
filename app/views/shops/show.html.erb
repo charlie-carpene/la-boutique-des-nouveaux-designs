@@ -1,16 +1,11 @@
 <div class="bg-primary">
-  <div class="container">
+  <div class="container text-center">
+    <div class="mt-3 d-flex justify-content-center"><%= image_tag @shop.show_image(@shop), style: "width:200px" %></div>
     <h2 class="pt-4 text-center text-light"><%= @shop.brand %></h2>
-    <p class="text-center text-light"><%= @shop.website %></p>
-    <div class="d-flex justify-content-around">
-      <p class="text-light"><%= @shop.description %></p>
-      <% if can? :manage, @shop %>
-        <%= render 'shop_card',shop: @shop %>
-      <% end %>
-    </div>
+    <p class="text-light"><%= @shop.description %></p>
     <% if can? :manage, @shop %>
       <div class="d-flex justify-content-center">
-        <%= button_to "Toutes mes informations", edit_shop_path(@shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-outline-warning" } %>
+        <%= button_to "Voir les informations de ma boutique", edit_shop_path(@shop.id), {method: 'get', form_class: "m-3 pt-1", class: "btn btn-outline-warning" } %>
       </div>
     <% end %>
   </div>

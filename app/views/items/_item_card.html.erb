@@ -1,7 +1,7 @@
   <div class="card border-0 bg-light text-dark m-5" style="height:300px;width:200px">
     <img src="<%= item.item_pictures.last.picture[:card].url %>" class="card-img" alt="...">
     <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">
-      <%= button_to item.name, item_path(item.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-primary" } %>
+      <%= link_to item.name, item_path(item.id), class: "btn btn-primary stretched-link" %>
     </div>
     <div class="delete-icon">
       <% if can? :manage, item %>

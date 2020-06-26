@@ -1,11 +1,11 @@
-<div class="card bg-light text-dark">
-  <%= image_tag shop.show_image(shop), class: "card-img" %>
+<div class="card bg-light text-dark shop-resize">
+  <%= image_tag shop.show_image(shop), class: "card-img p-5 rounded" %>
   <% unless shop.image.present? %>
     <div class="card-img-overlay d-flex justify-content-center mt-5 pt-5">
       <p class="card-text text-warning font-weight-bold">Nouveau<br> créateur</p>
     </div>
   <% end %>
   <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">
-    <%= button_to shop.brand, shop_path(shop.id), {method: 'get', form_class: "m-2 pt-1", class: "btn btn-primary" } %>
+    <%= link_to shop.brand, shop_path(shop.id), class: "mb-4 btn btn-primary stretched-link" %>
   </div>
 </div>

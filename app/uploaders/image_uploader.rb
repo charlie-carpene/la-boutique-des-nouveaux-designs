@@ -33,7 +33,7 @@ class ImageUploader < Shrine
     io.download do |original|
       pipeline = ImageProcessing::MiniMagick.source(original)
 
-      versions[:shop] = pipeline.resize_to_fill!(300, 400)
+      versions[:shop] = pipeline.resize_to_fill!(200, 200)
     end
 
     versions # return the hash of processed files

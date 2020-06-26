@@ -16,4 +16,12 @@ class Cart < ApplicationRecord
   def get_cart_items_from_a_specific_shop(shop)
     self.cart_items.where(item: self.items.where(shop: shop))
   end
+
+  def get_total_price_from_a_specific_shop(shop)
+    price = 0
+    self.get_cart_items_from_a_specific_shop(shop).each do |cart_item|
+      price += cart_item.item_qty_in_cart * cart_item.item.price
+    end
+    return price
+  end
 end

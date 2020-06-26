@@ -6,9 +6,15 @@
       <%= cart_item.item.name %>
     </div>
     <div class="d-flex">
+      <div>
+        <%= cart_item.item.price %>€ x
+      </div>
       <%= link_to "", cart_item_path(cart_item.id, operation: "minus"), method: "put", class: "fas fa-minus-circle color-change-to-warning m-1" %>
       <p><%= cart_item.item_qty_in_cart %></p>
       <%= link_to "", cart_item_path(cart_item.id, operation: "plus"), method: "put", class: "fas fa-plus-circle color-change-to-success m-1" %>
+      <div  class="mr-3">
+        = <strong><%= cart_item.item.price * cart_item.item_qty_in_cart %>€</strong>
+      </div>
     </div>
   </div>
 </li>
