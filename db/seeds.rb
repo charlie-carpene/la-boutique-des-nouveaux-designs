@@ -8,6 +8,8 @@
 require 'faker'
 
 Admin.destroy_all
+Order.destroy_all
+Item.destroy_all
 Category.destroy_all
 Shop.destroy_all
 Address.destroy_all
@@ -19,10 +21,10 @@ puts "Seed starting :"
 puts "-" * 30
 
 puts "***** Categories ... *****"
-Category.create(name: "Mode")
-Category.create(name: "Maison")
-Category.create(name: "Vie Quotidienne")
 Category.create(name: "Enfant")
+Category.create(name: "Maison")
+Category.create(name: "Mode")
+Category.create(name: "Quotidien")
 puts "... done"
 
 puts "***** Admin with addresses & shop ... *****"

@@ -38,7 +38,7 @@
       <ul class="navbar-nav w-50 d-flex justify-content-around">
         <% returnAllCategories.each do |category| %>
           <li class="nav-item">
-            <%= link_to category.name, category_path(category.id), class: "nav-link" %>
+            <%= link_to category.name, category_path(category.id), class: "nav-link text-primary" %>
           </li>
         <% end %>
       </ul>
