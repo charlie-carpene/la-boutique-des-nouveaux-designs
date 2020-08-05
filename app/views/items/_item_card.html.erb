@@ -1,5 +1,9 @@
   <div class="card border-0 bg-light text-dark m-5" style="height:300px;width:200px">
-    <img src="<%= item.item_pictures.last.picture[:card].url %>" class="card-img" alt="...">
+    <% if item.item_pictures.present? %> <%# if to be deleted when tests are over. same for item/show %>
+      <img src="<%= item.item_pictures.last.picture[:card].url %>" class="card-img" alt="...">
+    <% else %>
+      <%= image_tag "img-items/sac-0.jpg" %>
+    <% end %>
     <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">
       <%= link_to item.name, item_path(item.id), class: "btn btn-primary stretched-link" %>
     </div>

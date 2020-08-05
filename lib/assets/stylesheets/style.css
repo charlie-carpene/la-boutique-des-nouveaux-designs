@@ -75,6 +75,10 @@ p {
   opacity: 1.0;
 }
 
+.bg-opacity-04 {
+  background: rgba(12, 9, 37, 0.4)
+}
+
 /****** COLORS ******/
 .color-change-to-danger {
   color: #1e185f;
