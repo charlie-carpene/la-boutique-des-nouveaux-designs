@@ -10,9 +10,6 @@ class Shops::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @shop.access_code = auth_data.credentials.token
       @shop.publishable_key = auth_data.info.stripe_publishable_key
       @shop.save
-      puts "*" * 30
-      puts @shop.errors.messages
-      puts "*" * 30
       
       sign_in_and_redirect @shop
       flash[:notice] = 'Votre compte Stripe a bien été créé et est maintenant connecté à votre boutique' if is_navigational_format?
