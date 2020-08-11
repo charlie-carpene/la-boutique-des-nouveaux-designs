@@ -3,7 +3,13 @@ class Shops::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def stripe_connect
     auth_data = request.env["omniauth.auth"]
     @shop = current_user.shop
+    puts "-" * 30
+    puts "juste avant"
+    puts "-" * 30
     if @shop.persisted?
+      puts "*" * 30
+      puts "juste après"
+      puts "*" * 30
       @shop.provider = auth_data.provider
       @shop.uid = auth_data.uid
       @shop.access_code = auth_data.credentials.token
