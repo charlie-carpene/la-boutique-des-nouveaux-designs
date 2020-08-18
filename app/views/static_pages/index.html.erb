@@ -4,6 +4,12 @@
   <%= render 'carrousel' %>
 </div>
 
+<div class="d-flex flex-wrap justify-content-center">
+  <% @items.each do |item| %>
+    <%= render 'items/item_card', item: item %>
+  <% end %>
+</div>
+
 <div class="actions m-5 d-flex justify-content-center">
   <%= link_to "Comment devenir créateur ?", become_maker_path, :class=>"btn btn-success" %>
 </div>
