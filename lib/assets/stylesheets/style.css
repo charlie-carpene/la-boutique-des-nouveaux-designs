@@ -19,29 +19,45 @@
   left: -30px;
 }
 
-.logo-icon::before {
+.logo-icon {
   position: absolute;
   font-style: normal;
   font-variant: normal;
   font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f015";
-  font-size: 1.3em;
-  left: -9px;
-  top: -17px;
+  filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
+  left: -8px;
+  top: -15px;
 }
 
-.logo-icon:hover:before {
-  position: absolute;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f004";
-  font-size: 1.3em;
-  color: #fda928;
-  left: -7px;
-  top: -16px;
+.logo-icon:hover {
+  content: url(icons/heart.svg);
+  height: 25px;
+  width: 25px;
+  top: -12px;
+  filter: invert(92%) sepia(15%) saturate(7290%) hue-rotate(324deg) brightness(104%) contrast(88%);
 }
 
+/*filters from https://codepen.io/sosuke/pen/Pjoqqp */
+
+.icon-primary {
+  filter: invert(13%) sepia(90%) saturate(1083%) hue-rotate(223deg) brightness(97%) contrast(113%);
+  /*primary color*/
+}
+
+.icon-primary:hover,
+.icon-primary:focus {
+  filter: invert(30%) sepia(54%) saturate(1923%) hue-rotate(197deg) brightness(96%) contrast(101%);
+  /*filtered to #1959d2*/
+}
+
+.icon-success {
+  filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
+  /*succes color*/
+}
+.icon-success:hover,
+.icon-success:focus {
+  filter: invert(30%) sepia(13%) saturate(3787%) hue-rotate(112deg) brightness(100%) contrast(96%);  /*filtered to #056c43*/
+}
 /****** BALISE ******/
 p {
   font-family: inherit;
