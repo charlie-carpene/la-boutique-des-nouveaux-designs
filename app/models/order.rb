@@ -27,8 +27,20 @@ class Order < ApplicationRecord
   def total_price(ordered_items)
     total_price = 0
     ordered_items.each do |order_item|
-      total_price += order_item.item.price
+      total_price += order_item.item.price * order_item.get_item_qty_in_cart
     end
     return total_price
+  end
+
+  def order_shipping_price
+    weight = 0
+    self.items.each do |item|
+      weight += item.product_weight
+    end
+    return ApplicationController.helpers.shipping_cost(weight)
+  end
+
+  def total_price_with_shipping_cost(ordered_items)
+    return total_price(ordered_items) + self.order_shipping_price
   end
 end

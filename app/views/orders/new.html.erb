@@ -1,9 +1,10 @@
 <h1>Récap' de la commande :</h1>
-<% @order.items.each do |item| %>
+<% @order.order_items.each do |order_item| %>
   <ul>
-    <li><%= item.name %> créé part <%= item.shop.brand %> à <%= item.price %>€</li>
+    <li><%= order_item.get_item_qty_in_cart %> <%= order_item.item.name %> à <%= order_item.item.price %>€, soit <%= order_item.get_total_price_with_shipping_cost %>€</li>
   </ul>
 <% end %>
+<p><strong>Total à régler : <%= @order.total_price_with_shipping_cost(@order.order_items) %>€</strong></p>
 
 <script src="https://js.stripe.com/v3"></script>
 <%= button_to 'Commander', orders_path, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>

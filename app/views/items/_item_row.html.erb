@@ -2,7 +2,11 @@
   <%= link_to "", cart_item_path(cart_item.id), method: "delete", data: { confirm: "Etes vous sûre ?" }, class: "fas fa-trash color-change-to-danger mt-2 delete-icon" %>
   <div class="d-flex align-items-center justify-content-between">
     <div>
-      <%= image_tag cart_item.item.item_pictures.last.picture[:cart].url %>
+      <% if cart_item.item.item_pictures.present? %> <%# to be deleted when tests are over. same for items/_item/card & items/show %>
+        <%= image_tag cart_item.item.item_pictures.last.picture[:cart].url %>
+      <% else %>
+        <%= image_tag "img-items/sac-0_cart.jpg" %>
+      <% end %>
       <%= cart_item.item.name %>
     </div>
     <div class="d-flex">

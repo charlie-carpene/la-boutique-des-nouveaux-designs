@@ -2,7 +2,7 @@
   <div class="col-sm d-flex align-items-center">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <% if @item.item_pictures.present? %> <%# if to be deleted when tests are over. same for item/card %>
+        <% if @item.item_pictures.present? %> <%# if to be deleted when tests are over. same for items/_item_card & items/_item_row %>
           <div class="carousel-item active"> <!-- show the first stored image as the first image to show -->
             <%= image_tag @item.item_pictures.first.picture[:item_show].url, class: "d-flex justify-content-center" %>
           </div>
@@ -37,13 +37,12 @@
     <h2 class="card-title"><%= @item.name %></h2>
     <p class="card-text"><%= @item.description %></p>
     <div class="d-flex flex-column">
-      <p> Quantité : <%= @item.available_qty %> </p>
-      <p class="card-text"> Prix : <%= @item.price %> € </p>
+      <p>Quantité : <%= @item.available_qty %></p>
+      <p class="card-text">Prix : <strong><%= @item.price_with_shipping_cost(shipping_cost(@item.product_weight)) %> €</strong> <span class="font-italic">dont <%= shipping_cost(@item.product_weight) %> € de frais de port</span>.</p>
 
-      <div class="d-flex flex-row align-items-center">
-        <%= link_to "Revenir à la catégorie", category_path(@item.category.id), :class => "btn btn-info"%>
-        <br>
-        <%= link_to "Voir la page du shop", shop_path(@item.shop.id), :class => "btn btn-info"%>
+      <div>
+        <%= link_to "Retour", :back, class: "btn btn-primary" %>
+        <%= link_to "Voir la page du shop", shop_path(@item.shop.id), :class => "btn btn-info m-1"%>
       </div>
     </div>
   </div>

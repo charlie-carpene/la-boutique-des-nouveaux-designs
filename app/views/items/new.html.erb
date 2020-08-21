@@ -27,6 +27,13 @@
         </div>
       </div>
 
+      <p class="mt-4 mx-5 font-italic">Les frais de ports sont calculés automatiquement à partir du poid de l'article <a href="https://tarifs-postaux.fr/tarif-colissimo.htm">au tarifs Colissimo</a>. Veuillez vous assurer que l'article respecte les dimensions réglementaires : la somme de la largeur, de la longueur et de la hauteur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poid de l'article ne peut pas dépasser les 30 kg, soit 30,000 g.</p>
+
+      <div class="field mt-4">
+        <%= f.label 'Poid de l\'article (en gramme)' %>
+        <%= f.number_field :product_weight, placeholder: 'Les frais de port sont calculés automatiquement', in: 1..30000, step: 1, class: "form-control" %>
+      </div>
+
       <div class="field mt-4">
         <%= f.label 'Catégorie' %><br />
         <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name') %>
