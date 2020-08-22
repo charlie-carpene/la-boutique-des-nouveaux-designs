@@ -106,25 +106,31 @@ p {
 
 /****** COLORS ******/
 .color-change-to-danger {
-  color: #1e185f;
+  /*filtered to primary*/
+  filter: invert(13%) sepia(90%) saturate(1083%) hue-rotate(223deg) brightness(97%) contrast(113%);
 }
 
 .color-change-to-danger:hover {
-  color: #d9534f;
+  /*filtered to success*/
+  filter: invert(44%) sepia(35%) saturate(7257%) hue-rotate(337deg) brightness(98%) contrast(74%);
 }
 
 .color-change-to-warning {
-  color: #1e185f;
+  /*filtered to primary*/
+  filter: invert(13%) sepia(90%) saturate(1083%) hue-rotate(223deg) brightness(97%) contrast(113%);
 }
 
 .color-change-to-warning:hover {
-  color: #fda928;
+  /*filtered to warning*/
+  filter: invert(71%) sepia(41%) saturate(930%) hue-rotate(341deg) brightness(101%) contrast(98%);
 }
 
 .color-change-to-success {
-  color: #1e185f;
+  /*filtered to primary*/
+  filter: invert(13%) sepia(90%) saturate(1083%) hue-rotate(223deg) brightness(97%) contrast(113%);
 }
 
 .color-change-to-success:hover {
-  color: #14ca61;
+  /*filtered to success*/
+  filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
 }

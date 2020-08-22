@@ -9,10 +9,10 @@
     </div>
     <div class="delete-icon">
       <% if can? :manage, item %>
-        <%= link_to "", edit_item_path(item.id), class: "fas fa-edit color-change-to-warning mt-2 delete-icon-bg" %>
-        <%= link_to "", item_path(item.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "fas fa-trash color-change-to-danger mt-2 delete-icon-bg" %>
+        <%= link_to image_tag("icons/edit.svg", size: "20x20", class: "color-change-to-warning"), edit_item_path(item.id), class: "mt-2 delete-icon-bg" %>
+        <%= link_to image_tag("icons/trash.svg", size: "20x20", class: "color-change-to-danger"), item_path(item.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "mt-2 delete-icon-bg" %>
       <% elsif current_user.present? %>
-        <%= link_to "", cart_items_path(item_id: item, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "fas fa-cart-plus color-change-to-success mt-2 delete-icon-bg" %>
+        <%= link_to image_tag("icons/cart_add.svg", size: "20x20", class: "color-change-to-success"), cart_items_path(item_id: item, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "mt-2 delete-icon-bg" %>
       <% end %>
     </div>
   </div>
