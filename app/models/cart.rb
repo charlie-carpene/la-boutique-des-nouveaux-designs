@@ -14,7 +14,7 @@ class Cart < ApplicationRecord
   end
 
   def get_cart_items_from_a_specific_shop(shop)
-    self.cart_items.where(item: self.items.where(shop: shop))
+    self.cart_items.where(item: self.items.where(shop: shop)).sort
   end
 
   def get_total_price_from_a_specific_shop(shop)

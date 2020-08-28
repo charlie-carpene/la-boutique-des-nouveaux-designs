@@ -31,7 +31,7 @@ Support documentation relative to Stripe connect payment method:
     </div>
   <% end %>
   <div class="row row-cols">
-    <% @shop.items.each do |item| %>
+    <% @shop.items.sort.each do |item| %>
       <%= render 'items/item_card', item: item %>
     <% end %>
   </div>
