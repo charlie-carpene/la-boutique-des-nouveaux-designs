@@ -1,5 +1,4 @@
 <li class="list-group-item">
-  <%= link_to "", cart_item_path(cart_item.id), method: "delete", data: { confirm: "Etes vous sûre ?" }, class: "fas fa-trash color-change-to-danger mt-2 delete-icon" %>
   <div class="d-flex align-items-center justify-content-between">
     <div>
       <% if cart_item.item.item_pictures.present? %> <%# to be deleted when tests are over. same for items/_item/card & items/show %>
@@ -7,18 +6,19 @@
       <% else %>
         <%= image_tag "img-items/sac-0_cart.jpg" %>
       <% end %>
-      <%= cart_item.item.name %>
+      <%= link_to cart_item.item.name, item_path(cart_item.item.id), class: "stretched-link" %>
     </div>
     <div class="d-flex">
       <div>
         <%= cart_item.item.price %>€ x
       </div>
-      <%= link_to "", cart_item_path(cart_item.id, operation: "minus"), method: "put", class: "fas fa-minus-circle color-change-to-warning m-1" %>
+      <%= link_to image_tag("icons/minus.svg", size: "15x15", class: "color-black-filtered-to-primary filter-to-warning"), cart_item_path(cart_item.id, operation: "minus"), method: "put", class: "mx-1 z-index-1" %>
       <p><%= cart_item.item_qty_in_cart %></p>
-      <%= link_to "", cart_item_path(cart_item.id, operation: "plus"), method: "put", class: "fas fa-plus-circle color-change-to-success m-1" %>
+      <%= link_to image_tag("icons/plus.svg", size: "15x15", class: "color-black-filtered-to-primary filter-to-success"), cart_item_path(cart_item.id, operation: "plus"), method: "put", class: "mx-1 z-index-1" %>
       <div  class="mr-3">
         = <strong><%= cart_item.item.price * cart_item.item_qty_in_cart %>€</strong>
       </div>
+      <%= link_to image_tag("icons/trash.svg", size: "15x15", class: "color-black-filtered-to-primary filter-to-danger z-index-1"), cart_item_path(cart_item.id), method: "delete", data: { confirm: "Etes vous sûre?" } %>
     </div>
   </div>
 </li>
