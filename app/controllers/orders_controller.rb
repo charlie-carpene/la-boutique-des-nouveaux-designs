@@ -24,8 +24,4 @@ class OrdersController < ApplicationController
     )
   end
 
-  def create
-    @order.save
-  end
-
 end
