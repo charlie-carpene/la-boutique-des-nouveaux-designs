@@ -1,0 +1,65 @@
+@media only screen and (max-device-width: 480px) {
+  body, h4, h5, h6 {
+    font-size: 3rem;
+  }
+
+  h1, h2, h3 {
+    font-size: 5rem;
+  }
+
+  p, a, ul, li {
+    font-size: 2.3rem;
+  }
+
+  .btn {
+    font-size: 2.5rem;
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+  }
+
+  .card-item {
+    height: 9em;
+    width: 6em;
+  }
+
+  .carousel-img {
+    position: relative;
+    z-index: -1;
+    height: 50vh;
+    width: auto;
+    right: 400px;
+  }
+
+  .cart-container {
+    max-width: 100%;
+  }
+
+  .form-control {
+    font-size: 2.5rem;
+  }
+
+  .item-icon {
+    width: 0.8em;
+    height: 0.8em;
+  }
+
+  .logo-bg {
+    height: 2.7em;
+    left: -20px;
+    top: -20px;
+  }
+
+  .logo-icon {
+    font-size: 2.5rem;
+    left: 15px;
+    top: 15px;
+  }
+}
+
+@media only screen and (min-device-width: 480px) {
+  .header-item {
+    font-size: 1.2rem;
+  }
+}

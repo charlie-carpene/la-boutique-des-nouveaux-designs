@@ -1,4 +1,40 @@
+/****** BALISE ******/
+p {
+  font-family: inherit;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
 /****** HEADER ******/
+.category-container {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.categories {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.category-item {
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border: 1px solid transparent;
+  border-radius: 2em;
+}
+
+.category-item:hover {
+  text-decoration: none;
+  border: 1px solid #b4ccf8;
+}
+
+.header-item {
+  height: 2em;
+}
 
 .logo-overlay {
   position: absolute;
@@ -24,19 +60,20 @@
   font-style: normal;
   font-variant: normal;
   font-family: "Font Awesome 5 Free";
+  content: url(icons/home.svg);
   filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
+  height: 1.5em;
+  width: 1.5em;
   left: -8px;
-  top: -15px;
+  top: -12px;
 }
 
 .logo-icon:hover {
   content: url(icons/heart.svg);
-  height: 25px;
-  width: 25px;
-  top: -12px;
   filter: invert(92%) sepia(15%) saturate(7290%) hue-rotate(324deg) brightness(104%) contrast(88%);
 }
 
+/****** COLORS ******/
 /*filters from https://codepen.io/sosuke/pen/Pjoqqp */
 
 .icon-primary {
@@ -58,55 +95,7 @@
 .icon-success:focus {
   filter: invert(30%) sepia(13%) saturate(3787%) hue-rotate(112deg) brightness(100%) contrast(96%);  /*filtered to #056c43*/
 }
-/****** BALISE ******/
-p {
-  font-family: inherit;
-}
 
-/****** CARD ******/
-.z-index-1 {
-  z-index: 1;
-}
-
-.delete-icon {
-  position: absolute;
-  right: 0.5em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.delete-icon-bg {
-  padding: 0.4em;
-  border-radius: 0.7em;
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-.shop-resize {
-  height: 350px;
-  width: 250px;
-}
-
-.cart-shop-img-resize {
-  height: 100px;
-  width: 100px;
-}
-
-/****** IMAGES ******/
-
-.img-opacity {
-  opacity: 0.7;
-}
-
-.img-opacity:hover {
-  opacity: 1.0;
-}
-
-.bg-opacity-04 {
-  background: rgba(12, 9, 37, 0.45);
-}
-
-/****** COLORS ******/
 .color-black-filtered-to-primary {
   /*filtered to primary*/
   filter: invert(13%) sepia(90%) saturate(1083%) hue-rotate(223deg) brightness(97%) contrast(113%);

@@ -11,5 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap
+ *= require carousel
+ *= require img
+ *= require cart
+ *= require card
  *= require style
+ *= require sizing
  */

@@ -1,7 +1,7 @@
 <nav class="navbar-expand-lg navbar-light bg-light pt-2">
   <div class="logo-overlay">
     <%= image_tag "fond_logo_transparent.png", class: "logo-bg" %>
-    <%= link_to(image_tag("icons/home.svg", size: "25x25"), root_path, class: "logo-icon") %>
+    <%= link_to("", root_path, class: "logo-icon") %>
   </div>
 
   <div class="d-flex">
@@ -10,18 +10,18 @@
     </div>
     <div class="container d-flex justify-content-end mt-3">
       <% if user_signed_in? %>
-        <%= link_to(image_tag("icons/cart.svg", size: "40x40"), cart_path(current_user.cart.id), class: " m-2 icon-primary") %>
-        <%= link_to(image_tag("icons/user.svg", size: "35x35"), "#", class: " m-2 icon-success", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false") %>
+        <%= link_to(image_tag("icons/cart.svg", class: "header-item"), cart_path(current_user.cart.id), class: " m-2 icon-primary") %>
+        <%= link_to(image_tag("icons/user.svg", class: "header-item"), "#", class: "m-2 icon-success", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false") %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <%= link_to "Mon profil", user_path(current_user.id), :class=>"nav-link dropdown-item" %>
+          <%= link_to "Mon profil", user_path(current_user.id), :class => "nav-link dropdown-item" %>
           <% if current_user.is_maker %>
-            <%= link_to "Ma Boutique", shop_path(current_user.shop.id), :class=>"nav-link dropdown-item" %>
+            <%= link_to "Ma Boutique", shop_path(current_user.shop.id), :class => "nav-link dropdown-item" %>
           <% end %>
-          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class=>"nav-link dropdown-item" %>
+          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class => "nav-link dropdown-item" %>
         </div>
 
       <% else %>
-        <%= link_to(image_tag("icons/user.svg", size: "35x35"), root_path, class: " m-2 icon-primary", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false") %>
+        <%= link_to(image_tag("icons/user.svg", class: "header-item"), root_path, class: "m-2 icon-primary", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false") %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <%= link_to "Se connecter", new_user_session_path, :class=>"nav-link dropdown-item" %>
           <%= link_to "Créer un compte", new_user_registration_path, :class=>"nav-link dropdown-item" %>
@@ -30,18 +30,11 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-around">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav w-50 d-flex justify-content-around">
-        <% returnAllCategories.each do |category| %>
-          <li class="nav-item">
-            <%= link_to category.name, category_path(category.id), class: "nav-link text-primary" %>
-          </li>
-        <% end %>
-      </ul>
+  <div class="category-container">
+    <div class="categories">
+      <% returnAllCategories.each do |category| %>
+        <%= link_to category.name, category_path(category.id), class: "category-item text-primary" %>
+      <% end %>
     </div>
   </div>
 </nav>
