@@ -24,7 +24,8 @@ p {
   text-decoration: none;
   padding: 0.5em 1em;
   border: 1px solid transparent;
-  border-radius: 2em;
+  border-radius: 1.2em;
+  transition: 0.5s;
 }
 
 .category-item:hover {
