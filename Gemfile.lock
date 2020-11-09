@@ -266,6 +266,9 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stripe (5.22.0)
+    stripe_event (2.3.1)
+      activesupport (>= 3.1)
+      stripe (>= 2.8, < 6)
     table_print (1.5.6)
     thor (1.0.1)
     thread_safe (0.3.6)
@@ -329,6 +332,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe (~> 5.22)
+  stripe_event (~> 2.3, >= 2.3.1)
   table_print
   turbolinks (~> 5)
   tzinfo-data

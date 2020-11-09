@@ -3,6 +3,10 @@ var stripe = Stripe('<%= ENV['PUBLISHABLE_KEY'] %>');
 var sessionId = document.getElementById('checkout-button').dataset.sessionId;
 
 var checkoutButton = document.querySelector('#checkout-button');
-checkoutButton.addEventListener('click', function () {
-  stripe.redirectToCheckout({sessionId: sessionId,}).then(function (result) {});
+checkoutButton.addEventListener('click', function (e) {
+  e.preventDefault();
+  stripe.redirectToCheckout({sessionId: sessionId,})
+  .then(function (result) {
+
+  });
 });
