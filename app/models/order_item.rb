@@ -1,5 +1,5 @@
 class OrderItem < ApplicationRecord
-  after_create :create_stripe_product_and_price
+  after_create :update_available_item_qty
 
   belongs_to :order
   belongs_to :item
@@ -14,16 +14,7 @@ class OrderItem < ApplicationRecord
 
   private
 
-  def create_stripe_product_and_price
-    stripe_product = Stripe::Product.create({
-      name: self.item.name,
-    })
-
-    stripe_price = Stripe::Price.create({
-      product: stripe_product.id,
-      unit_amount: "#{self.item.price}" + "00",
-      currency: 'eur',
-    })
-    self.update(stripe_price_id: stripe_price.id)
+  def update_available_item_qty
+    self.item.update_qty_when_ordered(self.order.user.cart, self.qty_ordered)
   end
 end

@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   validates :category_id, presence: true
   validates :product_weight, presence: true
 
+  after_create :create_stripe_product_and_price
+
   belongs_to :shop
   belongs_to :category
   has_many :cart_items, dependent: :destroy
@@ -21,6 +23,32 @@ class Item < ApplicationRecord
 
   def get_qty_in_cart(user)
     self.cart_items.where(cart: user.cart).first.item_qty_in_cart
+  end
+
+  def update_qty_when_ordered(cart, qty)
+    if self.available_qty - qty > 0
+      self.update(available_qty: self.available_qty - qty)
+    else
+      self.update(available_qty: 0)
+    end
+
+    @cart_item = cart.cart_items.find_by(item: self)
+    CartItem.destroy(@cart_item.id)
+  end
+
+  private
+
+  def create_stripe_product_and_price
+    stripe_product = Stripe::Product.create({
+      name: self.name,
+    })
+
+    stripe_price = Stripe::Price.create({
+      product: stripe_product.id,
+      unit_amount: "#{self.price}" + "00",
+      currency: 'eur',
+    })
+    self.update(stripe_price_id: stripe_price.id)
   end
 
 end

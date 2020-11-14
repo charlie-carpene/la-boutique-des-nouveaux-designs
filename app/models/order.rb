@@ -3,21 +3,25 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
 
+  def find_ordered_items(shop)
+    return self.user.cart.items.where(shop: shop)
+  end
+
   def create_ordered_items(shop)
     ordered_items = Array.new
     items = self.user.cart.items.where(shop: shop)
     items.each_with_index do |item, index|
-      ordered_items[index] = OrderItem.create(order: self, item: item)
+      ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user))
     end
     return ordered_items
   end
 
   def add_all_ordered_items_to_stripe_session(ordered_items)
     items_array = Array.new
-    ordered_items.each do |ordered_item|
+    ordered_items.each do |item|
       item_info = {
-        price: ordered_item.stripe_price_id,
-        quantity: ordered_item.get_item_qty_in_cart,
+        price: item.stripe_price_id,
+        quantity: item.get_qty_in_cart(self.user),
       }
       items_array.push(item_info)
     end

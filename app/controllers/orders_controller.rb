@@ -9,12 +9,15 @@ class OrdersController < ApplicationController
     @shop = Shop.find(params[:shop_id])
 
     #create only order items. No dependent destroy with items nor order. Can be destroy if checkout fails
-    ordered_items = @order.create_ordered_items(@shop)
+    ordered_items = @order.find_ordered_items(@shop)
 
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
-      client_reference_id: @order.user_id,
       customer_email: @order.user.email, #to be change to customer when stripe customers are created when user create an account on the app.
+      metadata: {
+        customer: @order.user_id,
+        shop: @shop.id,
+      },
       line_items: @order.add_all_ordered_items_to_stripe_session(ordered_items),
       mode: 'payment',
       payment_intent_data: {
@@ -25,15 +28,12 @@ class OrdersController < ApplicationController
         },
       },
       success_url: root_url,
-      cancel_url: 'https://localhost:3000/cancel',
+      cancel_url: 'http://localhost:3000/cancel',
     )
   end
 
   def create
     payload = request.body.read
-    puts '#' * 30
-    puts payload
-    puts '#' * 30
     event = nil
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
     # Verify webhook signature and extract the event
@@ -54,26 +54,26 @@ class OrdersController < ApplicationController
       render status: 400, json: e.to_json
     end
 
-    puts '#' * 30
     event = JSON.parse(payload)
-    puts event['data']['object']['client_reference_id']
-    puts '#' * 30
-
-    if event['type'] == "payment_intent.succeeded"
-      session = event['data']['object']
-      puts '-' * 30
-      puts "payment_intent.succeeded"
-      puts '-' * 30
-    end
 
     if event['type'] == "checkout.session.completed"
+      @user = User.find(event['data']['object']['metadata']['customer'])
+      @shop = Shop.find(event['data']['object']['metadata']['shop'])
+      @order = Order.new(user: @user)
+
+      if @order.save
+        @order.create_ordered_items(@shop)
+      else
+        flash[:error] = translate_error_messages(@order.errors)
+        redirect_to root_path
+      end
+
       puts '*' * 30
       puts "checkout.session.completed"
       puts '*' * 30
-    end
-    #@order.user = current_user
-    #@user_address = @order.user.addresses[0]
 
+      render status: 200
+    end
   end
 
 end
