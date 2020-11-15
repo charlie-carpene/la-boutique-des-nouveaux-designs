@@ -3,8 +3,13 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
 
-  def find_ordered_items(shop)
-    return self.user.cart.items.where(shop: shop)
+  def find_ordered_items_in_cart(shop)
+    ordered_cart_items = Array.new
+    order_items = self.user.cart.items.where(shop: shop)
+    order_items.each_with_index do |item, index|
+      ordered_cart_items[index] = self.user.cart.cart_items.find_by(item: order_items[index])
+    end
+    return ordered_cart_items
   end
 
   def create_ordered_items(shop)
@@ -16,12 +21,12 @@ class Order < ApplicationRecord
     return ordered_items
   end
 
-  def add_all_ordered_items_to_stripe_session(ordered_items)
+  def add_all_ordered_items_to_stripe_session(ordered_cart_items)
     items_array = Array.new
-    ordered_items.each do |item|
+    ordered_cart_items.each do |ordered_cart_item|
       item_info = {
-        price: item.stripe_price_id,
-        quantity: item.get_qty_in_cart(self.user),
+        price: ordered_cart_item.item.stripe_price_id,
+        quantity: ordered_cart_item.item_qty_in_cart,
       }
       items_array.push(item_info)
     end
@@ -30,8 +35,8 @@ class Order < ApplicationRecord
 
   def total_price(ordered_items)
     total_price = 0
-    ordered_items.each do |order_item|
-      total_price += order_item.item.price * order_item.get_item_qty_in_cart
+    ordered_items.each do |cart_item|
+      total_price += cart_item.item.price * cart_item.item_qty_in_cart
     end
     return total_price
   end

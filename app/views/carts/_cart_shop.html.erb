@@ -9,9 +9,12 @@
       <% end %>
     </ul>
     <div class="m-3 d-flex justify-content-between">
+      <p>Frais de port : Clic & Collect (à venir récupérer <strong><a href="https://goo.gl/maps/NPUzNAjd2rCjLcVJ8" target="_blank">sur place</a></strong>)</p>
       <p>Prix de la commande : <%= cart.get_total_price_from_a_specific_shop(shop) %>€</p>
+<!--
       <p>Frais de port : <%= shipping_cost(cart.get_shipping_price(shop)) %>€</p>
       <p><strong>Prix total : <%= cart.get_total_price_from_a_specific_shop(shop) + shipping_cost(cart.get_shipping_price(shop)) %>€</strong></p>
+-->
     </div>
     <div class="d-flex justify-content-end">
       <% if cart.get_shipping_price(shop) > 30000 %>

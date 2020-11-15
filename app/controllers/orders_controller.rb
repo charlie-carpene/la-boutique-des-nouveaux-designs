@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @shop = Shop.find(params[:shop_id])
 
     #create only order items. No dependent destroy with items nor order. Can be destroy if checkout fails
-    ordered_items = @order.find_ordered_items(@shop)
+    @ordered_cart_items = @order.find_ordered_items_in_cart(@shop)
 
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
         customer: @order.user_id,
         shop: @shop.id,
       },
-      line_items: @order.add_all_ordered_items_to_stripe_session(ordered_items),
+      line_items: @order.add_all_ordered_items_to_stripe_session(@ordered_cart_items),
       mode: 'payment',
       payment_intent_data: {
         #application_fee_amount: (@order.total_price(ordered_items) * 5).round, #to be change when user.fee is added to User table
