@@ -7,6 +7,5 @@ checkoutButton.addEventListener('click', function (e) {
   e.preventDefault();
   stripe.redirectToCheckout({sessionId: sessionId,})
   .then(function (result) {
-
   });
 });
