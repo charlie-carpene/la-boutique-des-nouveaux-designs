@@ -14,7 +14,7 @@ class User < ApplicationRecord
   private
 
   def welcome_send
-    #UserMailer.welcome_email(self).deliver_now
+    UserMailer.welcome_email(self).deliver_now
   end
 
   def create_cart
