@@ -63,16 +63,12 @@ class OrdersController < ApplicationController
 
       if @order.save
         @order.create_ordered_items(@shop)
+        head 200
       else
         flash[:error] = translate_error_messages(@order.errors)
-        redirect_to root_path
+        #add slack notif for admins
+        head 400
       end
-
-      puts '*' * 30
-      puts "checkout.session.completed"
-      puts '*' * 30
-
-      render status: 200
     end
   end
 
