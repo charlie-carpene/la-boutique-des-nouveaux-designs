@@ -8,6 +8,10 @@
   width:200px;
 }
 
+.card-item img {
+  max-height: 100%;
+}
+
 .delete-icon {
   position: absolute;
   right: 0.5em;
