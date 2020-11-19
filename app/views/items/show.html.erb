@@ -45,6 +45,13 @@
       <div>
         <%= link_to "Retour", :back, class: "btn btn-primary" %>
         <%= link_to "Voir la page du shop", shop_path(@item.shop.id), :class => "btn btn-info m-1"%>
+        <% if current_user.present? %>
+          <% if can? :manage, @item %>
+            <%= link_to "Modifier mon article", edit_item_path(@item.id), class: "btn btn-warning m-1" %>
+          <% else %>
+            <%= link_to "Ajouter à mon panier", cart_items_path(item_id: @item.id, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "btn btn-success m-1" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
