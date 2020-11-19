@@ -38,8 +38,10 @@
     <p class="card-text"><%= @item.description %></p>
     <div class="d-flex flex-column">
       <p>Quantité : <%= @item.available_qty %></p>
-      <p class="card-text">Prix : <strong><%= @item.price_with_shipping_cost(shipping_cost(@item.product_weight)) %> €</strong> <span class="font-italic">dont <%= shipping_cost(@item.product_weight) %> € de frais de port</span>.</p>
-
+      <p class="card-text">Prix : <strong><%= @item.price %> €</strong>
+<!--
+        <strong><%= @item.price_with_shipping_cost(shipping_cost(@item.product_weight)) %> €</strong> <span class="font-italic">dont <%= shipping_cost(@item.product_weight) %> € de frais de port</span>.</p>
+-->
       <div>
         <%= link_to "Retour", :back, class: "btn btn-primary" %>
         <%= link_to "Voir la page du shop", shop_path(@item.shop.id), :class => "btn btn-info m-1"%>
