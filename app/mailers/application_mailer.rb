@@ -15,5 +15,4 @@ class ApplicationMailer < ActionMailer::Base
     end
     return content_array
   end
-
 end

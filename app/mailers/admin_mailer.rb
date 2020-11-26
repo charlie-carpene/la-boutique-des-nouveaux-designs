@@ -21,5 +21,4 @@ class AdminMailer < ApplicationMailer
       end
     }])
   end
-
 end
