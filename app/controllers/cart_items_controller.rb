@@ -3,17 +3,22 @@ class CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new(cart_items_permitted_params)
-    if @cart_item.cart == current_user.cart && @cart_item.item == current_user.cart.items.where(id: params[:item_id]).first #check if item is already in cart
-      flash[:info] = "Vous avez déjà ajouté l'article. Ajoutez-en plus directement depuis votre panier."
-      redirect_back(fallback_location: root_path)
-    else
-      if @cart_item.save
-        flash[:success] = "L'article a bien été ajouté à votre panier."
+    if @cart_item.item.available_qty > 0
+      if @cart_item.cart == current_user.cart && @cart_item.item == current_user.cart.items.where(id: params[:item_id]).first #check if item is already in cart
+        flash[:info] = "Vous avez déjà ajouté l'article. Ajoutez-en plus directement depuis votre panier."
         redirect_back(fallback_location: root_path)
       else
-        flash.now[:error] = translate_error_messages(@cart_item.errors)
-        redirect_to root_path
+        if @cart_item.save
+          flash[:success] = "L'article a bien été ajouté à votre panier."
+          redirect_back(fallback_location: root_path)
+        else
+          flash.now[:error] = translate_error_messages(@cart_item.errors)
+          redirect_to root_path
+        end
       end
+    else
+      flash[:error] = "L'article n'est malheureusement plus disponible."
+      redirect_back(fallback_location: root_path)
     end
   end
 
