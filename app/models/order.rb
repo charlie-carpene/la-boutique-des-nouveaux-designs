@@ -33,9 +33,9 @@ class Order < ApplicationRecord
     return items_array
   end
 
-  def total_price(ordered_items)
+  def total_price(ordered_cart_items)
     total_price = 0
-    ordered_items.each do |cart_item|
+    ordered_cart_items.each do |cart_item|
       total_price += cart_item.item.price * cart_item.item_qty_in_cart
     end
     return total_price
