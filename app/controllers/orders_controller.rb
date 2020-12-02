@@ -10,11 +10,8 @@ class OrdersController < ApplicationController
 
     #create only order items. No dependent destroy with items nor order. Can be destroy if checkout fails
     @ordered_cart_items = @order.find_ordered_items_in_cart(@shop)
-    puts "*" * 30
-    puts @ordered_cart_items[0].inspect
-    puts "*" * 30
 
-    if @ordered_cart_items[0] == 0
+    if @ordered_cart_items[0] == 0 #check order.find_ordered_items_in_cart method
       @ordered_cart_items[1].destroy
       flash[:error] = "L'article #{@ordered_cart_items[1].item.name} n'était plus disponible à la vente. Nous l'avons supprimé  de votre panier."
       redirect_back(fallback_location: root_path)
