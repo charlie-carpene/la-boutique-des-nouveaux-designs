@@ -10,26 +10,38 @@ class OrdersController < ApplicationController
 
     #create only order items. No dependent destroy with items nor order. Can be destroy if checkout fails
     @ordered_cart_items = @order.find_ordered_items_in_cart(@shop)
+    puts "*" * 30
+    puts @ordered_cart_items[0].inspect
+    puts "*" * 30
 
-    @session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: @order.user.email, #to be change to customer when stripe customers are created when user create an account on the app.
-      metadata: {
-        customer: @order.user_id,
-        shop: @shop.id,
-      },
-      line_items: @order.add_all_ordered_items_to_stripe_session(@ordered_cart_items),
-      mode: 'payment',
-      payment_intent_data: {
-        application_fee_amount: (@order.total_price(@ordered_cart_items) * 2.9 + 25).round, #to be change when user.fee is added to User table
-        on_behalf_of: @shop.uid,
-        transfer_data: {
-          destination: @shop.uid,
+    if @ordered_cart_items[0] == 0
+      @ordered_cart_items[1].destroy
+      flash[:error] = "L'article #{@ordered_cart_items[1].item.name} n'était plus disponible à la vente. Nous l'avons supprimé  de votre panier."
+      redirect_back(fallback_location: root_path)
+    elsif @ordered_cart_items[0] == 1
+      flash[:error] = "L'article #{@ordered_cart_items[1].item.name} n'est plus disponible qu'en #{@ordered_cart_items[1].item.available_qty} exemplaire(s). Veuillez en supprimer de votre panier pour continuer."
+      redirect_back(fallback_location: root_path)
+    else
+      @session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: @order.user.email, #to be change to customer when stripe customers are created when user create an account on the app.
+        metadata: {
+          customer: @order.user_id,
+          shop: @shop.id,
         },
-      },
-      success_url: root_url,
-      cancel_url: 'http://localhost:3000/cancel',
-    )
+        line_items: @order.add_all_ordered_items_to_stripe_session(@ordered_cart_items),
+        mode: 'payment',
+        payment_intent_data: {
+          application_fee_amount: (@order.total_price(@ordered_cart_items) * 2.9 + 25).round, #to be change when user.fee is added to User table
+          on_behalf_of: @shop.uid,
+          transfer_data: {
+            destination: @shop.uid,
+          },
+        },
+        success_url: root_url,
+        cancel_url: 'http://localhost:3000/cancel',
+      )
+    end
   end
 
   def create

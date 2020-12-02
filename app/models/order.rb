@@ -8,6 +8,11 @@ class Order < ApplicationRecord
     order_items = self.user.cart.items.where(shop: shop)
     order_items.each_with_index do |item, index|
       ordered_cart_items[index] = self.user.cart.cart_items.find_by(item: order_items[index])
+      if ordered_cart_items[index].item.available_qty < 1
+        return [0, ordered_cart_items[index]]
+      elsif ordered_cart_items[index].item_qty_in_cart > ordered_cart_items[index].item.available_qty
+        return [1, ordered_cart_items[index]]
+      end
     end
     return ordered_cart_items
   end
