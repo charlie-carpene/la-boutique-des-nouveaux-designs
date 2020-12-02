@@ -1,5 +1,5 @@
 <% shops.each do |shop| %>
-  <div class="p-4 border-top border-bottom border-dark bg-light">
+  <div class="m-3 p-4 border-top border-bottom border-dark bg-light">
     <div class="d-flex justify-content-center">
       <%= image_tag shop.show_image(shop), class: "cart-shop-img-resize" %>
     </div>
@@ -17,11 +17,16 @@
 -->
     </div>
     <div class="d-flex justify-content-end">
+      <%= button_to "Passer commande à #{shop.brand}", new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
+
+<!--
       <% if cart.get_shipping_price(shop) > 30000 %>
         <p class="text-center font-italic text-danger">Votre panier ne peux pas être expédié par colis par <%= shop.brand %> car le cumule des articles pèse trop lourd. Veuillez supprimer des articles du panier ou contacter directement notre artisant pour faire vos achats.</p>
       <% else %>
         <%= button_to "Passer commande à #{shop.brand}", new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
       <% end %>
+to be added back when shipping will be allowed -->
+
     </div>
   </div>
 <% end %>
