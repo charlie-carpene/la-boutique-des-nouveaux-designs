@@ -19,4 +19,8 @@ class CartItem < ApplicationRecord
       return false
     end
   end
+
+  def total_price
+    return self.item.price * self.item_qty_in_cart
+  end
 end

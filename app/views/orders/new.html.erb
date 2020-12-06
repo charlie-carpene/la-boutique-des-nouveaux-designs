@@ -1,12 +1,20 @@
-<h2 class="pt-4 text-center text-primary">Votre commande</h2>
-<% @order.order_items.each do |order_item| %>
-  <ul>
-    <li><%= order_item.get_item_qty_in_cart %> <%= order_item.item.name %> à <%= order_item.item.price %>€, soit <%= order_item.get_total_price_with_shipping_cost %>€</li>
-  </ul>
-<% end %>
-<p><strong>Total à régler : <%= @order.total_price_with_shipping_cost(@ordered_cart_items) %>€</strong></p>
+<div class="container">
+  <h2 class="pt-4 text-center text-primary">Votre commande</h2>
+    <ul class="my-3 list-group">
+      <% @ordered_cart_items.each do |cart_item| %>
+      <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
+        <span><%= cart_item.item.name %> à <%= cart_item.item.price %>€ l'unité, soit <strong><%= cart_item.total_price %>€</strong></span>
+        <span class="badge badge-primary badge-pill">x <%= cart_item.item.get_qty_in_cart(current_user) %></span>
+      </li>
+      <% end %>
+    </ul>
 
-<script src="https://js.stripe.com/v3"></script>
-<%= button_to 'Commander', orders_path, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
+  <div class="d-flex flex-column align-items-end">
+  <p><strong>Total à régler : <%= @order.total_price_with_shipping_cost(@ordered_cart_items) %>€</strong></p>
+
+  <script src="https://js.stripe.com/v3"></script>
+  <%= button_to 'Commander', orders_path, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
+  </div>
+</div>
 
 <%= javascript_include_tag :stripe %>
