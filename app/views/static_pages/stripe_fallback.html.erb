@@ -1,0 +1,7 @@
+<% if @status == "success" %>
+  <%= render 'stripe_success' %>
+<% elsif @status == "cancel" %>
+  <%= render 'stripe_cancel' %>
+<% else %>
+  <%= render root_path %>
+<% end %>

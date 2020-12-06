@@ -35,8 +35,8 @@ class OrdersController < ApplicationController
             destination: @shop.uid,
           },
         },
-        success_url: root_url,
-        cancel_url: 'http://localhost:3000/cancel',
+        success_url: root_url + "stripe_fallback?status=success",
+        cancel_url: root_url + "stripe_fallback?status=cancel",
       )
     end
   end
