@@ -11,11 +11,7 @@ class ItemsController < ApplicationController
       render 'new'
     else
       # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
-      new_item_pictures_attributes = params[:files].inject({}) do |hash, file|
-        hash.merge!(SecureRandom.hex => { picture: file })
-      end
-      item_pictures_attributes = item_permitted_params[:item_pictures_attributes].to_h.merge(new_item_pictures_attributes)
-      item_permitted_attributes = item_permitted_params.merge(item_pictures_attributes: item_pictures_attributes)
+      item_permitted_attributes = get_item_permitted_attributes #private method
 
       @item = Item.new(item_permitted_attributes)
       if @item.save
@@ -35,11 +31,18 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_permitted_params)
+    if params[:files].blank?
+      item_permitted_attributes = item_permitted_params
+    elsif
+      @item.item_pictures.destroy_all
+      item_permitted_attributes = get_item_permitted_attributes
+    end
+
+    if @item.update(item_permitted_attributes)
       flash[:success] = "Les informations de #{@item.name} ont bien été mises à jour."
       redirect_to item_path(@item.id)
     else
-      flash.now[:error] = translate_error_messages(@shop.errors)
+      flash.now[:error] = translate_error_messages(@item.errors)
       render 'edit'
     end
   end
@@ -54,6 +57,14 @@ class ItemsController < ApplicationController
 
   def item_permitted_params
     params.require(:item).permit(:name, :category_id, :description, :price, :available_qty, :product_weight, :shop_id,  :item_pictures_attributes)
+  end
+
+  def get_item_permitted_attributes
+    new_item_pictures_attributes = params[:files].inject({}) do |hash, file|
+      hash.merge!(SecureRandom.hex => { picture: file })
+    end
+    item_pictures_attributes = item_permitted_params[:item_pictures_attributes].to_h.merge(new_item_pictures_attributes)
+    return item_permitted_params.merge(item_pictures_attributes: item_pictures_attributes)
   end
 
 end
