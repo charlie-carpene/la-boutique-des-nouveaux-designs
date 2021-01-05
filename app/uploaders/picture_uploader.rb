@@ -10,9 +10,9 @@ class PictureUploader < Shrine
   plugin :delete_raw
 
   Attacher.validate do
-    validate_mime_type %w[image/jpeg image/png], message: "doi(ven)t être un jpeg ou un png"
-    validate_max_size 3*1024*1024, message: "doi(ven)t être chacun inférieur à 3 Mo"
-    validate_extension_inclusion %w[jpg jpeg png], message: "doi(ven)t être un jpeg ou un png"
+    validate_mime_type %w[image/jpeg image/png], message: "doit être un jpeg ou un png"
+    validate_max_size 3*1024*1024, message: "doit être inférieur à 3 Mo"
+    validate_extension_inclusion %w[jpg jpeg png], message: "doit être un jpeg ou un png"
   end
 
   def generate_location(io, context = {})
