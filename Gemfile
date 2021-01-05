@@ -63,7 +63,7 @@ gem 'cancancan'
 gem 'faker'
 
 gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
-gem 'shrine', '~> 3.2', '>= 3.2.1'
+gem 'shrine', '~> 3.3'
 gem 'fastimage', '~> 2.1', '>= 2.1.7'
 gem 'image_processing', '~> 1.10', '>= 1.10.3'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
