@@ -17,9 +17,13 @@ fr:
   available_qty: "La quantité disponible"
   price: "Le prix"
   name: "Le nom"
+  product_weight: "Le poid"
 
   image: "Le(s) document(s)"
 
   shop_images:
     image: "Le(s) document(s)"
     image_nbr_sent: "Le nombre de document(s) envoyé(s)"
+
+  item_pictures:
+    picture: "Chaque image"
