@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="pt-4 text-center text-primary"><%= @category.name %></h2>
 
-  <div class="row row-cols">
+  <div class="d-flex flex-wrap justify-content-center">
     <% @items.each do |item| %>
       <% if item.available_qty > 0 %>
         <%= render 'items/item_card', item: item %>
