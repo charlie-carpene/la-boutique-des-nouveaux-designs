@@ -26,8 +26,8 @@
   background-color: rgba(255, 255, 255, 0.85);
 }
 
-.item-not-available img, .item-not-available a {
-  opacity: 20%;
+.item-not-available {
+  background-color: rgba(255, 255, 255, 0.75)
 }
 
 .shop-resize {
