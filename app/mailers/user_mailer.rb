@@ -75,4 +75,22 @@ class UserMailer < ApplicationMailer
     }])
   end
 
+  def new_order_customer_email(order)
+    Mailjet::Send.create(messages: [{
+      'To'=> [{
+        'Email'=> order.user.email,
+        'Name'=> 'You'
+      }],
+      'Variables' => {
+        'items' => order.items[0],
+        'total_price' => order.items[0].price,
+        'brand' => order.items[0].shop.brand,
+        'shop_email' => order.items[0].shop.email_pro,
+        'url' => root_url
+      },
+      'TemplateID'=> 2195273,
+      'TemplateLanguage'=> true,
+      'Subject'=> 'La Boutique des Nouveaux Designs',
+    }])
+  end
 end

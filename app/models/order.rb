@@ -23,6 +23,7 @@ class Order < ApplicationRecord
     items.each_with_index do |item, index|
       ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user))
     end
+    send_new_order_emails
     return ordered_items
   end
 
@@ -56,5 +57,11 @@ class Order < ApplicationRecord
 
   def total_price_with_shipping_cost(ordered_items)
     return total_price(ordered_items) + self.order_shipping_price
+  end
+
+  private
+
+  def send_new_order_emails
+    UserMailer.new_order_customer_email(self).deliver_now
   end
 end
