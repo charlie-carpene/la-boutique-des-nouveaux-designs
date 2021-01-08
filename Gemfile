@@ -69,6 +69,6 @@ gem 'image_processing', '~> 1.10', '>= 1.10.3'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem "aws-sdk-s3", require: false
 
-gem 'omniauth-stripe-connect', '~> 2.9'
+gem 'omniauth-stripe-connect', '~> 2.10', '>= 2.10.1'
 gem 'stripe', '~> 5.22'
 gem 'stripe_event', '~> 2.3', '>= 2.3.1'
