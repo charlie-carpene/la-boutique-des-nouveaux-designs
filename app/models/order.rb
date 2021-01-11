@@ -68,7 +68,7 @@ class Order < ApplicationRecord
   end
 
   def total_price_with_shipping_cost(ordered_items)
-    return total_price(ordered_items) + self.order_shipping_price
+    return total_price_for_new_order(ordered_items) + self.order_shipping_price
   end
 
   private
