@@ -14,6 +14,8 @@ Category.destroy_all
 Shop.destroy_all
 Address.destroy_all
 User.destroy_all
+Order.destroy_all
+OrderItem.destroy_all
 puts "Seed destroyed"
 
 puts "-" * 30
@@ -50,6 +52,18 @@ puts "***** Items ... *****"
 10.times do
   Item.create(name: Faker::Creature::Cat.name, category: Category.all.sample, description: Faker::TvShows::HowIMetYourMother.quote, price: Faker::Number.number(digits:2), product_weight: Faker::Number.between(from: 1, to: 30000), available_qty: Faker::Number.number(digits:1), shop: Shop.all.sample)
 end
+puts "... done"
+
+item_sample = Item.all.sample
+user_sample = User.find_by(email: "gradya@yopmail.com")
+
+puts "***** CartItems ... *****"
+CartItem.create(item: item_sample, cart: user_sample.cart, item_qty_in_cart: 1)
+puts "... done"
+
+puts "***** Orders & OrderItems ... *****"
+Order.create(user: user_sample)
+OrderItem.create(order: Order.find_by(user: User.find_by(email: "gradya@yopmail.com")), item: item_sample, qty_ordered: 1)
 puts "... done"
 
 puts "-" * 30

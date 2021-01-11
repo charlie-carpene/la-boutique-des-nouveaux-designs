@@ -17,6 +17,10 @@ class Order < ApplicationRecord
     return ordered_cart_items
   end
 
+  def shop
+    return self.items.sample.shop
+  end
+
   def create_ordered_items(shop)
     ordered_items = Array.new
     items = self.user.cart.items.where(shop: shop)
@@ -39,7 +43,15 @@ class Order < ApplicationRecord
     return items_array
   end
 
-  def total_price(ordered_cart_items)
+  def total_price
+    price = 0
+    self.order_items.each do |order_item|
+      price += order_item.item.price * order_item.qty_ordered
+    end
+    return price
+  end
+
+  def total_price_for_new_order(ordered_cart_items)
     total_price = 0
     ordered_cart_items.each do |cart_item|
       total_price += cart_item.item.price * cart_item.item_qty_in_cart
@@ -63,5 +75,6 @@ class Order < ApplicationRecord
 
   def send_new_order_emails
     UserMailer.new_order_customer_email(self).deliver_now
+    UserMailer.new_order_shop_email(self).deliver_now
   end
 end

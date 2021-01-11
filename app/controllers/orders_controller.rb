@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
         line_items: @order.add_all_ordered_items_to_stripe_session(@ordered_cart_items),
         mode: 'payment',
         payment_intent_data: {
-          application_fee_amount: (@order.total_price(@ordered_cart_items) * 2.9 + 25).round, #to be change when user.fee is added to User table
+          application_fee_amount: (@order.total_price_for_new_order(@ordered_cart_items) * 2.9 + 25).round, #to be change when user.fee is added to User table
           on_behalf_of: @shop.uid,
           transfer_data: {
             destination: @shop.uid,
