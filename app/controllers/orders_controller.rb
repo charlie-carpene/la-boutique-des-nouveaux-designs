@@ -2,7 +2,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   load_and_authorize_resource
-  skip_load_resource only: :create
+  skip_load_resource only: [:create, :index]
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def new
@@ -82,6 +82,13 @@ class OrdersController < ApplicationController
   end
 
   def show
+    puts "*" * 30
+    puts params.inspect
+    puts "*" * 30
+  end
+
+  def index
+    @user = User.find(params[:user_id])
   end
 
 end

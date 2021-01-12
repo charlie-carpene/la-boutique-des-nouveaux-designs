@@ -1,5 +1,5 @@
 <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
-    <%= link_to "Commande n°#{order.id} du #{order.created_at.day} / #{order.created_at.month}", order_path(order.id), class: "stretched-link" %>
+    <%= link_to "Commande n°#{order.id} du #{order.created_at.day} / #{order.created_at.month}", user_order_path(user.id, order.id), class: "stretched-link" %>
     <div class="d-flex">
         <%= order.total_price %>€
     </div>
