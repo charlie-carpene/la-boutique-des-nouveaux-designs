@@ -1,3 +1,11 @@
 <div class="container">
-test
+    <h2 class="pt-4 text-center text-primary">Commande n°<%= @order.id %></h2>
+    <ul>
+        <% @order.items.each do |item| %>
+            <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
+                <%= item.name %>
+                <span><%= item.price %>€</span>
+            </li>
+        <% end %>
+    </ul>
 </div>
