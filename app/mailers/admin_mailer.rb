@@ -12,7 +12,7 @@ class AdminMailer < ApplicationMailer
         'email_pro' => user.shop.email_pro,
         'url' => edit_user_url(user.id),
       },
-      'TemplateID'=> 1383469,
+      'TemplateID'=> 2222960,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nvlle demande de créateur - la Boutique des Nouveaux Designs',
       'Attachments'=>

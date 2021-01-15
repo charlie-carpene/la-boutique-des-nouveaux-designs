@@ -14,7 +14,7 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'url' => new_user_session_url,
       },
-      'TemplateID'=> 2222688,
+      'TemplateID'=> 2222971,
       'TemplateLanguage'=> true,
       'Subject'=> 'Bienvenue à la Boutique des Nouveaux Designs',
     }])
@@ -31,7 +31,7 @@ class UserMailer < ApplicationMailer
         'email_pro' => user.shop.email_pro,
         'url' => become_maker_url
       },
-      'TemplateID'=> 1383918,
+      'TemplateID'=> 2222962,
       'TemplateLanguage'=> true,
       'Subject'=> 'La Boutique des Nouveaux Designs',
       'Attachments'=>
@@ -52,7 +52,7 @@ class UserMailer < ApplicationMailer
         'email_pro' => shop.email_pro,
         'url' => root_url
       },
-      'TemplateID'=> 2222473,
+      'TemplateID'=> 2222965,
       'TemplateLanguage'=> true,
       'Subject'=> 'La Boutique des Nouveaux Designs',
     }])
@@ -69,7 +69,7 @@ class UserMailer < ApplicationMailer
         'email_pro' => user.shop.email_pro,
         'url' => new_user_session_url
       },
-      'TemplateID'=> 2222666,
+      'TemplateID'=> 2222969,
       'TemplateLanguage'=> true,
       'Subject'=> 'La Boutique des Nouveaux Designs',
     }])
@@ -87,7 +87,7 @@ class UserMailer < ApplicationMailer
         'shop_email' => order.shop.email_pro,
         'url' => root_url
       },
-      'TemplateID'=> 2195273,
+      'TemplateID'=> 2222989,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nouvelle commande - La Boutique des Nouveaux Designs',
     }])
@@ -104,7 +104,7 @@ class UserMailer < ApplicationMailer
         'customer_email' => order.user.email,
         'url' => root_url
       },
-      'TemplateID'=> 2195546,
+      'TemplateID'=> 2222973,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nouvelle commande - La Boutique des Nouveaux Designs',
     }])
