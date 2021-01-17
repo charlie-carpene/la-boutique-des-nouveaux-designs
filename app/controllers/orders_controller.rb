@@ -86,6 +86,7 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = @user.orders.sort_by { |order| [order.created_at] }.reverse
   end
 
 end
