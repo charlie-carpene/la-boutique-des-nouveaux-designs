@@ -5,6 +5,7 @@
     <p class="text-light"><%= @shop.description %></p>
     <% if can? :manage, @shop %>
       <div class="d-flex justify-content-center">
+        <%= button_to "Mes articles vendus", order_items_path, { method: 'get', form_class: "m-3 pt-1", class: "btn btn-info" } %>
         <%= button_to "Voir les informations de ma boutique", edit_shop_path(@shop.id), {method: 'get', form_class: "m-3 pt-1", class: "btn btn-outline-warning" } %>
       </div>
     <% end %>
