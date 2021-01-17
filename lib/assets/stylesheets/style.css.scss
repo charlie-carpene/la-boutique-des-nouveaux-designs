@@ -61,7 +61,7 @@ p {
   font-style: normal;
   font-variant: normal;
   font-family: "Font Awesome 5 Free";
-  content: url(icons/home.svg);
+  content: image-url("icons/home.svg");
   filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
   height: 1.5em;
   width: 1.5em;
@@ -70,7 +70,7 @@ p {
 }
 
 .logo-icon:hover {
-  content: url(icons/heart.svg);
+  content: image-url("icons/heart.svg");
   filter: invert(92%) sepia(15%) saturate(7290%) hue-rotate(324deg) brightness(104%) contrast(88%);
 }
 
