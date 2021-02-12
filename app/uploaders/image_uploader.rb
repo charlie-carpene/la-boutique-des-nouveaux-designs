@@ -19,12 +19,17 @@ class ImageUploader < Shrine
     if [:original, nil].include? context[:version]
       @filename = File.basename(extract_filename(io).to_s, '.*')
     end
+    puts '*' * 30
+    puts context[:record].brand
+    puts '*' * 30
+
     extension = ".#{io.extension}" if io.is_a?(UploadedFile) && io.extension
     extension ||= File.extname(extract_filename(io).to_s).downcase
     filename = File.basename(extract_filename(io).to_s, '.*')
     version =  context[:version] === :original ? '' : "_#{context[:version]}"
+    shopname = context[:record].brand
     directory = context[:record].class.name.downcase.pluralize
-    "#{directory}/#{@filename}#{version}#{extension}"
+    "#{directory}/#{shopname}_#{@filename}#{version}#{extension}"
   end
 
   process(:store) do |io, **options|

@@ -23,8 +23,10 @@ class PictureUploader < Shrine
     extension ||= File.extname(extract_filename(io).to_s).downcase
     filename = File.basename(extract_filename(io).to_s, '.*')
     version =  context[:version] === :original ? '' : "_#{context[:version]}"
+    itemname = context[:record].item.present? === true ? "#{context[:record].item.name}_" : ''
+    shopname = context[:record].item.present? === true ? "#{context[:record].item.shop.brand}/" : ''
     directory = context[:record].class.name.downcase.pluralize
-    "#{directory}/#{@filename}#{version}#{extension}"
+    "#{directory}/#{shopname}#{itemname}#{@filename}#{version}#{extension}"
   end
 
   process(:store) do |io, **options|

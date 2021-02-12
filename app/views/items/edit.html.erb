@@ -47,6 +47,8 @@
       <%= file_field_tag "files[]", multiple: true %>
     </div>
 
+    <p class="font-italic">Dans le cas où les photos sont trop lourdes, vous pouvez les redimensionner depuis <a href="https://onlinepngtools.com/resize-png" target="_blank">cet outil en ligne</a></p>
+
     <div class="actions mt-4 d-flex justify-content-between">
       <%= link_to "Retour", :back, class: "btn btn-primary" %>
       <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
