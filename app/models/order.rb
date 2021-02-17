@@ -25,7 +25,7 @@ class Order < ApplicationRecord
     ordered_items = Array.new
     items = self.user.cart.items.where(shop: shop)
     items.each_with_index do |item, index|
-      ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user))
+      ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user), price: item.price)
     end
     send_new_order_emails
     return ordered_items

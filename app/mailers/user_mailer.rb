@@ -29,7 +29,7 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'brand' => user.shop.brand,
         'email_pro' => user.shop.email_pro,
-        'url' => become_maker_url
+        'url' => cgv_url
       },
       'TemplateID'=> 2222962,
       'TemplateLanguage'=> true,
@@ -85,7 +85,7 @@ class UserMailer < ApplicationMailer
         'total_price' => order.total_price,
         'brand' => order.shop.brand,
         'shop_email' => order.shop.email_pro,
-        'url' => root_url
+        'url' => user_orders_url(order.user.id)
       },
       'TemplateID'=> 2222989,
       'TemplateLanguage'=> true,
@@ -102,7 +102,7 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'total_price' => order.total_price,
         'customer_email' => order.user.email,
-        'url' => root_url
+        'url' => order_items_url
       },
       'TemplateID'=> 2222973,
       'TemplateLanguage'=> true,

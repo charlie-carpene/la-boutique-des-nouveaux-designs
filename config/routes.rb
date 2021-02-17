@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'orders/new'
   root 'static_pages#index'
   get "become_maker" => 'static_pages#become_maker'
+  get "cgv" => 'static_pages#cgv'
   get "stripe_fallback" => 'static_pages#stripe_fallback'
 
   devise_for :users

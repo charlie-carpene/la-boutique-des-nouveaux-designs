@@ -7,6 +7,9 @@ class StaticPagesController < ApplicationController
   def become_maker
   end
 
+  def cgv
+  end
+
   def stripe_fallback
     @status = params["status"]
 
