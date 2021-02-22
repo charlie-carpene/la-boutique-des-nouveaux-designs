@@ -34,6 +34,9 @@ group :development, :test do
   gem 'table_print'
   gem "letter_opener"
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
 end
 
 group :development do
@@ -68,6 +71,7 @@ gem 'fastimage', '~> 2.1', '>= 2.1.7'
 gem 'image_processing', '~> 1.10', '>= 1.10.3'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem "aws-sdk-s3", require: false
+gem 'migration_data', '~> 0.6.0'
 
 gem 'omniauth-stripe-connect', '~> 2.10', '>= 2.10.1'
 gem 'stripe', '~> 5.22'
