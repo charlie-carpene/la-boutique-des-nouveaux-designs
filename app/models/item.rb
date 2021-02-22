@@ -50,5 +50,4 @@ class Item < ApplicationRecord
     })
     self.update(stripe_price_id: stripe_price.id)
   end
-
 end

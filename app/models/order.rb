@@ -46,7 +46,7 @@ class Order < ApplicationRecord
   def total_price
     price = 0
     self.order_items.each do |order_item|
-      price += order_item.item.price * order_item.qty_ordered
+      price += order_item.price * order_item.qty_ordered
     end
     return price
   end
