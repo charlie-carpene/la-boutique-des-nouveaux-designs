@@ -7,6 +7,10 @@ FactoryBot.define do
 
     trait :is_maker do
       is_maker { true }
+
+      after(:build) do |user|
+        user.shop = create(:shop, user: user)
+      end
     end
   end
 end

@@ -5,6 +5,6 @@ FactoryBot.define do
     email_pro { "atelier@nouveauxdesigns.fr" }
     description { Faker::Quote.famous_last_words }
     compagny_id { Faker::Number.number(digits: 14) }
-    user
+    association :user, :is_maker
   end
 end
