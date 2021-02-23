@@ -5,7 +5,7 @@
             <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
                 <span><%= order_item.item.name %> vendu le <%= order_item.created_at.day %> / <%= order_item.created_at.month %> / <%= order_item.created_at.year %> à <%= order_item.order.user.email %></span>
                 <div class="d-flex">
-                    <%= order_item.item.price %>€
+                    <%= order_item.price %>€
                 </div>
             </li>
         <% end %>
