@@ -87,7 +87,7 @@ class UserMailer < ApplicationMailer
         'shop_email' => order.shop.email_pro,
         'url' => user_orders_url(order.user.id)
       },
-      'TemplateID'=> 2222973,
+      'TemplateID'=> 2222989,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nouvelle commande - La Boutique des Nouveaux Designs',
     }])
@@ -104,7 +104,7 @@ class UserMailer < ApplicationMailer
         'customer_email' => order.user.email,
         'url' => order_items_url
       },
-      'TemplateID'=> 2222989,
+      'TemplateID'=> 2222973,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nouvelle commande - La Boutique des Nouveaux Designs',
     }])
