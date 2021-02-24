@@ -3,7 +3,6 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :available_qty, presence: true
   validates :description, presence: true
-  validates :category_id, presence: true
   validates :product_weight, presence: true
 
   after_create :create_stripe_product_and_price
@@ -11,7 +10,8 @@ class Item < ApplicationRecord
   after_destroy :destroy_stripe_product
 
   belongs_to :shop
-  belongs_to :category
+  has_many :item_categories, dependent: :destroy
+  has_many :categories, through: :item_categories
   has_many :cart_items, dependent: :destroy
   has_many :carts, through: :cart_items
   has_many :item_pictures, dependent: :destroy

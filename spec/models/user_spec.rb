@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @maker = FactoryBot.build(:user, :is_maker, email: "gradya@yopmail.com")
+    @maker = FactoryBot.create(:user, :is_maker, email: "gradya@yopmail.com")
     @user = FactoryBot.build(:user)
     puts "-"  *  30
     puts Category.all.inspect

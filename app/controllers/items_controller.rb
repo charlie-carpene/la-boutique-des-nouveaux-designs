@@ -6,6 +6,10 @@ class ItemsController < ApplicationController
   end
 
   def create
+    puts "*" * 30
+    puts params.inspect
+    puts "*" * 30
+
     if params[:files].blank?
       flash[:error] = "Vous n'avez ajouter aucune photos"
       render 'new'
@@ -13,6 +17,7 @@ class ItemsController < ApplicationController
       # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
       item_permitted_attributes = get_item_permitted_attributes #private method
 
+  
       @item = Item.new(item_permitted_attributes)
       if @item.save
         flash[:success] = "Le produit à bien été enregistré."
@@ -61,7 +66,7 @@ class ItemsController < ApplicationController
   private
 
   def item_permitted_params
-    params.require(:item).permit(:name, :category_id, :description, :price, :available_qty, :product_weight, :shop_id,  :item_pictures_attributes)
+    params.require(:item).permit(:name, :description, :price, :available_qty, :product_weight, :shop_id, :item_pictures_attributes, category_ids: [])
   end
 
   def get_item_permitted_attributes

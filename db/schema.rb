@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_093508) do
+ActiveRecord::Schema.define(version: 2021_02_24_144058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 2021_02_22_093508) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "item_categories", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_item_categories_on_category_id"
+    t.index ["item_id"], name: "index_item_categories_on_item_id"
+  end
+
   create_table "item_pictures", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.text "picture_data"
@@ -68,7 +77,6 @@ ActiveRecord::Schema.define(version: 2021_02_22_093508) do
 
   create_table "items", force: :cascade do |t|
     t.bigint "shop_id", null: false
-    t.bigint "category_id", null: false
     t.string "name"
     t.text "description"
     t.integer "price"
@@ -78,7 +86,6 @@ ActiveRecord::Schema.define(version: 2021_02_22_093508) do
     t.integer "product_weight"
     t.string "stripe_price_id"
     t.string "stripe_product_id"
-    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["shop_id"], name: "index_items_on_shop_id"
   end
 
@@ -135,8 +142,9 @@ ActiveRecord::Schema.define(version: 2021_02_22_093508) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "items"
   add_foreign_key "carts", "users"
+  add_foreign_key "item_categories", "categories"
+  add_foreign_key "item_categories", "items"
   add_foreign_key "item_pictures", "items"
-  add_foreign_key "items", "categories"
   add_foreign_key "items", "shops"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"

@@ -7,7 +7,7 @@ FactoryBot.define do
     price { 19 }
     product_weight { 300 }
     available_qty { 1 }
-    association :category
+    association :categories
     association :shop
   end
 end
