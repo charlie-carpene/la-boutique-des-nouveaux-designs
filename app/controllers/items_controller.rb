@@ -48,10 +48,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.orders.blank?
+    unless @item.orders.blank?
       flash[:error] = "L'article a déjà été vendu au moins une fois et ne peut donc pas être supprimé. Se référer aux CGVs pour en savoir plus."
       redirect_back(fallback_location: root_path)
-    elsif
+    else
       @item.destroy
       flash[:error] = "L'article a bien été supprimé."
       redirect_back(fallback_location: root_path)

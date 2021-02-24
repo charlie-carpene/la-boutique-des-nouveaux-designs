@@ -7,6 +7,8 @@ class Item < ApplicationRecord
   validates :product_weight, presence: true
 
   after_create :create_stripe_product_and_price
+  before_update :update_stripe_info
+  after_destroy :destroy_stripe_product
 
   belongs_to :shop
   belongs_to :category
@@ -41,6 +43,7 @@ class Item < ApplicationRecord
   def create_stripe_product_and_price
     stripe_product = Stripe::Product.create({
       name: self.name,
+      description: self.description,
     })
 
     stripe_price = Stripe::Price.create({
@@ -48,6 +51,35 @@ class Item < ApplicationRecord
       unit_amount: "#{self.price}" + "00",
       currency: 'eur',
     })
-    self.update(stripe_price_id: stripe_price.id)
+    self.update(stripe_price_id: stripe_price.id, stripe_product_id: stripe_product.id)
+  end
+
+  def update_stripe_info
+    if changes_to_save.keys.any? { |value| ["name", "description"].include?(value) }
+      Stripe::Product.update(self.stripe_product_id, {
+        name: self.name,
+        description: self.description,
+      })
+    end
+    if changes_to_save.keys.any? { |value| value == "price" }
+      Stripe::Price.update(self.stripe_price_id, {
+        active: false
+      })
+      stripe_price = Stripe::Price.create({
+        product: self.stripe_product_id,
+        unit_amount: "#{changes_to_save["price"].last}" + "00",
+        currency: 'eur',
+      })
+      self.stripe_price_id = stripe_price.id
+    end
+  end
+
+  def destroy_stripe_product
+    Stripe::Product.update(self.stripe_product_id, {
+      active: false
+    })
+    Stripe::Price.update(self.stripe_price_id, {
+      active: false
+    })
   end
 end
