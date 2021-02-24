@@ -85,7 +85,7 @@ class UserMailer < ApplicationMailer
         'total_price' => order.total_price,
         'brand' => order.shop.brand,
         'shop_email' => order.shop.email_pro,
-        'url' => user_orders_url(order.user.id)
+        'url' => user_order_url(order.user.id, order.id)
       },
       'TemplateID'=> 2222989,
       'TemplateLanguage'=> true,
