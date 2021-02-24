@@ -35,6 +35,7 @@
       </div>
 
       <div class="field mt-4">
+        <%= f.label 'Catégorie' %><br />
         <% Category.all.each do |category| %>
           <%= f.check_box :category_ids, {:multiple => true}, category.id, nil %>
           <%= f.label category.name %><br />

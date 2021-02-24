@@ -33,8 +33,11 @@
     </div>
 
     <div class="field mt-4">
-      <%= f.label 'Catégorie' %>
-      <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', @item.category.id) %>
+      <%= f.label 'Catégorie' %><br />
+      <% Category.all.each do |category| %>
+        <%= f.check_box :category_ids, {:multiple => true}, category.id, nil %>
+        <%= f.label category.name %><br />
+      <% end %> 
     </div>
 
     <div class="field mt-4">
