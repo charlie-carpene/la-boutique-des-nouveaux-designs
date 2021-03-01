@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 
   def edit
     @user_to_validate = User.find(params[:id])
+    puts "*" * 30
+    puts @user_to_validate.inspect
+    puts "*" * 30
     unless load_user.admin.present? #can't use load_resource because it takes the params from the URL and here we want the current_user id
       flash[:error] = "Veuillez vous connecter en tant qu'administrateur pour accéder à cette page."
       redirect_to root_path
