@@ -25,4 +25,8 @@ class Shop < ApplicationRecord
   def can_receive_payments?
     uid? && provider? && access_code? && publishable_key?
   end
+
+  def siren
+    self.compagny_id.to_s.slice(0..8)
+  end
 end

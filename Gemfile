@@ -76,3 +76,6 @@ gem 'migration_data', '~> 0.6.0'
 gem 'omniauth-stripe-connect', '~> 2.10', '>= 2.10.1'
 gem 'stripe', '~> 5.22'
 gem 'stripe_event', '~> 2.3', '>= 2.3.1'
+
+gem 'faraday', '~> 1.3'
+gem 'faraday_middleware', '~> 1.0'

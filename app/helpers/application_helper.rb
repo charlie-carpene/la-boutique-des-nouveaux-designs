@@ -45,4 +45,35 @@ module ApplicationHelper
     end
   end
 
+  def translate_month(month_num)
+    case month_num
+    when 1
+      return "Janvier"
+    when 2
+      return "Février"
+    when 3
+      return "Mars"
+    when 4
+      return "Avril"
+    when 5
+      return "Mai"
+    when 6
+      return "Juin"
+    when 7
+      return "Juillet"
+    when 8
+      return "Août"
+    when 9
+      return "Septembre"
+    when 10
+      return "Octobre"
+    when 11
+      return "Novembre"
+    when 12
+      return "Décembre"
+    else
+      return "Mois inexistant"
+    end
+  end
+
 end
