@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   get 'orders/new'
   root 'static_pages#index'
   get "become_maker" => 'static_pages#become_maker'
   get "cgv" => 'static_pages#cgv'
   get "stripe_fallback" => 'static_pages#stripe_fallback'
+
+  match "404", to: "errors#not_found", via: :all
+  match "500", to: "errors#internal_server_error", via: :all
 
   devise_for :users
 
