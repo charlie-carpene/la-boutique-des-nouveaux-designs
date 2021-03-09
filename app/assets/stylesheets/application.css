@@ -18,4 +18,6 @@
  *= require style
  *= require sizing
  *= require logo
+ *= require navbar
+ *= require button
  */

@@ -24,55 +24,20 @@ p {
   text-decoration: none;
   padding: 0.5em 1em;
   border: 1px solid transparent;
-  border-radius: 1.2em;
+  border-radius: 0.5rem;
   transition: 0.5s;
 }
 
 .category-item:hover {
   text-decoration: none;
   border: 1px solid #b4ccf8;
+  border-radius: 1.2rem;
 }
 
 .header-item {
   height: 2em;
 }
 
-.logo-overlay {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  left: 50%;
-  top: 40px;
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-}
-
-.logo-bg {
-  position: absolute;
-  left: -30px;
-}
-
-.logo-icon {
-  position: absolute;
-  font-style: normal;
-  font-variant: normal;
-  font-family: "Font Awesome 5 Free";
-  content: image-url("icons/home.svg");
-  filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
-  height: 1.5em;
-  width: 1.5em;
-  left: -9px;
-  top: -13px;
-}
-
-.logo-icon:hover {
-  content: image-url("icons/heart.svg");
-  filter: invert(92%) sepia(15%) saturate(7290%) hue-rotate(324deg) brightness(104%) contrast(88%);
-}
 
 /****** COLORS ******/
 /*filters from https://codepen.io/sosuke/pen/Pjoqqp */

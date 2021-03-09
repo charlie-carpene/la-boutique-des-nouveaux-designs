@@ -1,0 +1,7 @@
+.btn-catch {
+    transition: 0.3s;
+}
+
+.btn-catch:hover {
+    border-radius: 2rem;
+}

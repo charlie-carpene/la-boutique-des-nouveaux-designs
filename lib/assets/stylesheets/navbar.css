@@ -1,0 +1,55 @@
+.flip-card {
+    background-color: transparent;
+    width: 4rem;
+    height: 4rem;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.logo {
+    width: 4rem;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .logo {
+        width: 8rem;
+    }
+}
+
+.logo-icon {
+    position: relative;
+    filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
+    width: 2.5rem;
+    top: 1.5rem;
+    left: -0.75rem;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .logo-icon {
+        font-size: 2.5rem;
+        left: 15px;
+        top: 15px;
+    }
+}
