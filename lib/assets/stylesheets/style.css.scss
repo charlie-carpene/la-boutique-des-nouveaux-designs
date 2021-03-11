@@ -69,6 +69,7 @@ p {
 /*filters from https://codepen.io/sosuke/pen/Pjoqqp */
 
 .icon-primary {
+  transition: 0.2s;
   filter: invert(34%) sepia(47%) saturate(674%) hue-rotate(134deg) brightness(97%) contrast(93%);
   /*primary color*/
 }
@@ -80,6 +81,7 @@ p {
 }
 
 .icon-success {
+  transition: 0.2s;
   filter: invert(76%) sepia(51%) saturate(6952%) hue-rotate(128deg) brightness(98%) contrast(102%);
   /*succes color*/
 }
@@ -90,6 +92,7 @@ p {
 }
 
 .color-black-filtered-to-primary {
+  transition: 0.2s;
   /*filtered to primary*/
   filter: invert(13%) sepia(90%) saturate(1083%) hue-rotate(223deg) brightness(97%) contrast(113%);
 }
