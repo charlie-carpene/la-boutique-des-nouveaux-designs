@@ -40,7 +40,6 @@
 
 .logo-icon {
     position: relative;
-    filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
     width: 2.5rem;
     top: 1.5rem;
     left: -0.75rem;

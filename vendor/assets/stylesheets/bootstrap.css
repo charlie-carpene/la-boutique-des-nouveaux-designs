@@ -10581,11 +10581,11 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #167378 !important;
+  color: var(--primary) !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #1559cf !important;
+  color: var(--green) !important;
 }
 
 .text-secondary {

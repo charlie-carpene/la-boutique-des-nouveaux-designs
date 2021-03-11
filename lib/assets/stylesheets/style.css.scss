@@ -1,3 +1,29 @@
+:root {
+  --blue: #167378;
+  --red: #d9534f;
+  --orange: #F79B2F;
+  --yellow: #F79B2F;
+  --green: #00C795;
+  --white: #fff;
+  --gray: #868e96;
+  --gray-dark: #343a40;
+  --primary: #167378;
+  --secondary: #adb5bd;
+  --success: #00C795;
+  --info: #17a2b8;
+  --warning: #F79B2F;
+  --danger: #d9534f;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 /****** BALISE ******/
 p {
   font-family: inherit;
@@ -30,7 +56,7 @@ p {
 
 .category-item:hover {
   text-decoration: none;
-  border: 1px solid #b4ccf8;
+  border: 1px solid var(--green);
   border-radius: 1.2rem;
 }
 
@@ -43,23 +69,24 @@ p {
 /*filters from https://codepen.io/sosuke/pen/Pjoqqp */
 
 .icon-primary {
-  filter: invert(13%) sepia(90%) saturate(1083%) hue-rotate(223deg) brightness(97%) contrast(113%);
+  filter: invert(34%) sepia(47%) saturate(674%) hue-rotate(134deg) brightness(97%) contrast(93%);
   /*primary color*/
 }
 
 .icon-primary:hover,
 .icon-primary:focus {
-  filter: invert(30%) sepia(54%) saturate(1923%) hue-rotate(197deg) brightness(96%) contrast(101%);
-  /*filtered to #1959d2*/
+  filter: invert(76%) sepia(51%) saturate(6952%) hue-rotate(128deg) brightness(98%) contrast(102%);
+  /*filtered to green*/
 }
 
 .icon-success {
-  filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
+  filter: invert(76%) sepia(51%) saturate(6952%) hue-rotate(128deg) brightness(98%) contrast(102%);
   /*succes color*/
 }
 .icon-success:hover,
 .icon-success:focus {
-  filter: invert(30%) sepia(13%) saturate(3787%) hue-rotate(112deg) brightness(100%) contrast(96%);  /*filtered to #056c43*/
+  filter: invert(34%) sepia(47%) saturate(674%) hue-rotate(134deg) brightness(97%) contrast(93%);
+  /*filtered to primary*/
 }
 
 .color-black-filtered-to-primary {
@@ -72,16 +99,16 @@ p {
 }
 
 .filter-to-danger:hover {
-  /*filtered to success*/
+  /*filtered to danger*/
   filter: invert(44%) sepia(35%) saturate(7257%) hue-rotate(337deg) brightness(98%) contrast(74%);
 }
 
 .filter-to-warning:hover {
   /*filtered to warning*/
-  filter: invert(71%) sepia(41%) saturate(930%) hue-rotate(341deg) brightness(101%) contrast(98%);
+  filter: invert(77%) sepia(33%) saturate(4080%) hue-rotate(338deg) brightness(102%) contrast(94%);
 }
 
 .filter-to-success:hover {
   /*filtered to success*/
-  filter: invert(60%) sepia(97%) saturate(401%) hue-rotate(91deg) brightness(86%) contrast(95%);
+  filter: invert(76%) sepia(51%) saturate(6952%) hue-rotate(128deg) brightness(98%) contrast(102%);
 }
