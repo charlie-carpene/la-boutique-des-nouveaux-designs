@@ -1,4 +1,4 @@
-<div class="container w-50">
+<div class="container">
   <h2 class="mt-4 text-center text-primary">Modifier mes identifiants</h2>
   <%= devise_error_messages! %>
 
@@ -31,14 +31,14 @@
       <%= f.password_field :current_password, class: "form-control" %>
     </div>
 
-    <div class="actions mt-4">
-      <%= f.submit "Mettre à jour", class: "btn btn-primary" %>
+    <div class="d-flex justify-content-between my-4">
+      <%= link_to "Retour", :back, class: "btn btn-primary" %>
+
+      <%= f.submit "Mettre à jour", class: "btn btn-success" %>
     </div>
   <% end %>
 
-  <div class="text-right">
-    <em>Pas content ?<br/>
-    <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Etes vous sûre?" }, method: :delete, class: "text-danger" %></em>
+  <div class="text-left">
+    <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Etes vous sûre?" }, method: :delete, class: "text-danger" %>
   </div>
-  <%= link_to "Retour", :back %>
 </div>
