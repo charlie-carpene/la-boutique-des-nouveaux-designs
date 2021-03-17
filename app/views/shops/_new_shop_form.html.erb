@@ -54,7 +54,7 @@
     </div>
 
     <div  class="d-flex justify-content-around my-4">
-      <%= button_to "Voir les CGV", cgv_path, {method: :get, :class=>"btn btn-primary"} %>
+      <%= link_to "Voir les CGV", cgv_path, :class=>"btn btn-primary" %>
 
       <div class="actions">
         <%= f.submit "Envoyer le formulaire", class: "btn btn-success" %>
