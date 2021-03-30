@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
         redirect_back(fallback_location: root_path)
       else
         if @cart_item.save
-          flash[:success] = "L'article a bien été ajouté à votre panier."
+          flash[:success] = I18n.t("item.added_to_cart")
           redirect_back(fallback_location: root_path)
         else
           flash.now[:error] = translate_error_messages(@cart_item.errors)
@@ -17,7 +17,7 @@ class CartItemsController < ApplicationController
         end
       end
     else
-      flash[:error] = "L'article n'est malheureusement plus disponible."
+      flash[:error] = I18n.t("item.no_longer_available")
       redirect_back(fallback_location: root_path)
     end
   end
@@ -28,14 +28,14 @@ class CartItemsController < ApplicationController
       if @cart_item.add_qty_if_available_enough(@cart_item)
         redirect_back(fallback_location: root_path)
       else
-        flash[:error] = "L'article n'est pas disponible en quantité suffisante pour en ajouter un de plus."
+        flash[:error] = I18n.t("item.not_enough_qty")
         redirect_back(fallback_location: root_path)
       end
     when "minus"
       if @cart_item.remove_qty(@cart_item)
         redirect_back(fallback_location: root_path)
       else
-        flash[:error] = "Pour supprimer l'article, cliquez sur la corbeille."
+        flash[:error] = I18n.t("item.delete_from_cart_error")
         redirect_back(fallback_location: root_path)
       end
     else
@@ -46,7 +46,7 @@ class CartItemsController < ApplicationController
 
   def destroy
     @cart_item.destroy
-    flash[:alert] = "#{@cart_item.item.name} a bien supprimé de votre panier."
+    flash[:alert] = I18n.t("item.deleted_from_cart", name: @cart_item.item.name)
     redirect_back(fallback_location: root_path)
   end
 

@@ -1,0 +1,7 @@
+fr:
+  item:
+    added_to_cart: "L'article a bien été ajouté à votre panier."
+    not_enough_qty: "L'article n'est pas disponible en quantité suffisante pour en ajouter un de plus."
+    no_longer_available: "L'article n'est malheureusement plus disponible."
+    delete_from_cart_error: "Pour supprimer l'article, cliquez sur la corbeille."
+    deleted_from_cart: "%{name} a bien été suprimé de votre panier."
