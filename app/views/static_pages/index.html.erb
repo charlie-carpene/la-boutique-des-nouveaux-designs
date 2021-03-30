@@ -1,11 +1,9 @@
-<div class="mt-4 py-5 px-3 text-center bg-primary text-warning">
+<div class="py-5 px-3 text-center bg-primary text-warning">
   <h2>La Boutique des Nouveaux Designs</h2>
   <p class="text-light font-italic">Version bêta uniquement en Click & Collect</p>
 </div>
 
-<div class="mt-4">
-  <%= render 'carrousel' %>
-</div>
+<%= render 'carrousel' %>
 
 <div class="d-flex flex-wrap justify-content-center">
   <% @items.each do |item| %>
