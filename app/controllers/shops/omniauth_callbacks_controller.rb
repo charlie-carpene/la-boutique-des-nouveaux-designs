@@ -7,8 +7,8 @@ class Shops::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @shop.persisted?
       @shop.provider = auth_data.provider
       @shop.uid = auth_data.uid
-      @shop.access_code = auth_data.credentials.token
-      @shop.publishable_key = auth_data.info.stripe_publishable_key
+      @shop.access_code = helpers.encrypt_data(auth_data.credentials.token, "shop_credential")
+      @shop.publishable_key = helpers.encrypt_data(auth_data.info.stripe_publishable_key, "shop_credential")
       @shop.save
       
       sign_in_and_redirect @shop

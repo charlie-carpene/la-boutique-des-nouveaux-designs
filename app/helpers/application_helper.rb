@@ -22,6 +22,16 @@ module ApplicationHelper
     "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write"
   end
 
+  def encrypt_data(data_to_encrypt, assigned_purpose)
+    crypt = ActiveSupport::MessageEncryptor.new([ENV['ENCRYPT_KEY']].pack("H*"))
+    return crypt.encrypt_and_sign(data_to_encrypt, purpose: assigned_purpose)
+  end
+
+  def decrypt_data(data_to_decrypt, assigned_purpose)
+    crypt = ActiveSupport::MessageEncryptor.new([ENV['ENCRYPT_KEY']].pack("H*"))
+    return crypt.decrypt_and_verify(data_to_decrypt, purpose: assigned_purpose)
+  end
+
   def shipping_cost(weight)
     case weight
     when 1..250
