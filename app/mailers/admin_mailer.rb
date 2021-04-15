@@ -21,4 +21,24 @@ class AdminMailer < ApplicationMailer
       end
     }])
   end
+
+# Email during the beta-test phase
+
+  def beta_new_order(order)
+    Mailjet::Send.create(messages: [{
+      'To'=> [{
+        'Email'=> 'atelier@nouveauxdesigns.fr',
+        'Name'=> 'You'
+      }],
+      'Variables' => {
+        'customer_email' => order.user.email,
+        'brand' => order.items.first.shop.brand,
+        'total_price' => order.total_price,
+        'articles' => add_articles_to_email(order),
+      },
+      'TemplateID'=> 2813727,
+      'TemplateLanguage'=> true,
+      'Subject'=> 'Test : Nvlle commande Click & Collect - la Boutique des Nouveaux Designs',
+    }])
+  end
 end

@@ -15,4 +15,13 @@ class ApplicationMailer < ActionMailer::Base
     end
     return content_array
   end
+
+  def add_articles_to_email(order)
+    order_item_names = []
+    order.order_items.each do |order_item|
+      order_item_names.push(order_item.item.name)
+    end
+
+    return order_item_names.join(", ")
+  end
 end

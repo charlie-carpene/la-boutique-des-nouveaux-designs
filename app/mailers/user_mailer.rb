@@ -75,6 +75,8 @@ class UserMailer < ApplicationMailer
     }])
   end
 
+# TemplateID should be changed back in both methods when the beta-test phase is over
+
   def new_order_customer_email(order)
     Mailjet::Send.create(messages: [{
       'To'=> [{
@@ -87,7 +89,7 @@ class UserMailer < ApplicationMailer
         'shop_email' => order.shop.email_pro,
         'url' => user_order_url(order.user.id, order.id)
       },
-      'TemplateID'=> 2222989,
+      'TemplateID'=> 2813723,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nouvelle commande - La Boutique des Nouveaux Designs',
     }])
@@ -104,10 +106,9 @@ class UserMailer < ApplicationMailer
         'customer_email' => order.user.email,
         'url' => order_items_url
       },
-      'TemplateID'=> 2222973,
+      'TemplateID'=> 2813725,
       'TemplateLanguage'=> true,
       'Subject'=> 'Nouvelle commande - La Boutique des Nouveaux Designs',
     }])
   end
-
 end
