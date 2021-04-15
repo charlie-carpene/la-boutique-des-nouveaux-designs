@@ -20,3 +20,8 @@ RSpec.describe Shop, type: :model do
     end
   end
 end
+
+# ToDo
+# -> connexion à stripe (peut recevoir payement si le compte est connecté, sinon non)
+# -> A bien toute les caractéristiques (brand, email, etc)
+# -> a bien une adresse, un user & des items
