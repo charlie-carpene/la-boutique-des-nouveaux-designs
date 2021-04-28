@@ -1,55 +1,43 @@
 <footer class="bg-light p-4 mt-3">
   <div class="row min-vh-15">
     <div class="col-sm text-center">
-      <h4 class="pt-2">Réseaux sociaux</h4>
+      <h4 class="pt-2"><%= t("footer.body_1.title") %></h4>
       <ul class="list-unstyled">
         <li>
           <i class="fab fa-facebook-square"></i>
-          <a class=" text-dark" href="https://www.facebook.com/LatelierdesNouveauxDesigns/">Facebook</a>
+          <a class=" text-dark" href="https://www.facebook.com/LatelierdesNouveauxDesigns/"><%= t("footer.body_1.social_network_1") %></a>
         </li>
         <li>
           <i class="fab fa-linkedin"></i>
-          <a class=" text-dark" href="https://www.linkedin.com/company/atelier-des-nouveaux-designs/">Linkedin</a>
+          <a class=" text-dark" href="https://www.linkedin.com/company/atelier-des-nouveaux-designs/"><%= t("footer.body_1.social_network_2") %></a>
         </li>
         <li>
           <i class="fas fa-globe"></i>
-          <a class=" text-dark" href="https://www.nouveauxdesigns.fr/">Association</a>
+          <a class=" text-dark" href="https://www.nouveauxdesigns.fr/"><%= t("footer.body_1.social_network_3") %></a>
         </li>
       </ul>
     </div>
 
     <div class="col-sm text-center">
-			<h4 class="pt-2"> A propos </h4>
+			<h4 class="pt-2"><%= t("footer.body_2.title") %></h4>
 			<ul class="list-unstyled">
-        <li>
-          <%= link_to "Devenir artisan ?", become_maker_path, :class=> "text-dark" %>
-        </li>
-        <li>
-          <%= link_to "CGV", cgv_path, class: "text-dark" %>  
-        </li>
-        <li>
-          <a class=" text-dark" href="#!">Mentions légales</a>
-        </li>
-        <li>
-          <a class=" text-dark" href="#!">FAQ</a>
-        </li>
+        <li><%= link_to t("footer.body_2.p_1"), become_maker_path, :class=> "text-dark" %></li>
+        <li><%= link_to t("footer.body_2.p_2"), cgv_path, class: "text-dark" %>  </li>
+        <li><%= link_to t("footer.body_2.p_3"), "#", class: "text-dark" %></li>
+        <li><%= link_to t("footer.body_2.p_4"), "#", class: "text-dark" %></li>
 			</ul>
 		</div>
 
     <div class="col-sm text-center">
 			<h4 class="pt-2"> Contact </h4>
       <ul class="list-unstyled">
-        <li>
-          <a class="text-dark" href="#!">Nous contacter</a>
-        </li>
-        <li>
-          <a class="text-dark" href="https://goo.gl/maps/M67EkJ84XG3dgmNk7">49 Rue Smith 69002 Lyon, France</a>
-        </li>
+        <li><%= link_to t("footer.body_3.p_1"), "#", class: "text-dark" %></li>
+        <li><%= link_to t("footer.body_3.p_2"), "https://goo.gl/maps/M67EkJ84XG3dgmNk7", class: "text-dark" %></li>
       </ul>
 		</div>
   </div>
   <div class="footer-copyright text-center mt-3">
-    <p>© 2020 Upcycling:
-    <a class="text-dark" href="https://fr.wikipedia.org/wiki/Surcyclage"> Upcyclez et vous verrez</a></p>
+    © 2020 Upcycling: 
+    <%= link_to t("footer.upcycling"), "https://fr.wikipedia.org/wiki/Surcyclage", class: "text-dark" %>
   </div>
 </footer>

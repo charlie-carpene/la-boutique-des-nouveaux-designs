@@ -1,0 +1,30 @@
+fr:
+  header:
+    button:
+      our_makers: "Nos créateurs"
+      user: "Mon profil"
+      orders: "Mes commandes"
+      shop: "Ma Boutique"
+      log_out: "Déconnexion"
+    category:
+      Enfant: "Enfant"
+      Maison: "Maison"
+      Mode: "Mode"
+      Quotidien: "Quotidien"
+  footer:
+    body_1:
+      title: "Réseaux Sociaux"
+      social_network_1: "Facebook"
+      social_network_2: "LinkedIn"
+      social_network_3: "Association"
+    body_2:
+      title: "A propos"
+      p_1: "Devenir artisan ?"
+      p_2: "CGV"
+      p_3: "Mentions légales"
+      p-4: "FAQ"
+    body_3:
+      title: "Contact"
+      p_1: "Nous contacter"
+      p_2: "49 Rue Smith 69002 Lyon, France"
+    upcycling: "Upcyclez et vous verrez"

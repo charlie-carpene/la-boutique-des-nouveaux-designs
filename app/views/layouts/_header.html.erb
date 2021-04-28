@@ -12,21 +12,21 @@
 
   <div class="d-flex">
     <div class="container mt-4">
-      <%= button_to "Nos créateurs", shops_path, { method: 'get', class: "btn btn-primary" } %>
+      <%= button_to t("header.button.our_makers"), shops_path, { method: 'get', class: "btn btn-primary" } %>
     </div>
     <div class="container d-flex justify-content-end mt-3">
       <% if user_signed_in? %>
         <%= link_to(image_tag("icons/cart.svg", class: "header-item"), cart_path(current_user.cart.id), class: " m-2 icon-primary") %>
         <%= link_to(image_tag("icons/user.svg", class: "header-item"), "#", class: "m-2 icon-success", :'data-toggle' => 'dropdown', :'aria-haspopup' => "true", :'aria-expanded' => "false") %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <%= link_to "Mon profil", user_path(current_user.id), :class => "nav-link dropdown-item" %>
+          <%= link_to t("header.button.user"), user_path(current_user.id), :class => "nav-link dropdown-item" %>
           <% if current_user.orders.present? %>
-            <%= link_to "Mes commandes", user_orders_path(current_user.id), :class => "nav-link dropdown-item" %>
+            <%= link_to t("header.button.orders"), user_orders_path(current_user.id), :class => "nav-link dropdown-item" %>
           <% end %>
           <% if current_user.is_maker %>
-            <%= link_to "Ma Boutique", shop_path(current_user.shop.id), :class => "nav-link dropdown-item" %>
+            <%= link_to t("header.button.shop"), shop_path(current_user.shop.id), :class => "nav-link dropdown-item" %>
           <% end %>
-          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class => "nav-link dropdown-item" %>
+          <%= link_to t("header.button.log_out"), destroy_user_session_path, method: :delete, :class => "nav-link dropdown-item" %>
         </div>
 
       <% else %>
@@ -42,7 +42,7 @@
   <div class="category-container">
     <div class="categories">
       <% returnAllCategories.each do |category| %>
-        <%= link_to category.name, category_path(category.id), class: "category-item text-primary" %>
+        <%= link_to t("header.category.#{category.name}"), category_path(category.id), class: "category-item text-primary" %>
       <% end %>
     </div>
   </div>
