@@ -1,16 +1,16 @@
 <div class="container">
-  <h1 class="pt-4 text-center text-primary">Créateur à valider</h1>
+  <h1 class="pt-4 text-center text-primary"><%= t("user.edit.title_1") %></h1>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Nom de la marque : <%= @user_to_validate.shop.brand %></li>
-    <li class="list-group-item">N° de SIRET <%= @user_to_validate.shop.compagny_id %> : <%= @legal_compagny_name %></li>
-    <li class="list-group-item">Site web : <%= @user_to_validate.shop.website.present? ? link_to(@user_to_validate.shop.website, "http://#{@user_to_validate.shop.website}", target: "_blank") : "Cette marque n'a pas renseignée de site web. Quelques photos de ses créations ont normalement été envoyés par mail." %></li>
-    <li class="list-group-item">Email : <%= @user_to_validate.shop.email_pro %></li>
+    <li class="list-group-item"><%= t("user.edit.brand_name", brand_name: @user_to_validate.shop.brand) %></li>
+    <li class="list-group-item"><%= t("user.edit.company_id", company_id: @user_to_validate.shop.compagny_id, company_name: @legal_compagny_name) %></li>
+    <li class="list-group-item"><%= @user_to_validate.shop.website.present? ? link_to("#{t("user.edit.website.present")} #{@user_to_validate.shop.website}", "http://#{@user_to_validate.shop.website}", target: "_blank") : t("user.edit.website.missing") %></li>
+    <li class="list-group-item"><%= t("user.edit.email", email: @user_to_validate.shop.email_pro) %></li>
   </ul>
-  <h2 class="pt-4 text-center text-primary">Description de la marque</h2>
+  <h2 class="pt-4 text-center text-primary"><%= t("user.edit.title_2") %></h2>
   <p class="m-5"><%= @user_to_validate.shop.description %></p>
 
   <div  class="d-flex justify-content-around my-4">
-    <%= button_to "Refuser", shop_path(@user_to_validate.shop.id), method: 'delete', :class => "btn btn-danger btn-lg btn-block py-2" %>
-    <%= button_to "Accepter", user_path(@user_to_validate.id), method: 'put', :class => "btn btn-success btn-lg btn-block py-2" %>
+    <%= button_to t("user.edit.button.deny"), shop_path(@user_to_validate.shop.id), method: 'delete', :class => "btn btn-danger btn-lg btn-block py-2" %>
+    <%= button_to t("user.edit.button.accept"), user_path(@user_to_validate.id), method: 'put', :class => "btn btn-success btn-lg btn-block py-2" %>
   </div>
 </div>

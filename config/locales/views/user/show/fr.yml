@@ -1,0 +1,13 @@
+fr:
+  user:
+    show:
+      title: "Mon Profil"
+      title_1: "Mes identifiants de connection"
+      title_2:
+        zero: "Mes adresses à venir"
+        one: "Mon adresse"
+        other: "Mes adresses"
+      title_3: "Ma boutique %{brand}"
+      email_password: "Mon adresse mail et mon mot de passe"
+      email_pro: "Mon adresse mail professionnelle"
+      website: "Mon site web"

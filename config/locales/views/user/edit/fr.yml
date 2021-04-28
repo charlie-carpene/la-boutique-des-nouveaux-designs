@@ -1,0 +1,15 @@
+fr:
+  user:
+    edit:
+      title_1: "Créateur à valider"
+      title_2: "Description de la marque"
+      brand_name: "Nom de la marque : %{brand_name}"
+      company_id: "N° de SIRET %{company_id} : %{company_name}"
+      website:
+        present: "Site web :"
+        missing: "Cette marque n'a pas renseignée de site web. Quelques photos de ses créations ont normalement été envoyés par mail."
+      email: "Email : %{email}"
+      button:
+        accept: "Accepter"
+        deny: "Refuser"
+

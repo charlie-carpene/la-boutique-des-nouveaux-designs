@@ -1,0 +1,7 @@
+fr:
+  button:
+    add: "Ajouter"
+    delete: "Supprimer"
+    edit: "Modifier"
+    enter: "Accéder"
+    add_address: "Ajouter une adresse"
