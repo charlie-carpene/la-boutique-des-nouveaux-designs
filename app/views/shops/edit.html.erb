@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="mt-4 text-center text-primary">Modifier les informations de ma boutique</h2>
+  <h2 class="mt-4 text-center text-primary"><%= t("shop.edit.title") %></h2>
 
   <%= form_for(:shop, url: shop_path(current_user.shop.id), html: { method: :put, enctype: "multipart/form-data" }) do |f| %>
 
@@ -7,10 +7,10 @@
       <div class="col-12 col-lg-9 mt-4">
         <div class="row">
           <div class="col">
-            <%= f.label 'Nom de ma marque' %>
+            <%= f.label t("shop.edit.brand_name") %>
           </div>
           <div class="col">
-            <%= f.label 'Mon email profesionnel' %>
+            <%= f.label t("shop.edit.email_pro") %>
           </div>
         </div>
         <div class="row mb-3">
@@ -23,17 +23,17 @@
         </div>
 
         <div class="field mt-4">
-          <%= f.label 'Mon site web' %><br />
-          <%= f.text_field :website, placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits", class: "form-control" %>
+          <%= f.label t("shop.edit.website.title") %><br />
+          <%= f.text_field :website, placeholder: t("shop.edit.website.placeholder"), class: "form-control" %>
         </div>
       </div>
       <div class="col col-lg-3 mt-4">
-        <%= f.label 'Image de ma boutique' %><br />
+        <%= f.label t("shop.edit.shop_image") %><br />
         <div class="card border-0 m-3" style="height:266px;width:200px">
           <%= image_tag @shop.show_image(@shop), class: "card-img" %>
           <div class="card-img-overlay d-flex flex-column justify-content-end">
             <div class="rounded bg-primary d-flex flex-column">
-              <div class="text-center text-white">Modifier :</div>
+              <div class="text-center text-white"><%= t("button.edit.edit") %> :</div>
               <%= f.file_field :image, class: "btn btn-sm text-primary" %>
             </div>
           </div>
@@ -42,19 +42,19 @@
     </div>
 
     <div class="field mt-4">
-      <%= f.label 'Numéro de SIRET' %><br />
-      <%= f.text_field :compagny_id, placeholder: "n° à 14 chiffres", class: "form-control" %>
+      <%= f.label t("shop.edit.company_id.title") %><br />
+      <%= f.text_field :compagny_id, placeholder: t("shop.edit.company_id.placeholder"), class: "form-control" %>
     </div>
 
     <div class="field mt-4">
-      <%= f.label 'Ma description' %><br />
+      <%= f.label t("shop.edit.description") %><br />
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
     <div class="actions mt-4 d-flex justify-content-between">
-      <%= link_to "Retour", shop_path(@shop.id), class: "btn btn-primary" %>
+      <%= link_to t("button.back"), shop_path(@shop.id), class: "btn btn-primary" %>
 
-      <%= f.submit "Modifier mes informations", class: "btn btn-warning" %>
+      <%= f.submit t("button.edit.my_info"), class: "btn btn-warning" %>
     </div>
   <% end %>
 

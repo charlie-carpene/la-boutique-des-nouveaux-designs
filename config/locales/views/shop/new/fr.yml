@@ -1,0 +1,27 @@
+fr:
+  shop:
+    new:
+      title: "Formulaire de demande"
+      text:
+        p_1: "Voici le formulaire de contact pour te permettre de nous présenter ton activité et, nous l’espérons tout comme toi, vendre tes créations sur le site de la Boutique des Nouveaux Designs si nos valeurs concordent."
+        p_2: "Parle-nous de toi, de tes créations (tu peux nous partager ton site web si tu en as un sinon envoie nous quelques photos), de ta marque et des valeurs qui te tiennent à coeur. N’hésite pas à mettre dans la description tout autre éléments qui nous permettra de mieux te connaitre."
+        p_3: "Pour que l'on puisse poursuivre nos échanges, nous aurions besoin que tu nous communiques une adresse mail (que nous considérerons comme ton adresse mail professionnelle) à laquelle nous pouvons te contacter."
+        p_4: "A très vite !"
+      form:
+        brand_name: "Nom de ta marque"
+        email_pro: "Email profesionnel"
+        website: 
+          title: "Site web"
+          placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits"
+        add_images: "Ajouter les photos"
+        company_id:
+          title: "Numéro de siret"
+          placeholder: "n° à 14 chiffres"
+        description: "Description"
+        bank_notice: "Pour recevoir l'argent de tes ventes, il te faudra ensuite garder à jour tes informations bancaire directement depuis ton compte."
+        cgv_agreement: "J'accepte les conditions générales de vente"
+      shop_exist:
+        p_1-1: "Vous avez déjà fait la demande de création d'une boutique"
+        p_1-2: "(ou vous avez déjà une boutique active)"
+        p_2: "Si vous rencontrez un problème concernant la gestion de votre boutique, veuillez directement nous contacter par mail à :"
+        p_3: "atelier@nouveauxdesigns.fr"

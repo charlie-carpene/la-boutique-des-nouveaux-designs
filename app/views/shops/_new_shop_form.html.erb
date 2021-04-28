@@ -4,10 +4,10 @@
 
     <div class="row">
       <div class="col">
-        <%= f.label 'Nom de ta marque' %>
+        <%= f.label t("shop.new.form.brand_name") %>
       </div>
       <div class="col">
-        <%= f.label 'Email profesionnel' %>
+        <%= f.label t("shop.new.form.email_pro") %>
       </div>
     </div>
     <div class="row mb-3">
@@ -21,13 +21,13 @@
 
     <div class="row">
       <div class="col-9">
-        <%= f.label 'Site web' %>
+        <%= f.label t("shop.new.form.website.title") %>
       </div>
       <div class="col-3">
-        <%= f.label 'Ajouter les photos :', class: "font-weight-bold" %>
+        <%= f.label t("shop.new.form.add_images"), class: "font-weight-bold" %>
       </div>
       <div class="col-9">
-        <%= f.text_field :website, placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits", class: "form-control" %>
+        <%= f.text_field :website, placeholder: t("shop.new.form.website.placeholder"), class: "form-control" %>
       </div>
       <div class="col-3">
         <%= file_field_tag "files[]", multiple: true %>
@@ -35,29 +35,29 @@
     </div>
 
     <div class="field mt-4">
-      <%= f.label 'Description' %><br />
+      <%= f.label t("shop.new.form.description") %><br />
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
     <div class="field mt-4">
-      <%= f.label 'Numéro de SIRET' %><br />
-      <%= f.text_field :compagny_id, placeholder: "n° à 14 chiffres", class: "form-control" %>
+      <%= f.label t("shop.new.form.company_id.title") %><br />
+      <%= f.text_field :compagny_id, placeholder: t("shop.new.form.company_id.placeholder"), class: "form-control" %>
     </div>
 
     <div class="field mt-4">
-      Pour recevoir l'argent de tes ventes, il te faudra ensuite garder à jour tes informations bancaire directement depuis ton compte.
+      <%= t("shop.new.form.bank_notice") %>
     </div>
 
     <div class="field mt-4">
       <%= f.check_box(:terms_of_service) %>
-      <%= f.label(:terms_of_service, 'J\'accepte les conditions générales de vente') %>
+      <%= f.label(:terms_of_service, t("shop.new.form.cgv_agreement")) %>
     </div>
 
     <div  class="d-flex justify-content-around my-4">
-      <%= link_to "Voir les CGV", cgv_path, :class=>"btn btn-primary" %>
+      <%= link_to t("button.see.cgv"), cgv_path, :class=>"btn btn-primary" %>
 
       <div class="actions">
-        <%= f.submit "Envoyer le formulaire", class: "btn btn-success" %>
+        <%= f.submit t("button.send_form"), class: "btn btn-success" %>
       </div>
     </div>
   <% end %>

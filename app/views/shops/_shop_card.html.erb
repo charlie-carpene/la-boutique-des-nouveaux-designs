@@ -2,7 +2,7 @@
   <%= image_tag shop.show_image(shop), class: "card-img p-5 rounded" %>
   <% unless shop.image.present? %>
     <div class="card-img-overlay d-flex justify-content-center mt-5 pt-5">
-      <p class="card-text text-warning font-weight-bold">Nouveau<br> créateur</p>
+      <p class="card-text text-warning font-weight-bold"><%= t("shop.index.new_maker_html") %></p>
     </div>
   <% end %>
   <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">

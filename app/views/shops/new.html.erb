@@ -1,7 +1,7 @@
   <% if current_user.shop.present? %>
     <%= render 'has_a_shop_already' %>
   <% else %>
-    <h2 class="mt-4 text-center text-primary">Formulaire de demande</h2>
+    <h2 class="mt-4 text-center text-primary"><%= t("shop.new.title") %></h2>
 
     <%= render 'new_shop_text' %>
     <%= render 'new_shop_form' %>

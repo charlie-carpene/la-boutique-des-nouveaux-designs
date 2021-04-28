@@ -1,0 +1,4 @@
+fr:
+  shop:
+    show:
+      stripe_notice: "Pour pouvoir ajouter et vendre vos produits veuillez d'abord créer (ou connecter) un compte Stripe :"

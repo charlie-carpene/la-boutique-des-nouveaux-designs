@@ -8,5 +8,5 @@
     <div><%= address.zip_code %> <%= address.city %></div>
   </div>
   <%= link_to "", edit_user_address_path(current_user.id, address.id), method: "get", class: "stretched-link text-decoration-none" %>
-  <%= link_to "", user_address_path(current_user.id, address.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "delete-icon fas fa-trash color-change-to-danger mt-2" %>
+  <%= link_to "", user_address_path(current_user.id, address.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "delete-icon fas fa-trash color-change-to-danger mt-2 z-index-1" %>
 </div>

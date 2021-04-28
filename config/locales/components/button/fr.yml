@@ -1,7 +1,18 @@
 fr:
   button:
-    add: "Ajouter"
+    add:
+      add: "Ajouter"
+      new_product: "Ajouter un nouveau produit"
     delete: "Supprimer"
-    edit: "Modifier"
-    enter: "Accéder"
+    edit:
+      edit: "Modifier"
+      my_info: "Modifier mes informations"
+    back: "Retour"
+    access: "Accéder"
     add_address: "Ajouter une adresse"
+    see:
+      cgv: "Voir les CGV"
+      shop_info: "Voir les informations de ma boutique"
+    send_form: "Envoyer le formulaire"
+    sold_product: "Mes articles vendus"
+    connect_stripe: "Connecter Stripe à votre boutique"
