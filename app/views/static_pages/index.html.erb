@@ -1,6 +1,6 @@
 <div class="py-5 px-3 text-center bg-primary text-warning">
-  <h2>La Boutique des Nouveaux Designs</h2>
-  <p class="text-light font-italic">Version bêta uniquement en Click & Collect</p>
+  <h2><%= t("index.title") %></h2>
+  <p class="text-light font-italic"><%= t("index.subtitle") %></p>
 </div>
 
 <%= render 'carrousel' %>
@@ -12,5 +12,5 @@
 </div>
 
 <div class="actions m-5 d-flex justify-content-center">
-  <%= link_to "Comment devenir créateur ?", become_maker_path, :class=>"btn btn-success btn-catch" %>
+  <%= link_to t("index.button.become_maker"), become_maker_path, :class=>"btn btn-success btn-catch" %>
 </div>

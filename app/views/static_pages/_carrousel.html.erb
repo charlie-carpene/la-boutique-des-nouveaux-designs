@@ -8,8 +8,8 @@
     <div class="carousel-item">
       <div class="card-img-overlay d-flex justify-content-center bg-opacity-04">
         <div class="m-auto w-50">
-          <h3 class="text-success">Zéro déchet</h3>
-          <p class="text-light"><strong>Les matériaux à partir desquels nous travaillons sont issus au moins à 50% d’éléments recyclés à qui nous offrons une seconde vie au travers de nos créations.</strong></p>
+          <h3 class="text-success"><%= t("index.carrousel.zero_waste.title") %></h3>
+          <p class="text-light"><strong><%= t("index.carrousel.zero_waste.body") %></strong></p>
         </div>
       </div>
       <%= image_tag "zero_dechet.webp", loading: "lazy", class: "d-block carousel-img" %>
@@ -17,8 +17,8 @@
     <div class="carousel-item active">
       <div class="card-img-overlay d-flex justify-content-center bg-opacity-04">
         <div class="my-auto w-50">
-          <h3 class="text-success">Artisanal</h3>
-          <p class="text-light"><strong>Nos créations sont made in France et fabriquées à la main avec beaucoup d’amour.</strong></p>
+          <h3 class="text-success"><%= t("index.carrousel.handmade.title") %></h3>
+          <p class="text-light"><strong><%= t("index.carrousel.handmade.body") %></strong></p>
         </div>
       </div>
       <%= image_tag "local.webp", class: "d-block carousel-img" %>
@@ -26,8 +26,8 @@
     <div class="carousel-item">
       <div class="card-img-overlay d-flex justify-content-center bg-opacity-04">
         <div class="m-auto w-50">
-          <h3 class="text-success">Local</h3>
-          <p class="text-light"><strong>Notre projet s’inscrit dans une démarche écologique et respectueuse de l’environnement afin de préserver la planète et son avenir, et c’est pour cette raison que nous favorisons au maximum les circuits courts.</strong></p>
+          <h3 class="text-success"><%= t("index.carrousel.local.title") %></h3>
+          <p class="text-light"><strong><%= t("index.carrousel.local.body") %></strong></p>
         </div>
       </div>
       <%= image_tag "artisanal.webp", loading: "lazy", class: "d-block carousel-img" %>

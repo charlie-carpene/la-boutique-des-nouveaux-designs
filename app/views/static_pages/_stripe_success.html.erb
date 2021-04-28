@@ -1,9 +1,9 @@
 <div class="container d-flex flex-column justify-content-center">
-  <h2 class="pt-4 text-center text-success">Merci !</h2>
-  <p class="my-2">Votre commande a bien été prise en compte et nous la préparons au plus vite. En attendant, un mail vous a été envoyé avec le contact du créateur, au cas où vous auriez des questions concernant votre achat. Celui-ci reviendra vers vous par email dès que votre commande sera prête.</p>
-  <p class="my-2">Encore merci de participer à un commerce responsable en achetant par notre intermédiaire. Ici, pas de secrets car nous tenons à rester le plus transparent possible, autant sur notre éthique que sur nos prix. Pour en savoir plus ou découvrir de nouveaux créateurs, c'est par ici :</p>
+  <h2 class="pt-4 text-center text-success"><%= t("stripe_fallback.success.title") %></h2>
+  <p class="my-2"><%= t("stripe_fallback.success.p_1") %></p>
+  <p class="my-2"><%= t("stripe_fallback.success.p_2") %></p>
   <div class="d-flex justify-content-center">
-    <a class="m-2 btn btn-primary align-self-center" href="<%= shops_path %>">Nos créateurs</a>
-    <a class="m-2 btn btn-info align-self-center" href="<%= root_path %>">En savoir plus</a>
+    <a class="m-2 btn btn-primary align-self-center" href="<%= shops_path %>"><%= t("stripe_fallback.success.button_1") %></a>
+    <a class="m-2 btn btn-info align-self-center" href="<%= root_path %>"><%= t("stripe_fallback.success.button_2") %></a>
   </div>
 </div>

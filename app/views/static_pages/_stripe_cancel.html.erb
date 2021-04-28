@@ -1,9 +1,9 @@
 <div class="container d-flex flex-column justify-content-center">
-  <h2 class="pt-4 text-center text-warning">Votre commande n'a pas abouti</h2>
-  <p class="my-2">Une erreure s'est produite ou vous n'êtes plus si sûre de votre choix ? Pas de problème, rien n'a été prélevé sur votre compte. Nous attachons une importance particulière à ce que votre achat soit fait dans les meilleures conditions alors prenez votre temps pour recommencer quand vous le voulez.</p>
-  <p>En attendant, nous vous invitons à découvrir qui nous sommes ainsi que nos valeurs ou à retrouver les articles de votre panier :</p>
+  <h2 class="pt-4 text-center text-warning"><%= t("stripe_fallback.cancel.title") %></h2>
+  <p class="my-2"><%= t("stripe_fallback.cancel.p_1") %></p>
+  <p><%= t("stripe_fallback.cancel.p_2") %></p>
   <div class="d-flex justify-content-center">
-    <a class="m-2 btn btn-primary align-self-center" href="<%= cart_path(current_user.cart.id) %>">Mon panier</a>
-    <a class="m-2 btn btn-info align-self-center" href="<%= root_path %>">En savoir plus</a>
+    <a class="m-2 btn btn-primary align-self-center" href="<%= cart_path(current_user.cart.id) %>"><%= t("stripe_fallback.cancel.button_1") %></a>
+    <a class="m-2 btn btn-info align-self-center" href="<%= root_path %>"><%= t("stripe_fallback.cancel.button_2") %></a>
   </div>
 </div>

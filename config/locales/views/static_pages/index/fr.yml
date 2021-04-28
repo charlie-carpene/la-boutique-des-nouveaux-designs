@@ -1,0 +1,16 @@
+fr: 
+  index:
+    carrousel: 
+      handmade: 
+        body: "Nos créations sont made in France et fabriquées à la main avec beaucoup d’amour."
+        title: Artisanal
+      local: 
+        body: "Notre projet s’inscrit dans une démarche écologique et respectueuse de l’environnement afin de préserver la planète et son avenir, et c’est pour cette raison que nous favorisons au maximum les circuits courts."
+        title: Local
+      zero_waste: 
+        body: "Les matériaux à partir desquels nous travaillons sont issus au moins à 50% d’éléments recyclés à qui nous offrons une seconde vie au travers de nos créations."
+        title: "Zéro déchet"
+    subtitle: "Version bêta uniquement en Click & Collect"
+    title: "La Boutique des Nouveaux Designs"
+    button: 
+      become_maker: "Comment devenir créateur ?"
