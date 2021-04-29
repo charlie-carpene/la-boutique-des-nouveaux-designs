@@ -1,9 +1,9 @@
 <div class="container">
-    <h2 class="pt-4 text-center text-primary">Votre historique de commandes</h2>
+    <h2 class="pt-4 text-center text-primary"><%= t("order.index.title") %></h2>
     <ul class="my-3 list-group">
         <% @orders.each do |order| %>
             <%= render 'order_row', user: @user, order: order %>
         <% end %>
     </ul>
-    <%= link_to "Retour", :back, class: "btn btn-primary" %>
+    <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
 </div>

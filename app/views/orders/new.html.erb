@@ -1,19 +1,19 @@
 <div class="container">
-  <h2 class="pt-4 text-center text-primary">Votre commande</h2>
+  <h2 class="pt-4 text-center text-primary"><%= t("order.new.title") %></h2>
   <ul class="my-3 list-group">
     <% @ordered_cart_items.each do |cart_item| %>
     <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
-      <span><%= cart_item.item.name %> à <%= cart_item.item.price %>€ l'unité, soit <strong><%= cart_item.total_price %>€</strong></span>
+      <span><%= t("order.new.item_info_html", name: cart_item.item.name, price: cart_item.item.price, total_price: cart_item.total_price) %></span>
       <span class="badge badge-primary badge-pill">x <%= cart_item.item.get_qty_in_cart(current_user) %></span>
     </li>
     <% end %>
   </ul>
 
   <div class="d-flex flex-column align-items-end">
-  <p><strong>Total à régler : <%= @order.total_price_with_shipping_cost(@ordered_cart_items) %>€</strong></p>
+  <p><strong><%= t("order.new.total_price", total_price: @order.total_price_with_shipping_cost(@ordered_cart_items)) %></strong></p>
 
   <script src="https://js.stripe.com/v3"></script>
-  <%= button_to 'Commander', orders_path, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
+  <%= button_to t("button.order"), orders_path, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
   </div>
 </div>
 

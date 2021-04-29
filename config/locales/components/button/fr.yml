@@ -7,6 +7,7 @@ fr:
     edit:
       edit: "Modifier"
       my_info: "Modifier mes informations"
+    order: "Commander"
     back: "Retour"
     access: "Accéder"
     add_address: "Ajouter une adresse"

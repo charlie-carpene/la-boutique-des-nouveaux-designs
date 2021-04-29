@@ -1,12 +1,12 @@
 <div class="container">
-    <h2 class="pt-4 text-center text-primary">Commande n°<%= @order.id %></h2>
+    <h2 class="pt-4 text-center text-primary"><%= t("order.show.title", id: @order.id) %></h2>
     <ul>
         <% @order.order_items.each do |order_item| %>
             <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
                 <%= order_item.item.name %>
-                <span><%= order_item.price %>€</span>
+                <span><%= t("order.show.item_price", price: order_item.price) %></span>
             </li>
         <% end %>
     </ul>
-    <%= link_to "Retour", :back, class: "btn btn-primary" %>
+    <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
 </div>
