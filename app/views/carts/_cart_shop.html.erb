@@ -9,15 +9,15 @@
       <% end %>
     </ul>
     <div class="m-3 d-flex justify-content-between">
-      <p>Frais de port : Clic & Collect (à venir récupérer <strong><a href="https://goo.gl/maps/NPUzNAjd2rCjLcVJ8" target="_blank">sur place</a></strong>)</p>
-      <p>Prix de la commande : <%= cart.get_total_price_from_a_specific_shop(shop) %>€</p>
+      <p><%= t("cart.show.shipping_fee_html", href: link_to(t("cart.show.on_site_html"), "https://goo.gl/maps/NPUzNAjd2rCjLcVJ8",  { target: "_blank" })) %></p>
+      <p><%= t("cart.show.order_price",  price: cart.get_total_price_from_a_specific_shop(shop)) %></p>
 <!--
       <p>Frais de port : <%= shipping_cost(cart.get_shipping_price(shop)) %>€</p>
       <p><strong>Prix total : <%= cart.get_total_price_from_a_specific_shop(shop) + shipping_cost(cart.get_shipping_price(shop)) %>€</strong></p>
 -->
     </div>
     <div class="d-flex justify-content-end">
-      <%= button_to "Passer commande à #{shop.brand}", new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
+      <%= button_to t("button.order_to.shop", shop: shop.brand), new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
 
 <!--
       <% if cart.get_shipping_price(shop) > 30000 %>

@@ -1,11 +1,11 @@
 <div class="cart-container">
-  <h2 class="pt-4 text-center text-primary">Votre Panier</h2>
-  <p class="text-center">Toute commande est à venir récupérer à l'<a href="https://goo.gl/maps/NPUzNAjd2rCjLcVJ8" target="_blank">Atelier des Nouveaux Designs</a></p>
-
+  <h2 class="pt-4 text-center text-primary"><%= t("cart.show.title") %></h2>
+  <p class="text-center"><%= t("cart.show.click_and_collect_notice_html", href: link_to(t("cart.show.adnd_href"), "https://goo.gl/maps/NPUzNAjd2rCjLcVJ8",  { target: "_blank"})) %></p>
+  
   <% if @cart.cart_items.present? %>
     <%= render 'cart_shop', shops: @cart.get_items_shops, cart: @cart %> <!-- to be able to show items in their own shop since Stripe doesn't allow to split a payement between shops -->
   <% else %>
-    <p class="text-center">Vous n'avez encore rien ajouté à votre panier</p>
+    <p class="text-center"><%= t("cart.show.no_item") %></p>
   <% end %>
 
 </div>

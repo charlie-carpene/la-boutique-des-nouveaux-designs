@@ -14,6 +14,8 @@ fr:
     create:
       new_product: "Créer un nouveau produit"
     order: "Commander"
+    order_to:
+      shop: "Passer commande à %{shop}"
     back: "Retour"
     access: "Accéder"
     add_address: "Ajouter une adresse"

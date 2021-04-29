@@ -18,7 +18,7 @@
       <div  class="mr-3">
         = <strong><%= cart_item.total_price %>€</strong>
       </div>
-      <%= link_to image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger cart-icon"), cart_item_path(cart_item.id), method: "delete", data: { confirm: "Etes vous sûre?" }, class: "z-index-1" %>
+      <%= link_to image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger cart-icon"), cart_item_path(cart_item.id), method: "delete", data: { confirm: t("button.delete.are_you_sure") }, class: "z-index-1" %>
     </div>
   </div>
 </li>
