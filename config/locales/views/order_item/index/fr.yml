@@ -1,0 +1,6 @@
+fr:
+  order_item:
+    index:
+      title: "Mes articles vendus"
+      item_info: "%{name} vendu le %{day} / %{month} / %{year} à %{user}"
+      price: "%{price}€"

@@ -1,14 +1,14 @@
 <div class="container">
-    <h2 class="pt-4 text-center text-primary">Mes articles vendus</h2>
+    <h2 class="pt-4 text-center text-primary"><%= t("order_item.index.title") %></h2>
     <ul class="my-3 list-group">
         <% @order_items.each do |order_item| %>
             <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
-                <span><%= order_item.item.name %> vendu le <%= order_item.created_at.day %> / <%= order_item.created_at.month %> / <%= order_item.created_at.year %> à <%= order_item.order.user.email %></span>
+                <span><%= t("order_item.index.item_info", name: order_item.item.name, day: order_item.created_at.day, month: order_item.created_at.month, year: order_item.created_at.year, user: order_item.order.user.email) %></span>
                 <div class="d-flex">
-                    <%= order_item.price %>€
+                    <%= t("order_item.index.price", price: order_item.price) %>
                 </div>
             </li>
         <% end %>
     </ul>
-    <%= link_to "Retour", :back, class: "btn btn-primary" %>
+    <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
 </div>
