@@ -1,25 +1,26 @@
 fr:
   button:
-    add:
-      add: "Ajouter"
+    add: "Ajouter"
+    add_:
       new_product: "Ajouter un nouveau produit"
       to_cart: "Ajouter à mon panier"
-    delete:
-      delete: "Supprimer"
+    delete: "Supprimer"
+    delete_: 
       are_you_sure: "Êtes vous sûre ?"
-    edit:
-      edit: "Modifier"
+    edit:  "Modifier"
+    edit_:
       my_info: "Modifier mes informations"
       my_product: "Modifier mon article"
-    create:
+    create: "Créer"
+    create_:
       new_product: "Créer un nouveau produit"
       address: "Créer l'adresse"
     confirm: "Valider"
     confirm_:
       changes: "Valider les modifications"
     order: "Commander"
-    order_to:
-      shop: "Passer commande à %{shop}"
+    order_:
+      from_shop: "Passer commande à %{shop}"
     back: "Retour"
     access: "Accéder"
     add_address: "Ajouter une adresse"

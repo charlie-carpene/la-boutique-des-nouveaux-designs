@@ -17,7 +17,7 @@
 -->
     </div>
     <div class="d-flex justify-content-end">
-      <%= button_to t("button.order_to.shop", shop: shop.brand), new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
+      <%= button_to t("button.order_.from_shop", shop: shop.brand), new_order_path, method: 'get', class: 'btn btn-success', params: {shop_id: shop.id} %>
 
 <!--
       <% if cart.get_shipping_price(shop) > 30000 %>

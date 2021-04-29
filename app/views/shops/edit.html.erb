@@ -33,7 +33,7 @@
           <%= image_tag @shop.show_image(@shop), class: "card-img" %>
           <div class="card-img-overlay d-flex flex-column justify-content-end">
             <div class="rounded bg-primary d-flex flex-column">
-              <div class="text-center text-white"><%= t("button.edit.edit") %> :</div>
+              <div class="text-center text-white"><%= t("button.edit") %> :</div>
               <%= f.file_field :image, class: "btn btn-sm text-primary" %>
             </div>
           </div>
@@ -54,7 +54,7 @@
     <div class="actions mt-4 d-flex justify-content-between">
       <%= link_to t("button.back"), shop_path(@shop.id), class: "btn btn-primary" %>
 
-      <%= f.submit t("button.edit.my_info"), class: "btn btn-warning" %>
+      <%= f.submit t("button.edit_.my_info"), class: "btn btn-warning" %>
     </div>
   <% end %>
 

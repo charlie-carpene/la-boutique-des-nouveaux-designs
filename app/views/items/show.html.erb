@@ -49,10 +49,10 @@
         <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
         <% if current_user.present? %>
           <% if can? :manage, @item %>
-            <%= link_to t("button.edit.my_product"), edit_item_path(@item.id), class: "btn btn-warning m-1" %>
+            <%= link_to t("button.edit_.my_product"), edit_item_path(@item.id), class: "btn btn-warning m-1" %>
           <% else %>
             <% if @item.available_qty > 0 %>
-              <%= link_to t("button.add.to_cart"), cart_items_path(item_id: @item.id, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "btn btn-success m-1" %>
+              <%= link_to t("button.add_.to_cart"), cart_items_path(item_id: @item.id, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "btn btn-success m-1" %>
             <% end %>
           <% end %>
         <% end %>
