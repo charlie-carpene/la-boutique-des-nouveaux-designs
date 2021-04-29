@@ -42,7 +42,7 @@
   <div class="category-container">
     <div class="categories">
       <% returnAllCategories.each do |category| %>
-        <%= link_to t("header.category.#{category.name}"), category_path(category.id), class: "category-item text-primary" %>
+        <%= link_to t("category.#{category.name}"), category_path(category.id), class: "category-item text-primary" %>
       <% end %>
     </div>
   </div>

@@ -1,0 +1,5 @@
+fr:
+  item:
+    show:
+      qty: "Quantité : %{qty}"
+      price_html: "Prix : <strong>%{price}€</strong>"

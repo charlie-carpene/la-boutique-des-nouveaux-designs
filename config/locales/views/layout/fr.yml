@@ -6,11 +6,6 @@ fr:
       orders: "Mes commandes"
       shop: "Ma Boutique"
       log_out: "Déconnexion"
-    category:
-      Enfant: "Enfant"
-      Maison: "Maison"
-      Mode: "Mode"
-      Quotidien: "Quotidien"
   footer:
     body_1:
       title: "Réseaux Sociaux"

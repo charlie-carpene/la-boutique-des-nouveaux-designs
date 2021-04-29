@@ -1,21 +1,21 @@
 <div class="container">
-  <h2 class="mt-4 text-center text-primary">Ajouter un nouveau produit</h2>
+  <h2 class="mt-4 text-center text-primary"><%= t("item.new.title") %></h2>
 
   <div class="mt-4">
 
     <%= form_for(:item, url: items_path, html: { enctype: "multipart/form-data", method: :post }) do |f| %>
 
       <div class="field mt-4">
-        <%= f.label 'Nom du produit' %><br />
+        <%= f.label t("item.form.product_name") %><br />
         <%= f.text_field :name, class: "form-control" %>
       </div>
 
       <div class="row mt-4">
         <div class="col">
-          <%= f.label 'Prix' %>
+          <%= f.label t("item.form.price") %>
         </div>
         <div class="col">
-          <%= f.label 'Quantité disponible' %>
+          <%= f.label t("item.form.available_qty") %>
         </div>
       </div>
       <div class="row">
@@ -27,37 +27,37 @@
         </div>
       </div>
 
-      <p class="mt-4 mx-5 font-italic">Les frais de ports sont calculés automatiquement à partir du poid de l'article <a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank">au tarifs Colissimo</a>. Veuillez vous assurer que l'article respecte les dimensions réglementaires : la somme de la largeur, de la longueur et de la hauteur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poid de l'article ne peut pas dépasser les 30 kg, soit 30,000 g.</p>
+      <p class="mt-4 mx-5 font-italic"><%= t("item.form.shipping_instructions") %><a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank"> <%= t("item.form.shipping_price") %></a></p>
 
       <div class="field mt-4">
-        <%= f.label 'Poid de l\'article (en gramme)' %>
-        <%= f.number_field :product_weight, placeholder: 'Les frais de port sont calculés automatiquement', in: 1..30000, step: 1, class: "form-control" %>
+        <%= f.label t("item.form.product_weight.title") %>
+        <%= f.number_field :product_weight, placeholder: t("item.form.product_weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
       </div>
 
       <div class="field mt-4">
-        <%= f.label 'Catégorie' %><br />
+        <%= f.label t("item.form.category") %><br />
         <% Category.all.each do |category| %>
           <%= f.check_box :category_ids, {:multiple => true}, category.id, nil %>
-          <%= f.label category.name %><br />
+          <%= f.label t("category.#{category.name}") %><br />
         <% end %> 
       </div>
 
       <div class="field mt-4">
-        <%= f.label 'Description' %><br />
+        <%= f.label t("item.form.description") %><br />
         <%= f.text_area :description, class: "form-control" %>
       </div>
 
       <div class="field mt-4">
-        <%= f.label 'Ajouter des photos : ', class: "font-weight-bold" %>
+        <%= f.label t("item.form.add_images"), class: "font-weight-bold" %>
         <%= file_field_tag "files[]", multiple: true %>
       </div>
 
-      <p class="font-italic">Dans le cas où les photos sont trop lourdes, vous pouvez les redimensionner depuis <a href="https://onlinepngtools.com/resize-png" target="_blank">cet outil en ligne</a></p>
+      <p class="font-italic"><%= t("item.form.crop_img") %> <a href="https://onlinepngtools.com/resize-png" target="_blank"><%= t("item.form.crop_img_tool") %></a></p>
 
       <%= f.hidden_field :shop_id, :value => current_user.shop.id %>
 
       <div class="actions d-flex justify-content-end mt-4">
-        <%= f.submit "Créer un nouveau produit", class: "btn btn-success" %>
+        <%= f.submit t("button.create.new_product"), class: "btn btn-success" %>
       </div>
     <% end %>
 

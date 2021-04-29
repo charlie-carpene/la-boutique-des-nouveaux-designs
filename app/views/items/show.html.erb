@@ -40,19 +40,19 @@
     </div>
     <p class="card-text"><%= @item.description %></p>
     <div class="d-flex flex-column">
-      <p>Quantité : <%= @item.available_qty %></p>
-      <p class="card-text">Prix : <strong><%= @item.price %> €</strong>
+      <p><%= t("item.show.qty", qty: @item.available_qty) %></p>
+      <p class="card-text"><%= t("item.show.price", price: @item.price) %></p>
 <!--
         <strong><%= @item.price_with_shipping_cost(shipping_cost(@item.product_weight)) %> €</strong> <span class="font-italic">dont <%= shipping_cost(@item.product_weight) %> € de frais de port</span>.</p>
 -->
       <div>
-        <%= link_to "Retour", :back, class: "btn btn-primary" %>
+        <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
         <% if current_user.present? %>
           <% if can? :manage, @item %>
-            <%= link_to "Modifier mon article", edit_item_path(@item.id), class: "btn btn-warning m-1" %>
+            <%= link_to t("button.edit.my_product"), edit_item_path(@item.id), class: "btn btn-warning m-1" %>
           <% else %>
             <% if @item.available_qty > 0 %>
-              <%= link_to "Ajouter à mon panier", cart_items_path(item_id: @item.id, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "btn btn-success m-1" %>
+              <%= link_to t("button.add.to_cart"), cart_items_path(item_id: @item.id, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "btn btn-success m-1" %>
             <% end %>
           <% end %>
         <% end %>

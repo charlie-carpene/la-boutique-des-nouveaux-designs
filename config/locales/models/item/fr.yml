@@ -1,0 +1,22 @@
+fr:
+  item:
+    added_to_cart: "L'article a bien été ajouté à votre panier."
+    not_enough_qty: "L'article n'est pas disponible en quantité suffisante pour en ajouter un de plus."
+    no_longer_available: "L'article n'est malheureusement plus disponible."
+    delete_from_cart_error: "Pour supprimer l'article, cliquez sur la corbeille."
+    deleted_from_cart: "%{name} a bien été suprimé de votre panier."
+    not_available: "Non disponible à la commande"
+    form:
+      product_name: "Nom du produit"
+      price: "Prix"
+      available_qty: "Quantité disponible"
+      product_weight:
+        title: "Poid de l'article (en gramme)"
+        placeholder: "Les frais de port sont calculés automatiquement"
+      category: "Catégorie"
+      description: "Description"
+      add_images: "Ajouter des photos :"
+      shipping_instructions: "Les frais de ports sont calculés automatiquement à partir du poid de l'article au tarifs Colissimo. Veuillez vous assurer que l'article respecte les dimensions réglementaires : la somme de la largeur, de la longueur et de la hauteur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poid de l'article ne peut pas dépasser les 30 kg, soit 30,000 g. Pour plus d'information, voir"
+      shipping_price: "les tarifs postaux."
+      crop_img: "Dans le cas où les photos sont trop lourdes, vous pouvez les redimensionner depuis"
+      crop_img_tool: "cet outil en ligne"

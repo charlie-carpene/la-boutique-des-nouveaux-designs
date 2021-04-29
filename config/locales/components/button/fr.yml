@@ -3,10 +3,16 @@ fr:
     add:
       add: "Ajouter"
       new_product: "Ajouter un nouveau produit"
-    delete: "Supprimer"
+      to_cart: "Ajouter à mon panier"
+    delete:
+      delete: "Supprimer"
+      are_you_sure: "Êtes vous sûre ?"
     edit:
       edit: "Modifier"
       my_info: "Modifier mes informations"
+      my_product: "Modifier mon article"
+    create:
+      new_product: "Créer un nouveau produit"
     order: "Commander"
     back: "Retour"
     access: "Accéder"
