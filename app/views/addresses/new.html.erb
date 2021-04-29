@@ -1,13 +1,13 @@
 <div class="container w-50">
-  <h2 class="mt-4 text-center text-primary">Ajouter une nouvelle adresse</h2>
+  <h2 class="mt-4 text-center text-primary"><%= t("address.new.title") %></h2>
 
   <%= form_for(:address, url: user_addresses_path(current_user.id), html: { method: :post }) do |f| %>
 
     <%= render 'address_form', f: f %>
 
     <div class="actions mt-4 d-flex justify-content-between">
-      <%= link_to "Retour", :back, class: "btn btn-primary" %>
-      <%= f.submit "Créer l'adresse", class: "btn btn-success" %>
+      <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
+      <%= f.submit t("button.create.address"), class: "btn btn-success" %>
     </div>
   <% end %>
 </div>

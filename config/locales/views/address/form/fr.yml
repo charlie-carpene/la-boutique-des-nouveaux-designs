@@ -1,0 +1,9 @@
+fr:
+  address:
+    form:
+      first_name: "Prénom"
+      last_name: "Nom"
+      address_line_1: "Adresse"
+      address_line_2: "Complément d'adresse"
+      zip_code: "Code postal"
+      city: "Ville"

@@ -13,6 +13,10 @@ fr:
       my_product: "Modifier mon article"
     create:
       new_product: "Créer un nouveau produit"
+      address: "Créer l'adresse"
+    confirm: "Valider"
+    confirm_:
+      changes: "Valider les modifications"
     order: "Commander"
     order_to:
       shop: "Passer commande à %{shop}"

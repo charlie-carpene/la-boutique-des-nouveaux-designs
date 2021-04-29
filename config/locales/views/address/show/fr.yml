@@ -1,0 +1,4 @@
+fr:
+  address:
+    show:
+      title: "Voilà l'adresse n°%{id}"
