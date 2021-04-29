@@ -1,0 +1,7 @@
+fr:
+  devise:
+    password:
+      edit:
+        title: "Changer votre mot de passe"
+      new:
+        title: "Mot de passe oublié ?"

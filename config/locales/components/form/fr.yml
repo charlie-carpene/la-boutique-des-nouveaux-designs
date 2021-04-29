@@ -1,0 +1,10 @@
+fr:
+  form:
+    email: "Email"
+    password: "Mot de passe"
+    current_password: "Mot de passe actuel"
+    new_password: "Nouveau mot de passe"
+    password_confirmation: "Confirmer le mot de passe"
+    password_notice: "(ton mot de passe actuel est nécessaire pour confirmer tes changements)"
+    new_password_notice: "(à laisser blanc si tu ne souhaites pas le modifier)"
+    minimum_length: "%{nbr} caractères minimum"

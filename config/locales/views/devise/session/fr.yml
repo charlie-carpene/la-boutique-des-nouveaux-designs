@@ -1,0 +1,8 @@
+fr:
+  devise:
+    session:
+      title: "Se connecter"
+      email: "Email"
+      password: "Mot de passe"
+      password_forgotten: "Mot de passe oublié ?"
+

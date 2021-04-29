@@ -5,7 +5,8 @@ fr:
       new_product: "Ajouter un nouveau produit"
       to_cart: "Ajouter à mon panier"
     delete: "Supprimer"
-    delete_: 
+    delete_:
+      my_account: "Supprimer mon compte"
       are_you_sure: "Êtes vous sûre ?"
     edit:  "Modifier"
     edit_:
@@ -15,6 +16,7 @@ fr:
     create_:
       new_product: "Créer un nouveau produit"
       address: "Créer l'adresse"
+      account: "Créer un compte"
     confirm: "Valider"
     confirm_:
       changes: "Valider les modifications"
@@ -22,11 +24,18 @@ fr:
     order_:
       from_shop: "Passer commande à %{shop}"
     back: "Retour"
+    update: "Mettre à jour"
     access: "Accéder"
     add_address: "Ajouter une adresse"
     see:
       cgv: "Voir les CGV"
       shop_info: "Voir les informations de ma boutique"
-    send_form: "Envoyer le formulaire"
+    send_form: 
+    send: "Envoyer"
+    send_:
+      form: "Envoyer le formulaire"
+      registration_info: "Envoyer les informations de réinitialisation"
     sold_product: "Mes articles vendus"
-    connect_stripe: "Connecter Stripe à votre boutique"
+    connect_:
+      yourself: "Se connecter"
+      stripe: "Connecter Stripe à votre boutique"

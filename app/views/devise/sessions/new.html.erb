@@ -1,20 +1,20 @@
 <div class="container">
-  <h2 class="mt-4 text-center text-primary">Se connecter</h2>
+  <h2 class="mt-4 text-center text-primary"><%= t("devise.session.title") %></h2>
   <%= devise_error_messages! %>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field mt-4">
-      <%= f.label 'Email' %><br />
+      <%= f.label t("devise.session.email") %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
     </div>
 
     <div class="field mt-4">
-      <%= f.label 'Mot de passe' %><br />
+      <%= f.label t("devise.session.password") %><br />
       <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
     </div>
 
     <div class="actions mt-4">
-      <%= f.submit "Se connecter", class: "btn btn-primary" %>
+      <%= f.submit t("button.connect_.yourself"), class: "btn btn-primary" %>
     </div>
   <% end %>
 

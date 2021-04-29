@@ -1,0 +1,7 @@
+fr:
+  devise:
+    registration:
+      edit:
+        title: "Modifier mes identifiants"
+      new:
+        title: "Créer mon compte"
