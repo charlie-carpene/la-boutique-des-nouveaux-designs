@@ -1,0 +1,4 @@
+fr:
+  error_500:
+    title: "Oops"
+    body: "Une erreur liée au serveur est survenue. Veuillez réessayer plus tard ou contactez-nous si le problème persiste."

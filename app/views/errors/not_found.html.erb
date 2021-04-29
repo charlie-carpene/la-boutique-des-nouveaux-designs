@@ -2,9 +2,9 @@
     <div class="m-4 d-flex justify-content-center">
         <%= image_tag "logo_transparent.png", class: "error-page-logo rotate-logo" %>
     </div>
-    <h1 class="mt-4 text-center text-primary">Oops</h1>
-    <p class="m-4 text-center">La page que vous cherchez ne semble pas exister</p>
+    <h1 class="mt-4 text-center text-primary"><%= t("error_404.title") %></h1>
+    <p class="m-4 text-center"><%= t("error_404.body") %></p>
     <div class="d-flex justify-content-center">
-        <%= link_to "Retour", :back, class: "btn btn-primary" %>
+        <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
     </div>
 </div>
