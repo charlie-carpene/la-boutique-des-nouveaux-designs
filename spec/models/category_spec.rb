@@ -16,9 +16,7 @@ RSpec.describe Category, type: :model do
     end
 
     it 'can have one or more item(s)' do
-      expect(category_with_items).to have_many(:items).through(:item_category)
-      expect(categories.first.items.count).to eq(0)
-      expect(categories.second.items.count).to eq(1)
+      expect(categories.sample).to have_many(:items)
       expect(category_with_items.items.count).to be > 1
     end
   end
