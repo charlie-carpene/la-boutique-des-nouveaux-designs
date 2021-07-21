@@ -9,9 +9,6 @@ FactoryBot.define do
       end
 
       after(:create) do |category, evaluator|
-        puts "*" * 30
-        puts category.inspect
-        puts "*" * 30
         create_list(:item, evaluator.items_count, categories: [category], shop: evaluator.shop)
         category.reload
       end

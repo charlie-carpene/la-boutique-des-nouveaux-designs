@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   let!(:shop) { create(:shop) }
   let!(:category_with_items) { create(:category_with_items, items_count: 2, shop: shop) }
-  let!(:categories) { create_list(:category, 3) }
+  let(:categories) { create_list(:category, 3) }
   let!(:item) { create(:item, categories: [categories[1]], shop: shop) }
 
 
@@ -13,10 +13,7 @@ RSpec.describe Category, type: :model do
 
   context 'creation' do
     it 'need to persist' do
-      puts "-" * 30
-      puts categories.inspect
-      puts "-" * 30
-      expect{categories}.to change(Category, :count).by(4)
+      expect{ create_list(:category, 3) }.to change(Category, :count).by(3)
     end
 
     it 'can have one or more item(s)' do
