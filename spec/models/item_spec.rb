@@ -45,4 +45,13 @@ RSpec.describe Item, type: :model do
       expect(first_description).not_to eql(Stripe::Product.retrieve(item.stripe_product_id)["description"])
     end
   end
+
+  context 'destroy' do
+    it 'set Stripe product and price status to false' do
+      expect{ item.destroy }.to change{
+        Stripe::Price.retrieve(item.stripe_price_id)["active"] &&
+        Stripe::Product.retrieve(item.stripe_product_id)["active"]
+      }.from(true).to(false)
+    end
+  end
 end
