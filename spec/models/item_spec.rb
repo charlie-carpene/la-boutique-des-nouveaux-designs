@@ -25,6 +25,12 @@ RSpec.describe Item, type: :model do
     end
   end
 
+  context 'method' do
+    it 'price_with_shipping_cost' do
+      expect(item.price_with_shipping_cost(15)).to be(34)
+    end
+  end
+
   context 'update' do
     it 'can have one or more category' do
       expect(item.categories).to include(a_kind_of(Category))
