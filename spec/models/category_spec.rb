@@ -6,7 +6,6 @@ RSpec.describe Category, type: :model do
   let(:categories) { create_list(:category, 3) }
   let!(:item) { create(:item, categories: [categories[1]], shop: shop) }
 
-
   it 'should create a valid instance of Category' do
     expect(category_with_items).to be_valid
   end
