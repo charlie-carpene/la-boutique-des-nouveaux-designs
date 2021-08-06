@@ -202,6 +202,9 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (0.1.2)
+      actionpack (>= 4.2)
+      omniauth (>= 1.3.1)
     omniauth-stripe-connect (2.10.1)
       omniauth (~> 1.3)
       omniauth-oauth2 (~> 1.4)
@@ -366,6 +369,7 @@ DEPENDENCIES
   mailjet!
   migration_data (~> 0.6.0)
   mini_magick (~> 4.10, >= 4.10.1)
+  omniauth-rails_csrf_protection
   omniauth-stripe-connect (~> 2.10, >= 2.10.1)
   pg (>= 0.18, < 2.0)
   puma (~> 5.3)
