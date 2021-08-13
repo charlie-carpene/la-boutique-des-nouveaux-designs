@@ -18,8 +18,12 @@ module ApplicationHelper
     end
   end
 
-  def stripe_url
-    "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write"
+  def stripe_url(session_csrf_token)
+    url = "https://connect.stripe.com/oauth/authorize"
+    client_id = ENV['CLIENT_ID']
+    state = session_csrf_token
+
+    "#{url}?response_type=code&client_id=#{client_id}&scope=read_write&state=#{state}"
   end
 
   def encrypt_data(data_to_encrypt, assigned_purpose)

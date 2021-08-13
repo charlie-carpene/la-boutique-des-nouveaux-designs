@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'bundler-audit', '~> 0.8.0'
 end
 
 group :development do
@@ -73,10 +74,9 @@ gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem "aws-sdk-s3", require: false
 gem 'migration_data', '~> 0.6.0'
 
-gem 'omniauth-stripe-connect', '~> 2.10', '>= 2.10.1'
+gem 'omniauth-stripe-connect', github: 'charlie-carpene/omniauth-stripe-connect'
 gem 'stripe', '~> 5.22'
 gem 'stripe_event', '~> 2.3', '>= 2.3.1'
-gem 'omniauth-rails_csrf_protection' #use to secure stripe auth connexion
 
 gem 'faraday', '~> 1.3'
 gem 'faraday_middleware', '~> 1.0'

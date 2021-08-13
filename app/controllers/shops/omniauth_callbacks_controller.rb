@@ -1,4 +1,5 @@
 class Shops::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  before_action :check_authenticity_token
 
   def stripe_connect
     auth_data = request.env["omniauth.auth"]
@@ -24,4 +25,15 @@ class Shops::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path
   end
 
+  private
+
+  def check_authenticity_token
+      if !params[:state].present?
+        flash[:error] = "La requête a échoué car le jeton d'identification n'a pas été trouvé"
+        redirect_to root_path
+      elsif !valid_authenticity_token?(session, params[:state].split(' ').join('+'))
+        flash[:error] = "La requête a été bloquée car le jeton d'identification n'a pas été reconnu"
+        redirect_to root_path
+      end
+  end
 end
