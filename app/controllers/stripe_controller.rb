@@ -11,8 +11,6 @@ class StripeController < ApplicationController
           client_secret: ENV["SECRET_KEY"],
           code: params[:code],
           grant_type: "authorization_code",
-          #refresh_token: "auth_data.credentials.refresh_token",
-          #grant_type: "refresh_token"
         }
       end
       parsed_response = JSON.parse(response.env.response_body)
@@ -34,7 +32,7 @@ class StripeController < ApplicationController
           flash[:notice] = 'Votre compte Stripe a bien été créé et est maintenant connecté à votre boutique'
         else
           reset_session
-          flash[:error] = "La configuration a échoué. Les modifications semblent frauduleuses."
+          flash[:error] = "La configuration a échoué. Les modifications semblent frauduleuses : vous avez été déconnecté."
           redirect_to root_path
         end
       end
