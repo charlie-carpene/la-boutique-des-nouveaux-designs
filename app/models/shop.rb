@@ -8,8 +8,6 @@ class Shop < ApplicationRecord
   validates :terms_of_service, acceptance: { message: 'doivent être acceptées' }
   validates :compagny_id, presence: true, format: { with: /\A\d+\z/, message: "doit être uniquement des chiffres"}, length: { is: 14 }
 
-  devise :omniauthable, :omniauth_providers => [:stripe_connect]
-
   belongs_to :user
   has_one :address
   has_many :items
