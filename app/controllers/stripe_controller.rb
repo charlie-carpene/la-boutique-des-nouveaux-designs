@@ -21,12 +21,22 @@ class StripeController < ApplicationController
         flash[:error] = "La configuration Stripe a échoué. #{parsed_response["error_description"]}"
         redirect_to root_path
       else
-        puts "-" * 30
-        puts parsed_response.inspect
-        puts current_user.shop.inspect
-        puts "-" * 30
+        @shop = current_user.shop
+        if @shop.persisted?
+          @shop.provider = "stripe_connect"
+          @shop.uid = parsed_response["stripe_user_id"]
+          @shop.access_code = helpers.encrypt_data(parsed_response["access_token"], "shop_credential")
+          @shop.publishable_key = helpers.encrypt_data(parsed_response["stripe_publishable_key"], "shop_credential")
+          @shop.refresh_token = helpers.encrypt_data(parsed_response["refresh_token"], "shop_credential")
+          @shop.save
+          
+          redirect_to shop_path(@shop.id)
+          flash[:notice] = 'Votre compte Stripe a bien été créé et est maintenant connecté à votre boutique'
+        else
+          reset_session
+          redirect_to host_dashboard
+        end
       end
-
     end
   end
 
