@@ -21,7 +21,7 @@ class Shop < ApplicationRecord
   end
 
   def can_receive_payments?
-    uid? && provider? && access_code? && publishable_key?
+    uid? && provider? && access_code? && publishable_key? && refresh_token?
   end
 
   def siren
