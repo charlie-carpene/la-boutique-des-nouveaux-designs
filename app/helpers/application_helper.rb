@@ -18,15 +18,6 @@ module ApplicationHelper
     end
   end
 
-  def stripe_url(session_csrf_token)
-    url = "https://connect.stripe.com/oauth/authorize"
-    redirect_uri = stripe_connect_url
-    client_id = ENV['CLIENT_ID']
-    state = session_csrf_token
-
-    "#{url}?response_type=code&redirect_uri=#{redirect_uri}&client_id=#{client_id}&scope=read_write&state=#{state}"
-  end
-
   def encrypt_data(data_to_encrypt, assigned_purpose)
     crypt = ActiveSupport::MessageEncryptor.new([ENV['ENCRYPT_KEY']].pack("H*"))
     return crypt.encrypt_and_sign(data_to_encrypt, purpose: assigned_purpose)
