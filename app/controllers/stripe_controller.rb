@@ -34,7 +34,8 @@ class StripeController < ApplicationController
           flash[:notice] = 'Votre compte Stripe a bien été créé et est maintenant connecté à votre boutique'
         else
           reset_session
-          redirect_to host_dashboard
+          flash[:error] = "La configuration a échoué. Les modifications semblent frauduleuses."
+          redirect_to root_path
         end
       end
     end
