@@ -4,6 +4,7 @@ RSpec.describe Item, type: :model do
   let(:shop) { create(:shop) }
   let(:categories) { create_list(:category, 4) }
   let(:item) { create(:item, categories: [categories.sample], shop: shop) }
+  let(:item_with_pictures) { create(:item_with_pictures, categories: [categories.sample], shop: shop) }
 
   it 'should create a valid instance of Item' do
     expect(item).to be_valid
@@ -21,7 +22,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'should be linked to at least one picture' do
-      #expect(item.item_pictures.count).to be > 0
+      expect(item_with_pictures.item_pictures.count).to be > 0
     end
   end
 
