@@ -14,3 +14,25 @@ FactoryBot.define do
     end
   end
 end
+
+def maker_with_items_in_shop(items_count: 1, categories: create_list(:category, 4))
+  create(:user, :is_maker, email: "gradya@yopmail.com") do |user|
+    create(:shop, user: user) do |shop|
+      create_list(:item,
+        items_count,
+        categories: [categories.sample],
+        shop: shop
+      )
+    end
+  end
+end
+
+def user_with_items_in_cart(items_count: 1, items: maker_with_items)
+  create(:user) do |user|
+    create_list(:cart_item,
+      items_count,
+      cart: user.cart,
+      item: items.sample
+    )
+  end
+end

@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  let(:shop) { create(:shop) }
   let(:categories) { create_list(:category, 4) }
-  let(:item) { create(:item, categories: [categories.sample], shop: shop) }
-  let(:item_with_pictures) { create(:item_with_pictures, categories: [categories.sample], shop: shop) }
+  let(:maker_with_items) { maker_with_items_in_shop(items_count: 2, categories: categories) }
+  let(:user_with_items) { user_with_items_in_cart(items_count: 2, items: maker_with_items.shop.items) }
+  let(:item) { create(:item, categories: [categories.sample], shop: maker_with_items.shop) }
+  let(:item_with_pictures) { create(:item_with_pictures, categories: [categories.sample], shop: maker_with_items.shop) }
 
   it 'should create a valid instance of Item' do
     expect(item).to be_valid
@@ -30,6 +31,11 @@ RSpec.describe Item, type: :model do
     it 'price_with_shipping_cost' do
       expect(item.price_with_shipping_cost(15)).to be(34)
     end
+
+    it 'get_qty_in_cart()' do
+      create(:cart_item, cart: user_with_items.cart, item: item, item_qty_in_cart: 1)
+      expect(item.get_qty_in_cart(user_with_items)).to eq(1)
+    end
   end
 
   context 'update' do
@@ -45,7 +51,7 @@ RSpec.describe Item, type: :model do
     it 'change stripe price id if the price has changed' do
       first_name = item.name
       first_description = item.description
-      item.name = Faker::Creature::Cat.name
+      item.name = Faker::Name.first_name
       item.description = Faker::Lorem.paragraph(sentence_count: 2)
       item.save
       expect(first_name).not_to eql(Stripe::Product.retrieve(item.stripe_product_id)["name"])
