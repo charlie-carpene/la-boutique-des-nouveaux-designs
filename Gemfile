@@ -38,6 +38,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.1'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
   gem 'rexml', '~> 3.2', '>= 3.2.5' #for rspec since ruby 3.0.0 doesnt use rexml by default
+  gem 'bundler-audit', '~> 0.8.0'
 end
 
 group :development do
@@ -63,6 +64,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
 
 gem 'cancancan'
 
@@ -76,7 +78,6 @@ gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem "aws-sdk-s3", require: false
 gem 'migration_data', '~> 0.6.0'
 
-gem 'omniauth-stripe-connect', '~> 2.10', '>= 2.10.1'
 gem 'stripe', '~> 5.22'
 gem 'stripe_event', '~> 2.3', '>= 2.3.1'
 
