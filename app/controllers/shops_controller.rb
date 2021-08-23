@@ -29,6 +29,8 @@ class ShopsController < ApplicationController
   end
 
   def show
+    session[:_csrf_token] = form_authenticity_token
+    @session_csrf_token = masked_authenticity_token(session)
   end
 
   def edit

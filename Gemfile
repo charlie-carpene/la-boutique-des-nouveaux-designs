@@ -8,11 +8,11 @@ gem 'rails', '~> 6.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 5.1', '>= 5.1.1'
+gem 'puma', '~> 5.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.2', '>= 5.2.1'
+gem 'webpacker', '~> 5.4', '>= 5.4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -37,6 +37,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'rexml', '~> 3.2', '>= 3.2.5' #for rspec since ruby 3.0.0 doesnt use rexml by default
+  gem 'bundler-audit', '~> 0.8.0'
 end
 
 group :development do
@@ -54,12 +56,15 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'shoulda-matchers' #plugin for rspec
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
 
 gem 'cancancan'
 
@@ -73,7 +78,6 @@ gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem "aws-sdk-s3", require: false
 gem 'migration_data', '~> 0.6.0'
 
-gem 'omniauth-stripe-connect', '~> 2.10', '>= 2.10.1'
 gem 'stripe', '~> 5.22'
 gem 'stripe_event', '~> 2.3', '>= 2.3.1'
 

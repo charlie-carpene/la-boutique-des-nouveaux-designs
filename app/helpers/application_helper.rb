@@ -18,10 +18,6 @@ module ApplicationHelper
     end
   end
 
-  def stripe_url
-    "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write"
-  end
-
   def encrypt_data(data_to_encrypt, assigned_purpose)
     crypt = ActiveSupport::MessageEncryptor.new([ENV['ENCRYPT_KEY']].pack("H*"))
     return crypt.encrypt_and_sign(data_to_encrypt, purpose: assigned_purpose)
