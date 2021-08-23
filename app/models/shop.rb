@@ -7,7 +7,7 @@ class Shop < ApplicationRecord
   validates :website, allow_blank: true, format: { with: /\A^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$\z/, message: "doit être un site web valide" }
   validates :terms_of_service, acceptance: { message: 'doivent être acceptées' }
   validates :compagny_id, presence: true, format: { with: /\A\d+\z/, message: "doit être uniquement des chiffres"}, length: { is: 14 }
-  #validate :forbid_changing_uid, on: :update
+  validate :forbid_changing_uid, on: :update
 
   belongs_to :user
   has_one :address
