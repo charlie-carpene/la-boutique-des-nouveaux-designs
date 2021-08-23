@@ -1,22 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Shop, type: :model do
-  before do
-    @shop = FactoryBot.create(:shop)
-    puts "/"  *  30
-    puts Category.all.inspect
-    puts "/"  *  30
-    puts Item.all.inspect
-    puts "/"  *  30
-    puts Shop.all.inspect
-    puts "/"  *  30
-    puts User.all.inspect
-    puts "/"  *  30
-  end
+  let(:shop) { create(:shop) }
 
   context 'creation' do
     it 'should have a user that is a maker' do
-      expect(@shop.user.is_maker).to be_truthy
+      expect(shop.user.is_maker).to be_truthy
+    end
+  end
+
+  it 'siren must be valid' do
+    expect(shop.siren).to be_kind_of(String)
+    expect(shop.siren.length).to be(9)
+  end
+
+  context 'stripe connect info' do
+    it 'must exist' do
+      expect(shop.can_receive_payments?).to be(true)
+    end
+
+    it 'must be valid' do
+      
     end
   end
 end

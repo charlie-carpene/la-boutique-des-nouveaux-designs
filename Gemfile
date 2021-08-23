@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'rexml', '~> 3.2', '>= 3.2.5' #for rspec since ruby 3.0.0 doesnt use rexml by default
   gem 'bundler-audit', '~> 0.8.0'
 end
 
@@ -55,6 +56,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'shoulda-matchers' #plugin for rspec
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,10 +1,16 @@
 require "shrine"
 
-if Rails.env.development? || Rails.env.test?
+if Rails.env.development?
   require "shrine/storage/file_system"
   Shrine.storages = {
     cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
     store: Shrine::Storage::FileSystem.new("public", prefix: "uploads"),       # permanent
+  }
+elsif Rails.env.test?
+  require "shrine/storage/memory"
+  Shrine.storages = { 
+    cache: Shrine::Storage::Memory.new,
+    store: Shrine::Storage::Memory.new,
   }
 else
   require "shrine/storage/s3"
