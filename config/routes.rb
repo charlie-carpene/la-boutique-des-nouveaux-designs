@@ -6,15 +6,12 @@ Rails.application.routes.draw do
   get "become_maker" => 'static_pages#become_maker'
   get "cgv" => 'static_pages#cgv'
   get "stripe_fallback" => 'static_pages#stripe_fallback'
+  get 'stripe/connect', to: "stripe#connect", as: :stripe_connect
 
   match "404", to: "errors#not_found", via: :all
   match "500", to: "errors#internal_server_error", via: :all
 
   devise_for :users
-
-  devise_for :shops, controllers: {
-    omniauth_callbacks: 'shops/omniauth_callbacks'
-  }
 
   resources :users, only: [:show, :edit, :update] do
     resources :addresses, only: [:new, :create, :show, :edit, :update, :destroy]
