@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :available_qty, presence: true
-  validates :description, presence: true
+  validates :description, presence: true, no_attachments: true
   validates :product_weight, presence: true
 
   after_create :create_stripe_product_and_price
