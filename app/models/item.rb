@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :available_qty, presence: true
-  validates :description, presence: true
+  validates :description, presence: true, no_attachments: true
   validates :product_weight, presence: true
 
   after_create :create_stripe_product_and_price
@@ -18,6 +18,8 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_pictures, allow_destroy: true
   has_many :order_items
   has_many :orders, through: :order_items
+
+  has_rich_text :description
 
   def price_with_shipping_cost(shipping_cost)
     return shipping_cost + self.price

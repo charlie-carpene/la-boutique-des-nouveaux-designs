@@ -6,10 +6,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    puts "*" * 30
-    puts params.inspect
-    puts "*" * 30
-
     if params[:files].blank?
       flash[:error] = "Vous n'avez ajouter aucune photos"
       render 'new'
