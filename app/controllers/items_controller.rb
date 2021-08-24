@@ -26,23 +26,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    puts "*" * 30
-    puts params["authenticity_token"]
-    puts "*" * 30
   end
 
   def edit
-    puts "*" * 30
-    puts params["authenticity_token"]
-    puts "*" * 30
-
   end
 
   def update
-    puts "*" * 30
-    puts params["authenticity_token"]
-    puts "*" * 30
-
     if params[:files].blank?
       item_permitted_attributes = item_permitted_params
     elsif
