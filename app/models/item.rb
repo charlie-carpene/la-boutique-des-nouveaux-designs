@@ -19,6 +19,8 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
 
+  has_rich_text :description
+
   def price_with_shipping_cost(shipping_cost)
     return shipping_cost + self.price
   end
