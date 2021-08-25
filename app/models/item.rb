@@ -2,8 +2,8 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :available_qty, presence: true
-  validates :description, presence: true, no_attachments: true
   validates :product_weight, presence: true
+  validates :rich_description, no_attachments: true
 
   after_create :create_stripe_product_and_price
   before_update :update_stripe_info
@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
 
-  has_rich_text :description
+  has_rich_text :rich_description
 
   def price_with_shipping_cost(shipping_cost)
     return shipping_cost + self.price
@@ -45,7 +45,7 @@ class Item < ApplicationRecord
   def create_stripe_product_and_price
     stripe_product = Stripe::Product.create({
       name: self.name,
-      description: self.description,
+      description: self.rich_description.body.to_plain_text,
     })
 
     stripe_price = Stripe::Price.create({
@@ -57,10 +57,10 @@ class Item < ApplicationRecord
   end
 
   def update_stripe_info
-    if changes_to_save.keys.any? { |value| ["name", "description"].include?(value) }
+    if changes_to_save.keys.any? { |value| ["name", "rich_description"].include?(value) }
       Stripe::Product.update(self.stripe_product_id, {
         name: self.name,
-        description: self.description,
+        description: self.rich_description.body.to_plain_text,
       })
     end
     if changes_to_save.keys.any? { |value| value == "price" }

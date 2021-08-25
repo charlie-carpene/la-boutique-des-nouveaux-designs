@@ -50,9 +50,9 @@ RSpec.describe Item, type: :model do
 
     it 'change stripe price id if the price has changed' do
       first_name = item.name
-      first_description = item.description
+      first_description = item.rich_description
       item.name = Faker::Name.first_name
-      item.description = Faker::Lorem.paragraph(sentence_count: 2)
+      item.rich_description = Faker::Lorem.paragraph(sentence_count: 2)
       item.save
       expect(first_name).not_to eql(Stripe::Product.retrieve(item.stripe_product_id)["name"])
       expect(first_description).not_to eql(Stripe::Product.retrieve(item.stripe_product_id)["description"])
