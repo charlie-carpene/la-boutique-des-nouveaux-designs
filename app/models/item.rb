@@ -2,8 +2,8 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :available_qty, presence: true
-  validates :description, presence: true, no_attachments: true
   validates :product_weight, presence: true
+  validates :rich_description, no_attachments: true
 
   after_create :create_stripe_product_and_price
   before_update :update_stripe_info
@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
 
-  has_rich_text :description
+  has_rich_text :rich_description
 
   def price_with_shipping_cost(shipping_cost)
     return shipping_cost + self.price

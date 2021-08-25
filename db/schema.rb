@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_080346) do
   create_table "items", force: :cascade do |t|
     t.bigint "shop_id", null: false
     t.string "name"
-    t.text "description"
     t.integer "price"
     t.integer "available_qty"
     t.datetime "created_at", precision: 6, null: false
