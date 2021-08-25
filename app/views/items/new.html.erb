@@ -44,7 +44,7 @@
 
       <div class="field mt-4">
         <%= f.label t("item.form.description") %><br />
-        <%= f.text_area :description, class: "form-control" %>
+        <%= f.rich_text_area :rich_description, class: "form-control" %>
       </div>
 
       <div class="field mt-4">
@@ -63,3 +63,5 @@
 
   </div>
 </div>
+
+<%= javascript_pack_tag 'action_text' %>
