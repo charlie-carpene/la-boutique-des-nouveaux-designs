@@ -45,7 +45,7 @@ class Item < ApplicationRecord
   def create_stripe_product_and_price
     stripe_product = Stripe::Product.create({
       name: self.name,
-      description: self.description,
+      description: self.rich_description.body.to_plain_text,
     })
 
     stripe_price = Stripe::Price.create({
@@ -57,10 +57,10 @@ class Item < ApplicationRecord
   end
 
   def update_stripe_info
-    if changes_to_save.keys.any? { |value| ["name", "description"].include?(value) }
+    if changes_to_save.keys.any? { |value| ["name", "rich_description"].include?(value) }
       Stripe::Product.update(self.stripe_product_id, {
         name: self.name,
-        description: self.description,
+        description: self.rich_description.body.to_plain_text,
       })
     end
     if changes_to_save.keys.any? { |value| value == "price" }
