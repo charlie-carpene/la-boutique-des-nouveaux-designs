@@ -15,13 +15,14 @@ FactoryBot.define do
   end
 end
 
-def maker_with_items_in_shop(items_count: 1, categories: create_list(:category, 4))
+def maker_with_items_in_shop(items_count: 1, available_qty: Faker::Number.between(from: 1, to: 10), categories: create_list(:category, 4))
   create(:user, :is_maker, email: "gradya@yopmail.com") do |user|
     create(:shop, user: user) do |shop|
       create_list(:item,
         items_count,
         categories: [categories.sample],
-        shop: shop
+        shop: shop,
+        available_qty: available_qty
       )
     end
   end
