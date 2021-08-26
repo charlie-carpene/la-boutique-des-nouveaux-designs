@@ -27,12 +27,13 @@ def maker_with_items_in_shop(items_count: 1, categories: create_list(:category, 
   end
 end
 
-def user_with_items_in_cart(items_count: 1, items: maker_with_items)
+def user_with_items_in_cart(items_count: 1, item_qty_in_cart: 1, items: maker_with_items)
   create(:user) do |user|
     create_list(:cart_item,
       items_count,
       cart: user.cart,
-      item: items.sample
+      item: items.sample,
+      item_qty_in_cart: item_qty_in_cart
     )
   end
 end

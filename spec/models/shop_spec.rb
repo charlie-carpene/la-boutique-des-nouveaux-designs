@@ -23,9 +23,16 @@ RSpec.describe Shop, type: :model do
       
     end
   end
+
+  context 'method' do
+    it 'shop_image(shop)' do
+      expect(shop.show_image(shop)).to be_kind_of(String)
+    end
+  end
 end
 
 # ToDo
 # -> connexion à stripe (peut recevoir payement si le compte est connecté, sinon non)
 # -> A bien toute les caractéristiques (brand, email, etc)
 # -> a bien une adresse, un user & des items
+# -> changer le plugin Shrine de version à derivatives + implémenter les tests
