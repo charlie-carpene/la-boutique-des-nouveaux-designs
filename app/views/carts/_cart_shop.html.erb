@@ -1,7 +1,7 @@
 <% shops.each do |shop| %>
   <div class="m-3 p-4 border-top border-bottom border-dark bg-light">
     <div class="d-flex justify-content-center">
-      <%= image_tag shop.show_image(shop), class: "cart-shop-img-resize" %>
+      <%= image_tag shop.show_image, class: "cart-shop-img-resize" %>
     </div>
     <ul class="list-group mt-4">
       <% cart.get_cart_items_from_a_specific_shop(shop).each do |cart_item| %>

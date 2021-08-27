@@ -10,7 +10,7 @@ fr:
       shop_image: "Image de ma boutique"
       company_id:
         title: "Numéro de SIRET"
-        placeholder: "n° à 14 chiffres"
+        placeholder: "n° à 14 chiffres (sans espaces)"
       description: "Ma description"
 
 
