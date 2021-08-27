@@ -2,7 +2,7 @@
   <h1 class="pt-4 text-center text-primary"><%= t("user.edit.title_1") %></h1>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= t("user.edit.brand_name", brand_name: @user_to_validate.shop.brand) %></li>
-    <li class="list-group-item"><%= t("user.edit.company_id", company_id: @user_to_validate.shop.compagny_id, company_name: @legal_compagny_name) %></li>
+    <li class="list-group-item"><%= t("user.edit.company_id", company_id: @user_to_validate.shop.company_id, company_name: @legal_compagny_name) %></li>
     <li class="list-group-item"><%= @user_to_validate.shop.website.present? ? link_to("#{t("user.edit.website.present")} #{@user_to_validate.shop.website}", "http://#{@user_to_validate.shop.website}", target: "_blank") : t("user.edit.website.missing") %></li>
     <li class="list-group-item"><%= t("user.edit.email", email: @user_to_validate.shop.email_pro) %></li>
   </ul>

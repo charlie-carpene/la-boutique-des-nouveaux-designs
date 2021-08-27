@@ -25,14 +25,14 @@ class CartItemsController < ApplicationController
   def update
     case params[:operation]
     when "plus"
-      if @cart_item.add_qty_if_available_enough(@cart_item)
+      if @cart_item.add_qty_if_available_enough
         redirect_back(fallback_location: root_path)
       else
         flash[:error] = I18n.t("item.not_enough_qty")
         redirect_back(fallback_location: root_path)
       end
     when "minus"
-      if @cart_item.remove_qty(@cart_item)
+      if @cart_item.remove_qty
         redirect_back(fallback_location: root_path)
       else
         flash[:error] = I18n.t("item.delete_from_cart_error")
