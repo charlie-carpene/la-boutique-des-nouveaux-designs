@@ -1,36 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before do
-    @maker = FactoryBot.create(:user, :is_maker, email: "gradya@yopmail.com")
-    @user = FactoryBot.build(:user)
-    puts "-"  *  30
-    puts Category.all.inspect
-    puts "-"  *  30
-    puts Item.all.inspect
-    puts "-"  *  30
-    puts Shop.all.inspect
-    puts "-"  *  30
-    puts User.all.inspect
-    puts "-"  *  30
-  end
+  let!(:user) { create(:user) }
+  let!(:maker) { create(:user, :is_maker, email: "gradya@yopmail.com") }
+  let!(:address) { create(:address, user: user)}
 
   context 'registration' do
+    it 'should create a valid instance of User' do
+      expect(user).to be_valid
+    end
+
     it 'cannot have the same email as someone already registered' do
-      expect(@user.email).to match("gawain@yopmail.com")
+      expect{ create(:user, email: "gawain@yopmail.com") }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
-  context 'that is a maker' do
-    it 'should be registered as so in the databased' do
-      expect(@maker.is_maker).to be_truthy
-      expect(@user.is_maker).to be_falsey
+  context 'when maker' do
+    it 'should be registered as a maker in database' do
+      expect(maker.is_maker).to be_truthy
+      expect(user.is_maker).to be_falsey
     end
-  end
 
-  context 'that is a maker' do
     it 'should have a shop' do
-      expect(@maker.shop).to be_truthy
+      expect(maker.shop.present?).to be_truthy
+    end
+  end
+
+  context 'method' do
+    it "personnal_addresses should only return a user's personnal addresses" do
+      expect(user.personnal_addresses.first).to eq(address)
+      expect(maker.personnal_addresses.present?).to be_falsey
     end
   end
 end

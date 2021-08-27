@@ -25,8 +25,12 @@ RSpec.describe Shop, type: :model do
   end
 
   context 'method' do
-    it 'shop_image(shop)' do
-      expect(shop.show_image(shop)).to be_kind_of(String)
+    it 'shop_image' do
+      expect(shop.show_image).to be_kind_of(String)
+    end
+
+    it 'verify_company_id' do
+      expect(shop.verify_company_id).to be_kind_of(String)
     end
   end
 end
