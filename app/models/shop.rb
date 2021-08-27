@@ -10,7 +10,7 @@ class Shop < ApplicationRecord
   validate :forbid_changing_uid, on: :update
 
   belongs_to :user
-  has_one :address
+  belongs_to :address, optional: true
   has_many :items
 
   def show_image(shop)
