@@ -16,7 +16,7 @@ fr:
         add_images: "Ajouter les photos"
         company_id:
           title: "Numéro de siret"
-          placeholder: "n° à 14 chiffres"
+          placeholder: "n° à 14 chiffres (sans espaces)"
         description: "Description"
         bank_notice: "Pour recevoir l'argent de tes ventes, il te faudra ensuite garder à jour tes informations bancaire directement depuis ton compte."
         cgv_agreement: "J'accepte les conditions générales de vente"

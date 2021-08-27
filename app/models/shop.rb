@@ -6,7 +6,7 @@ class Shop < ApplicationRecord
   validates :email_pro, presence: true, format: { with: /\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "doit être un site web valide" }
   validates :website, allow_blank: true, format: { with: /\A^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$\z/, message: "doit être un site web valide" }
   validates :terms_of_service, acceptance: { message: 'doivent être acceptées' }
-  validates :compagny_id, presence: true, format: { with: /\A\d+\z/, message: "doit être uniquement des chiffres"}, length: { is: 14 }
+  validates :company_id, presence: true, format: { with: /\A\d+\z/, message: "doit être uniquement des chiffres"}, length: { is: 14 }
   validate :forbid_changing_uid, on: :update
 
   belongs_to :user
@@ -26,7 +26,7 @@ class Shop < ApplicationRecord
   end
 
   def siren
-    self.compagny_id.to_s.slice(0..8)
+    self.company_id.slice(0..8)
   end
 
   def verify_company_id
