@@ -47,6 +47,10 @@ class User < ApplicationRecord
     return response_text
   end
 
+  def personnal_addresses
+		return self.addresses.select { |address| !address.shop.present?}
+	end
+
   private
 
   def welcome_send

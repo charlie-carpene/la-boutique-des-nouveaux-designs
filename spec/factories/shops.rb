@@ -9,5 +9,6 @@ FactoryBot.define do
     compagny_id { Faker::Number.number(digits: 14) }
     image_data { TestData.image_data }
     association :user, :is_maker
+    association :address, strategy: :null
   end
 end
