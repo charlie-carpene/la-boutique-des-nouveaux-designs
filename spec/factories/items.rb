@@ -4,8 +4,7 @@ FactoryBot.define do
     rich_description { Faker::Lorem.paragraph(sentence_count: 2) }
     price { 19 }
     product_weight { Faker::Number.number(digits: 4) }
-    available_qty { Faker::Number.number(digits: 1) }
-    association :categories
+    available_qty { Faker::Number.between(from: 1, to: 10) }
     association :shop
 
     factory :item_with_pictures do

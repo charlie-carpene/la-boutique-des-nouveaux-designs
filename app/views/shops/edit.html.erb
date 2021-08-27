@@ -30,7 +30,7 @@
       <div class="col col-lg-3 mt-4">
         <%= f.label t("shop.edit.shop_image") %><br />
         <div class="card border-0 m-3" style="height:266px;width:200px">
-          <%= image_tag @shop.show_image(@shop), class: "card-img" %>
+          <%= image_tag @shop.show_image, class: "card-img" %>
           <div class="card-img-overlay d-flex flex-column justify-content-end">
             <div class="rounded bg-primary d-flex flex-column">
               <div class="text-center text-white"><%= t("button.edit") %> :</div>
@@ -43,7 +43,7 @@
 
     <div class="field mt-4">
       <%= f.label t("shop.edit.company_id.title") %><br />
-      <%= f.text_field :compagny_id, placeholder: t("shop.edit.company_id.placeholder"), class: "form-control" %>
+      <%= f.text_field :company_id, placeholder: t("shop.edit.company_id.placeholder"), class: "form-control" %>
     </div>
 
     <div class="field mt-4">

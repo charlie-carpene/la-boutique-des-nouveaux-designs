@@ -10,6 +10,6 @@ RSpec.describe ItemPicture, type: :model do
 	end
 
 	it 'max number is 10 per item' do
-		expect{ create(:item_with_pictures, pictures_count: 11, categories: [categories.sample], shop: shop) }.to raise_error
+		expect{ create(:item_with_pictures, pictures_count: 11, categories: [categories.sample], shop: shop) }.to raise_error(ActiveRecord::RecordInvalid)
 	end
 end
