@@ -1,3 +1,4 @@
 fr:
   errors:
     attachments_not_allowed: "ne peut pas contenir de pièce(s) jointe(s)."
+    admin_required: "Veuillez vous connecter en tant qu'administrateur pour accéder à cette page."

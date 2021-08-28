@@ -1,0 +1,3 @@
+fr:
+  success:
+    validate_user_as_maker: "La validation a bien été effectuée et un mail a été envoyé à %{user_email}."
