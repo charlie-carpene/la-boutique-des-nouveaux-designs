@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
     @status = params["status"]
 
     unless @status == "success" || @status == "cancel"
-      flash['error'] = "'#{@status}' n\'est pas un status reconnu par l'application. Veuillez vérifier votre achat et nous contacter si besoin."
+      flash['error'] = t("stripe.errors.fallback_status", status: @status)
       redirect_to root_path
     end
   end
