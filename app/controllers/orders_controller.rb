@@ -14,10 +14,10 @@ class OrdersController < ApplicationController
 
     if @ordered_cart_items[0] == 0 #check order.find_ordered_items_in_cart method
       @ordered_cart_items[1].destroy
-      flash[:error] = "L'article #{@ordered_cart_items[1].item.name} n'était plus disponible à la vente. Nous l'avons supprimé  de votre panier."
+      flash[:error] = t("order.errors.item_no_longer_available", item_name: @ordered_cart_items[1].item.name)
       redirect_back(fallback_location: root_path)
     elsif @ordered_cart_items[0] == 1
-      flash[:error] = "L'article #{@ordered_cart_items[1].item.name} n'est plus disponible qu'en #{@ordered_cart_items[1].item.available_qty} exemplaire(s). Veuillez en supprimer de votre panier pour continuer."
+      flash[:error] = t("order.errors.item_available_qty_too_low", item_name: @ordered_cart_items[1].item.name, qty_available: @ordered_cart_items[1].item.available_qty)
       redirect_back(fallback_location: root_path)
     else
       @session = Stripe::Checkout::Session.create(

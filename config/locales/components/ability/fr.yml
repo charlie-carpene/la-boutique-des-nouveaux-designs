@@ -1,0 +1,4 @@
+fr:
+  ability:
+    errors:
+      action_not_allowed: "Vous n'êtes pas autorisé(e) à faire cette action."

@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
   def create
     if params[:files].blank?
-      flash[:error] = "Vous n'avez ajouter aucune photos"
+      flash[:error] = t("item.errors.no_picture_attached") 
       render 'new'
     else
       # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   
       @item = Item.new(item_permitted_attributes)
       if @item.save
-        flash[:success] = "Le produit à bien été enregistré."
+        flash[:success] = t("item.success.created")
         redirect_to shop_path(@item.shop_id)
       else
         flash[:error] = translate_error_messages(@item.errors)
@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
     end
 
     if @item.update(item_permitted_attributes)
-      flash[:success] = "Les informations de #{@item.name} ont bien été mises à jour."
+      flash[:success] = t("item.success.updated", item_name: @item.name)
       redirect_to item_path(@item.id)
     else
       flash.now[:error] = translate_error_messages(@item.errors)
@@ -50,11 +50,11 @@ class ItemsController < ApplicationController
 
   def destroy
     unless @item.orders.blank?
-      flash[:error] = "L'article a déjà été vendu au moins une fois et ne peut donc pas être supprimé. Se référer aux CGVs pour en savoir plus."
+      flash[:error] = t("item.errors.has_already_been_sold_once")
       redirect_back(fallback_location: root_path)
     else
       @item.destroy
-      flash[:error] = "L'article a bien été supprimé."
+      flash[:error] = t("item.errors.deleted")
       redirect_back(fallback_location: root_path)
     end
   end

@@ -1,0 +1,9 @@
+fr:
+  shop:
+    errors:
+      connect_to_become_maker: "Veuillez d'abord vous connecter ou créer un compte pour pouvoir devenir artisan."
+      already_exist: "Vous avez déjà une Boutique enregistrée"
+    success:
+      shop_created: "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
+      shop_updated: "Les informations de votre boutique ont bien été mises à jour."
+      shop_destroyed: "La demande a bien été rejetée et un mail pour avertir %{brand} a été envoyé à %{email}."
