@@ -6,22 +6,15 @@ class ItemsController < ApplicationController
   end
 
   def create
-    if params[:files].blank?
-      flash[:error] = t("item.errors.no_picture_attached") 
-      render 'new'
+    # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
+    @item = Item.new(get_item_permitted_attributes)
+    if @item.valid?
+      @item.save
+      flash[:success] = t("item.success.created")
+      redirect_to shop_path(@item.shop_id)
     else
-      # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
-      item_permitted_attributes = get_item_permitted_attributes #private method
-
-  
-      @item = Item.new(item_permitted_attributes)
-      if @item.save
-        flash[:success] = t("item.success.created")
-        redirect_to shop_path(@item.shop_id)
-      else
-        flash[:error] = translate_error_messages(@item.errors)
-        render 'new'
-      end
+      flash[:error] = translate_error_messages(@item.errors)
+      render 'new'
     end
   end
 
@@ -32,14 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if params[:files].blank?
-      item_permitted_attributes = item_permitted_params
-    elsif
+    unless params[:files].blank?
       @item.item_pictures.destroy_all
-      item_permitted_attributes = get_item_permitted_attributes
     end
 
-    if @item.update(item_permitted_attributes)
+    if @item.update(get_item_permitted_attributes)
       flash[:success] = t("item.success.updated", item_name: @item.name)
       redirect_to item_path(@item.id)
     else
@@ -66,11 +56,14 @@ class ItemsController < ApplicationController
   end
 
   def get_item_permitted_attributes
-    new_item_pictures_attributes = params[:files].inject({}) do |hash, file|
-      hash.merge!(SecureRandom.hex => { picture: file })
+    if params[:files].present?
+      new_item_pictures_attributes = params[:files].inject({}) do |hash, file|
+        hash.merge!(SecureRandom.hex => { picture: file })
+      end
+      item_pictures_attributes = item_permitted_params[:item_pictures_attributes].to_h.merge(new_item_pictures_attributes)
+      return item_permitted_params.merge(item_pictures_attributes: item_pictures_attributes)
+    else
+      return item_permitted_params
     end
-    item_pictures_attributes = item_permitted_params[:item_pictures_attributes].to_h.merge(new_item_pictures_attributes)
-    return item_permitted_params.merge(item_pictures_attributes: item_pictures_attributes)
   end
-
 end

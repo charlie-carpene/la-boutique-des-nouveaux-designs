@@ -1,0 +1,5 @@
+fr:
+  shop:
+    company_id_not_found: "ce numéro n'existe pas dans les registres de l'INSEE"
+    insee_error: "erreur de connexion au site de l'INSEE"
+    insee_company_id_found: "enregistré à l'INSEE sous le nom %{legal_name} depuis le %{day} %{month} %{year}"

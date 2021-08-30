@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   validates :available_qty, presence: true
   validates :product_weight, presence: true
   validates :rich_description, no_attachments: true
+  validates :item_pictures, nbr_of_pictures: true
 
   after_create :create_stripe_product_and_price
   before_update :update_stripe_info
@@ -39,6 +40,20 @@ class Item < ApplicationRecord
     @cart_item = cart.cart_items.find_by(item: self)
     CartItem.destroy(@cart_item.id)
   end
+
+  def nbr_of_pictures_valid(number)
+		if number == 0
+      errors.add(:picture_nbr, "doit être inférieur à #{limit}.")
+			return false
+		elsif number >= 10
+			errors.add(:picture_nbr, "doit être inférieur à #{limit}.")
+			return false
+		elsif number < 0
+
+		else
+      return true
+		end
+	end    
 
   private
 
