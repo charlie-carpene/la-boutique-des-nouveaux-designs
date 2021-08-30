@@ -1,5 +1,6 @@
 class Shop < ApplicationRecord
   include ImageUploader::Attachment(:image)
+  include Reusable
 
   validates :brand, presence: true
   validates :description, presence: true
@@ -56,7 +57,7 @@ class Shop < ApplicationRecord
 				legal_name = response["uniteLegale"]["periodesUniteLegale"][0]["denominationUniteLegale"].present? ? response["uniteLegale"]["periodesUniteLegale"][0]["denominationUniteLegale"] : response["uniteLegale"]["periodesUniteLegale"][0]["nomUniteLegale"]
 				registration_date = response["uniteLegale"]["periodesUniteLegale"][0]["dateDebut"]
 				date = Date.parse(registration_date)
-				response_text = "enregistré à l'INSEE sous le nom " + legal_name + " depuis le " + date.mday.to_s + " " + ApplicationController.helpers.translate_month(date.mon) + " " + date.year.to_s
+				response_text = "enregistré à l'INSEE sous le nom " + legal_name + " depuis le " + date.mday.to_s + " " + self.translate_month(date.mon) + " " + date.year.to_s
 			end
 		else
 			response_text = "erreur de connexion au site de l'INSEE"

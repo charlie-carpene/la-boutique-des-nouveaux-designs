@@ -1,0 +1,16 @@
+fr:
+  reusable:
+    month:
+      january: "Janvier"
+      february: "Février"
+      march: "Mars"
+      april: "Avril"
+      mai: "Mai"
+      june: "Juin"
+      july: "Juillet"
+      august: "Août"
+      september: "Septembre"
+      october: "Octobre"
+      november: "Novembre"
+      december: "Decembre"
+      error: "Mois inexistant"
