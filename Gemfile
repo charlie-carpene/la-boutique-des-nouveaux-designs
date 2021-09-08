@@ -58,6 +58,7 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers' #plugin for rspec
   gem 'simplecov', require: false
+  gem 'stripe-ruby-mock', '~> 3.1.0.rc2', require: 'stripe_mock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

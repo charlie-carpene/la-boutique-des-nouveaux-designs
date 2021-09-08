@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'stripe_mock'
+require './spec/support/stripe_helpers.rb'
 
 RSpec.describe Shop, type: :model do
   let(:shop) { create(:shop) }
@@ -15,7 +17,20 @@ RSpec.describe Shop, type: :model do
   end
 
   context 'stripe connect info' do
+    let(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
+
     it 'must exist' do
+      expect(shop.can_receive_payments?).to be(false)
+
+      stripe_maker = StripeData.create_maker(stripe_helper)
+      shop.provider = "stripe_connect"
+      shop.uid = stripe_maker.id
+      shop.access_code = stripe_maker.access_token
+      shop.publishable_key = stripe_maker.stripe_publishable_key
+      shop.refresh_token = stripe_maker.refresh_token
+
       expect(shop.can_receive_payments?).to be(true)
     end
 
