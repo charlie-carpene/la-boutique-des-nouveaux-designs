@@ -4,10 +4,22 @@ require './spec/support/stripe_helpers.rb'
 
 RSpec.describe Shop, type: :model do
   let(:shop) { create(:shop) }
+  let(:pro_address) { create(:address, user: shop.user) }
 
   context 'creation' do
+    it 'should create a valid instance of Shop' do
+      expect(shop).to be_valid
+    end
+    
     it 'should have a user that is a maker' do
       expect(shop.user.is_maker).to be_truthy
+    end
+
+    it 'can have a pro address' do
+      expect(shop.address).to be_falsey
+
+      shop.address = pro_address
+      expect(shop.address.zip_code.length).to eq(5)
     end
   end
 
@@ -33,10 +45,6 @@ RSpec.describe Shop, type: :model do
 
       expect(shop.can_receive_payments?).to be(true)
     end
-
-    it 'must be valid' do
-      
-    end
   end
 
   context 'method' do
@@ -51,7 +59,4 @@ RSpec.describe Shop, type: :model do
 end
 
 # ToDo
-# -> connexion à stripe (peut recevoir payement si le compte est connecté, sinon non)
-# -> A bien toute les caractéristiques (brand, email, etc)
-# -> a bien une adresse, un user & des items
 # -> changer le plugin Shrine de version à derivatives + implémenter les tests
