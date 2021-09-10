@@ -43,5 +43,4 @@ class ImageUploader < Shrine
 
     versions # return the hash of processed files
   end
-
 end
