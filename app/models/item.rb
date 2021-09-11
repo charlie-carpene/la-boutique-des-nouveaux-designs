@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   validates :available_qty, presence: true
   validates :product_weight, presence: true
   validates :rich_description, no_attachments: true
+  validates :item_pictures, nbr_of_pictures: true
 
   after_create :create_stripe_product_and_price
   before_update :update_stripe_info

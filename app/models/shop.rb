@@ -1,12 +1,13 @@
 class Shop < ApplicationRecord
   include ImageUploader::Attachment(:image)
+  include Reusable
 
   validates :brand, presence: true
   validates :description, presence: true
-  validates :email_pro, presence: true, format: { with: /\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "doit être un site web valide" }
-  validates :website, allow_blank: true, format: { with: /\A^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$\z/, message: "doit être un site web valide" }
-  validates :terms_of_service, acceptance: { message: 'doivent être acceptées' }
-  validates :company_id, presence: true, format: { with: /\A\d+\z/, message: "doit être uniquement des chiffres"}, length: { is: 14 }
+  validates :email_pro, presence: true, format: { with: /\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: I18n.t("validate.errors.email") }
+  validates :website, allow_blank: true, format: { with: /\A^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$\z/, message: I18n.t("validate.errors.website") }
+  validates :terms_of_service, acceptance: { message: I18n.t("validate.errors.terms_of_service") }
+  validates :company_id, presence: true, format: { with: /\A\d+\z/, message: I18n.t("validate.errors.must_be_numbers") }, length: { is: 14 }
   validate :forbid_changing_uid, on: :update
 
   belongs_to :user
@@ -31,7 +32,7 @@ class Shop < ApplicationRecord
 
   def verify_company_id
 		url = "https://api.insee.fr/entreprises/sirene/V3/siren/#{self.siren}"
-		response_text = "ce numéro n'existe pas dans les registres de l'INSEE"
+		response_text = I18n.t("shop.company_id_not_found")
 
 		request_token = Faraday.post("https://api.insee.fr/token") do |request|
 			request.headers["Authorization"] = "Basic " + ENV['INSEE_KEY']
@@ -56,10 +57,10 @@ class Shop < ApplicationRecord
 				legal_name = response["uniteLegale"]["periodesUniteLegale"][0]["denominationUniteLegale"].present? ? response["uniteLegale"]["periodesUniteLegale"][0]["denominationUniteLegale"] : response["uniteLegale"]["periodesUniteLegale"][0]["nomUniteLegale"]
 				registration_date = response["uniteLegale"]["periodesUniteLegale"][0]["dateDebut"]
 				date = Date.parse(registration_date)
-				response_text = "enregistré à l'INSEE sous le nom " + legal_name + " depuis le " + date.mday.to_s + " " + ApplicationController.helpers.translate_month(date.mon) + " " + date.year.to_s
+				response_text = I18n.t("shop.insee_company_id_found", legal_name: legal_name, day: date.mday.to_s, month: self.translate_month(date.mon), year: date.year.to_s)
 			end
 		else
-			response_text = "erreur de connexion au site de l'INSEE"
+			response_text = I18n.t("shop.insee_error")
 		end
 
 		return response_text

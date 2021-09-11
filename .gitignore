@@ -18,6 +18,7 @@
 !/storage/.keep
 
 /public/assets
+/public/uploads/*
 .byebug_history
 
 # Ignore test data

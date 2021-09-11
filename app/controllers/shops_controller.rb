@@ -4,7 +4,7 @@ class ShopsController < ApplicationController
 
   def new
     unless current_user.present?
-      flash[:alert] = "Veuillez d'abord vous connecter ou créer un compte pour pouvoir devenir artisan."
+      flash[:alert] = t("shop.errors.connect_to_become_maker")
       redirect_to new_user_session_path
     end
   end
@@ -16,14 +16,14 @@ class ShopsController < ApplicationController
       if @user.save
         AdminMailer.new_shop_request(@user, params[:files]).deliver_now
         UserMailer.new_shop_request(@user, params[:files]).deliver_now
-        flash[:success] = "Votre demande a bien été transmise à la boutique et un mail de confirmation vous a été envoyé."
+        flash[:success] = t("shop.success.shop_created")
         redirect_to user_path(@user)
       else
         flash[:error] = translate_error_messages(@user.shop.errors)
         redirect_to new_shop_path
       end
     else
-      flash[:error] = "Vous avez déjà une Boutique enregistrée"
+      flash[:error] = t("shop.errors.already_exist")
       redirect_to user_path(@user)
     end
   end
@@ -38,7 +38,7 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_permitted_params)
-      flash[:success] = "Les informations de votre boutique ont bien été mises à jour."
+      flash[:success] = t("shop.success.shop_updated")
       redirect_to edit_shop_path(@shop.id)
     else
       flash.now[:error] = translate_error_messages(@shop.errors)
@@ -52,7 +52,7 @@ class ShopsController < ApplicationController
     @user.shop.destroy
     if @user.save
       UserMailer.new_shop_request_denied(@shop).deliver_now
-      flash[:success] = "La demande a bien été rejetée et un mail pour avertir #{@shop.brand} a été envoyé à #{@shop.email_pro}."
+      flash[:success] = t("shop.success.shop_destroyed", brand: @shop.brand, email: @shop.email_pro)
       redirect_to root_path
     else
       flash[:error] = translate_error_messages(@user.shop.errors)
