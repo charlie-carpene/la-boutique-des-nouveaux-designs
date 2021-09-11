@@ -1,7 +1,7 @@
 fr:
   validate:
     errors:
-      email: "doit être un email valide"
-      website: "doit être un site web valide"
-      terms_of_service: "doivent être acceptées"
-      must_be_numbers: "doit être uniquement des chiffres"
+      email: "doit être un email valide."
+      website: "doit correspondre à une adresse de site web valide."
+      terms_of_service: "doivent être acceptées."
+      must_be_numbers: "doit contenir uniquement des chiffres."

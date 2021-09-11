@@ -1,6 +1,6 @@
 fr:
   first_name: "Le prénom"
-  last_name: "Le nom de famille"
+  last_name: "Le nom"
   address_line_1: "L'adresse"
   address_line_2: "Le complément d'adresse"
   zip_code: "Le code postal"
@@ -8,7 +8,7 @@ fr:
 
   website: "Le site web"
   brand: "Le nom de la marque"
-  email_pro: "L'email professionel"
+  email_pro: "L'adresse mail professionel"
   description: "La description"
   company_id: "Le numéro de SIRET"
 

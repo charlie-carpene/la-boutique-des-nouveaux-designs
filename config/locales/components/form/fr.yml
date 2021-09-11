@@ -5,6 +5,6 @@ fr:
     current_password: "Mot de passe actuel"
     new_password: "Nouveau mot de passe"
     password_confirmation: "Confirmer le mot de passe"
-    password_notice: "(ton mot de passe actuel est nécessaire pour confirmer tes changements)"
-    new_password_notice: "(à laisser blanc si tu ne souhaites pas le modifier)"
+    password_notice: "Insèrez le mot de passe actuel pour confirmer vos modifications"
+    new_password_notice: "Laissez ce champs vide si vous ne souhaitez pas le modifier"
     minimum_length: "%{nbr} caractères minimum"
