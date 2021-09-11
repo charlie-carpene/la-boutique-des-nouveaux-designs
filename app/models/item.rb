@@ -41,20 +41,6 @@ class Item < ApplicationRecord
     CartItem.destroy(@cart_item.id)
   end
 
-  def nbr_of_pictures_valid(number)
-		if number == 0
-      errors.add(:picture_nbr, "doit être inférieur à #{limit}.")
-			return false
-		elsif number >= 10
-			errors.add(:picture_nbr, "doit être inférieur à #{limit}.")
-			return false
-		elsif number < 0
-
-		else
-      return true
-		end
-	end    
-
   private
 
   def create_stripe_product_and_price
