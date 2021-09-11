@@ -3,7 +3,7 @@ class StripeController < ApplicationController
 
   def connect
     if params[:error].present?
-      flash[:error] = "La configuration Stripe a échoué. #{params[:error_description]}"
+      flash[:error] = t("stripe.errors.fail_to_connect", error_description: params[:error_description])
       redirect_to root_path
     else
       response = Faraday.post("https://connect.stripe.com/oauth/token") do |request|
@@ -16,7 +16,7 @@ class StripeController < ApplicationController
       parsed_response = JSON.parse(response.env.response_body)
 
       if parsed_response.key?("error") && current_user.present?
-        flash[:error] = "La configuration Stripe a échoué. #{parsed_response["error_description"]}"
+        flash[:error] = t("stripe.errors.fail_to_connect", error_description: params[:error_description])
         redirect_to root_path
       else
         @shop = current_user.shop
@@ -29,10 +29,10 @@ class StripeController < ApplicationController
           @shop.save
           
           redirect_to shop_path(@shop.id)
-          flash[:notice] = 'Votre compte Stripe a bien été créé et est maintenant connecté à votre boutique'
+          flash[:notice] = t("stripe.success.account_connected")
         else
           reset_session
-          flash[:error] = "La configuration a échoué. Les modifications semblent frauduleuses : vous avez été déconnecté."
+          flash[:error] = t("stripe.errors.fail_to_connect_after_stripe_post")
           redirect_to root_path
         end
       end
@@ -43,10 +43,10 @@ class StripeController < ApplicationController
 
   def check_authenticity_token
     if !params[:state].present?
-      flash[:error] = "La requête a échoué car le jeton d'identification n'a pas été trouvé"
+      flash[:error] = t("stripe.errors.csrf_token_not_found")
       redirect_to root_path
     elsif !valid_authenticity_token?(session, params[:state].split(' ').join('+'))
-      flash[:error] = "La requête a été bloquée car le jeton d'identification n'a pas été reconnu"
+      flash[:error] = t("stripe.errors.csrf_token_dont_match")
       redirect_to root_path
     end
   end

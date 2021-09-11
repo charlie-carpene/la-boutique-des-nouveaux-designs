@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   private
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = 'Vous n\'êtes pas autorisé(e) à faire cette action. '
+    flash[:error] = t("ability.errors.action_not_allowed")
     redirect_to root_path
   end
 
