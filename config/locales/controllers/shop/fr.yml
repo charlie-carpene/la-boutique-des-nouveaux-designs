@@ -1,7 +1,7 @@
 fr:
   shop:
     errors:
-      connect_to_become_maker: "Nou t'invitons à te connecter ou à créer un compte pour devenir créateur."
+      connect_to_become_maker: "Nous t'invitons à te connecter ou à créer un compte pour devenir créateur."
       already_exist: "Tu as déjà créé ta boutique."
     success:
       shop_created: "Ta demande a bien été transmise. Un message de confirmation t'a été envoyé."
