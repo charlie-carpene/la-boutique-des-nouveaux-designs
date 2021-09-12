@@ -1,9 +1,9 @@
 fr:
   become_maker:
     title : "Comment devenir créateur ?"
-    subtitle: "Si tu accèdes à cette page, c’est probablement que vendre tes créations sur le site de la <strong>Boutique des Nouveaux Designs</strong> t’intéresse. Pour en savoir plus et prendre connaissance de la démarche à suivre pour devenir <strong>créateur</strong>, nous t’invitons à lire attentivement les informations ci-dessous."
+    subtitle: "Si tu accèdes à cette page, c’est probablement que vendre tes créations sur le site de la Boutique des Nouveaux Designs t’intéresse. Pour en savoir plus et prendre connaissance de la démarche à suivre pour devenir créateur, nous t’invitons à lire attentivement les informations ci-dessous."
     title_1 : "L’association de l’Atelier des Nouveaux Designs"
-    title_2 : "La Boutique des Nouveaux Designs : entre <i>upcycling</i>, artisanat et <i>made in France</i>"
+    title_2_html : "La Boutique des Nouveaux Designs : entre <i>upcycling</i>, artisanat et <i>made in France</i>"
     title_3 : "Les Conditions Générales de Vente"
     title_4 : "Les étapes de l’inscription"
     p_1 : "La Boutique des Nouveaux Designs, c’est la suite logique de l’aventure de l’association de l’Atelier des Nouveaux Designs, créée en 2019 à Lyon. L’objectif premier de l’association est de fédérer les créateurs autour d’un tiers lieu dédié au réemploi et au faire soi-même, afin de leur permettre de mutualiser leurs moyens, leurs outils, tout en améliorant leur visibilité."

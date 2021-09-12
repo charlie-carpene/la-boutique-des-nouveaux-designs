@@ -2,7 +2,7 @@ fr:
   index:
     carrousel: 
       handmade: 
-        body: "Nos créations sont <i>made in France</i> et conçues à la main par des créateurs passionné.es !"
+        body_html: "Nos créations sont <i>made in France</i> et conçues à la main par des créateurs passionné.es !"
         title: Artisanal
       local: 
         body: "Notre projet s’inscrit dans une démarche écologique et respectueuse de l’environnement ! Pour cette raison, nous favorisons au maximum le circuit-court et les ressources locales. "
