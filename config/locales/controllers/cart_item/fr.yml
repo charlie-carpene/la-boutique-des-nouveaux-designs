@@ -2,11 +2,11 @@ fr:
   cart_item:
     errors:
       item_no_longer_available: "Désolé, cet article n'est plus disponible."
-      item_qty_too_low: "Désolé, cet article n'est plus disponible. Vous ne pouvez pas le sélectionner."
-      delete_item_from_cart: "Cliquez sur la corbeille pour supprimer l'article."
+      item_qty_too_low: "Désolé, cet article n'est plus disponible. Tu ne peux pas le sélectionner."
+      delete_item_from_cart: "Tu peux cliquer sur la corbeille pour supprimer l'article."
       action_dont_exist: "L'opération n'existe pas."
-      item_deleted_from_cart: "%{name} a bien été supprimé de votre panier."
+      item_deleted_from_cart: "%{name} a bien été supprimé de ton panier."
     success:
-      item_added_to_cart: "L'article a bien été ajouté à votre panier."
+      item_added_to_cart: "L'article a bien été ajouté à ton panier."
     info:
-      item_already_in_cart: "Vous avez déjà ajouté cet article. Vous pouvez modifier la quantité à partir de votre panier."
+      item_already_in_cart: "Tu as déjà ajouté cet article. Tu peux modifier la quantité à partir de ton panier."

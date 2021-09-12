@@ -1,4 +1,4 @@
 fr:
   address:
     show:
-      title: "Voilà l'adresse n°%{id}"
+      title: "Voici l'adresse n°%{id}"

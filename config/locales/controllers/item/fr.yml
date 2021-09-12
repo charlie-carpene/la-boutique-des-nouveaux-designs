@@ -1,8 +1,8 @@
 fr:
   item:
     errors:
-      no_picture_attached: "Vous n'avez ajouté aucune photo."
-      has_already_been_sold_once: "Cet article a déjà été vendu au moins une fois et ne peut pas être supprimé. Consultez les CGV pour en savoir plus."
+      no_picture_attached: "Tu n'as ajouté aucune photo."
+      has_already_been_sold_once: "Cet article a déjà été vendu au moins une fois et ne peut pas être supprimé. Nous t'invitons à consulter les CGV pour en savoir plus."
       deleted: "L'article a bien été supprimé."
     success:
       created: "Le produit à bien été enregistré."

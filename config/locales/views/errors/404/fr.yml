@@ -1,4 +1,4 @@
 fr:
   error_404:
-    title: "Oops"
-    body: "La page que vous cherchez ne semble pas exister"
+    title: "Oups"
+    body: "Désolé, la page que tu recherches ne semble pas exister."

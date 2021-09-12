@@ -7,7 +7,7 @@ fr:
       company_id: "N° de SIRET %{company_id} : %{company_name}"
       website:
         present: "Site web :"
-        missing: "Cette marque n'a pas renseignée de site web. Quelques photos de ses créations ont normalement été envoyés par mail."
+        missing: "Cette marque n'a pas renseigné de site web. Quelques photos de ses créations ont normalement été envoyées par message."
       email: "Email : %{email}"
       button:
         accept: "Accepter"

@@ -1,5 +1,5 @@
 fr:
   order:
     index:
-      title: "Votre historique de commandes"
+      title: "Historique de tes commandes"
       row: "Commande n°%{id} du %{day} / %{month} / %{year} à %{shop}"

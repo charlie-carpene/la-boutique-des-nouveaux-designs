@@ -6,7 +6,7 @@ fr:
       email_pro: "Mon email profesionnel"
       website: 
         title: "Mon site web"
-        placeholder: "Si tu n'en as pas, envoie-nous jusqu'à 5 photos de tes produits"
+        placeholder: "Si tu n'en as pas, tu peux nous envoyer jusqu'à 5 photos de tes produits"
       shop_image: "Image de ma boutique"
       company_id:
         title: "Numéro de SIRET"

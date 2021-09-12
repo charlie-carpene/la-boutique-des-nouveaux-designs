@@ -2,6 +2,6 @@ fr:
   devise:
     password:
       edit:
-        title: "Changer votre mot de passe"
+        title: "Je souhaite modifier mon mot de passe"
       new:
         title: "Mot de passe oublié ?"
