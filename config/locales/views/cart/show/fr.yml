@@ -7,4 +7,3 @@ fr:
       no_item:  "Aucun article n'a été ajouté au panier"
       order_price: "Prix de la commande : %{price}€"
       shipping_fee_html: "Frais de port : Click & Collect (à venir récupérer à l'%{href})."
-      on_site_html: "<strong>sur place</strong>"
