@@ -1,0 +1,3 @@
+fr:
+  style:
+    strong_html: "<strong>%{content}</strong>"
