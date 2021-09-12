@@ -17,9 +17,10 @@ fr:
       p_1: "Comment devenir créateur ?"
       p_2: "Conditions Générales de Vente"
       p_3: "Mentions légales"
-      p-4: "FAQ"
+      p_4: "FAQ"
     body_3:
       title: "Informations"
       p_1: "Contact"
-      p_2: "49 Rue Smith 69002 Lyon, France"
+      adnd_address_html: "49 Rue Smith<br/>69002 Lyon, France"
+      admin_email: "atelier[at]nouveauxdesigns.fr"
     upcycling: "La Boutique des Nouveaux Designs"
