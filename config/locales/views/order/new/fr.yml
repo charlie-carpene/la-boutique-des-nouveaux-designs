@@ -1,6 +1,6 @@
 fr:
   order:
     new:
-      title: "Votre commande"
+      title: "Ta commande"
       item_info_html: "%{name} à %{price}€ l'unité, soit <strong>%{total_price}€</strong>"
       total_price: "Total à régler : %{total_price}€"

@@ -2,6 +2,6 @@ fr:
   devise:
     registration:
       edit:
-        title: "Modifier mes identifiants"
+        title: "Je souhaite modifier mes identifiants"
       new:
-        title: "Créer mon compte"
+        title: "Je souhaite créer un compte"

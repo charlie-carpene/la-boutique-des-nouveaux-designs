@@ -7,7 +7,7 @@ fr:
     delete: "Supprimer"
     delete_:
       my_account: "Supprimer mon compte"
-      are_you_sure: "Êtes-vous certain.e de vouloir supprimer votre compte ?"
+      are_you_sure: "Es-tu certain.e de vouloir supprimer ton compte ?"
     edit:  "Modifier"
     edit_:
       my_info: "Modifier mes informations"
@@ -38,4 +38,4 @@ fr:
     sold_product: "Mes articles vendus"
     connect_:
       yourself: "Se connecter"
-      stripe: "Connecter Stripe à votre boutique"
+      stripe: "Connecter Stripe à ta boutique"
