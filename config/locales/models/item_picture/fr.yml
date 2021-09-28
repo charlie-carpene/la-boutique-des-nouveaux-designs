@@ -1,0 +1,8 @@
+fr:
+  item_pictures:
+    picture: "Chaque image"
+    picture_nbr: "Le nombre de photo"
+    no_picture: "Aucune photo"
+    errors:
+      no_pictures_attached: "n'a été téléchargé. Nous t'invitons à en sélectionner au moins une."
+      too_many_pictures_attached: "ne doit pas dépasser %{limit}."

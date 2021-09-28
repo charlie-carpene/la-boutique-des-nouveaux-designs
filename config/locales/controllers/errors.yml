@@ -1,0 +1,4 @@
+fr:
+  errors:
+    attachments_not_allowed: "Les pièce(s) jointe(s) ne sont pas autorisée(s)."
+    admin_required: "Tu dois être connecté.e en tant qu'administrateur.rice pour accéder à cette page."

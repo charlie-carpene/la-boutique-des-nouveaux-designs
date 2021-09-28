@@ -1,0 +1,10 @@
+fr:
+  stripe:
+    errors:
+      fail_to_connect: "La configuration Stripe a échoué. %{error_description}."
+      fail_to_connect_after_stripe_post: "La configuration Stripe a échoué. Les modifications semblent frauduleuses : tu as été déconnecté.e."
+      csrf_token_not_found: "La requête a échoué car le jeton d'identification n'a pas été trouvé."
+      csrf_token_dont_match: "La requête a été bloquée car le jeton d'identification n'a pas été reconnu."
+      fallback_status: "'%{status}' n'est pas un statut reconnu par l'application. Nous t'invitons à vérifier les étapes de ton achat. En cas de problème, n'hésite pas à nous contacter."
+    success:
+      account_connected: "Ton compte Stripe a bien été créé. Il est désormais connecté à ta boutique."

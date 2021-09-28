@@ -2,13 +2,13 @@ fr:
   stripe_fallback:
     success:
       title: "Merci !"
-      p_1: "Votre commande a bien été prise en compte et nous la préparons au plus vite. En attendant, un mail vous a été envoyé avec le contact du créateur, au cas où vous auriez des questions concernant votre achat. Celui-ci reviendra vers vous par email dès que votre commande sera prête."
-      p_2: "Encore merci de participer à un commerce responsable en achetant par notre intermédiaire. Ici, pas de secrets car nous tenons à rester le plus transparent possible, autant sur notre éthique que sur nos prix. Pour en savoir plus ou découvrir de nouveaux créateurs, c'est par ici :"
+      p_1: "Ta commande a bien été prise en compte et nous la préparons au plus vite. En attendant, tu vas recevoir un message avec le contact du créateur, au cas où tu aurais des questions concernant ton achat. Nous reviendrons vers toi dès que ta commande sera prête."
+      p_2: "Encore merci de participer à un commerce responsable en achetant sur la Boutique des Nouveaux Designs. Nous avons à cœur d’être le plus transparent possible, autant sur notre éthique que sur nos prix. Pour en savoir plus ou découvrir de nouveaux créateurs, c’est par ici :"
       button_1: "Nos créateurs"
       button_2: "En savoir plus"
     cancel:
       title: "Votre commande n'a pas abouti"
-      p_1: "Une erreure s'est produite ou vous n'êtes plus si sûre de votre choix ? Pas de problème, rien n'a été prélevé sur votre compte. Nous attachons une importance particulière à ce que votre achat soit fait dans les meilleures conditions alors prenez votre temps pour recommencer quand vous le voulez."
-      p_2: "En attendant, nous vous invitons à découvrir qui nous sommes ainsi que nos valeurs ou à retrouver les articles de votre panier :"
+      p_1: "Tu n’es plus sûr.e de ton choix ? Pas de soucis, rien n’a été prélevé sur ton compte. Nous attachons une importance particulière à ce que ton achat se déroule dans les meilleures conditions possibles. Nous t’invitons à prendre ton temps et à recommencer quand tu seras prêt.e."
+      p_2: "En attendant, nous t’invitons à découvrir la Boutique des Nouveaux Designs et les valeurs qui nous portent. Tu peux également consulter les articles de ton panier :"
       button_1: "Mon panier"
       button_2: "En savoir plus"

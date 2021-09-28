@@ -8,18 +8,19 @@ fr:
       log_out: "Déconnexion"
   footer:
     body_1:
-      title: "Réseaux Sociaux"
+      title: "Réseaux sociaux"
       social_network_1: "Facebook"
       social_network_2: "LinkedIn"
       social_network_3: "Association"
     body_2:
-      title: "A propos"
-      p_1: "Devenir artisan ?"
-      p_2: "CGV"
+      title: "À propos"
+      p_1: "Comment devenir créateur ?"
+      p_2: "Conditions Générales de Vente"
       p_3: "Mentions légales"
-      p-4: "FAQ"
+      p_4: "FAQ"
     body_3:
-      title: "Contact"
-      p_1: "Nous contacter"
-      p_2: "49 Rue Smith 69002 Lyon, France"
-    upcycling: "Upcyclez et vous verrez"
+      title: "Informations"
+      p_1: "Contact"
+      adnd_address_html: "49 Rue Smith<br/>69002 Lyon, France"
+      admin_email: "atelier[at]nouveauxdesigns.fr"
+    upcycling: "La Boutique des Nouveaux Designs"

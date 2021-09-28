@@ -6,22 +6,15 @@ class ItemsController < ApplicationController
   end
 
   def create
-    if params[:files].blank?
-      flash[:error] = "Vous n'avez ajouter aucune photos"
-      render 'new'
+    # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
+    @item = Item.new(get_item_permitted_attributes)
+    if @item.valid?
+      @item.save
+      flash[:success] = t("item.success.created")
+      redirect_to shop_path(@item.shop_id)
     else
-      # if needed, check again https://github.com/shrinerb/shrine/blob/master/doc/multiple_files.md#4a-form-upload
-      item_permitted_attributes = get_item_permitted_attributes #private method
-
-  
-      @item = Item.new(item_permitted_attributes)
-      if @item.save
-        flash[:success] = "Le produit à bien été enregistré."
-        redirect_to shop_path(@item.shop_id)
-      else
-        flash[:error] = translate_error_messages(@item.errors)
-        render 'new'
-      end
+      flash[:error] = translate_error_messages(@item.errors)
+      render 'new'
     end
   end
 
@@ -32,15 +25,12 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if params[:files].blank?
-      item_permitted_attributes = item_permitted_params
-    elsif
+    unless params[:files].blank?
       @item.item_pictures.destroy_all
-      item_permitted_attributes = get_item_permitted_attributes
     end
 
-    if @item.update(item_permitted_attributes)
-      flash[:success] = "Les informations de #{@item.name} ont bien été mises à jour."
+    if @item.update(get_item_permitted_attributes)
+      flash[:success] = t("item.success.updated", item_name: @item.name)
       redirect_to item_path(@item.id)
     else
       flash.now[:error] = translate_error_messages(@item.errors)
@@ -50,11 +40,11 @@ class ItemsController < ApplicationController
 
   def destroy
     unless @item.orders.blank?
-      flash[:error] = "L'article a déjà été vendu au moins une fois et ne peut donc pas être supprimé. Se référer aux CGVs pour en savoir plus."
+      flash[:error] = t("item.errors.has_already_been_sold_once")
       redirect_back(fallback_location: root_path)
     else
       @item.destroy
-      flash[:error] = "L'article a bien été supprimé."
+      flash[:error] = t("item.errors.deleted")
       redirect_back(fallback_location: root_path)
     end
   end
@@ -66,11 +56,14 @@ class ItemsController < ApplicationController
   end
 
   def get_item_permitted_attributes
-    new_item_pictures_attributes = params[:files].inject({}) do |hash, file|
-      hash.merge!(SecureRandom.hex => { picture: file })
+    if params[:files].present?
+      new_item_pictures_attributes = params[:files].inject({}) do |hash, file|
+        hash.merge!(SecureRandom.hex => { picture: file })
+      end
+      item_pictures_attributes = item_permitted_params[:item_pictures_attributes].to_h.merge(new_item_pictures_attributes)
+      return item_permitted_params.merge(item_pictures_attributes: item_pictures_attributes)
+    else
+      return item_permitted_params
     end
-    item_pictures_attributes = item_permitted_params[:item_pictures_attributes].to_h.merge(new_item_pictures_attributes)
-    return item_permitted_params.merge(item_pictures_attributes: item_pictures_attributes)
   end
-
 end
