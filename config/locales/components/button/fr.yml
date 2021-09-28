@@ -7,7 +7,7 @@ fr:
     delete: "Supprimer"
     delete_:
       my_account: "Supprimer mon compte"
-      are_you_sure: "Es-tu certain.e de vouloir supprimer ton compte ?"
+      are_you_sure: "Es-tu certain.e de vouloir procéder à la suppression ?"
     edit:  "Modifier"
     edit_:
       my_info: "Modifier mes informations"

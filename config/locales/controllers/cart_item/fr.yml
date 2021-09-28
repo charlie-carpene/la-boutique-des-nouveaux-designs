@@ -2,8 +2,8 @@ fr:
   cart_item:
     errors:
       item_no_longer_available: "Désolé, cet article n'est plus disponible."
-      item_qty_too_low: "Désolé, cet article n'est plus disponible. Tu ne peux pas le sélectionner."
-      delete_item_from_cart: "Tu peux cliquer sur la corbeille pour supprimer l'article."
+      item_qty_too_low: "Désolé, la quantité disponible de cet article n'est pas suffisante. Tu ne peux pas en ajouter d'avantage."
+      delete_item_from_cart: "Si tu souhaites supprimer l'article, clique sur la corbeille."
       action_dont_exist: "L'opération n'existe pas."
       item_deleted_from_cart: "%{name} a bien été supprimé de ton panier."
     success:

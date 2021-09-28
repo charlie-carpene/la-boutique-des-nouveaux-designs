@@ -2,7 +2,7 @@ fr:
   shop:
     errors:
       connect_to_become_maker: "Nous t'invitons à te connecter ou à créer un compte pour devenir créateur."
-      already_exist: "Tu as déjà créé ta boutique."
+      already_exist: "Tu as déjà fait la demande pour créer ta boutique. Si ta demande est encore en cours, l'équipe ne devrait pas tarder à revenir vers toi."
     success:
       shop_created: "Ta demande a bien été transmise. Un message de confirmation t'a été envoyé."
       shop_updated: "Les informations de ta boutique ont bien été mises à jour."
