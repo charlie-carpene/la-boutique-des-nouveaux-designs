@@ -5,7 +5,7 @@ This repo is aimed to build an online store for carftmen that works with upcycle
 ## Get Involved
 
 Feel free to clone this repo, raise issues, create pull requests and get in touch of course.
-The test environment is accessible here: https://test-upcycling-mailer.herokuapp.com/;
+The test environment is accessible here: https://boutique-adnd-test.herokuapp.com;
 And the production website is accesible here: https://boutique.nouveauxdesigns.fr/.
 
 ## Get in touch
