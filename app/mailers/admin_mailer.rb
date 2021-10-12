@@ -4,7 +4,7 @@ class AdminMailer < ApplicationMailer
   def new_shop_request(user, shop_images)
     Mailjet::Send.create(messages: [{
       'To'=> [{
-        'Email'=> 'atelier@nouveauxdesigns.fr',
+        'Email'=> admin_email,
         'Name'=> 'You'
       }],
       'Variables' => {
@@ -27,7 +27,7 @@ class AdminMailer < ApplicationMailer
   def beta_new_order(order)
     Mailjet::Send.create(messages: [{
       'To'=> [{
-        'Email'=> 'atelier@nouveauxdesigns.fr',
+        'Email'=> admin_email,
         'Name'=> 'You'
       }],
       'Variables' => {

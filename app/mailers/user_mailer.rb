@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
   def welcome_email(user)
     Mailjet::Send.create(messages: [{
       'From'=> {
-        'Email'=> 'atelier@nouveauxdesigns.fr',
+        'Email'=> admin_email,
         'Name'=> 'Boutique des Nouveaux Designs'
       },
       'To'=> [{
@@ -22,6 +22,10 @@ class UserMailer < ApplicationMailer
 
   def new_shop_request(user, shop_images)
     Mailjet::Send.create(messages: [{
+      'From'=> {
+        'Email'=> admin_email,
+        'Name'=> 'Boutique des Nouveaux Designs'
+      },
       'To'=> [{
         'Email'=> user.shop.email_pro,
         'Name'=> 'You'
@@ -43,6 +47,10 @@ class UserMailer < ApplicationMailer
 
   def new_shop_request_denied(shop)
     Mailjet::Send.create(messages: [{
+      'From'=> {
+        'Email'=> admin_email,
+        'Name'=> 'Boutique des Nouveaux Designs'
+      },
       'To'=> [{
         'Email'=> shop.email_pro,
         'Name'=> 'You'
@@ -60,6 +68,10 @@ class UserMailer < ApplicationMailer
 
   def new_shop_request_accepted(user)
     Mailjet::Send.create(messages: [{
+      'From'=> {
+        'Email'=> admin_email,
+        'Name'=> 'Boutique des Nouveaux Designs'
+      },
       'To'=> [{
         'Email'=> user.shop.email_pro,
         'Name'=> 'You'
@@ -79,6 +91,10 @@ class UserMailer < ApplicationMailer
 
   def new_order_customer_email(order)
     Mailjet::Send.create(messages: [{
+      'From'=> {
+        'Email'=> admin_email,
+        'Name'=> 'Boutique des Nouveaux Designs'
+      },
       'To'=> [{
         'Email'=> order.user.email,
         'Name'=> 'You'
@@ -97,6 +113,10 @@ class UserMailer < ApplicationMailer
 
   def new_order_shop_email(order)
     Mailjet::Send.create(messages: [{
+      'From'=> {
+        'Email'=> admin_email,
+        'Name'=> 'Boutique des Nouveaux Designs'
+      },
       'To'=> [{
         'Email'=> order.shop.email_pro,
         'Name'=> 'You'
