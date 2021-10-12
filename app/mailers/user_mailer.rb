@@ -5,14 +5,14 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From'=> {
         'Email'=> 'atelier@nouveauxdesigns.fr',
-        'Name'=> 'l\'AdND'
+        'Name'=> 'Boutique des Nouveaux Designs'
       },
       'To'=> [{
         'Email'=> user.email,
         'Name'=> 'You'
       }],
       'Variables' => {
-        'url' => new_user_session_url,
+        'url' => website_url("users/sign_in"),
       },
       'TemplateID'=> 2222971,
       'TemplateLanguage'=> true,
@@ -29,7 +29,7 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'brand' => user.shop.brand,
         'email_pro' => user.shop.email_pro,
-        'url' => cgv_url
+        'url' => website_url("cgv")
       },
       'TemplateID'=> 2222962,
       'TemplateLanguage'=> true,
@@ -50,7 +50,7 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'brand' => shop.brand,
         'email_pro' => shop.email_pro,
-        'url' => root_url
+        'url' => website_url("")
       },
       'TemplateID'=> 2222965,
       'TemplateLanguage'=> true,
@@ -67,7 +67,7 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'brand' => user.shop.brand,
         'email_pro' => user.shop.email_pro,
-        'url' => new_user_session_url
+        'url' => website_url("users/sign_in")
       },
       'TemplateID'=> 2222969,
       'TemplateLanguage'=> true,
@@ -87,7 +87,7 @@ class UserMailer < ApplicationMailer
         'total_price' => order.total_price,
         'brand' => order.shop.brand,
         'shop_email' => order.shop.email_pro,
-        'url' => user_order_url(order.user.id, order.id)
+        'url' => website_url("users/#{order.user.id}/orders/#{order.id}")
       },
       'TemplateID'=> 2813723,
       'TemplateLanguage'=> true,
@@ -104,7 +104,7 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'total_price' => order.total_price,
         'customer_email' => order.user.email,
-        'url' => order_items_url
+        'url' => website_url("order_items")
       },
       'TemplateID'=> 2813725,
       'TemplateLanguage'=> true,
