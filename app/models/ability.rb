@@ -21,7 +21,7 @@ class Ability
     end
 
     if user.admin.present?
-
+      can :destroy, Shop
     end
     # Define abilities for the passed in user here. For example:
     #
