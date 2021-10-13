@@ -4,13 +4,13 @@ class AdminMailer < ApplicationMailer
   def new_shop_request(user, shop_images)
     Mailjet::Send.create(messages: [{
       'To'=> [{
-        'Email'=> 'atelier@nouveauxdesigns.fr',
+        'Email'=> admin_email,
         'Name'=> 'You'
       }],
       'Variables' => {
         'brand' => user.shop.brand,
         'email_pro' => user.shop.email_pro,
-        'url' => edit_user_url(user.id),
+        'url' => website_url("users/#{user.id}/edit"),
       },
       'TemplateID'=> 2222960,
       'TemplateLanguage'=> true,
@@ -27,7 +27,7 @@ class AdminMailer < ApplicationMailer
   def beta_new_order(order)
     Mailjet::Send.create(messages: [{
       'To'=> [{
-        'Email'=> 'atelier@nouveauxdesigns.fr',
+        'Email'=> admin_email,
         'Name'=> 'You'
       }],
       'Variables' => {
@@ -38,7 +38,7 @@ class AdminMailer < ApplicationMailer
       },
       'TemplateID'=> 2813727,
       'TemplateLanguage'=> true,
-      'Subject'=> 'Test : Nvlle commande Click & Collect - la Boutique des Nouveaux Designs',
+      'Subject'=> 'Nvlle commande Click & Collect - la Boutique des Nouveaux Designs',
     }])
   end
 end
