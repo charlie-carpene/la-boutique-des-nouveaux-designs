@@ -1,61 +1,63 @@
-<div class="container row mb-5 mt-5 align-items-center">
-  <div class="col-sm d-flex align-items-center">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <% if @item.item_pictures.present? %> <%# if to be deleted when tests are over. same for items/_item_card & items/_item_row %>
-          <div class="carousel-item active"> <!-- show the first stored image as the first image to show -->
-            <%= image_tag @item.item_pictures.first.picture[:item_show].url, class: "d-flex justify-content-center" %>
-          </div>
-          <% (1...@item.item_pictures.count).each do |nbr| %> <!-- add the rest of the images to the carrouselles -->
-            <div class="carousel-item">
-              <%= image_tag(@item.item_pictures[nbr].picture[:item_show].url, class: "d-flex justify-content-center") %>
+<div class="container-fluid reset-p-m">
+  <div class="row align-items-center item-carousel-marging">
+    <div class="col-sm d-flex align-items-center reset-p-m">
+      <div id="carouselExampleControls" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+          <% if @item.item_pictures.present? %> <%# if to be deleted when tests are over. same for items/_item_card & items/_item_row %>
+            <div class="carousel-item active"> <!-- show the first stored image as the first image to show -->
+              <%= image_tag @item.item_pictures.first.picture[:item_show].url, class: "d-flex justify-content-center item-carousel-img" %>
             </div>
-          <% end %>
-        <% else %>
-          <div class="carousel-item active">
-            <%= image_tag "img-items/sac-1.jpg" %>
-          </div>
-          <% (2...4).each do |nbr| %>
-            <div class="carousel-item">
-              <%= image_tag "img-items/sac-#{nbr}.jpg", class: "d-flex justify-content-center" %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="col-sm d-flex flex-column">
-    <div class="d-flex align-items-end">
-      <h2 class="card-title"><%= @item.name %></h2>
-      <p class="ml-1 font-italic">by <a href="<%= shop_path(@item.shop.id) %>"><%= @item.shop.brand %></a></p>
-    </div>
-    <p class="card-text"><%= @item.rich_description %></p>
-    <div class="d-flex flex-column">
-      <p><%= t("item.show.qty", qty: @item.available_qty) %></p>
-      <p class="card-text"><%= t("item.show.price_html", price: @item.price) %></p>
-<!--
-        <strong><%= @item.price_with_shipping_cost(shipping_cost(@item.product_weight)) %> €</strong> <span class="font-italic">dont <%= shipping_cost(@item.product_weight) %> € de frais de port</span>.</p>
--->
-      <div>
-        <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
-        <% if current_user.present? %>
-          <% if can? :manage, @item %>
-            <%= link_to t("button.edit_.my_product"), edit_item_path(@item.id), class: "btn btn-warning m-1" %>
+            <% (1...@item.item_pictures.count).each do |nbr| %> <!-- add the rest of the images to the carrouselles -->
+              <div class="carousel-item">
+                <%= image_tag(@item.item_pictures[nbr].picture[:item_show].url, class: "d-flex justify-content-center item-carousel-img") %>
+              </div>
+            <% end %>
           <% else %>
-            <% if @item.available_qty > 0 %>
-              <%= link_to t("button.add_.to_cart"), cart_items_path(item_id: @item.id, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "btn btn-success m-1" %>
+            <div class="carousel-item active">
+              <%= image_tag "img-items/sac-1.jpg" %>
+            </div>
+            <% (2...4).each do |nbr| %>
+              <div class="carousel-item">
+                <%= image_tag "img-items/sac-#{nbr}.jpg", class: "d-flex justify-content-center" %>
+              </div>
             <% end %>
           <% end %>
-        <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-sm d-flex flex-column">
+      <div class="d-flex flex-column">
+        <h2 class="card-title"><%= @item.name %></h2>
+        <p class="ml-1 font-italic">by <a href="<%= shop_path(@item.shop.id) %>"><%= @item.shop.brand %></a></p>
+      </div>
+      <p class="card-text"><%= @item.rich_description %></p>
+      <div class="d-flex flex-column">
+        <p><%= t("item.show.qty", qty: @item.available_qty) %></p>
+        <p class="card-text"><%= t("item.show.price_html", price: @item.price) %></p>
+  <!--
+          <strong><%= @item.price_with_shipping_cost(shipping_cost(@item.product_weight)) %> €</strong> <span class="font-italic">dont <%= shipping_cost(@item.product_weight) %> € de frais de port</span>.</p>
+  -->
+        <div>
+          <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
+          <% if current_user.present? %>
+            <% if can? :manage, @item %>
+              <%= link_to t("button.edit_.my_product"), edit_item_path(@item.id), class: "btn btn-warning m-1" %>
+            <% else %>
+              <% if @item.available_qty > 0 %>
+                <%= link_to t("button.add_.to_cart"), cart_items_path(item_id: @item.id, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "btn btn-success m-1" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
