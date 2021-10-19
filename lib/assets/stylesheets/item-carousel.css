@@ -1,0 +1,19 @@
+.item-carousel-img {
+    width: 100%;
+}
+
+.item-carousel-marging {
+    margin: 2rem 1rem;
+    padding: 0;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .item-carousel-img {
+        width: 100vw;
+    }
+    
+    .item-carousel-marging {
+        margin: 0;
+        padding: 0;
+    }
+}
