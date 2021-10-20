@@ -4,8 +4,7 @@
 }
 
 .card-item {
-  height:300px;
-  width:200px;
+  width: 15rem;
 }
 
 .card-item img {
@@ -30,7 +29,25 @@
   background-color: rgba(255, 255, 255, 0.75)
 }
 
-.shop-resize {
-  height: 350px;
-  width: 250px;
+.card-shop {
+  margin: 2rem;
+  width: 15rem;
+}
+
+.absolute-centered {
+  position: absolute;
+  top: 5.5em;
+  left: calc(50% - 2em)
+}
+
+@media only screen and (max-device-width: 480px) {
+  .card-item {
+    width: 40%;
+  }
+
+  .card-shop {
+    margin: 2rem 0;
+    width: 100%;
+  }
+
 }

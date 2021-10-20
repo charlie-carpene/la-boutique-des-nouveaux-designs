@@ -1,11 +1,11 @@
-<div class="card card-shop bg-light text-dark shop-resize">
+<div class="card card-shop bg-light text-dark">
   <%= image_tag shop.show_image, class: "card-img p-5 rounded" %>
   <% unless shop.image.present? %>
-    <div class="card-img-overlay d-flex justify-content-center mt-5 pt-5">
-      <p class="card-text text-warning font-weight-bold"><%= t("shop.index.new_maker_html") %></p>
+    <div class="absolute-centered">
+      <div class="card-text text-warning font-weight-bold"><%= t("shop.index.new_maker_html") %></div>
     </div>
   <% end %>
-  <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">
-    <%= link_to shop.brand, shop_path(shop.id), class: "mb-4 btn btn-primary stretched-link" %>
+  <div class="d-flex flex-column align-items-center justify-content-end mb-3">
+    <%= link_to shop.brand, shop_path(shop.id), class: "my-3 btn btn-primary stretched-link" %>
   </div>
 </div>

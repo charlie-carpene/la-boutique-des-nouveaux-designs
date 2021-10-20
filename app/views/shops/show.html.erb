@@ -4,7 +4,7 @@
     <h2 class="pt-4 text-center text-light"><%= @shop.brand %></h2>
     <p class="text-light"><%= @shop.description %></p>
     <% if can? :manage, @shop %>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex flex-wrap justify-content-center">
         <%= button_to t("button.sold_product"), order_items_path, { method: 'get', form_class: "m-3 pt-1", class: "btn btn-info" } %>
         <%= button_to t("button.see.shop_info"), edit_shop_path(@shop.id), {method: 'get', form_class: "m-3 pt-1", class: "btn btn-outline-warning" } %>
       </div>
@@ -12,28 +12,27 @@
   </div>
 </div>
 
-<div class="container">
-  <% if can? :manage, @shop %>
-    <div class="d-flex justify-content-center">
-      <% if @shop.can_receive_payments? %>
+<% if can? :manage, @shop %>
+  <div class="d-flex justify-content-center">
+    <% if @shop.can_receive_payments? %>
 
 <!--
 Support documentation relative to Stripe connect payment method:
-  - https://medium.com/@ThatGuyTinus/stripe-connect-rails-part-2-9751c0e553f9
-  - https://github.com/heartcombo/devise/wiki/OmniAuth:-Overview
+- https://medium.com/@ThatGuyTinus/stripe-connect-rails-part-2-9751c0e553f9
+- https://github.com/heartcombo/devise/wiki/OmniAuth:-Overview
 -->
-        <%= button_to t("button.add_.new_product"), new_item_path, {method: 'get', form_class: "mt-4 pt-1", class: "btn btn-success" } %>
-      <% else %>
-        <div class="mt-4 p-4 d-flex flex-column align-items-center bg-warning rounded ">
-          <p class="text-center text-primary font-italic font-weight-bold"><%= t("shop.show.stripe_notice") %></p>
-          <%= link_to t("button.connect_.stripe"), stripe_oauth_url(@session_csrf_token), class: 'btn btn-success' %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="d-flex flex-wrap justify-content-center">
-    <% @shop.items.sort.each do |item| %>
-      <%= render 'items/item_card', item: item %>
+      <%= button_to t("button.add_.new_product"), new_item_path, {method: 'get', form_class: "mt-4 pt-1", class: "btn btn-success" } %>
+    <% else %>
+      <div class="mt-4 p-4 d-flex flex-column align-items-center bg-warning rounded ">
+        <p class="text-center text-primary font-italic font-weight-bold"><%= t("shop.show.stripe_notice") %></p>
+        <%= link_to t("button.connect_.stripe"), stripe_oauth_url(@session_csrf_token), class: 'btn btn-success' %>
+      </div>
     <% end %>
   </div>
+<% end %>
+
+<div class="d-flex flex-wrap justify-content-center">
+  <% @shop.items.sort.each do |item| %>
+    <%= render 'items/item_card', item: item %>
+  <% end %>
 </div>
