@@ -4,8 +4,7 @@
 }
 
 .card-item {
-  height:300px;
-  width:200px;
+  width: 15rem;
 }
 
 .card-item img {
@@ -42,8 +41,13 @@
 }
 
 @media only screen and (max-device-width: 480px) {
+  .card-item {
+    width: 40%;
+  }
+
   .card-shop {
     margin: 2rem 0;
     width: 100%;
   }
+
 }
