@@ -20,6 +20,7 @@
  *= require sizing
  *= require logo
  *= require navbar
+ *= require footer
  *= require button
  *= require alert
  *= require actiontext
