@@ -3,7 +3,7 @@ class Shop < ApplicationRecord
   include Reusable
 
   validates :brand, presence: true
-  validates :description, presence: true
+  validates :rich_description, no_attachments: true
   validates :email_pro, presence: true, format: { with: /\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: I18n.t("validate.errors.email") }
   validates :website, allow_blank: true, format: { with: /\A^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$\z/, message: I18n.t("validate.errors.website") }
   validates :terms_of_service, acceptance: { message: I18n.t("validate.errors.terms_of_service") }
@@ -13,6 +13,8 @@ class Shop < ApplicationRecord
   belongs_to :user
   belongs_to :address, optional: true
   has_many :items
+  
+  has_rich_text :rich_description
 
   def show_image
     if self.image.present?
