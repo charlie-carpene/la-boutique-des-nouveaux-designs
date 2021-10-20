@@ -39,7 +39,7 @@
         <h2 class="card-title"><%= @item.name %></h2>
         <p class="ml-1 font-italic">by <a href="<%= shop_path(@item.shop.id) %>"><%= @item.shop.brand %></a></p>
       </div>
-      <p class="card-text"><%= @item.rich_description %></p>
+      <p><%= @item.rich_description %></p>
       <div class="d-flex flex-column">
         <p><%= t("item.show.qty", qty: @item.available_qty) %></p>
         <p class="card-text"><%= t("item.show.price_html", price: @item.price) %></p>
