@@ -7,7 +7,7 @@
     <li class="list-group-item"><%= t("user.edit.email", email: @user_to_validate.shop.email_pro) %></li>
   </ul>
   <h2 class="pt-4 text-center text-primary"><%= t("user.edit.title_2") %></h2>
-  <p class="m-5"><%= @user_to_validate.shop.description %></p>
+  <p class="m-5"><%= @user_to_validate.shop.rich_description %></p>
 
   <div  class="d-flex justify-content-around my-4">
     <%= button_to t("user.edit.button.deny"), shop_path(@user_to_validate.shop.id), method: 'delete', :class => "btn btn-danger btn-lg btn-block py-2" %>
