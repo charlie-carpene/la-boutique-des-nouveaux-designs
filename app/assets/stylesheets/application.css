@@ -12,6 +12,7 @@
  *
  *= require bootstrap
  *= require carousel
+ *= require item-carousel
  *= require img
  *= require cart
  *= require card
@@ -19,6 +20,7 @@
  *= require sizing
  *= require logo
  *= require navbar
+ *= require footer
  *= require button
  *= require alert
  *= require actiontext

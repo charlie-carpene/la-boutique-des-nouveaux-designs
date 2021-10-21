@@ -1,9 +1,7 @@
 <div class="container">
   <div class="d-flex flex-wrap justify-content-center">
     <% @shops.each do |shop| %>
-      <div class="m-5">
-        <%= render 'shop_card', shop: shop %>
-      </div>
+      <%= render 'shop_card', shop: shop %>
     <% end %>
   </div>
 </div>

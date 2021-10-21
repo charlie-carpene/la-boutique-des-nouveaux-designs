@@ -1,4 +1,4 @@
 fr:
   shop:
     show:
-      stripe_notice: "Pour pouvoir ajouter et vendre vos produits veuillez d'abord créer (ou connecter) un compte Stripe :"
+      stripe_notice: "Pour pouvoir ajouter et vendre tes produits, nous t'invitons à créer ou à connecter un compte Stripe :"

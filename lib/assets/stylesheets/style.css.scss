@@ -64,12 +64,16 @@ p {
   height: 2em;
 }
 
+/****** PADDING & MARGIN ******/
+.reset-p-m {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
 
 /****** COLORS ******/
 /*filters from https://codepen.io/sosuke/pen/Pjoqqp */
 
 .icon-primary {
-  transition: 0.2s;
   filter: invert(34%) sepia(47%) saturate(674%) hue-rotate(134deg) brightness(97%) contrast(93%);
   /*primary color*/
 }

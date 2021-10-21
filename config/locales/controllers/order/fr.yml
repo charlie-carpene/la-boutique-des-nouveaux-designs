@@ -1,5 +1,5 @@
 fr:
   order:
     errors:
-      item_no_longer_available: "Cet article %{item_name} n'est plus disponible à la vente. Il a été supprimé de votre panier."
-      item_available_qty_too_low: "Désolé, cet article %{item_name} n'est disponible qu'en %{qty_available} exemplaire(s). Veuillez ajuster la quantité pour continuer."
+      item_no_longer_available: "Désolé, cet article %{item_name} n'est plus disponible à la vente. Il a été supprimé de ton panier."
+      item_available_qty_too_low: "Désolé, cet article %{item_name} n'est disponible qu'en %{qty_available} exemplaire(s). Nous t'invitons à ajuster la quantité pour continuer."

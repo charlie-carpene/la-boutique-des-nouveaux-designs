@@ -25,4 +25,26 @@ class ApplicationMailer < ActionMailer::Base
 
     return order_item_names.join(", ")
   end
+
+  def website_url(slug)
+    if Rails.env.production?
+      return "https://boutique.nouveauxdesigns.fr/#{slug}"
+    elsif Rails.env.development?
+      return "http://localhost:3000/#{slug}"
+    else
+      return "not-in-dev-nor-prod/#{slud}"
+    end
+  end
+
+  def admin_email
+    if Rails.env.production?
+      return "atelier@nouveauxdesigns.fr"
+    elsif Rails.env.development?
+      return "solunacisv@gmail.com"
+    elsif Rails.env.test?
+      return "error@nouveauxdesigns.fr"
+    else
+      return "error@nouveauxdesigns.fr"
+    end
+  end
 end

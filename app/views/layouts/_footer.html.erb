@@ -1,6 +1,6 @@
 <footer class="bg-light p-4 mt-3">
-  <div class="row min-vh-15">
-    <div class="col-sm text-center">
+  <div class="d-flex flex-row justify-content-center flex-wrap min-vh-15">
+    <div class="text-center footer-column-size">
       <h4 class="pt-2"><%= t("footer.body_1.title") %></h4>
       <ul class="list-unstyled">
         <li>
@@ -18,7 +18,7 @@
       </ul>
     </div>
 
-    <div class="col-sm text-center">
+    <div class="text-center footer-column-size">
 			<h4 class="pt-2"><%= t("footer.body_2.title") %></h4>
 			<ul class="list-unstyled">
         <li><%= link_to t("footer.body_2.p_1"), become_maker_path, :class=> "text-dark" %></li>
@@ -28,16 +28,15 @@
 			</ul>
 		</div>
 
-    <div class="col-sm text-center">
-			<h4 class="pt-2"> Contact </h4>
+    <div class="text-center footer-column-size">
+			<h4 class="pt-2"><%= t("footer.body_3.title") %></h4>
       <ul class="list-unstyled">
-        <li><%= link_to t("footer.body_3.p_1"), "#", class: "text-dark" %></li>
-        <li><%= link_to t("footer.body_3.p_2"), "https://goo.gl/maps/M67EkJ84XG3dgmNk7", class: "text-dark" %></li>
+        <li class="text-dark"><%= t("footer.body_3.admin_email") %></li>
+        <li><%= link_to t("footer.body_3.adnd_address_html"), "https://goo.gl/maps/M67EkJ84XG3dgmNk7", target: "_blank", class: "text-dark" %></li>
       </ul>
 		</div>
   </div>
   <div class="footer-copyright text-center mt-3">
-    © 2020 Upcycling: 
-    <%= link_to t("footer.upcycling"), "https://fr.wikipedia.org/wiki/Surcyclage", class: "text-dark" %>
+    <p>© 2020 Upcycling: <%= link_to t("footer.upcycling"), "https://nouveauxdesigns.fr/index.php/2020/10/29/upcycling/", class: "text-dark" %></p>
   </div>
 </footer>
