@@ -10,15 +10,18 @@ FactoryBot.define do
 end
 
 def item_s_with_pictures(
-  pictures_count: 5,
-  items_count: 3,
+  available_qty: 1,
+  pictures_count: 2,
+  items_count: 1,
   shop: Shop.nil? ? FactoryBot.create(:shop) : Shop.all.sample,
-  category: nil
+  categories: []
 )
   item_pictures = build_list(:item_picture, pictures_count)
   create_list(:item, 
     items_count,
+    available_qty: available_qty,
     shop: shop,
-    item_pictures: item_pictures
+    item_pictures: item_pictures,
+    categories: categories
   )
 end

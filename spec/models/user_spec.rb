@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
-  let!(:maker) { create(:user, :is_maker, email: "gradya@yopmail.com") }
+  let!(:maker) { create(:user, :is_maker) }
   let!(:address) { create(:address, user: user)}
 
   context 'registration' do
@@ -11,6 +11,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'cannot have the same email as someone already registered' do
+      create(:user, email: "gawain@yopmail.com")
       expect{ create(:user, email: "gawain@yopmail.com") }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end

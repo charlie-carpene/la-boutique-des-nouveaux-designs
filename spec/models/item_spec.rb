@@ -4,8 +4,7 @@ RSpec.describe Item, type: :model do
   let(:categories) { create_list(:category, 4) }
   let(:maker_with_items) { maker_with_items_in_shop(items_count: 2, categories: categories) }
   let(:user_with_items) { user_with_items_in_cart(items_count: 2, items: maker_with_items.shop.items) }
-  let(:item) { create(:item, categories: [categories.sample], shop: maker_with_items.shop) }
-  let(:item_with_pictures) { create(:item_with_pictures, categories: [categories.sample], shop: maker_with_items.shop) }
+  let(:item) { item_s_with_pictures(categories: [categories.sample], shop: maker_with_items.shop).first }
 
   it 'should create a valid instance of Item' do
     expect(item).to be_valid
@@ -23,7 +22,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'should be linked to at least one picture' do
-      expect(item_with_pictures.item_pictures.count).to be > 0
+      expect(item.item_pictures.count).to be > 0
     end
   end
 
