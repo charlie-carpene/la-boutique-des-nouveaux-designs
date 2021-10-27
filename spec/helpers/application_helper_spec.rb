@@ -1,4 +1,5 @@
 require 'rails_helper'
+include Reusable
 
 RSpec.describe ApplicationHelper, type: :helper do
   it 'flash_class(type) should return the right bootstrap class to style notice' do
@@ -10,19 +11,19 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   it 'translate_mounth() should return the right month' do
-    expect(helper.translate_month(1)).to eq("Janvier")
-    expect(helper.translate_month(2)).to eq("Février")
-    expect(helper.translate_month(3)).to eq("Mars")
-    expect(helper.translate_month(4)).to eq("Avril")
-    expect(helper.translate_month(5)).to eq("Mai")
-    expect(helper.translate_month(6)).to eq("Juin")
-    expect(helper.translate_month(7)).to eq("Juillet")
-    expect(helper.translate_month(8)).to eq("Août")
-    expect(helper.translate_month(9)).to eq("Septembre")
-    expect(helper.translate_month(10)).to eq("Octobre")
-    expect(helper.translate_month(11)).to eq("Novembre")
-    expect(helper.translate_month(12)).to eq("Décembre")
-    expect(helper.translate_month(13)).to eq("Mois inexistant")
+    expect(Reusable.translate_month(1)).to eq("Janvier")
+    expect(Reusable.translate_month(2)).to eq("Février")
+    expect(Reusable.translate_month(3)).to eq("Mars")
+    expect(Reusable.translate_month(4)).to eq("Avril")
+    expect(Reusable.translate_month(5)).to eq("Mai")
+    expect(Reusable.translate_month(6)).to eq("Juin")
+    expect(Reusable.translate_month(7)).to eq("Juillet")
+    expect(Reusable.translate_month(8)).to eq("Août")
+    expect(Reusable.translate_month(9)).to eq("Septembre")
+    expect(Reusable.translate_month(10)).to eq("Octobre")
+    expect(Reusable.translate_month(11)).to eq("Novembre")
+    expect(Reusable.translate_month(12)).to eq("Décembre")
+    expect(Reusable.translate_month(13)).to eq("Mois inexistant")
   end
 
   it 'encrypt and decrypt data while assigning a purpose' do
