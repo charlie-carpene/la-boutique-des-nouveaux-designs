@@ -9,8 +9,10 @@ class ApplicationController < ActionController::Base
 
   def translate_error_messages(errors)
     full_translated_message = Array.new
-    errors.each do |attr, value|
-      full_translated_message.push(t(attr) + " " + value)
+    errors.each do |error|
+      attribute = error.attribute
+      message = error.message
+      full_translated_message.push(t(attribute) + " " + message)
     end
     return full_translated_message
   end
