@@ -30,13 +30,14 @@ def maker_with_items_in_shop(items_count: 1, available_qty: Faker::Number.betwee
   end
 end
 
-def user_with_items_in_cart(items_count: 1, item_qty_in_cart: 1, items: maker_with_items_in_shop)
+def user_with_items_in_cart(item_qty_in_cart: 1, items: maker_with_items_in_shop)
   create(:user) do |user|
-    create_list(:cart_item,
-      items_count,
-      cart: user.cart,
-      item: items.sample,
-      item_qty_in_cart: item_qty_in_cart
-    )
+    items.each do |item|
+      create(:cart_item,
+        cart: user.cart,
+        item: item,
+        item_qty_in_cart: item_qty_in_cart  
+      )
+    end
   end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Cart, type: :model do
   let(:categories) { create_list(:category, 4) }
   let(:maker_with_items) { maker_with_items_in_shop(items_count: 1, available_qty: 2, categories: categories) }
-  let(:user_with_items) { user_with_items_in_cart(items_count: 1, item_qty_in_cart: 2, items: maker_with_items.shop.items) }
+  let(:user_with_items) { user_with_items_in_cart(item_qty_in_cart: 2, items: maker_with_items.shop.items) }
 
   it 'should create a valid instance of Cart' do
     expect(user_with_items.cart).to be_valid

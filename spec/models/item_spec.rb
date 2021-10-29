@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   let(:categories) { create_list(:category, 4) }
   let(:maker_with_items) { maker_with_items_in_shop(items_count: 2, categories: categories) }
-  let(:user_with_items) { user_with_items_in_cart(items_count: 2, items: maker_with_items.shop.items) }
+  let(:user_with_items) { user_with_items_in_cart(items: maker_with_items.shop.items) }
   let(:item) { item_s_with_pictures(categories: [categories.sample], shop: maker_with_items.shop).first }
 
   it 'should create a valid instance of Item' do
