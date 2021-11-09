@@ -1,5 +1,4 @@
 class ImageUploader < Shrine
-  # plugins and uploading logic
   plugin :store_dimensions
   plugin :determine_mime_type
   plugin :pretty_location
@@ -19,17 +18,18 @@ class ImageUploader < Shrine
     magick = ImageProcessing::MiniMagick.source(original)
  
     { 
-      shop:  magick.resize_to_fill!(200, 200),
+      shop: magick.resize_to_fill!(200, 200),
     }
   end
 
   def generate_location(io, context = {})
     extension = ".#{io.extension}" if io.is_a?(UploadedFile) && io.extension
     extension ||= File.extname(extract_filename(io).to_s).downcase
-    @filename = context[:derivative].blank? ? 'original' : context[:derivative]
-    shopname = context[:record].brand.downcase
+    @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
+    version = context[:derivative].blank? ? 'original' : context[:derivative]
+    shopname = context[:record].brand.downcase.split(/[^a-zA-Z\d:]/).join
     user_id = context[:record].user.id
     directory = context[:record].class.name.downcase.pluralize
-    "#{directory}/#{shopname}_user-#{user_id}_#{@filename}#{extension}"
+    "#{directory}/#{shopname}_user-#{user_id}_#{@filename}_#{version}#{extension}"
   end
 end
