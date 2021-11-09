@@ -1,17 +1,19 @@
 FactoryBot.define do
   factory :category do
     name { Faker::Coffee.variety }
+  end
+end
 
-    factory :category_with_items do
-      transient do
-        items_count { 5 }
-        shop { create(:shop) }
-      end
-
-      after(:create) do |category, evaluator|
-        create_list(:item, evaluator.items_count, categories: [category], shop: evaluator.shop)
-        category.reload
-      end
-    end
+def category_with_item_s(
+    items_count: 1,
+    item_shop: Shop.nil? ? FactoryBot.create(:shop) : Shop.all.sample
+  )
+  create(:category) do |category|
+    item_s_with_pictures(
+      pictures_count: 2,
+      items_count: items_count,
+      shop: item_shop,
+      categories: [category]
+    )
   end
 end

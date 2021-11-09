@@ -5,7 +5,7 @@ FactoryBot.define do
     brand { "ShowerChiottes" }
     website { "www.showerchiott.es" }
     email_pro { "atelier@nouveauxdesigns.fr" }
-    description { Faker::Quote.famous_last_words }
+    rich_description { Faker::Quote.famous_last_words }
     company_id { Faker::Number.number(digits: 14) }
     image_data { TestData.image_data }
     association :user, :is_maker

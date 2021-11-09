@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  let!(:maker) { create(:user, :is_maker, email: "gradya@yopmail.com") }
+  let!(:maker) { create(:user, :is_maker) }
   let!(:address) { create(:address, user: maker) }
   let!(:pro_address) { create(:address, user: maker) }
 

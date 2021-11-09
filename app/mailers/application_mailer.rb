@@ -32,7 +32,7 @@ class ApplicationMailer < ActionMailer::Base
     elsif Rails.env.development?
       return "http://localhost:3000/#{slug}"
     else
-      return "not-in-dev-nor-prod/#{slud}"
+      return "not-in-dev-nor-prod/#{slug}"
     end
   end
 

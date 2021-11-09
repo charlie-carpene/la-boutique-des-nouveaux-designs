@@ -7,10 +7,11 @@ class UsersController < ApplicationController
 
   def edit
     @user_to_validate = User.find(params[:id])
-    @legal_compagny_name = @user_to_validate.shop.verify_company_id
 
-    unless load_user.admin.present? #can't use load_resource because it takes the params from the URL and here we want the current_user id
-      flash[:error] = t("errors.admin_required")
+    if load_user.admin.present? && @user_to_validate.shop.present? #can't use load_and_authorize_resource because it takes the params from the URL and here we want the current_user id
+      @legal_compagny_name = @user_to_validate.shop.verify_company_id
+    else 
+      flash[:error] = t('errors.admin_required') + ' / ' + t('shop.dont_exist')
       redirect_to root_path
     end
   end
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
       flash[:success] = t("success.validate_user_as_maker", brand: @user_to_validate.shop.brand, shop_email: @user_to_validate.shop.email_pro)
       redirect_to root_path
     else
-      flash[:error] = translate_error_messages(@user_to_validate.shop.errors)
+      flash[:error] = t('errors.admin_required') + ' / ' + translate_error_messages(@user_to_validate.shop.errors).join(', ')
       redirect_to root_path
     end
   end
