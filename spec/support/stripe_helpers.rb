@@ -10,4 +10,4 @@ module StripeData
 			source: stripe_helper.generate_card_token
 		})
 	end
-end  
+end
