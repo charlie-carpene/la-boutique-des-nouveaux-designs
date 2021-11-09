@@ -9,6 +9,7 @@ class Shop < ApplicationRecord
   validates :terms_of_service, acceptance: { message: I18n.t("validate.errors.terms_of_service") }
   validates :company_id, presence: true, format: { with: /\A\d+\z/, message: I18n.t("validate.errors.must_be_numbers") }, length: { is: 14 }
   validate :forbid_changing_uid, on: :update
+  validate :create_image_derivatives, on: [:create, :update]
 
   belongs_to :user
   belongs_to :address, optional: true
@@ -18,7 +19,7 @@ class Shop < ApplicationRecord
 
   def show_image
     if self.image.present?
-      return self.image[:shop].url
+      return self.image_url(:shop)
     else
       return "logo_transparent.png"
     end
@@ -69,6 +70,10 @@ class Shop < ApplicationRecord
 	end    
 
   private
+
+  def create_image_derivatives
+    self.image_derivatives!
+  end
 
   def forbid_changing_uid
     errors.add(:uid, "ne peut pas être modifié") unless (self.uid_was == nil) || !self.uid_changed?
