@@ -22,7 +22,7 @@
 .byebug_history
 
 # Ignore test data
-/coverage/*
+/coverage
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

@@ -2,7 +2,10 @@ class ChangeVersionImagesToDerivatives < ActiveRecord::Migration[6.1]
   def change
     Shop.find_each do |shop|
       if shop.image.present?
-        attacher = self.image_attacher
+        attacher = shop.image_attacher
+
+        next unless attacher.stored?
+
         old_attacher = attacher.dup
         current_file = old_attacher.file
     
