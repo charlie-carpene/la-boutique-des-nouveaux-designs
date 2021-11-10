@@ -9,7 +9,8 @@ class Shop < ApplicationRecord
   validates :terms_of_service, acceptance: { message: I18n.t("validate.errors.terms_of_service") }
   validates :company_id, presence: true, format: { with: /\A\d+\z/, message: I18n.t("validate.errors.must_be_numbers") }, length: { is: 14 }
   validate :forbid_changing_uid, on: :update
-  validate :create_image_derivatives, on: [:create, :update]
+  validate :create_image_derivatives, on: [:create, :update], if: :image_changed?
+  validate :generate_new_image_location, on: :update, if: :brand_changed?, unless: :image_changed?
 
   belongs_to :user
   belongs_to :address, optional: true
@@ -71,8 +72,43 @@ class Shop < ApplicationRecord
 
   private
 
+  def generate_new_image_location
+    attacher = self.image_attacher
+    old_attacher = attacher.dup
+    current_file = old_attacher.file
+
+    if self.brand_changed?
+      attacher.set attacher.upload(attacher.file)
+      attacher.set_derivatives attacher.upload_derivatives(attacher.derivatives)
+
+      begin
+        attacher.atomic_persist(current_file)
+        old_attacher.destroy_attached
+      rescue Shrine::AttachmentChanged,
+             ActiveRecord::RecordNotFound
+        attacher.destroy_attached
+      end
+    end
+  end
+
   def create_image_derivatives
-    self.image_derivatives!
+    attacher = self.image_attacher
+
+    if attacher.derivatives.present?
+      old_derivatives = attacher.derivatives
+      attacher.set_derivatives({})
+      attacher.create_derivatives
+    
+      begin
+        attacher.atomic_persist
+        attacher.delete_derivatives(old_derivatives)
+      rescue Shrine::AttachmentChanged,
+            ActiveRecord::RecordNotFound
+        attacher.delete_derivatives
+      end
+    else
+      self.image_derivatives!
+    end
   end
 
   def forbid_changing_uid
