@@ -6,16 +6,22 @@ FactoryBot.define do
     product_weight { Faker::Number.number(digits: 4) }
     available_qty { Faker::Number.between(from: 1, to: 10) }
     association :shop
-
-    factory :item_with_pictures do
-      transient do
-        pictures_count { 5 }
-      end
-
-      after(:create) do |item, evaluator|
-        create_list(:item_picture, evaluator.pictures_count, item: item)
-        item.reload
-      end
-    end
   end
+end
+
+def item_s_with_pictures(
+  available_qty: 1,
+  pictures_count: 2,
+  items_count: 1,
+  shop: Shop.nil? ? FactoryBot.create(:shop) : Shop.all.sample,
+  categories: []
+)
+  item_pictures = build_list(:item_picture, pictures_count)
+  create_list(:item, 
+    items_count,
+    available_qty: available_qty,
+    shop: shop,
+    item_pictures: item_pictures,
+    categories: categories
+  )
 end

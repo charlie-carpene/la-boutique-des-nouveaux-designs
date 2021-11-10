@@ -3,7 +3,7 @@ module TestData
   
   def image_data
     attacher = Shrine::Attacher.new
-    attacher.set(uploaded_image)   
+    attacher.set(uploaded_image)
     attacher.column_data # or attacher.data in case of postgres jsonb column 
   end
   
@@ -17,7 +17,7 @@ module TestData
       "mime_type" => "image/jpeg",
       "filename"  => "test.jpg",
     )
-  
+
     uploaded_file
   end
 end
