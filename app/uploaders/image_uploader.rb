@@ -30,6 +30,6 @@ class ImageUploader < Shrine
     shopname = context[:record].brand.downcase.split(/[^a-zA-Z\d:]/).join
     user_id = context[:record].user.id
     directory = context[:record].class.name.downcase.pluralize
-    "#{directory}/#{shopname}_user-#{user_id}_#{@filename}_#{version}#{extension}"
+    "#{directory}/user-#{user_id}_#{shopname}_#{@filename}_#{version}#{extension}"
   end
 end
