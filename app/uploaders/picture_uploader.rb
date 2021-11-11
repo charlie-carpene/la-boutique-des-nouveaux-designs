@@ -1,13 +1,12 @@
 class PictureUploader < Shrine
-  # plugins and uploading logic
   plugin :store_dimensions
   plugin :determine_mime_type
   plugin :pretty_location
   plugin :remove_invalid
   plugin :validation_helpers
-  plugin :versions
   plugin :processing
   plugin :delete_raw
+  plugin :derivatives, versions_compatibility: true
 
   Attacher.validate do
     validate_mime_type %w[image/jpeg image/png], message: "doit être un jpeg ou un png"
@@ -15,32 +14,25 @@ class PictureUploader < Shrine
     validate_extension_inclusion %w[jpg jpeg png], message: "doit être un jpeg ou un png"
   end
 
+  Attacher.derivatives do |original|
+    magick = ImageProcessing::MiniMagick.source(original)
+ 
+    { 
+      card: magick.resize_to_fill!(200, 300),
+      cart: magick.resize_to_fill!(100, 100),
+      item_show: magick.resize_to_fill!(600, 500),
+    }
+  end
+
   def generate_location(io, context = {})
-    if [:original, nil].include? context[:version]
-      @filename = File.basename(extract_filename(io).to_s, '.*')
-    end
     extension = ".#{io.extension}" if io.is_a?(UploadedFile) && io.extension
     extension ||= File.extname(extract_filename(io).to_s).downcase
-    filename = File.basename(extract_filename(io).to_s, '.*')
-    version =  context[:version] === :original ? '' : "_#{context[:version]}"
-    itemname = context[:record].item.present? === true ? "#{context[:record].item.name}_" : ''
+    @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
+    version = context[:derivative].blank? ? 'original' : context[:derivative]
+    itemname = context[:record].item.present? === true ? "#{context[:record].item.name.titleize.split(/[\s$&+,:;=?@#|'<>.^*()%!-]/).join}" : ''
+    item_id = context[:record].item.id
     shopname = context[:record].item.present? === true ? "#{context[:record].item.shop.brand}/" : ''
     directory = context[:record].class.name.downcase.pluralize
-    "#{directory}/#{shopname}#{itemname}#{@filename}#{version}#{extension}"
+    "#{directory}/#{shopname}#{itemname}_item-#{item_id}_#{@filename}_#{version}#{extension}"
   end
-
-  process(:store) do |io, **options|
-    versions = { original: io } # retain original
-
-    io.download do |original|
-      pipeline = ImageProcessing::MiniMagick.source(original)
-
-      versions[:card] = pipeline.resize_to_fill!(200, 300)
-      versions[:cart] = pipeline.resize_to_fill!(100, 100)
-      versions[:item_show]  = pipeline.resize_to_fill!(600, 500)
-    end
-
-    versions # return the hash of processed files
-  end
-
 end

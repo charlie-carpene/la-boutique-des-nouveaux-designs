@@ -1,6 +1,6 @@
 <div id="item-<%= item.id %>" class="card card-item border-0 bg-light text-dark m-4">
   <% if item.item_pictures.present? %> <%# to be deleted when tests are over. same for items/show & items/_item_row %>
-    <img src="<%= item.item_pictures.last.picture[:card].url %>" loading="lazy" class="card-img" alt="product">
+    <img src="<%= item.item_pictures.last.picture_url(:card) %>" loading="lazy" class="card-img" alt="product">
   <% else %>
     <%= image_tag "img-items/sac-0.jpg", loading: "lazy" %>
   <% end %>
