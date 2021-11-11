@@ -7,13 +7,7 @@ class ItemPicture < ApplicationRecord
   private
 
   def generate_new_picture_location
-    puts "-" * 30
-    puts "it works"
-    puts "-" * 30
     unless self.picture_changed?
-      puts "*" * 30
-      puts "picture has not changed"
-      puts "*" * 30
       attacher = self.picture_attacher
       old_attacher = attacher.dup
       current_file = old_attacher.file
