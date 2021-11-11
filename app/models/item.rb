@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   validates :product_weight, presence: true
   validates :rich_description, no_attachments: true
   validates :item_pictures, nbr_of_pictures: true
+  validate :generate_new_item_picture_location, on: :update, if: :name_changed?
 
   after_create :create_stripe_product_and_price
   before_update :update_stripe_info
@@ -84,5 +85,11 @@ class Item < ApplicationRecord
     Stripe::Price.update(self.stripe_price_id, {
       active: false
     })
+  end
+
+  def generate_new_item_picture_location
+    self.item_pictures.each do |item_picture|
+      item_picture.send(:generate_new_picture_location)
+    end
   end
 end

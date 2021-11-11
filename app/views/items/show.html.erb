@@ -5,11 +5,11 @@
         <div class="carousel-inner">
           <% if @item.item_pictures.present? %> <%# if to be deleted when tests are over. same for items/_item_card & items/_item_row %>
             <div class="carousel-item active"> <!-- show the first stored image as the first image to show -->
-              <%= image_tag @item.item_pictures.first.picture[:item_show].url, class: "d-flex justify-content-center item-carousel-img" %>
+              <%= image_tag @item.item_pictures.first.picture_url(:item_show), class: "d-flex justify-content-center item-carousel-img" %>
             </div>
             <% (1...@item.item_pictures.count).each do |nbr| %> <!-- add the rest of the images to the carrouselles -->
               <div class="carousel-item">
-                <%= image_tag(@item.item_pictures[nbr].picture[:item_show].url, class: "d-flex justify-content-center item-carousel-img") %>
+                <%= image_tag(@item.item_pictures[nbr].picture_url(:item_show), class: "d-flex justify-content-center item-carousel-img") %>
               </div>
             <% end %>
           <% else %>
