@@ -2,8 +2,22 @@ module TestData
   module_function
   
   def image_data
-    attacher = Shrine::Attacher.new
+    attacher = ImageUploader::Attacher.new
     attacher.set(uploaded_image)
+    attacher.set_derivatives(
+      shop:  uploaded_image,
+    )
+    attacher.column_data # or attacher.data in case of postgres jsonb column 
+  end
+
+  def picture_data
+    attacher = PictureUploader::Attacher.new
+    attacher.set(uploaded_image)
+    attacher.set_derivatives(
+      cart:  uploaded_image,
+      card:  uploaded_image,
+      item_show:  uploaded_image,
+    )
     attacher.column_data # or attacher.data in case of postgres jsonb column 
   end
   

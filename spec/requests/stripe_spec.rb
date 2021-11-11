@@ -15,8 +15,6 @@ RSpec.describe "Stripes", type: :request do
       expect(request.flash['error']).to include("le jeton d'identification n'a pas été reconnu")
     end
 
-    it "passes check_authenticity_token before_action" do
-      pending ("waiting for more knowledge to develop it")
-    end
+    pending ("it passes check_authenticity_token before_action => waiting for more knowledge to develop it")
   end
 end
