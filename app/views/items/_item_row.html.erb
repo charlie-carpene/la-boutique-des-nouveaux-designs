@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center justify-content-between">
     <div>
       <% if cart_item.item.item_pictures.present? %> <%# to be deleted when tests are over. same for items/_item/card & items/show %>
-        <%= image_tag cart_item.item.item_pictures.last.picture[:cart].url %>
+        <%= image_tag cart_item.item.item_pictures.last.picture_url(:cart) %>
       <% else %>
         <%= image_tag "img-items/sac-0_cart.jpg" %>
       <% end %>
