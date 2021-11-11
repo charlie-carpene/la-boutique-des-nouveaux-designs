@@ -30,8 +30,9 @@ class PictureUploader < Shrine
     @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
     version = context[:derivative].blank? ? 'original' : context[:derivative]
     itemname = context[:record].item.present? === true ? "#{context[:record].item.name.titleize.split(/[\s$&+,:;=?@#|'<>.^*()%!-]/).join}" : ''
+    item_id = context[:record].item.id
     shopname = context[:record].item.present? === true ? "#{context[:record].item.shop.brand}/" : ''
     directory = context[:record].class.name.downcase.pluralize
-    "#{directory}/#{shopname}#{itemname}_#{@filename}_#{version}#{extension}"
+    "#{directory}/#{shopname}#{itemname}_item-#{item_id}_#{@filename}_#{version}#{extension}"
   end
 end
