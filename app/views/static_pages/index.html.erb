@@ -5,10 +5,25 @@
 
 <%= render 'carrousel' %>
 
-<div class="d-flex flex-wrap justify-content-center">
-  <% @items.each do |item| %>
-    <%= render 'items/item_card', item: item %>
-  <% end %>
+<div class="d-flex flex-column">
+  <h3 class="text-center my-4"><%= t("landing_titles.highlighted_items") %></h3>
+  <div class="d-flex flex-wrap justify-content-center">
+    <% @items.each do |item| %>
+      <%= render 'items/item_card', item: item %>
+    <% end %>
+  </div>
+</div>
+
+<div class="d-flex flex-column align-items-center bg-primary text-light py-5">
+  <h4 class="text-center mb-4"><%= t("landing_titles.more_items") %></h4>
+  <div class="d-flex justify-content-around vw-100 flex-wrap m-2">
+    <% @categories.each do |category| %>
+      <div class="d-flex flex-column align-items-center">
+        <%= link_to image_tag(category.items.last.item_pictures.first.picture_url(:card), class: "rounded mb-2"), category_path(category.id), class: "img-opacity" %>
+        <p><%= category.name %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <div class="actions m-5 d-flex justify-content-center">
