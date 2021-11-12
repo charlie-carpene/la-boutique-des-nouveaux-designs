@@ -24,3 +24,6 @@ fr:
       adnd_address_html: "49 Rue Smith<br/>69002 Lyon, France"
       admin_email: "atelier[at]nouveauxdesigns.fr"
     upcycling: "La Boutique des Nouveaux Designs"
+  landing_titles:
+    highlighted_items: "Articles du moment"
+    more_items: "D'avantage d'articles par catégories"

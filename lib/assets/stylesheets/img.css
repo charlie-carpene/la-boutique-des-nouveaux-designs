@@ -1,9 +1,10 @@
 .img-opacity {
-  opacity: 0.7;
+  opacity: 1;
+  transition: 0.3s;
 }
 
 .img-opacity:hover {
-  opacity: 1.0;
+  opacity: 0.7;
 }
 
 .bg-opacity-04 {

@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 
   def index
     @items = Item.where.not(available_qty: 0).sample(4)
+    @categories = Category.all
   end
 
   def become_maker
