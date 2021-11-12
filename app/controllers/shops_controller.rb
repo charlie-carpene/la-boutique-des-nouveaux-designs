@@ -10,26 +10,30 @@ class ShopsController < ApplicationController
   end
 
   def create
-    @user = User.find(current_user.id)
-    if @user.shop.blank?
-      @user.shop = Shop.new(shop_permitted_params)
-      if @user.save
-        AdminMailer.new_shop_request(@user, params[:files]).deliver_now
-        UserMailer.new_shop_request(@user, params[:files]).deliver_now
-        flash[:success] = t("shop.success.shop_created")
-        redirect_to user_path(@user)
+    if current_user
+      @user = User.find(current_user.id)
+      if @user.shop.blank?
+        @user.shop = Shop.new(shop_permitted_params)
+        if @user.save
+          AdminMailer.new_shop_request(@user, params[:files]).deliver_now
+          UserMailer.new_shop_request(@user, params[:files]).deliver_now
+          flash[:success] = t("shop.success.shop_created")
+          redirect_to user_path(@user)
+        else
+          flash[:error] = translate_error_messages(@user.shop.errors)
+          redirect_to new_shop_path
+        end
       else
-        flash[:error] = translate_error_messages(@user.shop.errors)
-        redirect_to new_shop_path
+        flash[:error] = t("shop.errors.already_exist")
+        redirect_to user_path(@user)
       end
     else
-      flash[:error] = t("shop.errors.already_exist")
-      redirect_to user_path(@user)
+      flash[:error] = t("shop.errors.connect_to_become_maker")
+      redirect_to new_user_session_path
     end
   end
 
   def show
-    session[:_csrf_token] = form_authenticity_token
     @session_csrf_token = masked_authenticity_token(session)
   end
 

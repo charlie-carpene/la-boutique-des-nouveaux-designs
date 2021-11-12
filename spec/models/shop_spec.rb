@@ -49,9 +49,6 @@ RSpec.describe Shop, type: :model do
 
   context 'method' do
     it 'shop_image' do
-      puts "* " * 30
-      puts shop.image[:shop].inspect
-      puts "* " * 30
       expect(shop.show_image).to be_kind_of(String)
     end
 
@@ -60,6 +57,3 @@ RSpec.describe Shop, type: :model do
     end
   end
 end
-
-# ToDo
-# -> changer le plugin Shrine de version à derivatives + implémenter les tests
