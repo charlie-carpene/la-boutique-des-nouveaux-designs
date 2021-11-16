@@ -59,10 +59,6 @@ RSpec.describe "Orders", type: :request do
   
       headers = { "Stripe-Signature" => StripeData.generate_stripe_event_signature(payload.to_json) }
       post orders_path, params: payload, headers: headers, as: :json
-      puts '*' * 30
-      puts request.headers.inspect
-      puts request.body.inspect
-      puts '*' * 30
       expect(response).to have_http_status(200)
     end
   end
