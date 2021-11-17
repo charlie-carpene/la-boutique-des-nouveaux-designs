@@ -38,7 +38,7 @@ RSpec.describe "Orders", type: :request do
     end
   end
 
-  context 'GET /orders (#create)' do
+  context 'POST /orders (#create)' do
     before { StripeMock.start }
     after { StripeMock.stop }
 
