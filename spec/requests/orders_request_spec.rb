@@ -62,4 +62,26 @@ RSpec.describe "Orders", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  context 'GET /users/:user_id/orders/:order_id (#show)' do
+    let!(:order) do
+      o = create(:order, user: user)
+      create(:order_item, price: maker.shop.items.first.price, order: o, item: maker.shop.items.first)
+      return o
+    end
+  
+    it 'should work when user is signed in' do
+      sign_in user
+      get user_order_path(user.id, order.id)
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  context 'GET /users/:user_id/orders (#index)' do
+    it 'should work when user is signed in' do
+      sign_in user
+      get user_orders_path(user.id)
+      expect(response).to have_http_status(200)
+    end
+  end
 end

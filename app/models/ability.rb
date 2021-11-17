@@ -17,6 +17,7 @@ class Ability
       if user.is_maker
         can :manage, Shop, id: user.shop.id
         can :manage, Item, shop_id: user.shop.id
+        can :read, OrderItem
       end
     end
 
