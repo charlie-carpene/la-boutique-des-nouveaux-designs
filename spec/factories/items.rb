@@ -25,3 +25,8 @@ def item_s_with_pictures(
     categories: categories
   )
 end
+
+def item_attr(shop_id)
+  item_attr = attributes_for(:item)
+  item_attr.reverse_merge!({shop_id: shop_id})
+end

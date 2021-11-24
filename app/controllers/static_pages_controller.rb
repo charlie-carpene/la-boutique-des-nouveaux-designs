@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
   def index
     @items = Item.where.not(available_qty: 0).sample(4)
-    @categories = Category.includes(:items).where.not(items: { id: nil })
+    @categories = Category.joins(:items).distinct
   end
 
   def become_maker
