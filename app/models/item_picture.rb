@@ -2,7 +2,7 @@ class ItemPicture < ApplicationRecord
   include PictureUploader::Attachment(:picture)
   belongs_to :item
 
-  validate :create_picture_derivatives, on: [:create, :update], if: :picture_changed?
+  after_create :create_picture_derivatives, if: :picture_changed?
 
   private
 
