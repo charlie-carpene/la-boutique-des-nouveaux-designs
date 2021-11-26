@@ -5,7 +5,7 @@ RSpec.describe Address, type: :model do
   let!(:address) { create(:address, user: maker) }
   let!(:pro_address) { create(:address, user: maker) }
 
-  it 'should create a valid instance of Admin' do
+  it 'should create a valid instance of Address' do
     expect(address).to be_valid
   end
 

@@ -3,3 +3,4 @@ fr:
     success:
       created: "L'adresse a bien été ajoutée"
       updated: "Les changements ont bien été pris en compte"
+    deleted: "L'adresse a bien été supprimée"

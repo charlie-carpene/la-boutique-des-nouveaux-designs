@@ -7,13 +7,14 @@ class Ability
     user ||= User.new
 
     if user.present?
-      can :manage, User, id: user.id
-      can :manage, Address, user: user
-      can [:read, :create], Shop
       can :read, Category
       can :read, Cart, user: user
       can :read, Item
       can [:read, :create], Order, user: user
+      can [:read, :create], Shop
+      can :manage, CartItem, cart: { user: { id: user.id } }
+      can :manage, User, id: user.id
+      can :manage, Address, user: user
       if user.is_maker
         can :manage, Shop, id: user.shop.id
         can :manage, Item, shop_id: user.shop.id
