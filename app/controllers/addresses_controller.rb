@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
-  load_and_authorize_resource
-  skip_load_resource only: :create
+  load_and_authorize_resource :user
+  load_and_authorize_resource :address, :through => :user
+  skip_load_and_authorize_resource :address, only: :create
 
   def new
   end
@@ -10,7 +11,7 @@ class AddressesController < ApplicationController
     @address.user = User.find(params[:user_id])
     if @address.save
       flash[:success] = t("address.success.created")
-      redirect_to user_path(@address.user)
+      redirect_to user_path(@address.user), status: :see_other
     else
       flash[:error] = translate_error_messages(@address.errors)
       redirect_to new_user_address_path(params[:user_id])
@@ -28,7 +29,7 @@ class AddressesController < ApplicationController
 
     if @address.save
       flash[:success] = t("address.success.updated")
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), status: :see_other
     else
       flash[:error] = translate_error_messages(@address.errors)
       redirect_to edit_user_address_path(@address.user.id, @address.id)
@@ -37,7 +38,8 @@ class AddressesController < ApplicationController
 
   def destroy
     Address.destroy(params[:id])
-    redirect_to user_path(current_user.id)
+    flash[:info] = t("address.deleted")
+    redirect_to user_path(current_user), status: :see_other
   end
 
   private
