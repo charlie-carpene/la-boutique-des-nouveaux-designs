@@ -1,9 +1,16 @@
 class CartItemsController < ApplicationController
-  load_resource
+  load_and_authorize_resource except: :create
+  load_resource only: :create
 
   def create
     @cart_item = CartItem.new(cart_items_permitted_params)
-    if @cart_item.item.available_qty > 0
+
+    unless @cart_item.cart == (current_user ? current_user.cart : nil)
+      flash[:error] = t("ability.errors.action_not_allowed")
+      redirect_back(fallback_location: root_path) and return
+    end
+
+    if @cart_item.item.available_qty - params[:item_qty_in_cart].to_i >= 0
       if @cart_item.cart == current_user.cart && @cart_item.item == current_user.cart.items.where(id: params[:item_id]).first #check if item is already in cart
         flash[:info] = t("cart_item.info.item_already_in_cart")
         redirect_back(fallback_location: root_path)
@@ -17,7 +24,7 @@ class CartItemsController < ApplicationController
         end
       end
     else
-      flash[:error] = t("cart_item.errors.item_no_longer_available")
+      flash[:error] = t("cart_item.errors.item_qty_too_low")
       redirect_back(fallback_location: root_path)
     end
   end
@@ -26,14 +33,14 @@ class CartItemsController < ApplicationController
     case params[:operation]
     when "plus"
       if @cart_item.add_qty_if_available_enough
-        redirect_back(fallback_location: root_path)
+        redirect_back fallback_location: root_path, status: :ok
       else
         flash[:error] = t("cart_item.errors.item_qty_too_low")
         redirect_back(fallback_location: root_path)
       end
     when "minus"
       if @cart_item.remove_qty
-        redirect_back(fallback_location: root_path)
+        redirect_back fallback_location: root_path, status: :ok
       else
         flash[:error] = t("cart_item.errors.delete_item_from_cart")
         redirect_back(fallback_location: root_path)
@@ -45,9 +52,12 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item.destroy
-    flash[:alert] = t("cart_item.errors.item_deleted_from_cart", name: @cart_item.item.name)
-    redirect_back(fallback_location: root_path)
+    if @cart_item.destroy
+      flash[:alert] = t("cart_item.errors.item_deleted_from_cart", name: @cart_item.item.name)
+      redirect_back fallback_location: root_path, status: :ok
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
