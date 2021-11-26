@@ -12,10 +12,10 @@
       <div>
         <%= cart_item.item.price %>€ x
       </div>
-      <%= link_to image_tag("icons/minus.svg", class: "color-black-filtered-to-primary filter-to-warning cart-icon"), cart_item_path(cart_item.id, operation: "minus"), method: "put", class: "mx-1 z-index-1" %>
-      <p><%= cart_item.item_qty_in_cart %></p>
-      <%= link_to image_tag("icons/plus.svg", class: "color-black-filtered-to-primary filter-to-success cart-icon"), cart_item_path(cart_item.id, operation: "plus"), method: "put", class: "mx-1 z-index-1" %>
-      <div  class="mr-3">
+      <%= link_to image_tag("icons/minus.svg", class: "color-black-filtered-to-primary filter-to-warning cart-icon"), cart_item_path(cart_item.id, operation: "minus"), method: "put", class: "mx-1 z-index-1", remote: true %>
+      <p id="qty_in_cart_item_<%= cart_item.item.id %>"><%= cart_item.item_qty_in_cart %></p>
+      <%= link_to image_tag("icons/plus.svg", class: "color-black-filtered-to-primary filter-to-success cart-icon"), cart_item_path(cart_item.id, operation: "plus"), method: "put", class: "mx-1 z-index-1", remote: true %>
+      <div id="total_price_item_<%= cart_item.item.id %>" class="mr-3">
         = <strong><%= cart_item.total_price %>€</strong>
       </div>
       <%= link_to image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger cart-icon"), cart_item_path(cart_item.id), method: "delete", data: { confirm: t("button.delete_.are_you_sure") }, class: "z-index-1" %>
