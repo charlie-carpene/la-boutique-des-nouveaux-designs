@@ -48,10 +48,10 @@ RSpec.describe "CartItem", type: :request do
     it 'should work if 1. user is signed in, 2. operation params is correct' do
       sign_in user
       put cart_item_path(cart_item.id), params: { operation: 'plus' }
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:see_other)
 
       put cart_item_path(cart_item.id), params: { operation: 'minus' }
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:see_other)
     end
 
     it 'should fail when an other user than the cart owner tries the request' do
@@ -79,7 +79,7 @@ RSpec.describe "CartItem", type: :request do
     it 'should work if user is signed in' do
       sign_in user
       delete cart_item_path(cart_item.id)
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:see_other)
       expect(flash[:alert]).to include(I18n.t("cart_item.errors.item_deleted_from_cart", name: cart_item.item.name))
     end
 

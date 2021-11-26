@@ -33,14 +33,14 @@ class CartItemsController < ApplicationController
     case params[:operation]
     when "plus"
       if @cart_item.add_qty_if_available_enough
-        redirect_back fallback_location: root_path, status: :ok
+        redirect_to cart_path(current_user.cart.id), status: :see_other
       else
         flash[:error] = t("cart_item.errors.item_qty_too_low")
         redirect_back(fallback_location: root_path)
       end
     when "minus"
       if @cart_item.remove_qty
-        redirect_back fallback_location: root_path, status: :ok
+        redirect_to cart_path(current_user.cart.id), status: :see_other
       else
         flash[:error] = t("cart_item.errors.delete_item_from_cart")
         redirect_back(fallback_location: root_path)
@@ -54,7 +54,7 @@ class CartItemsController < ApplicationController
   def destroy
     if @cart_item.destroy
       flash[:alert] = t("cart_item.errors.item_deleted_from_cart", name: @cart_item.item.name)
-      redirect_back fallback_location: root_path, status: :ok
+      redirect_back fallback_location: root_path, status: :see_other
     else
       redirect_back(fallback_location: root_path)
     end
