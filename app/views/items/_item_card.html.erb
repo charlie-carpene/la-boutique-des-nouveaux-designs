@@ -1,12 +1,12 @@
-<div id="item-<%= item.id %>" class="card card-item border-0 bg-light text-dark m-4">
+<div id="item-<%= item.id %>" class="card card-item border-0 bg-light text-dark m-3">
   <% if item.item_pictures.present? %> <%# to be deleted when tests are over. same for items/show & items/_item_row %>
     <%= image_tag item.item_pictures.last.picture_url(:card), loading: "lazy", class: "card-img", alt: "#{item.name}" %>
   <% else %>
     <%= image_tag "img-items/sac-0.jpg", loading: "lazy" %>
   <% end %>
   <% if item.available_qty > 0 %>
-    <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end">
-      <%= link_to item.name, item_path(item.id), class: "btn btn-primary stretched-link" %>
+    <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center">
+      <%= link_to item.name, item_path(item.id), class: "btn btn-outline-bg-light stretched-link" %>
     </div>
   <% else %>
     <div class="card-img-overlay text-danger font-weight-bold text-center d-flex align-items-center item-not-available">
@@ -14,15 +14,14 @@
     </div>
   <% end %>
   <div class="delete-icon">
-  <% if can? :manage, item %>
-    <%= link_to image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon"), edit_item_path(item.id), class: "mt-2 delete-icon-bg z-index-1" %>
-    <% if item.orders.blank? %>
-      <%= link_to image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon"), item_path(item.id), method: "delete", data: { confirm: t("button.delete_.are_you_sure") }, class: "mt-2 delete-icon-bg z-index-1" %>
+    <% if can? :manage, item %>
+      <%= link_to image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon"), edit_item_path(item.id), class: "mt-2 delete-icon-bg z-index-1" %>
+      <% if item.orders.blank? %>
+        <%= link_to image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon"), item_path(item.id), method: "delete", data: { confirm: t("button.delete_.are_you_sure") }, class: "mt-2 delete-icon-bg z-index-1" %>
+      <% end %>
+    <% elsif current_user.present? && item.available_qty > 0 %>
+      <%= link_to image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon"), cart_items_path(item_id: item, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "mt-2 delete-icon-bg z-index-1" %>
     <% end %>
-  <% elsif current_user.present? && item.available_qty > 0 %>
-    <%= link_to image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon"), cart_items_path(item_id: item, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "mt-2 delete-icon-bg z-index-1" %>
-  <% end %>
-</div>
-
+  </div>
 </div>
 

@@ -4,11 +4,20 @@
 }
 
 .card-item {
-  width: 15rem;
+  width: 20vw;
+  height: 20vw;
+  min-width: 200px;
+  min-height: 200px;
+  transition: 0.2s;
 }
 
-.card-item img {
+.card-item:hover {
+  box-shadow: 0 0 10px var(--gray-dark);
+}
+
+.card-item > :first-child {
   height: 100%;
+  object-fit: cover;
 }
 
 .delete-icon {
@@ -42,7 +51,8 @@
 
 @media only screen and (max-device-width: 480px) {
   .card-item {
-    width: 40%;
+    width: 45vw;
+    height: 45vw;
   }
 
   .card-shop {
