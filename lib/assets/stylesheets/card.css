@@ -4,20 +4,38 @@
 }
 
 .card-item {
+  overflow: hidden;
   width: 20vw;
   height: 20vw;
   min-width: 200px;
   min-height: 200px;
-  transition: 0.2s;
-}
-
-.card-item:hover {
-  box-shadow: 0 0 10px var(--gray-dark);
+  position: relative;
 }
 
 .card-item > :first-child {
-  height: 100%;
+  width: 100%;
   object-fit: cover;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  position: absolute;
+  top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.card-item:hover > :first-child {
+  -webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -o-transform:scale(1.2);
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.card-width {
+  width: 20vw;
+  min-width: 200px;
 }
 
 .delete-icon {
@@ -60,4 +78,8 @@
     width: 100%;
   }
 
+  .card-width {
+    width: 45vw;
+  }
+  
 }
