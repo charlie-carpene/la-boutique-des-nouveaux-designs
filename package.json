@@ -9,6 +9,7 @@
     "@rails/webpacker": "5.4.3",
     "@uppy/core": "^1.20.1",
     "@uppy/dashboard": "1.21.1",
+    "@uppy/image-editor": "^0.4.0",
     "@uppy/xhr-upload": "1.7.5",
     "trix": "^1.2.0",
     "turbolinks": "^5.2.0",

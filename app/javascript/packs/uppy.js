@@ -1,9 +1,11 @@
 const Uppy = require('@uppy/core');
 const Dashboard = require('@uppy/dashboard');
 const XHRUpload = require('@uppy/xhr-upload');
+const ImageEditor = require('@uppy/image-editor');
 
 require('@uppy/core/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
+require('@uppy/image-editor/dist/style.css');
 
 document.addEventListener('turbolinks:load', () => {
   document.querySelectorAll('[data-uppy]').forEach(element => setupUppy(element));
@@ -32,6 +34,20 @@ function setupUppy(element) {
     limite: 0,
     headers: {
       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+    }
+  }).use(ImageEditor, {
+    target: Dashboard,
+    quality: 0.8,
+    cropperOptions: {
+      viewMode: 1,
+      modal: false,
+      aspectRatio: 1
+    },
+    actions: {
+      granularRotate: false,
+      cropSquare: false,
+      cropWidescreen: false,
+      cropWidescreenVertical: false,
     }
   });
   
