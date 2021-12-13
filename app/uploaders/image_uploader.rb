@@ -50,7 +50,7 @@ class ImageUploader < Shrine
     extension = ".#{io.extension}" if io.is_a?(UploadedFile) && io.extension
     extension ||= File.extname(extract_filename(io).to_s).downcase
     @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
-    version = derivative.blank? ? 'original' : context[:derivative]
+    version = derivative.blank? ? 'original' : derivative
 
     user = User.find(metadata['user_id'])
     shopname = user.shop.present? ? user.shop.brand.downcase.split.join : 'no-shop'
