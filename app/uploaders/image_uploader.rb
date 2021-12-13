@@ -38,6 +38,15 @@ class ImageUploader < Shrine
   end
   
   def generate_location(io, record: nil, derivative: nil, metadata: {}, **options)
+    puts "-" * 30
+    puts oi.inspect
+    puts '`' * 30
+    puts record.inspect
+    puts '`' * 30
+    puts derivative.inspect
+    puts '`' * 30
+    puts metadata.inspect
+    puts "-" * 30 
     extension = ".#{io.extension}" if io.is_a?(UploadedFile) && io.extension
     extension ||= File.extname(extract_filename(io).to_s).downcase
     @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
