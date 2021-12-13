@@ -7,7 +7,7 @@ class UploadsController < ApplicationController
         user_id
       end
     
-      set_rack_response ImageUploader.upload_response(:cache, request.env)
+      set_rack_response ImageUploader.presign_response(:cache, request.env)
     else
       head 401
     end
@@ -19,5 +19,8 @@ class UploadsController < ApplicationController
     self.status = status
     self.headers.merge!(headers)
     self.response_body = body
+    puts '*' * 30
+    puts self.response_body.inspect
+    puts '*' * 30
   end
 end

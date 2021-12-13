@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create]
   resources :order_items, only: [:index]
 
-  post "/images/upload", to: "uploads#image"
+  get "/s3/params", to: "uploads#image"
 end

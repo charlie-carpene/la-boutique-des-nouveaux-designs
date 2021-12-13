@@ -1,3 +1,5 @@
+require "content_disposition"
+
 class ImageUploader < Shrine
   plugin :store_dimensions
   plugin :determine_mime_type
@@ -10,6 +12,16 @@ class ImageUploader < Shrine
   plugin :upload_endpoint, max_size: 3*1024*1024
   plugin :cached_attachment_data
   plugin :add_metadata
+  plugin :presign_endpoint, presign_options: -> (request) do
+    filename = request.params["filename"]
+    type = request.params["type"]
+    {
+      content_disposition:    ContentDisposition.inline(filename),
+      content_type:           type,
+      content_length_range:   0..(3*1024*1024),
+    }
+  end
+  
 
   Attacher.validate do
     validate_mime_type %w[image/jpeg image/png], message: "doit être un jpeg ou un png"

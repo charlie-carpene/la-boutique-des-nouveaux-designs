@@ -1019,6 +1019,16 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.1.tgz#d8f1c0d0dc23afad6dc16a9e993a0865774b4065"
   integrity sha512-xoDlM2S4ortawSWORYqsdU+2rxdh4LRW9ytc3zmT37RIKQh6IHyKwwtKhKis9ah8ol07DCkZxPt8BBvPjC6v4g==
 
+"@uppy/aws-s3@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@uppy/aws-s3/-/aws-s3-2.0.6.tgz#904cb8999e805dba59240466f897201cb49edae1"
+  integrity sha512-NEgqUhwd1a8EP/r5hSdvisQelju1J/DFVHh/7beyPV8Yl5mcfsvNKt1FvYcvU9iLuWcLCPMPFR3DA4Njvkaeow==
+  dependencies:
+    "@uppy/companion-client" "^2.0.4"
+    "@uppy/utils" "^4.0.4"
+    "@uppy/xhr-upload" "^2.0.6"
+    nanoid "^3.1.25"
+
 "@uppy/companion-client@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-2.0.4.tgz#74002391aa602b34cf5d1d169dc4a534413ad7b0"
@@ -1116,7 +1126,7 @@
   dependencies:
     lodash.throttle "^4.1.1"
 
-"@uppy/xhr-upload@2.0.6":
+"@uppy/xhr-upload@^2.0.6":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@uppy/xhr-upload/-/xhr-upload-2.0.6.tgz#1c9843250debd81895e05dd8a628d165575676a5"
   integrity sha512-W+dplvxR3f/kEUAacYkEGzJ25rKUxFWtXC08K7vN5qKcBnjNv4J/1d0W2yKGS3Y8rPN0ZQpxzXkli27x6Tv+SA==

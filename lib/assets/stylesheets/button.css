@@ -7,22 +7,22 @@
 }
 
 .btn-outline-bg-light {
-	color: rgb(22, 115, 120, 0);
-	border-color: rgb(22, 115, 120, 0);
-	background-color: rgb(255, 255, 255, 0);
+	color: rgba(22, 115, 120, 0);
+	border-color: rgba(22, 115, 120, 0);
+	background-color: rgba(255, 255, 255, 0);
 	transition: 0.2s;
 }
 
 .btn-outline-bg-light:hover {
-	color: rgb(22, 115, 120, 0);
-	border-color: rgb(22, 115, 120, 0);
-	background-color: rgb(255, 255, 255, 0);
+	color: rgba(22, 115, 120, 0);
+	border-color: rgba(22, 115, 120, 0);
+	background-color: rgba(255, 255, 255, 0);
 }
 
 @media only screen and (max-device-width: 915px) {
 	.btn-outline-bg-light {
-		color: rgb(22, 115, 120, 0);
-		border-color: rgb(22, 115, 120, 0);
-		background-color: rgb(255, 255, 255, 0);
+		color: rgba(22, 115, 120, 0);
+		border-color: rgba(22, 115, 120, 0);
+		background-color: rgba(255, 255, 255, 0);
 	}
 }

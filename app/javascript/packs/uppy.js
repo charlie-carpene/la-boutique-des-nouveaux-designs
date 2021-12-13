@@ -2,6 +2,7 @@ const Uppy = require('@uppy/core');
 const Dashboard = require('@uppy/dashboard');
 const XHRUpload = require('@uppy/xhr-upload');
 const ImageEditor = require('@uppy/image-editor');
+const AwsS3 = require('@uppy/aws-s3');
 
 require('@uppy/core/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
@@ -29,13 +30,21 @@ function setupUppy(element) {
   .use(Dashboard, {
     trigger: trigger,
     closeAfterFinish: true,
-  }).use(XHRUpload, {
+  }).use(AwsS3, {
+    limit: 2,
+    timeout: 60000,
+    companionUrl: '/',
+    companionHeaders: {
+      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+    },
+  })
+  /*.use(XHRUpload, {
     endpoint: '/images/upload',
     limite: 0,
     headers: {
       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
     }
-  }).use(ImageEditor, {
+  })*/.use(ImageEditor, {
     target: Dashboard,
     quality: 0.8,
     cropperOptions: {
@@ -52,7 +61,15 @@ function setupUppy(element) {
   });
   
   uppy.on('upload-success', (file, response) => {
-    let uploadedFileData = JSON.stringify(response.body);
+    let uploadedFileData = JSON.stringify({
+      id: file.meta['key'].match(/^cache\/(.+)/)[1], // remove the Shrine storage prefix
+      storage: 'cache',
+      metadata: {
+        size:      file.size,
+        filename:  file.name,
+        mime_type: file.type,
+      }
+    });
     let hiddenField = document.querySelector('.attachment-field[type=hidden]');
     hiddenField.value = uploadedFileData;
 
