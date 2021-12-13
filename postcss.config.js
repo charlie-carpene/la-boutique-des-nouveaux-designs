@@ -8,16 +8,19 @@ module.exports = {
       },
       stage: 3
     }),
-    require('@fullhuman/postcss-purgecss')({
-      content: [
-        './**/*.html.erb',
-        './app/helpers/**/*.rb',
-        './app/javascript/**/*.js'
-      ],
-      defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || [],
-      whitelist: collectWhitelist(),
-      whitelistPatterns: [],
-      whitelistPatternsChildren: [/uppy/],
-    })  
   ]
 }
+
+environment.plugins.push(
+  require('@fullhuman/postcss-purgecss')({
+    content: [
+      './**/*.html.erb',
+      './app/helpers/**/*.rb',
+      './app/javascript/**/*.js'
+    ],
+    defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || [],
+    whitelist: collectWhitelist(),
+    whitelistPatterns: [],
+    whitelistPatternsChildren: [/uppy/],
+  })
+)
