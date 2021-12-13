@@ -39,7 +39,7 @@ class ImageUploader < Shrine
   
   def generate_location(io, record: nil, derivative: nil, metadata: {}, **options)
     puts "-" * 30
-    puts oi.inspect
+    puts io.inspect
     puts '`' * 30
     puts record.inspect
     puts '`' * 30
