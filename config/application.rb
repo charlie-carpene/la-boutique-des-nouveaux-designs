@@ -20,5 +20,9 @@ module LaBoutiqueDesNouveauxDesigns
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :fr
+    config.assets.precompile += [
+      '@uppy/core/dist/style.css',
+      '@uppy/dashboard/dist/style.css',
+    ]
   end
 end
