@@ -43,17 +43,10 @@ class ImageUploader < Shrine
     @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
     version = derivative.blank? ? 'original' : context[:derivative]
 
-    if self.storage_key == :store
-      shopname = context[:record].brand.downcase.split(/[^a-zA-Z\d:]/).join
-      user_id = context[:record].user.id
-      directory = context[:record].class.name.downcase.pluralize
-      "#{directory}/user-#{user_id}_#{shopname}_#{@filename}_#{version}#{extension}"
-    else
-      user = User.find(metadata['user_id'])
-      shopname = user.shop.present? ? user.shop.brand.downcase.split.join : 'no-shop'
-      
-      "shops/#{shopname}_user-#{user.id}_#{@filename}_#{version}_id-#{pretty_location(metadata)}#{extension}"
-    end
+    user = User.find(metadata['user_id'])
+    shopname = user.shop.present? ? user.shop.brand.downcase.split.join : 'no-shop'
+    
+    "shops/#{shopname}_user-#{user.id}_#{@filename}_#{version}_id-#{pretty_location(metadata)}#{extension}"
   end
 
 end
