@@ -27,5 +27,6 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create]
   resources :order_items, only: [:index]
 
+  mount ImageUploader.upload_endpoint(:cache) => "/images/upload"
   get "/s3/params", to: "uploads#image"
 end

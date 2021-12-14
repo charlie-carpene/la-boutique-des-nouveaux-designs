@@ -1019,14 +1019,14 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.1.tgz#d8f1c0d0dc23afad6dc16a9e993a0865774b4065"
   integrity sha512-xoDlM2S4ortawSWORYqsdU+2rxdh4LRW9ytc3zmT37RIKQh6IHyKwwtKhKis9ah8ol07DCkZxPt8BBvPjC6v4g==
 
-"@uppy/aws-s3@^2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@uppy/aws-s3/-/aws-s3-2.0.6.tgz#904cb8999e805dba59240466f897201cb49edae1"
-  integrity sha512-NEgqUhwd1a8EP/r5hSdvisQelju1J/DFVHh/7beyPV8Yl5mcfsvNKt1FvYcvU9iLuWcLCPMPFR3DA4Njvkaeow==
+"@uppy/aws-s3@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@uppy/aws-s3/-/aws-s3-2.0.7.tgz#150a0604231ac1ca082434509fd9fb325f4c7aac"
+  integrity sha512-upeeYM0RlDUwe8kct81kVd//XafPJmc+GRNKbs2zWnMVlAi5aGhGw2jXFgjPctXvsG3M84owBSLNd2t5D94pXA==
   dependencies:
     "@uppy/companion-client" "^2.0.4"
     "@uppy/utils" "^4.0.4"
-    "@uppy/xhr-upload" "^2.0.6"
+    "@uppy/xhr-upload" "^2.0.7"
     nanoid "^3.1.25"
 
 "@uppy/companion-client@^2.0.4":
@@ -1037,10 +1037,10 @@
     "@uppy/utils" "^4.0.4"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.1.3.tgz#c581b86733b5aa7ba413128116769770291abdce"
-  integrity sha512-o17+zdnZFTl7AtNQc2rT1f96yWqybHuy55Q3P0wWS/nVQzOPgKshhPONNDK3qJgYQFG0oZf3h/rioXd3PJJz3w==
+"@uppy/core@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.1.4.tgz#168ce748bf545312b54c75125a87d05f702f3c98"
+  integrity sha512-tVC44D66BbISD3gJaqH3xUrVEP5Pah0cDQV98sI3N6W6yMSOW4m3xuhqhcWvEd4DolKCp0vyvc/pW6rsQbMVRA==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^2.0.3"
@@ -1051,10 +1051,10 @@
     nanoid "^3.1.25"
     preact "^10.5.13"
 
-"@uppy/dashboard@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@uppy/dashboard/-/dashboard-2.1.2.tgz#b79f19d4e23d12a6dc5441ea539bcc505255afbe"
-  integrity sha512-kPVlfJwF+k7QkIFrXeG2zAa3NfahcdhYa07qml5PTc0Ff0BNT5Jvpg4wK9p0tJVwso5GiKytjTRgSHjpy1ZlJQ==
+"@uppy/dashboard@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@uppy/dashboard/-/dashboard-2.1.3.tgz#1d732aad7716040e632d44459aa4c8eb27cc7214"
+  integrity sha512-R3O+ws/aOwL3C5g8sxnB/y2Lrrvg74hxDspSYj1/Z/CayxQ8ZsJjj3DCG9MpDP+POw8poRVdkTXep71/pHRjcg==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/informer" "^2.0.5"
@@ -1126,10 +1126,10 @@
   dependencies:
     lodash.throttle "^4.1.1"
 
-"@uppy/xhr-upload@^2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@uppy/xhr-upload/-/xhr-upload-2.0.6.tgz#1c9843250debd81895e05dd8a628d165575676a5"
-  integrity sha512-W+dplvxR3f/kEUAacYkEGzJ25rKUxFWtXC08K7vN5qKcBnjNv4J/1d0W2yKGS3Y8rPN0ZQpxzXkli27x6Tv+SA==
+"@uppy/xhr-upload@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@uppy/xhr-upload/-/xhr-upload-2.0.7.tgz#d9128be1fdde78edc61878e23930a2855f607df5"
+  integrity sha512-bzCc654B0HfNmL4BIr7gGTvg2pQBucYgPmAb4ST7jGyWlEJWbSxMXR/19zvISQzpJ6v1uP6q2ppgxGMqNdj/rA==
   dependencies:
     "@uppy/companion-client" "^2.0.4"
     "@uppy/utils" "^4.0.4"

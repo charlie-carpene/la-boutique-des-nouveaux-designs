@@ -24,4 +24,7 @@
  *= require button
  *= require alert
  *= require actiontext
+ *= require @uppy/core/dist/style.css
+ *= require @uppy/dashboard/dist/style.css
+ *= require @uppy/image-editor/dist/style.css
  */

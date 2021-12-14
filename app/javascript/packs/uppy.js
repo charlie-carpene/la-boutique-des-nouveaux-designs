@@ -26,25 +26,10 @@ function setupUppy(element) {
       maxFileSize: 3*1024*1024,
       allowedFileTypes: ['image/*', '.jpg', '.jpeg', '.png'],
     }
-  })
-  .use(Dashboard, {
+  }).use(Dashboard, {
     trigger: trigger,
     closeAfterFinish: true,
-  }).use(AwsS3, {
-    limit: 2,
-    timeout: 60000,
-    companionUrl: '/',
-    companionHeaders: {
-      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
-    },
-  })
-  /*.use(XHRUpload, {
-    endpoint: '/images/upload',
-    limite: 0,
-    headers: {
-      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
-    }
-  })*/.use(ImageEditor, {
+  }).use(ImageEditor, {
     target: Dashboard,
     quality: 0.8,
     cropperOptions: {
@@ -59,17 +44,43 @@ function setupUppy(element) {
       cropWidescreenVertical: false,
     }
   });
+
+  if (server == 's3') {
+    uppy.use(AwsS3, {
+      limit: 2,
+      timeout: 60000,
+      companionUrl: '/',
+      companionHeaders: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+      },
+    })
+  } else {
+    uppy.use(XHRUpload, {
+      endpoint: '/images/upload',
+      limite: 0,
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+      }
+    })
+  }
   
   uppy.on('upload-success', (file, response) => {
-    let uploadedFileData = JSON.stringify({
-      id: file.meta['key'].match(/^cache\/(.+)/)[1], // remove the Shrine storage prefix
-      storage: 'cache',
-      metadata: {
-        size:      file.size,
-        filename:  file.name,
-        mime_type: file.type,
-      }
-    });
+    let uploadedFileData;
+
+    if (server == 's3') {
+      uploadedFileData = JSON.stringify({
+        id: file.meta['key'].match(/^cache\/(.+)/)[1],
+        storage: 'cache',
+        metadata: {
+          size:      file.size,
+          filename:  file.name,
+          mime_type: file.type,
+        }
+      });
+    } else {
+      uploadedFileData = JSON.stringify(response.body);
+    };
+
     let hiddenField = document.querySelector('.attachment-field[type=hidden]');
     hiddenField.value = uploadedFileData;
 
