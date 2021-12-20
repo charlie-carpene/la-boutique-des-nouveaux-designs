@@ -12,7 +12,6 @@ class ImageUploader < Shrine
   plugin :upload_endpoint, max_size: 3*1024*1024
   plugin :cached_attachment_data
   plugin :add_metadata
-  plugin :upload_endpoint
   plugin :presign_endpoint, presign_options: -> (request) do
     filename = request.params["filename"]
     type = request.params["type"]
@@ -39,15 +38,6 @@ class ImageUploader < Shrine
   end
   
   def generate_location(io, record: nil, derivative: nil, metadata: {}, **options)
-    puts "-" * 30
-    puts io.inspect
-    puts '`' * 30
-    puts record.inspect
-    puts '`' * 30
-    puts derivative.inspect
-    puts '`' * 30
-    puts metadata.inspect
-    puts "-" * 30 
     extension = ".#{io.extension}" if io.is_a?(UploadedFile) && io.extension
     extension ||= File.extname(extract_filename(io).to_s).downcase
     @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join

@@ -3,18 +3,14 @@ const Dashboard = require('@uppy/dashboard');
 const XHRUpload = require('@uppy/xhr-upload');
 const ImageEditor = require('@uppy/image-editor');
 const AwsS3 = require('@uppy/aws-s3');
+const ThumbnailGenerator = require('@uppy/thumbnail-generator');
 
 require('@uppy/core/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
 require('@uppy/image-editor/dist/style.css');
 
-document.addEventListener('turbolinks:load', () => {
-  document.querySelectorAll('[data-uppy]').forEach(element => setupUppy(element));
-});
-
-function setupUppy(element) {
+export function uppyInstance({ id, types, server }) {
   const trigger = document.getElementById('uppy-shop');
-
   trigger.addEventListener('click', (event) => event.preventDefault());
 
   const uppy = new Uppy({
@@ -43,6 +39,8 @@ function setupUppy(element) {
       cropWidescreen: false,
       cropWidescreenVertical: false,
     }
+  }).use(ThumbnailGenerator, {
+    thumbnailWidth: 300,
   });
 
   if (server == 's3') {
@@ -50,9 +48,6 @@ function setupUppy(element) {
       limit: 2,
       timeout: 60000,
       companionUrl: '/',
-      companionHeaders: {
-        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
-      },
     })
   } else {
     uppy.use(XHRUpload, {
@@ -63,49 +58,37 @@ function setupUppy(element) {
       }
     })
   }
-  
-  uppy.on('upload-success', (file, response) => {
-    let uploadedFileData;
 
-    if (server == 's3') {
-      uploadedFileData = JSON.stringify({
-        id: file.meta['key'].match(/^cache\/(.+)/)[1],
-        storage: 'cache',
-        metadata: {
-          size:      file.size,
-          filename:  file.name,
-          mime_type: file.type,
-        }
-      });
-    } else {
-      uploadedFileData = JSON.stringify(response.body);
-    };
-
-    let hiddenField = document.querySelector('.attachment-field[type=hidden]');
-    hiddenField.value = uploadedFileData;
-
-    setPreview(element, file);
-  });
-
-  uppy.on('upload-error', (file, error, response) => {
-    uppy.info({
-      message: 'Oh no, something bad happened!',
-      details: getErrorDetails(response.status),
-    }, 'error', 5000)
-  });
+  return uppy
 };
 
-function setPreview(element, file) {
-  let preview = element.querySelector('[data-behavior="uppy-shop-preview"]');
-  if (preview) {
-    preview.src = file.preview;
-  };
+export function uploadedFileData(file, response, server) {
+  if (server == 's3') {
+    const id = file.meta['key'].match(/^cache\/(.+)/)[1]; // object key without prefix
+
+    return JSON.stringify(fileData(file, id))
+  } else {
+    return JSON.stringify(response.body)
+  }
 };
 
-function getErrorDetails (status) {
+// constructs uploaded file data in the format that Shrine expects
+function fileData(file, id) {
+  return {
+    id: id,
+    storage: 'cache',
+    metadata: {
+      size:      file.size,
+      filename:  file.name,
+      mime_type: file.type,
+    }
+  }
+};
+
+export function getErrorDetails (status) {
   const error = {
     '401': 'It looks like you don\'t have the rights to access this ressource',
     'default': `Contact us with the status code : ${status} so we can fix it.`
   };
   return error[status] || error['default'];
-}
+};

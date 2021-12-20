@@ -27,15 +27,26 @@
           <%= f.text_field :website, placeholder: t("shop.edit.website.placeholder"), class: "form-control" %>
         </div>
       </div>
-      <div class="col col-lg-3 mt-4" data-uppy="shop[image]">
-        <%= f.label t("shop.edit.shop_image") %><br />
+      <div class="col col-lg-3 mt-4" data-controller="single-upload">
+        <%= f.label t("shop.edit.shop_image"), class: "form-label" %><br />
         <div class="card border-0 m-3" style="height:266px;width:200px">
-          <%= image_tag @shop.show_image, class: "card-img", data: { behavior: "uppy-shop-preview" } %>
+          <%= image_tag @shop.show_image,
+            class: "card-img",
+            data: { single_upload_target: "preview" }
+          %>
           <div class="card-img-overlay d-flex flex-column justify-content-end">
             <div class="rounded bg-primary d-flex flex-column">
               <div class="text-center text-white"><%= t("button.edit") %> :</div>
-              <%= f.file_field :image, class: "btn btn-sm text-primary", id: "uppy-shop" %>
-              <input type="hidden" name="shop[image]" value="<%= @shop.cached_image_data %>" class="attachment-field" />
+              <%= f.file_field :image,
+                id: "uppy-shop",
+                class: "btn btn-sm text-primary",
+                data: { single_upload_target: "input" }
+              %>
+              <%= f.hidden_field :image,
+                value: @shop.cached_image_data,
+                class: "attachment-field",
+                data: { single_upload_target: "result" }
+              %>
             </div>
           </div>
         </div>
@@ -61,4 +72,4 @@
 </div>
 
 <%= javascript_pack_tag 'action_text' %>
-<%= javascript_pack_tag 'uppy' %>
+<%= javascript_pack_tag 'uppy/application' %>
