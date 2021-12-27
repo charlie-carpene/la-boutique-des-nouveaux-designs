@@ -26,4 +26,7 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:create, :update, :destroy]
   resources :orders, only: [:new, :create]
   resources :order_items, only: [:index]
+
+  post "/images/upload", to: "uploads#xhr"
+  get "/s3/params", to: "uploads#s3"
 end

@@ -33,6 +33,12 @@ p {
   z-index: 1;
 }
 
+.absolute-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
 /****** HEADER ******/
 .category-container {
   display: flex;
