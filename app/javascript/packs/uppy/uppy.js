@@ -24,6 +24,7 @@ export function uppyInstance({ id, types, server }) {
   }).use(Dashboard, {
     trigger: trigger,
     closeAfterFinish: true,
+    note: 'image must be less than 3 Mo'
   }).use(ImageEditor, {
     target: Dashboard,
     quality: 0.8,
