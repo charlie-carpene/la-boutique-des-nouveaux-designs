@@ -3,7 +3,6 @@ const Dashboard = require('@uppy/dashboard');
 const XHRUpload = require('@uppy/xhr-upload');
 const ImageEditor = require('@uppy/image-editor');
 const AwsS3 = require('@uppy/aws-s3');
-const ThumbnailGenerator = require('@uppy/thumbnail-generator');
 
 require('@uppy/core/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
@@ -39,8 +38,6 @@ export function uppyInstance({ id, types, server }) {
       cropWidescreen: false,
       cropWidescreenVertical: false,
     }
-  }).use(ThumbnailGenerator, {
-    thumbnailWidth: 300,
   });
 
   if (server == 's3') {

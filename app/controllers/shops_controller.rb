@@ -42,8 +42,13 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_permitted_params)
-      flash[:success] = t("shop.success.shop_updated")
-      redirect_to edit_shop_path(@shop.id)
+      respond_to do |format|
+        format.html { 
+          flash[:success] = t("shop.success.shop_updated")
+          redirect_to edit_shop_path(@shop.id)    
+        }
+        format.js { render :json => { url: @shop.image_url(:shop) } }
+      end
     else
       flash.now[:error] = translate_error_messages(@shop.errors)
       render 'edit'
