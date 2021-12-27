@@ -43,9 +43,8 @@ class ImageUploader < Shrine
     @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
     version = derivative.blank? ? 'original' : derivative
 
-    user = User.find(metadata['user_id'])
+    user = metadata['user_id'].present? ? User.find(metadata['user_id']) : User.find(record.user.id)
     shopname = user.shop.present? ? user.shop.brand.downcase.split.join : 'no-shop'
-    
     "shops/#{shopname}_user-#{user.id}_#{@filename}_#{version}_id-#{pretty_location(metadata)}#{extension}"
   end
 
