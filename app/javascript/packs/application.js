@@ -18,20 +18,3 @@ require("jquery")
 
 require("trix")
 require("@rails/actiontext")
-
-const Uppy = require('@uppy/core');
-const Dashboard = require('@uppy/dashboard');
-
-require('@uppy/core/dist/style.css');
-require('@uppy/dashboard/dist/style.css');
-
-window.onload = function() {
-  const uppy = new Uppy()
-    .use(Dashboard, {
-      trigger: '#select-files',
-    })
-
-  uppy.on('complete', (result) => {
-    console.log('Upload complete! We’ve uploaded these files:', result.successful)
-  })
-};
