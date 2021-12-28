@@ -28,6 +28,10 @@ module ApplicationHelper
     return crypt.decrypt_and_verify(data_to_decrypt, purpose: assigned_purpose)
   end
 
+  def upload_server
+    Rails.configuration.upload_server
+  end
+  
   def shipping_cost(weight)
     case weight
     when 1..250

@@ -27,6 +27,11 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create]
   resources :order_items, only: [:index]
 
-  post "/images/upload", to: "uploads#xhr"
-  get "/s3/params", to: "uploads#s3"
+  case Rails.configuration.upload_server
+  when :s3
+    get "/s3/params", to: "uploads#s3"
+  when :app
+    post "/images/upload", to: "uploads#xhr"
+  end
+  
 end

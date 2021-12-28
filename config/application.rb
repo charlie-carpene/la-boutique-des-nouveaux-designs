@@ -25,5 +25,14 @@ module LaBoutiqueDesNouveauxDesigns
       '@uppy/dashboard/dist/style.css',
       '@uppy/image-editor/dist/style.css',
     ]
+
+    # supports :s3, :s3_multipart, or :app
+    config.upload_server = if ENV["UPLOAD_SERVER"].present?
+      ENV["UPLOAD_SERVER"].to_sym
+    elsif Rails.env.production?
+      :s3
+    else
+      :app
+    end
   end
 end
