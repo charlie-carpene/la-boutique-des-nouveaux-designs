@@ -23,6 +23,7 @@ module LaBoutiqueDesNouveauxDesigns
     config.assets.precompile += [
       '@uppy/core/dist/style.css',
       '@uppy/dashboard/dist/style.css',
+      '@uppy/image-editor/dist/style.css',
     ]
   end
 end
