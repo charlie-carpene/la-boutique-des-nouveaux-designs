@@ -66,6 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem "content_disposition", "~> 1.0"
 
 gem 'cancancan'
 
@@ -76,7 +77,7 @@ gem 'shrine', '~> 3.3'
 gem 'fastimage', '~> 2.1', '>= 2.1.7'
 gem 'image_processing', '~> 1.10', '>= 1.10.3'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', '~> 1.109'
 gem 'migration_data', '~> 0.6.0'
 
 gem 'stripe', '~> 5.22'
