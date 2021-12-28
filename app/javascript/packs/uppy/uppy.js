@@ -9,14 +9,13 @@ require('@uppy/dashboard/dist/style.css');
 require('@uppy/image-editor/dist/style.css');
 
 export function uppyInstance({ id, types, size, server }) {
-  const trigger = document.getElementById('uppy-shop');
+  const trigger = document.getElementById(id);
   trigger.addEventListener('click', (event) => event.preventDefault());
 
   const uppy = new Uppy({
     id: id,
     autoProceed: false,
     allowMultipleUploads: false,
-    logger: Uppy.debugLogger,
     restrictions: {
       maxNumberOfFiles: 1,
       maxFileSize: size,

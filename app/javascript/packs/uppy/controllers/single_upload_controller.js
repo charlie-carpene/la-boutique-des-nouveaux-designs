@@ -11,9 +11,6 @@ export default class extends Controller {
     this.resultTarget.id = "shop_image";
     this.resultTarget.name = "shop[image]";
     this.uppy = this.createUppy();
-    console.log(this.serverValue);
-    console.log(this.typesValue);
-    console.log(this.sizeValue);
   };
 
   disconnect() {
