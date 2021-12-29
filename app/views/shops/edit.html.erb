@@ -27,7 +27,12 @@
           <%= f.text_field :website, placeholder: t("shop.edit.website.placeholder"), class: "form-control" %>
         </div>
       </div>
-      <div class="col col-lg-3 mt-4" data-controller="single-upload">
+      <div class="col col-lg-3 mt-4"
+        data-controller="single-upload"
+        data-single-upload-types-value="<%= ImageUploader::ALLOWED_TYPES.to_json %>"
+        data-single-upload-size-value="<%= ImageUploader::MAX_SIZE %>"
+        data-single-upload-server-value="<%= upload_server %>"
+      >
         <%= f.label t("shop.edit.shop_image"), class: "form-label" %><br />
         <div class="card border-0 m-3" style="height:266px;width:200px">
           <%= image_tag @shop.show_image,
@@ -38,7 +43,6 @@
             <div class="rounded bg-primary d-flex flex-column">
               <div class="text-center text-white"><%= t("button.edit") %> :</div>
               <%= f.file_field :image,
-                id: "uppy-shop",
                 class: "btn btn-sm text-primary",
                 data: { single_upload_target: "input" }
               %>

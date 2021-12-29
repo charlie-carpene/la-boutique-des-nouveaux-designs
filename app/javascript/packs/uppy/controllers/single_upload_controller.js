@@ -5,7 +5,7 @@ import spinner from '../../assets/spinner.gif';
 
 export default class extends Controller {
   static targets = [ 'input', 'result', 'preview' ]
-  static values = { types: Array, server: String }
+  static values = { types: Array, size: Number, server: String }
 
   connect() {
     this.resultTarget.id = "shop_image";
@@ -19,10 +19,11 @@ export default class extends Controller {
 
   createUppy() {
     const uppy = uppyInstance({
-        id: this.inputTarget.id,
-        types: this.typesValue,
-        server: this.serverValue,
-      })
+      id: this.inputTarget.id,
+      types: this.typesValue,
+      size: this.sizeValue,
+      server: this.serverValue,
+    });
     
     uppy.on('upload', (data) => {
       this.previewTarget.src = spinner;

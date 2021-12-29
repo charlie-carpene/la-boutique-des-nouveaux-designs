@@ -8,23 +8,23 @@ require('@uppy/core/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
 require('@uppy/image-editor/dist/style.css');
 
-export function uppyInstance({ id, types, server }) {
-  const trigger = document.getElementById('uppy-shop');
+export function uppyInstance({ id, types, size, server }) {
+  const trigger = document.getElementById(id);
   trigger.addEventListener('click', (event) => event.preventDefault());
 
   const uppy = new Uppy({
+    id: id,
     autoProceed: false,
     allowMultipleUploads: false,
-    logger: Uppy.debugLogger,
     restrictions: {
       maxNumberOfFiles: 1,
-      maxFileSize: 3*1024*1024,
-      allowedFileTypes: ['image/*', '.jpg', '.jpeg', '.png'],
+      maxFileSize: size,
+      allowedFileTypes: types,
     }
   }).use(Dashboard, {
     trigger: trigger,
     closeAfterFinish: true,
-    note: 'image must be less than 3 Mo'
+    note: `image must be less than ${Math.round(size/1000000)} Mo`
   }).use(ImageEditor, {
     target: Dashboard,
     quality: 0.8,
