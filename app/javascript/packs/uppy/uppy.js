@@ -16,6 +16,7 @@ export function uppyInstance({ id, types, size, server }) {
     id: id,
     autoProceed: false,
     allowMultipleUploads: false,
+    logger: Uppy.debugLogger,
     restrictions: {
       maxNumberOfFiles: 1,
       maxFileSize: size,
