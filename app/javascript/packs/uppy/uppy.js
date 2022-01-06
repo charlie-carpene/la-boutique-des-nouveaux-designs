@@ -1,44 +1,22 @@
 const Uppy = require('@uppy/core');
-const Dashboard = require('@uppy/dashboard');
 const XHRUpload = require('@uppy/xhr-upload');
-const ImageEditor = require('@uppy/image-editor');
 const AwsS3 = require('@uppy/aws-s3');
 
 require('@uppy/core/dist/style.css');
-require('@uppy/dashboard/dist/style.css');
-require('@uppy/image-editor/dist/style.css');
 
-export function uppyInstance({ id, types, size, server }) {
+export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberOfFiles, types, size, server }) {
   const trigger = document.getElementById(id);
   trigger.addEventListener('click', (event) => event.preventDefault());
 
   const uppy = new Uppy({
     id: id,
-    autoProceed: false,
-    allowMultipleUploads: false,
+    autoProceed: autoProceed,
+    allowMultipleUploads: allowMultipleUploads,
     logger: Uppy.debugLogger,
     restrictions: {
-      maxNumberOfFiles: 1,
+      maxNumberOfFiles: maxNumberOfFiles,
       maxFileSize: size,
       allowedFileTypes: types,
-    }
-  }).use(Dashboard, {
-    trigger: trigger,
-    closeAfterFinish: true,
-    note: `image must be less than ${Math.round(size/1000000)} Mo`
-  }).use(ImageEditor, {
-    target: Dashboard,
-    quality: 0.8,
-    cropperOptions: {
-      viewMode: 1,
-      modal: false,
-      aspectRatio: 1
-    },
-    actions: {
-      granularRotate: false,
-      cropSquare: false,
-      cropWidescreen: false,
-      cropWidescreenVertical: false,
     }
   });
 

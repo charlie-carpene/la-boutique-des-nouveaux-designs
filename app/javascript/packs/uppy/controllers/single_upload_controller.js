@@ -1,7 +1,14 @@
 import { Controller } from "@hotwired/stimulus";
+import ImageEditor from '@uppy/image-editor';
+import Dashboard from '@uppy/dashboard';
 import { uppyInstance, uploadedFileData, getErrorDetails } from '../uppy';
+
 import { postShopImage } from '../ajax';
+
 import spinner from '../../assets/spinner.gif';
+
+require('@uppy/image-editor/dist/style.css');
+require('@uppy/dashboard/dist/style.css');
 
 export default class extends Controller {
   static targets = [ 'input', 'result', 'preview' ]
@@ -11,9 +18,6 @@ export default class extends Controller {
     this.resultTarget.id = "shop_image";
     this.resultTarget.name = "shop[image]";
     this.uppy = this.createUppy();
-    console.log(this.serverValue);
-    console.log(this.typesValue);
-    console.log(this.sizeValue);
   };
 
   disconnect() {
@@ -23,9 +27,30 @@ export default class extends Controller {
   createUppy() {
     const uppy = uppyInstance({
       id: this.inputTarget.id,
+      autoProceed: false,
+      allowMultipleUploads: false,
+      maxNumberOfFiles: 1,
       types: this.typesValue,
       size: this.sizeValue,
       server: this.serverValue,
+    }).use(Dashboard, {
+      trigger: this.inputTarget,
+      closeAfterFinish: true,
+      note: `image must be less than ${Math.round(this.sizeValue/1000000)} Mo`
+    }).use(ImageEditor, {
+      target: Dashboard,
+      quality: 0.8,
+      cropperOptions: {
+        viewMode: 1,
+        modal: false,
+        aspectRatio: 1
+      },
+      actions: {
+        granularRotate: false,
+        cropSquare: false,
+        cropWidescreen: false,
+        cropWidescreenVertical: false,
+      }
     });
     
     uppy.on('upload', (data) => {
