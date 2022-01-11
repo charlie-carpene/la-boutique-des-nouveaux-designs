@@ -5,8 +5,7 @@ const AwsS3 = require('@uppy/aws-s3');
 require('@uppy/core/dist/style.css');
 
 export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberOfFiles, types, size, server }) {
-  const trigger = document.getElementById(id);
-  trigger.addEventListener('click', (event) => event.preventDefault());
+  document.getElementById(id).addEventListener('click', (event) => event.preventDefault());
 
   const uppy = new Uppy({
     id: id,

@@ -25,7 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    unless params[:files].blank?
+    puts '*' * 30
+    puts params.inspect
+    puts '*' * 30
+
+    if params[:files].present? || params[:item][:item_pictures_attributes].present?
       @item.item_pictures.destroy_all
     end
 
@@ -52,7 +56,7 @@ class ItemsController < ApplicationController
   private
 
   def item_permitted_params
-    params.require(:item).permit(:name, :rich_description, :price, :available_qty, :product_weight, :shop_id, :item_pictures_attributes, category_ids: [])
+    params.require(:item).permit(:name, :rich_description, :price, :available_qty, :product_weight, :shop_id, item_pictures_attributes: {}, category_ids: [])
   end
 
   def get_item_permitted_attributes

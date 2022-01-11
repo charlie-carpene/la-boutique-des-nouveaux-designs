@@ -1,50 +1,72 @@
-    <div class="field mt-4">
-      <%= f.label t("item.form.product_name") %><br />
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
+<% content_for(:body_attributes) do %>
+  data-turbolinks="false"
+<% end %>
 
-    <div class="row mt-4">
-      <div class="col">
-        <%= f.label t("item.form.price") %>
-      </div>
-      <div class="col">
-        <%= f.label t("item.form.available_qty") %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <%= f.number_field :price, placeholder: 30, in: 0.01..5000.00, step: 0.01, class: "form-control" %>
-      </div>
-      <div class="col">
-        <%= f.number_field :available_qty, placeholder: 3, step: 1, class: "form-control" %>
-      </div>
-    </div>
+<div class="field mt-4">
+  <%= f.label t("item.form.product_name") %><br />
+  <%= f.text_field :name, class: "form-control" %>
+</div>
 
-    <p class="mt-4 mx-5 font-italic"><%= t("item.form.shipping_instructions") %><a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank"> <%= t("item.form.shipping_price") %></a></p>
+<div class="row mt-4">
+  <div class="col">
+    <%= f.label t("item.form.price") %>
+  </div>
+  <div class="col">
+    <%= f.label t("item.form.available_qty") %>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <%= f.number_field :price, placeholder: 30, in: 0.01..5000.00, step: 0.01, class: "form-control" %>
+  </div>
+  <div class="col">
+    <%= f.number_field :available_qty, placeholder: 3, step: 1, class: "form-control" %>
+  </div>
+</div>
 
-    <div class="field mt-4">
-      <%= f.label t("item.form.product_weight.title") %>
-      <%= f.number_field :product_weight, placeholder: t("item.form.product_weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
-    </div>
+<p class="mt-4 mx-5 font-italic"><%= t("item.form.shipping_instructions") %><a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank"> <%= t("item.form.shipping_price") %></a></p>
 
-    <div class="field mt-4">
-      <%= f.label t("item.form.category") %><br />
-      <% Category.all.each do |category| %>
-        <%= f.check_box :category_ids, {:multiple => true}, category.id, nil %>
-        <%= f.label t("category.#{category.name}") %><br />
-      <% end %> 
-    </div>
+<div class="field mt-4">
+  <%= f.label t("item.form.product_weight.title") %>
+  <%= f.number_field :product_weight, placeholder: t("item.form.product_weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
+</div>
 
-    <div class="field mt-4">
-      <%= f.label t("item.form.description") %><br />
-      <%= f.rich_text_area :rich_description, class: "form-control" %>
-    </div>
+<div class="field mt-4">
+  <%= f.label t("item.form.category") %><br />
+  <% Category.all.each do |category| %>
+    <%= f.check_box :category_ids, {:multiple => true}, category.id, nil %>
+    <%= f.label t("category.#{category.name}") %><br />
+  <% end %> 
+</div>
 
-    <div class="field mt-4">
-      <%= f.label t("item.form.add_images"), class: "font-weight-bold" %>
-      <%= file_field_tag "files[]", multiple: true %>
-    </div>
+<div class="field mt-4">
+  <%= f.label t("item.form.description") %><br />
+  <%= f.rich_text_area :rich_description, class: "form-control" %>
+</div>
 
-    <p class="font-italic"><%= t("item.form.crop_img") %> <a href="https://onlinepngtools.com/resize-png" target="_blank"><%= t("item.form.crop_img_tool") %></a></p>
+<!--div class="field mt-4">
+  <%= f.label :cover_picture, t("item.form.pictures"), class: "mt-4" %>
+  <div>
+    <%= collection_radio_buttons(:item, :name, @item.item_pictures, :id, :id) do |b| %>
+      <% b.label(class: "radio_btn") { b.radio_button + image_tag(b.object.picture_url(:cart)) } %>
+    <% end %>
+  </div>
+</div-->
+
+<div class="field mt-4"
+  data-controller="multiple-upload"
+  data-multiple-upload-types-value="<%= PictureUploader::ALLOWED_TYPES.to_json %>"
+  data-multiple-upload-size-value="<%= PictureUploader::MAX_SIZE %>"
+  data-multiple-upload-server-value="<%= upload_server %>"
+>
+  <%= f.label t("item.form.add_images"), class: "font-weight-bold" %>
+  <%= file_field_tag "files[]",
+    multiple: true,
+    data: { multiple_upload_target: "input" }
+  %>
+</div>
+
+<p class="font-italic"><%= t("item.form.crop_img") %> <a href="https://onlinepngtools.com/resize-png" target="_blank"><%= t("item.form.crop_img_tool") %></a></p>
 
 <%= javascript_pack_tag 'action_text' %>
+<%= javascript_pack_tag 'uppy/application' %>
