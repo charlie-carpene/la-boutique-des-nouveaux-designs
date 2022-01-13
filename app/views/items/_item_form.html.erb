@@ -44,14 +44,16 @@
   <%= f.rich_text_area :rich_description, class: "form-control" %>
 </div>
 
-<!--div class="field mt-4">
-  <%= f.label :cover_picture, t("item.form.pictures"), class: "mt-4" %>
-  <div>
-    <%= collection_radio_buttons(:item, :name, @item.item_pictures, :id, :id) do |b| %>
-      <% b.label(class: "radio_btn") { b.radio_button + image_tag(b.object.picture_url(:cart)) } %>
-    <% end %>
+<% if @item.item_pictures.present? %>
+  <div class="field mt-4">
+    <%= f.label :cover_picture, t("item.form.pictures"), class: "mt-4" %>
+    <div>
+      <%= collection_radio_buttons(:item, :cover_picture, @item.item_pictures, :id, :id) do |b| %>
+        <% b.label(class: "radio_btn") { b.radio_button + image_tag(b.object.picture_url(:cart)) } %>
+      <% end %>
+    </div>
   </div>
-</div-->
+<% end %>
 
 <div class="field mt-4"
   data-controller="multiple-upload"

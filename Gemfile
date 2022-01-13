@@ -34,7 +34,7 @@ group :development, :test do
   gem 'table_print'
   gem "letter_opener"
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
-  gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
+  gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
   gem 'rexml', '~> 3.2', '>= 3.2.5' #for rspec since ruby 3.0.0 doesnt use rexml by default
