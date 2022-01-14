@@ -40,11 +40,11 @@ class PictureUploader < Shrine
     @filename = File.basename(extract_filename(io).to_s, '.*').downcase.split(/[^a-zA-Z\d:]/).join
     version = derivative.blank? ? 'original' : derivative
 
-    item = Item.find(metadata['item_id'])
+    item = record.present? ? Item.find(record.item.id) : nil
     itemname = item.present? ? "#{item.name.titleize.split(/[\s$&+,:;=?@#|'<>.^*()%!-]/).join}" : 'no-name'
     item_id = item.present? ? item.id : 'no-id'
     shopname = item.present? ? "#{item.shop.brand}" : 'no-shop'
-    directory = record.present? ? record.class.name.downcase.pluralize : item.item_pictures.first.class.name.downcase.pluralize
+    directory = item.present? ? item.item_pictures.first.class.name.downcase.pluralize : 'itempictures'
     "#{directory}/#{shopname}/#{itemname}_item-#{item_id}_#{@filename}_#{version}#{extension}"
   end
 end

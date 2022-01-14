@@ -4,10 +4,6 @@ import Dashboard from '@uppy/dashboard';
 import { uppyInstance, uploadedFileData, getErrorDetails } from '../uppy';
 import { nanoid } from 'nanoid';
 
-import { postShopImage } from '../ajax';
-
-import spinner from '../../assets/spinner.gif';
-
 require('@uppy/image-editor/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
 
@@ -61,7 +57,6 @@ export default class extends Controller {
     });
 
     uppy.setMeta({ uploader_type: 'picture' });
-    uppy.setMeta({ item_id: location.pathname.match(/\d+/)[0] });
     this.inputTarget.remove();
 
     uppy.on('file-editor:complete', (uploadedFile) => {

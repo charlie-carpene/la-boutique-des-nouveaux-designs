@@ -13,6 +13,12 @@ class ItemsController < ApplicationController
       flash[:success] = t("item.success.created")
       redirect_to shop_path(@item.shop_id)
     else
+      @pictures = params[:item][:item_pictures_attributes] if params[:item][:item_pictures_attributes].present?
+      puts "*" * 30
+      @pictures.each do |picture|
+        puts picture[0].inspect
+      end
+      puts "*" * 30
       flash[:error] = translate_error_messages(@item.errors)
       render 'new'
     end
