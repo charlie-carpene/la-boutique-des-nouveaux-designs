@@ -23,9 +23,30 @@ export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberO
     uppy.use(AwsS3, {
       limit: 2,
       timeout: 60000,
-      companionUrl: '/',
-      companionHeaders: {
-        'test-juste-pour-voir': 'ceci est une valeure pour voir',
+      getUploadParameters(file){
+        console.log('file:', file);
+        return fetch('/s3/params', {
+          method: 'POST',
+          body: JSON.stringify({
+            filename: file.name, // here we are passing data to the server/back end
+            contentType: file.type,
+            metadata: {
+              'name': file.meta['name'], // here we pass the 'name' variable to the back end, with 'file.meta['name']' referring to the 'name' from our metaFields id above
+              'caption': file.meta['caption'] // here we pass the 'caption' variable to the back end, with 'file.meta['caption']' referring to the 'caption' from our metaFields id above
+            },
+          })
+        }).then((response) => {
+          console.log('response', response);
+          return response.json();
+        }).then((data) => {
+          console.log('>>>', data);
+          return {
+            method: data.method,
+            url: data.url,
+            fields: data.fields,
+            headers: data.headers,
+          };
+        })
       }
     })
   } else {
