@@ -31,7 +31,6 @@ export default class extends Controller {
       types: this.typesValue,
       size: this.sizeValue,
       server: this.serverValue,
-      uploader_type: 'picture',
     }).use(Dashboard, {
       target: this.uploadTarget,
       hideUploadButton: true,
@@ -40,7 +39,7 @@ export default class extends Controller {
       inline: true,
       width: 'auto',
       closeAfterFinish: false,
-      note: `Image must be less than ${Math.round(this.sizeValue/1000000)} Mo. To be uploaded one by one if you wish to modify each of them.`
+      note: `Image must be less than ${Math.round(this.sizeValue/1000000)} Mo. To be uploaded one by one if you wish to modify each of them.`,
     }).use(ImageEditor, {
       target: Dashboard,
       quality: 0.8,
@@ -57,6 +56,7 @@ export default class extends Controller {
       }
     });
 
+    uppy.setMeta({ uploader_type: 'picture' });
     this.inputTarget.remove();
 
     uppy.on('file-editor:complete', (uploadedFile) => {
