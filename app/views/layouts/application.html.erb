@@ -27,7 +27,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column">
+  <body class="d-flex flex-column"
+    <% if content_for?(:body_attributes) %>
+      <%= yield(:body_attributes) %> 
+    <% end %>
+  >
     <%= render 'layouts/header' %>
     <div class="min-vh-75">
       <%= render 'layouts/messages' %>

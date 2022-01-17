@@ -9,6 +9,7 @@ fr:
         placeholder: "Les frais de port sont calculés automatiquement"
       category: "Catégorie"
       description: "Description"
+      pictures: "Photos"
       add_images: "Ajouter des photos :"
       shipping_instructions: "Les frais de port sont calculés à partir du poids de l'article, en fonction des tarifs Colissimo. L'article doit respecter les dimensions suivantes : la somme de la largeur, de la longueur et de la hauteur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poids de l'article ne peut pas dépasser les 30 kg (30 000 g). Pour plus d'informations, tu peux consulter"
       shipping_price: "les tarifs postaux."

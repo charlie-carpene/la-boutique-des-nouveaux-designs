@@ -2,21 +2,19 @@ import { Controller } from "@hotwired/stimulus";
 import ImageEditor from '@uppy/image-editor';
 import Dashboard from '@uppy/dashboard';
 import { uppyInstance, uploadedFileData, getErrorDetails } from '../uppy';
-
-import { postShopImage } from '../ajax';
-
-import spinner from '../../assets/spinner.gif';
+import { nanoid } from 'nanoid';
 
 require('@uppy/image-editor/dist/style.css');
 require('@uppy/dashboard/dist/style.css');
 
 export default class extends Controller {
-  static targets = [ 'input', 'result', 'preview' ]
+  static targets = [ 'input', 'upload' ]
   static values = { types: Array, size: Number, server: String }
 
   connect() {
-    this.resultTarget.id = "shop_image";
-    this.resultTarget.name = "shop[image]";
+    if (this.element.lastChild.tagName !== 'DIV') {
+      this.createDashboardDiv();
+    };
     this.uppy = this.createUppy();
   };
 
@@ -28,15 +26,20 @@ export default class extends Controller {
     const uppy = uppyInstance({
       id: this.inputTarget.id,
       autoProceed: false,
-      allowMultipleUploads: false,
-      maxNumberOfFiles: 1,
+      allowMultipleUploads: true,
+      maxNumberOfFiles: 10,
       types: this.typesValue,
       size: this.sizeValue,
       server: this.serverValue,
     }).use(Dashboard, {
-      trigger: this.inputTarget,
-      closeAfterFinish: true,
-      note: `image must be less than ${Math.round(this.sizeValue/1000000)} Mo`
+      target: this.uploadTarget,
+      hideUploadButton: true,
+      disableStatusBar: true,
+      autoOpenFileEditor: true,
+      inline: true,
+      width: 'auto',
+      closeAfterFinish: false,
+      note: `Image must be less than ${Math.round(this.sizeValue/1000000)} Mo. To be uploaded one by one if you wish to modify each of them.`
     }).use(ImageEditor, {
       target: Dashboard,
       quality: 0.8,
@@ -52,19 +55,23 @@ export default class extends Controller {
         cropWidescreenVertical: false,
       }
     });
-    
-    uppy.setMeta({ uploader_type: 'image' });
 
-    uppy.on('upload', (data) => {
-      this.previewTarget.src = spinner;
+    uppy.setMeta({ uploader_type: 'picture' });
+    this.inputTarget.remove();
+
+    uppy.on('file-editor:complete', (uploadedFile) => {
+      uppy.upload();
     });
 
     uppy.on('upload-success', (file, response) => {
-      this.resultTarget.value = uploadedFileData(file, response, this.serverValue);
-      const path = location.pathname.replace('/edit','');
-      const fileData = this.resultTarget.value;
 
-      postShopImage(path, fileData);
+      const hiddenField = document.createElement('input');
+
+      hiddenField.type = 'hidden';
+      hiddenField.name = `item[item_pictures_attributes][${nanoid()}][picture]`;
+      hiddenField.value = uploadedFileData(file, response, this.serverValue);
+
+      this.element.appendChild(hiddenField);
     });
 
     uppy.on('upload-error', (file, error, response) => {
@@ -75,5 +82,18 @@ export default class extends Controller {
     });
   
     return uppy
-  }
+  };
+
+  createDashboardDiv() {
+    const div = document.createElement('div');
+    div.setAttribute('id', 'upload');
+    div.setAttribute('data-multiple-upload-target', "upload");
+    div.style.margin = '0.5rem auto';
+
+    this.element.appendChild(div);
+  };
+
+  deleteDashboardDiv() {
+    this.element.lastChild.remove();
+  };
 };

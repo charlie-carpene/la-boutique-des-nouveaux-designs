@@ -5,54 +5,7 @@
 
     <%= form_for(:item, url: items_path, html: { enctype: "multipart/form-data", method: :post }) do |f| %>
 
-      <div class="field mt-4">
-        <%= f.label t("item.form.product_name") %><br />
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
-
-      <div class="row mt-4">
-        <div class="col">
-          <%= f.label t("item.form.price") %>
-        </div>
-        <div class="col">
-          <%= f.label t("item.form.available_qty") %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <%= f.number_field :price, placeholder: 30, in: 0.01..5000.00, step: 0.01, class: "form-control" %>
-        </div>
-        <div class="col">
-          <%= f.number_field :available_qty, value: 1, step: 1, class: "form-control" %>
-        </div>
-      </div>
-
-      <p class="mt-4 mx-5 font-italic"><%= t("item.form.shipping_instructions") %><a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank"> <%= t("item.form.shipping_price") %></a></p>
-
-      <div class="field mt-4">
-        <%= f.label t("item.form.product_weight.title") %>
-        <%= f.number_field :product_weight, placeholder: t("item.form.product_weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
-      </div>
-
-      <div class="field mt-4">
-        <%= f.label t("item.form.category") %><br />
-        <% Category.all.each do |category| %>
-          <%= f.check_box :category_ids, {:multiple => true}, category.id, nil %>
-          <%= f.label t("category.#{category.name}") %><br />
-        <% end %> 
-      </div>
-
-      <div class="field mt-4">
-        <%= f.label t("item.form.description") %><br />
-        <%= f.rich_text_area :rich_description, class: "form-control" %>
-      </div>
-
-      <div class="field mt-4">
-        <%= f.label t("item.form.add_images"), class: "font-weight-bold" %>
-        <%= file_field_tag "files[]", multiple: true %>
-      </div>
-
-      <p class="font-italic"><%= t("item.form.crop_img") %> <a href="https://onlinepngtools.com/resize-png" target="_blank"><%= t("item.form.crop_img_tool") %></a></p>
+      <%= render 'item_form', f: f %>
 
       <%= f.hidden_field :shop_id, :value => current_user.shop.id %>
 
@@ -63,5 +16,3 @@
 
   </div>
 </div>
-
-<%= javascript_pack_tag 'action_text' %>
