@@ -2,6 +2,9 @@ class UploadsController < ApplicationController
 
   def s3
     if can? :manage, current_user.shop
+      puts "-" * 30
+      puts uploader.inspect
+      puts "-" * 30
       user_id = current_user.id
       uploader = set_uploader(params[:uploader_type])
       uploader.add_metadata :user_id do |io| user_id end
