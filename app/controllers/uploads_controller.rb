@@ -33,6 +33,9 @@ class UploadsController < ApplicationController
   end
 
   def set_uploader(type)
+    puts "*" * 30
+    puts type
+    puts "*" * 30
     case type
     when 'image'
       return ImageUploader
