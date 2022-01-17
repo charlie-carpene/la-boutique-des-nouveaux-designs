@@ -4,7 +4,7 @@ const AwsS3 = require('@uppy/aws-s3');
 
 require('@uppy/core/dist/style.css');
 
-export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberOfFiles, types, size, server }) {
+export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberOfFiles, types, size, server, uploader_type }) {
   document.getElementById(id).addEventListener('click', (event) => event.preventDefault());
 
   const uppy = new Uppy({
@@ -16,6 +16,9 @@ export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberO
       maxNumberOfFiles: maxNumberOfFiles,
       maxFileSize: size,
       allowedFileTypes: types,
+    },
+    meta: {
+      uploader_type: uploader_type
     }
   });
 
@@ -24,6 +27,7 @@ export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberO
       limit: 2,
       timeout: 60000,
       companionUrl: '/',
+      companionHeaders: {}
     })
   } else {
     uppy.use(XHRUpload, {

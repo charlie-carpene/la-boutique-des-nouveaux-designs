@@ -31,6 +31,7 @@ export default class extends Controller {
       types: this.typesValue,
       size: this.sizeValue,
       server: this.serverValue,
+      uploader_type: 'picture',
     }).use(Dashboard, {
       target: this.uploadTarget,
       hideUploadButton: true,
@@ -56,7 +57,6 @@ export default class extends Controller {
       }
     });
 
-    uppy.setMeta({ uploader_type: 'picture' });
     this.inputTarget.remove();
 
     uppy.on('file-editor:complete', (uploadedFile) => {

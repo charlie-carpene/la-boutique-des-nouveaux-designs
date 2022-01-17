@@ -33,6 +33,7 @@ export default class extends Controller {
       types: this.typesValue,
       size: this.sizeValue,
       server: this.serverValue,
+      uploader_type: 'image',
     }).use(Dashboard, {
       trigger: this.inputTarget,
       closeAfterFinish: true,
@@ -53,8 +54,6 @@ export default class extends Controller {
       }
     });
     
-    uppy.setMeta({ uploader_type: 'image' });
-
     uppy.on('upload', (data) => {
       this.previewTarget.src = spinner;
     });
