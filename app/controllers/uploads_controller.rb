@@ -1,6 +1,10 @@
 class UploadsController < ApplicationController
 
   def s3
+    puts "` " * 30
+    puts params.inspect
+    puts "` " * 30
+
     if can? :manage, current_user.shop
       user_id = current_user.id
       uploader = set_uploader(params[:uploader_type])
