@@ -33,11 +33,10 @@ export default class extends Controller {
       types: this.typesValue,
       size: this.sizeValue,
       server: this.serverValue,
-      uploader_type: 'image',
     }).use(Dashboard, {
       trigger: this.inputTarget,
       closeAfterFinish: true,
-      note: `image must be less than ${Math.round(this.sizeValue/1000000)} Mo`
+      note: `image must be less than ${Math.round(this.sizeValue/1000000)} Mo`,
     }).use(ImageEditor, {
       target: Dashboard,
       quality: 0.8,
@@ -54,6 +53,8 @@ export default class extends Controller {
       }
     });
     
+    uppy.setMeta({ uploader_type: 'image' });
+
     uppy.on('upload', (data) => {
       this.previewTarget.src = spinner;
     });
