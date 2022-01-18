@@ -24,7 +24,6 @@ class ImageUploader < Shrine
       content_length_range:   0..MAX_SIZE,
     }
   end
-  
 
   Attacher.validate do
     validate_mime_type ALLOWED_TYPES, message: "doit être un jpeg ou un png"

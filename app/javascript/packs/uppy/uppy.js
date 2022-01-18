@@ -16,6 +16,9 @@ export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberO
       maxNumberOfFiles: maxNumberOfFiles,
       maxFileSize: size,
       allowedFileTypes: types,
+    },
+    meta: {
+      uploader_type: uploader_type
     }
   });
 
@@ -23,29 +26,8 @@ export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberO
     uppy.use(AwsS3, {
       limit: 2,
       timeout: 60000,
-      getUploadParameters(file){
-        console.log('file:', file);
-        return fetch('/s3/params/?' + new URLSearchParams({
-          uploader_type: uploader_type,
-        }), {
-          method: 'GET',
-          headers: {
-            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
-          },
-        }).then((response) => {
-          console.log('response', response);
-          return response.json();
-        })
-        /*.then((data) => {
-          console.log('>>>', data);
-          return {
-            method: data.method,
-            url: data.url,
-            fields: data.fields,
-            headers: data.headers,
-          };
-        })*/
-      }
+      companionUrl: '/',
+      metaFields: ['uploader_type']
     })
   } else {
     uppy.use(XHRUpload, {
