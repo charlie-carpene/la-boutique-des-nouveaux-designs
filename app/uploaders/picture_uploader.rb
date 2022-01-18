@@ -1,3 +1,5 @@
+require "content_disposition"
+
 class PictureUploader < Shrine
   ALLOWED_TYPES = %w[image/jpeg image/png]
   MAX_SIZE = 3*1024*1024
@@ -10,9 +12,18 @@ class PictureUploader < Shrine
   plugin :processing
   plugin :delete_raw
   plugin :derivatives, versions_compatibility: true
-  plugin :default_url
   plugin :upload_endpoint, max_size: MAX_SIZE
+  plugin :default_url
   plugin :add_metadata
+  plugin :presign_endpoint, presign_options: -> (request) do
+    filename = request.params["filename"]
+    type = request.params["type"]
+    {
+      content_disposition:    ContentDisposition.inline(filename),
+      content_type:           type,
+      content_length_range:   0..MAX_SIZE,
+    }
+  end
 
   Attacher.validate do
     validate_mime_type ALLOWED_TYPES, message: "doit être un jpeg ou un png"
