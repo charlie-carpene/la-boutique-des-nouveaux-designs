@@ -4,7 +4,7 @@ const AwsS3 = require('@uppy/aws-s3');
 
 require('@uppy/core/dist/style.css');
 
-export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberOfFiles, types, size, server }) {
+export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberOfFiles, types, size, server, uploader_type }) {
   document.getElementById(id).addEventListener('click', (event) => event.preventDefault());
 
   const uppy = new Uppy({
@@ -25,20 +25,18 @@ export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberO
       timeout: 60000,
       getUploadParameters(file){
         console.log('file:', file);
-        return fetch('/s3/params', {
-          method: 'POST',
-          body: JSON.stringify({
-            filename: file.name, // here we are passing data to the server/back end
-            contentType: file.type,
-            metadata: {
-              'name': file.meta['name'], // here we pass the 'name' variable to the back end, with 'file.meta['name']' referring to the 'name' from our metaFields id above
-              'caption': file.meta['caption'] // here we pass the 'caption' variable to the back end, with 'file.meta['caption']' referring to the 'caption' from our metaFields id above
-            },
-          })
+        return fetch('/s3/params/?' + new URLSearchParams({
+          uploader_type: uploader_type,
+        }), {
+          method: 'GET',
+          headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+          },
         }).then((response) => {
           console.log('response', response);
           return response.json();
-        }).then((data) => {
+        })
+        /*.then((data) => {
           console.log('>>>', data);
           return {
             method: data.method,
@@ -46,7 +44,7 @@ export function uppyInstance({ id, autoProceed, allowMultipleUploads, maxNumberO
             fields: data.fields,
             headers: data.headers,
           };
-        })
+        })*/
       }
     })
   } else {
