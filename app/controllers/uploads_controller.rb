@@ -1,16 +1,9 @@
 class UploadsController < ApplicationController
 
   def s3
-    puts "` " * 30
-    puts params.inspect
-    puts "` " * 30
-
     if can? :manage, current_user.shop
       user_id = current_user.id
       uploader = set_uploader(params[:metadata][:uploader_type])
-      puts "-" * 30
-      puts uploader.inspect
-      puts "-" * 30
       uploader.add_metadata :user_id do |io| user_id end
     
       set_rack_response uploader.presign_response(:cache, request.env)
@@ -20,12 +13,9 @@ class UploadsController < ApplicationController
   end
 
   def xhr
-    puts "` " * 30
-    puts params.inspect
-    puts "` " * 30
     if can? :manage, current_user.shop
       user_id = current_user.id
-      uploader = set_uploader(params[:metadata][:uploader_type])
+      uploader = set_uploader(params[:uploader_type])
       uploader.add_metadata :user_id do |io| user_id end
 
       set_rack_response uploader.upload_response(:cache, request.env)
@@ -43,9 +33,6 @@ class UploadsController < ApplicationController
   end
 
   def set_uploader(type)
-    puts "*" * 30
-    puts type
-    puts "*" * 30
     case type
     when 'image'
       return ImageUploader

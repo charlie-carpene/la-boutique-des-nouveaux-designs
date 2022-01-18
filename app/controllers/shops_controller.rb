@@ -15,8 +15,8 @@ class ShopsController < ApplicationController
       if @user.shop.blank?
         @user.shop = Shop.new(shop_permitted_params)
         if @user.save
-          AdminMailer.new_shop_request(@user, params[:files]).deliver_now
-          UserMailer.new_shop_request(@user, params[:files]).deliver_now
+          #AdminMailer.new_shop_request(@user, params[:files]).deliver_now
+          #UserMailer.new_shop_request(@user, params[:files]).deliver_now
           flash[:success] = t("shop.success.shop_created")
           redirect_to user_path(@user)
         else

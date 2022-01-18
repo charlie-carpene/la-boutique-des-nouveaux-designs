@@ -35,9 +35,9 @@ class PictureUploader < Shrine
     magick = ImageProcessing::MiniMagick.source(original)
  
     { 
-      card: magick.resize_to_fill!(200, 300),
+      card: magick.resize_to_fill!(300, 300),
       cart: magick.resize_to_fill!(100, 100),
-      item_show: magick.resize_to_fill!(600, 500),
+      item_show: magick.resize_to_fill!(600, 600),
     }
   end
 
