@@ -42,6 +42,16 @@ class Item < ApplicationRecord
     CartItem.destroy(@cart_item.id)
   end
 
+  def cover_picture_with_fallback(img_type)
+    if self.item_pictures.where(id: self.cover_picture).exists?
+      return self.item_pictures.find(self.cover_picture).picture_url(img_type)
+    elsif self.item_pictures.exists?
+      return self.item_pictures.last.picture_url(img_type)
+    else
+      return "img-items/adnd-squarre-0.jpeg"
+    end
+  end
+
   private
 
   def create_stripe_product_and_price
