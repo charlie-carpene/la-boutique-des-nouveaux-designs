@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
       flash[:success] = t("item.success.updated", item_name: @item.name)
       redirect_to item_path(@item.id)
     else
+      @pictures = params[:item][:item_pictures_attributes] if params[:item][:item_pictures_attributes].present?
       flash.now[:error] = translate_error_messages(@item.errors)
       render 'edit'
     end
