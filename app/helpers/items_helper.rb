@@ -7,11 +7,11 @@ module ItemsHelper
     elsif @item.item_pictures.exists?
       return @item.item_pictures.last.picture_url(img_type)
     else
-      return ActionController::Base.helpers.asset_path("adnd-squarre-0.jpeg", :digest => false)
+      return ActionController::Base.helpers.asset_path("adnd-squarre-0.jpeg", :digest => true)
     end
   end
 
   def item_fallback_picture_url(nbr)
-    return ActionController::Base.helpers.asset_path("adnd-squarre-#{nbr}.jpeg", :digest => false)
+    return ActionController::Base.helpers.asset_path("adnd-squarre-#{nbr}.jpeg", :digest => true)
   end
 end
