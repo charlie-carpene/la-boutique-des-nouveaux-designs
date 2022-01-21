@@ -1,7 +1,7 @@
 <li class="list-group-item">
   <div class="d-flex align-items-center justify-content-between">
     <div>
-      <%= image_tag cart_item.item.cover_picture_with_fallback(:cart), loading: "lazy", style: "width: 100px;" %>
+      <%= image_tag cover_picture_with_fallback(cart_item.item.id, :cart), loading: "lazy", style: "width: 100px;" %>
       <%= link_to cart_item.item.name, item_path(cart_item.item.id), class: "stretched-link" %>
     </div>
     <div class="d-flex">

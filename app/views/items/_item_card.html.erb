@@ -2,12 +2,12 @@
   <% if item.available_qty > 0 %>
     <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
       <div class="card-item rounded">
-        <%= image_tag(item.cover_picture_with_fallback(:card), loading: "lazy", alt: "#{item.name}") %>
+        <%= image_tag(cover_picture_with_fallback(item.id, :card), loading: "lazy", alt: "#{item.name}") %>
       </div>
     <% end %>
   <% else %>
     <div class="card-item">
-        <%= image_tag(item.cover_picture_with_fallback(:card), loading: "lazy", alt: "#{item.name}") %>
+        <%= image_tag(cover_picture_with_fallback(item.id, :card), loading: "lazy", alt: "#{item.name}") %>
       <span class="card-img-overlay text-danger font-weight-bold text-center d-flex align-items-center item-not-available"><%= t("item.not_available") %></span>
     </div>
   <% end %>
