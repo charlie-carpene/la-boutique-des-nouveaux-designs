@@ -5,7 +5,7 @@
         <div class="carousel-inner">
           <% if @item.item_pictures.exists? %>
             <div class="carousel-item active"> <!-- show the first stored image as the first image to show -->
-              <%= image_tag cover_picture_with_fallback(@item.id, :item_show), class: "d-flex justify-content-center item-carousel-img", loading: "lazy", alt: "#{@item.name}" %>
+              <%= image_tag @item.cover_picture_with_fallback(:item_show), class: "d-flex justify-content-center item-carousel-img", loading: "lazy", alt: "#{@item.name}" %>
             </div>
             <% @item.item_pictures.select{ |ip| ip.id != @item.cover_picture }.each do |ip| %> <!-- add the rest of the images to the carrouselles -->
               <div class="carousel-item">
