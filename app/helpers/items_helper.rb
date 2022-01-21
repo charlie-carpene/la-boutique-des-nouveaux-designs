@@ -10,4 +10,8 @@ module ItemsHelper
       return ActionController::Base.helpers.asset_path("img-items/adnd-squarre-0.jpeg", :digest => false)
     end
   end
+
+  def item_fallback_picture_url(nbr)
+    return ActionController::Base.helpers.asset_path("img-items/adnd-squarre-#{nbr}.jpeg", :digest => false)
+  end
 end
