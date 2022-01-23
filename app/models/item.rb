@@ -48,7 +48,7 @@ class Item < ApplicationRecord
     elsif self.item_pictures.exists?
       return self.item_pictures.last.picture_url(img_type)
     else
-      return "img-items/adnd_squarre_0.jpeg"
+      return "img_items/adnd_squarre_0.svg"
     end
   end
 
