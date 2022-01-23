@@ -20,7 +20,7 @@
     <% @categories.each do |category| %>
       <div class="d-flex flex-column align-items-center">
         <div class="card card-item rounded border-0 m-3">
-          <%= image_tag category.items.last.item_pictures.first.picture_url(:card) %>
+          <%= image_tag "category/#{category.name.downcase}.jpg" %>
           <%= link_to "", category_path(category.id), class: "stretched-link" %>
         </div>
         <p><%= category.name %></p>
