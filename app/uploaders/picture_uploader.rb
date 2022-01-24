@@ -13,9 +13,7 @@ class PictureUploader < Shrine
   plugin :delete_raw
   plugin :derivatives, versions_compatibility: true
   plugin :upload_endpoint, max_size: MAX_SIZE
-  plugin :default_url do |context|
-    "img-items/adnd-squarre-0.jpeg"
-  end
+  plugin :default_url
   plugin :add_metadata
   plugin :presign_endpoint, presign_options: -> (request) do
     filename = request.params["filename"]
