@@ -4,11 +4,38 @@
 }
 
 .card-item {
-  width: 15rem;
+  overflow: hidden;
+  width: 20vw;
+  height: 20vw;
+  min-width: 200px;
+  min-height: 200px;
+  position: relative;
 }
 
-.card-item img {
-  height: 100%;
+.card-item > :first-child {
+  width: 100%;
+  object-fit: cover;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  position: absolute;
+  top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.card-item:hover > :first-child {
+  -webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -o-transform:scale(1.2);
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.card-width {
+  width: 20vw;
+  min-width: 200px;
 }
 
 .delete-icon {
@@ -42,7 +69,8 @@
 
 @media only screen and (max-device-width: 480px) {
   .card-item {
-    width: 40%;
+    width: 45vw;
+    height: 45vw;
   }
 
   .card-shop {
@@ -50,4 +78,8 @@
     width: 100%;
   }
 
+  .card-width {
+    width: 45vw;
+  }
+  
 }

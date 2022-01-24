@@ -3,22 +3,22 @@
     <div class="col-sm d-flex align-items-center reset-p-m">
       <div id="carouselExampleControls" class="carousel slide w-100" data-ride="carousel">
         <div class="carousel-inner">
-          <% if @item.item_pictures.present? %> <%# if to be deleted when tests are over. same for items/_item_card & items/_item_row %>
+          <% if @item.item_pictures.exists? %>
             <div class="carousel-item active"> <!-- show the first stored image as the first image to show -->
-              <%= image_tag @item.item_pictures.first.picture_url(:item_show), class: "d-flex justify-content-center item-carousel-img" %>
+              <%= image_tag @item.cover_picture_with_fallback(:item_show), class: "d-flex justify-content-center item-carousel-img", loading: "lazy", alt: "#{@item.name}" %>
             </div>
-            <% (1...@item.item_pictures.count).each do |nbr| %> <!-- add the rest of the images to the carrouselles -->
+            <% @item.item_pictures.select{ |ip| ip.id != @item.cover_picture }.each do |ip| %> <!-- add the rest of the images to the carrouselles -->
               <div class="carousel-item">
-                <%= image_tag(@item.item_pictures[nbr].picture_url(:item_show), class: "d-flex justify-content-center item-carousel-img") %>
+                <%= image_tag(ip.picture_url(:item_show), class: "d-flex justify-content-center item-carousel-img", loading: "lazy", alt: "#{@item.name}") %>
               </div>
             <% end %>
           <% else %>
             <div class="carousel-item active">
-              <%= image_tag "img-items/sac-1.jpg" %>
+              <%= image_tag item_fallback_picture_url(0), class: "w-100" %>
             </div>
-            <% (2...4).each do |nbr| %>
+            <% (1...3).each do |nbr| %>
               <div class="carousel-item">
-                <%= image_tag "img-items/sac-#{nbr}.jpg", class: "d-flex justify-content-center" %>
+                <%= image_tag item_fallback_picture_url(nbr), class: "d-flex justify-content-center w-100" %>
               </div>
             <% end %>
           <% end %>

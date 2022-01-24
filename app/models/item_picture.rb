@@ -2,6 +2,7 @@ class ItemPicture < ApplicationRecord
   include PictureUploader::Attachment(:picture)
   belongs_to :item
 
+  after_create :initialize_cover_picture
   after_create :create_picture_derivatives, if: :picture_changed?
 
   private
@@ -43,5 +44,9 @@ class ItemPicture < ApplicationRecord
     else
       self.picture_derivatives!
     end
+  end
+
+  def initialize_cover_picture
+    self.item.update(cover_picture: self.id)
   end
 end

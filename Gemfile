@@ -34,7 +34,7 @@ group :development, :test do
   gem 'table_print'
   gem "letter_opener"
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
-  gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
+  gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
   gem 'rexml', '~> 3.2', '>= 3.2.5' #for rspec since ruby 3.0.0 doesnt use rexml by default
@@ -66,6 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem "content_disposition", "~> 1.0"
 
 gem 'cancancan'
 
@@ -76,7 +77,7 @@ gem 'shrine', '~> 3.3'
 gem 'fastimage', '~> 2.1', '>= 2.1.7'
 gem 'image_processing', '~> 1.10', '>= 1.10.3'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', '~> 1.109'
 gem 'migration_data', '~> 0.6.0'
 
 gem 'stripe', '~> 5.22'

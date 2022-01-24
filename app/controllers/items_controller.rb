@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
       flash[:success] = t("item.success.created")
       redirect_to shop_path(@item.shop_id)
     else
+      @pictures = params[:item][:item_pictures_attributes] if params[:item][:item_pictures_attributes].present?
       flash[:error] = translate_error_messages(@item.errors)
       render 'new'
     end
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    unless params[:files].blank?
+    if params[:files].present? || params[:item][:item_pictures_attributes].present? #handle when javascript is disabled
       @item.item_pictures.destroy_all
     end
 
@@ -33,6 +34,7 @@ class ItemsController < ApplicationController
       flash[:success] = t("item.success.updated", item_name: @item.name)
       redirect_to item_path(@item.id)
     else
+      @pictures = params[:item][:item_pictures_attributes] if params[:item][:item_pictures_attributes].present?
       flash.now[:error] = translate_error_messages(@item.errors)
       render 'edit'
     end
@@ -52,7 +54,7 @@ class ItemsController < ApplicationController
   private
 
   def item_permitted_params
-    params.require(:item).permit(:name, :rich_description, :price, :available_qty, :product_weight, :shop_id, :item_pictures_attributes, category_ids: [])
+    params.require(:item).permit(:name, :rich_description, :price, :available_qty, :product_weight, :shop_id, :cover_picture, item_pictures_attributes: {}, category_ids: [])
   end
 
   def get_item_permitted_attributes

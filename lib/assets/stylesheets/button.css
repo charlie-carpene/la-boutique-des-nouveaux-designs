@@ -1,7 +1,41 @@
 .btn-catch {
-    transition: 0.3s;
+	transition: 0.3s;
 }
 
 .btn-catch:hover {
-    border-radius: 2rem;
+	border-radius: 2rem;
+}
+
+.btn-outline-bg-light {
+	color: rgba(22, 115, 120, 0);
+	border-color: rgba(22, 115, 120, 0);
+	background-color: rgba(255, 255, 255, 0);
+	transition: 0.2s;
+}
+
+.btn-outline-bg-light:hover {
+	color: rgba(22, 115, 120, 0);
+	border-color: rgba(22, 115, 120, 0);
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.radio_btn {
+	margin: 1rem;
+}
+
+.radio_btn input {
+	display: none;
+}
+
+.radio_btn input:checked + img {
+  cursor: pointer;
+	border: 2px solid var(--success);
+}
+
+@media only screen and (max-device-width: 915px) {
+	.btn-outline-bg-light {
+		color: rgba(22, 115, 120, 0);
+		border-color: rgba(22, 115, 120, 0);
+		background-color: rgba(255, 255, 255, 0);
+	}
 }

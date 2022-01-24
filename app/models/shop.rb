@@ -9,8 +9,10 @@ class Shop < ApplicationRecord
   validates :terms_of_service, acceptance: { message: I18n.t("validate.errors.terms_of_service") }
   validates :company_id, presence: true, format: { with: /\A\d+\z/, message: I18n.t("validate.errors.must_be_numbers") }, length: { is: 14 }
   validate :forbid_changing_uid, on: :update
-  validate :create_image_derivatives, on: [:create, :update], if: :image_changed?
-  validate :generate_new_image_location, on: :update, if: :brand_changed?, unless: :image_changed?
+
+  after_create :create_image_derivatives, if: :image_changed?
+  after_update :create_image_derivatives, if: :image_changed?
+  after_update :generate_new_image_location, if: :saved_change_to_brand?, unless: :saved_change_to_image_data?
 
   belongs_to :user
   belongs_to :address, optional: true
@@ -77,7 +79,7 @@ class Shop < ApplicationRecord
     old_attacher = attacher.dup
     current_file = old_attacher.file
 
-    if self.brand_changed?
+    if saved_change_to_brand?
       attacher.set attacher.upload(attacher.file)
       attacher.set_derivatives attacher.upload_derivatives(attacher.derivatives)
 

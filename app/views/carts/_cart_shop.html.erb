@@ -10,7 +10,7 @@
     </ul>
     <div class="m-3 d-flex justify-content-between">
       <p><%= t("cart.show.shipping_fee_html", href: link_to(t("style.strong_html", content: t("cart.show.adnd_href")), "https://goo.gl/maps/NPUzNAjd2rCjLcVJ8",  { target: "_blank" })) %></p>
-      <p><%= t("cart.show.order_price",  price: cart.get_total_price_from_a_specific_shop(shop)) %></p>
+      <p id="shop_<%= shop.id %>_total_price"><%= t("cart.show.order_price",  price: cart.get_total_price_from_a_specific_shop(shop)) %></p>
 <!--
       <p>Frais de port : <%= shipping_cost(cart.get_shipping_price(shop)) %>€</p>
       <p><strong>Prix total : <%= cart.get_total_price_from_a_specific_shop(shop) + shipping_cost(cart.get_shipping_price(shop)) %>€</strong></p>

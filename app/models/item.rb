@@ -5,11 +5,11 @@ class Item < ApplicationRecord
   validates :product_weight, presence: true
   validates :rich_description, no_attachments: true
   validates :item_pictures, nbr_of_pictures: true
-  validate :generate_new_item_picture_location, on: :update, if: :name_changed?
 
   after_create :create_stripe_product_and_price
   before_update :update_stripe_info
   after_destroy :destroy_stripe_product
+  after_update :generate_new_item_picture_location, if: :saved_change_to_name?
 
   belongs_to :shop
   has_many :item_categories, dependent: :destroy
@@ -40,6 +40,16 @@ class Item < ApplicationRecord
 
     @cart_item = cart.cart_items.find_by(item: self)
     CartItem.destroy(@cart_item.id)
+  end
+
+  def cover_picture_with_fallback(img_type)
+    if self.item_pictures.where(id: self.cover_picture).exists?
+      return self.item_pictures.find(self.cover_picture).picture_url(img_type)
+    elsif self.item_pictures.exists?
+      return self.item_pictures.last.picture_url(img_type)
+    else
+      return "img_items/adnd_squarre_0.svg"
+    end
   end
 
   private

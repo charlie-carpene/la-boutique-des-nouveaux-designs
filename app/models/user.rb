@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :addresses
   has_one :cart, dependent: :destroy
-  has_one :shop
+  has_one :shop, dependent: :destroy
   has_one :admin
   has_many :orders
 

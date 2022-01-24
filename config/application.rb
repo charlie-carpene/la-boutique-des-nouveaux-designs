@@ -20,5 +20,19 @@ module LaBoutiqueDesNouveauxDesigns
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :fr
+    config.assets.precompile += [
+      '@uppy/core/dist/style.css',
+      '@uppy/dashboard/dist/style.css',
+      '@uppy/image-editor/dist/style.css',
+    ]
+
+    # supports :s3, :s3_multipart, or :app
+    config.upload_server = if ENV["UPLOAD_SERVER"].present?
+      ENV["UPLOAD_SERVER"].to_sym
+    elsif Rails.env.production?
+      :s3
+    else
+      :app
+    end
   end
 end
