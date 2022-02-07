@@ -39,3 +39,6 @@ fr:
     connect_:
       yourself: "Se connecter"
       stripe: "Connecter Stripe à ta boutique"
+    disable: "Désactivé"
+    disabled:
+      add_address: "Veuillez d'abord sélectionner une adresse"

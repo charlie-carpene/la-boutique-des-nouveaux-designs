@@ -1,5 +1,19 @@
 <div class="container">
-  <h2 class="pt-4 text-center text-primary"><%= t("order.new.title") %></h2>
+  <h2 class="pt-4 text-center text-primary"><%= t("order.new.your_address") %></h2>
+  <% if @order.user.addresses.present? %>
+    <% @order.user.addresses.each do |address| %>
+      <div class="card border-primary btn-outline-light text-dark m-2" style="width: 16rem;">
+        <%= render 'addresses/address_card', address: address %>
+      </div>
+    <% end %>
+  <% elsif %>
+    <div class="d-flex justify-content-center">
+      <%= button_to t("button.add_address"), new_user_address_path(current_user.id), method: "get", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<div class="container">
+  <h2 class="pt-4 text-center text-primary"><%= t("order.new.your_order") %></h2>
   <ul class="my-3 list-group">
     <% @ordered_cart_items.each do |cart_item| %>
     <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
@@ -13,7 +27,14 @@
   <p><strong><%= t("order.new.total_price", total_price: @order.total_price_with_shipping_cost(@ordered_cart_items)) %></strong></p>
 
   <script src="https://js.stripe.com/v3"></script>
-  <%= button_to t("button.order"), orders_path, id: "checkout-button", class: "btn btn-success", data: {session_id: @session.id} %>
+  <%= render(ButtonComponent.new(
+    id: "checkout-button",
+    title: t("button.order"),
+    link: orders_path,
+    data: { session_id: @session.id },
+    disable: !@order.user.addresses.exists?,
+    disable_text: t("button.disabled.add_address")
+  )) %>
   </div>
 </div>
 

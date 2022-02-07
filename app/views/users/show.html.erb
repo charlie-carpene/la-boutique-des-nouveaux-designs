@@ -16,7 +16,11 @@
   <div class="d-flex flex-wrap">
     <% if @user.addresses.present? %>
       <% current_user.addresses.each do |address| %>
-        <%= render 'addresses/address_card', address: address %>
+        <div class="card border-primary btn-outline-light text-dark m-2" style="width: 16rem;">
+          <%= render 'addresses/address_card', address: address %>
+          <%= link_to "", edit_user_address_path(current_user.id, address.id), method: "get", class: "stretched-link text-decoration-none" %>
+          <%= link_to "", user_address_path(current_user.id, address.id), method: "delete", data: { confirm: t("button.delete_.are_you_sure") }, class: "delete-icon fas fa-trash color-change-to-danger mt-2 z-index-1" %>
+        </div>
       <% end %>
     <% end %>
   </div>

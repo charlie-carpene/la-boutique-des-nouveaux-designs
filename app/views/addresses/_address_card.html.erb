@@ -1,12 +1,8 @@
-<div class="card border-primary btn-outline-light text-dark m-2" style="width: 16rem;">
-  <div class="card-body">
-    <h5 class="card-title"><%= address.first_name %> <%= address.last_name %></h5>
-    <div class="card-text">
-      <%= address.address_line_2 %> <br>
-      <%= address.address_line_1 %>,
-    </div>
-    <div><%= address.zip_code %> <%= address.city %></div>
+<div class="card-body">
+  <h5 class="card-title"><%= address.first_name %> <%= address.last_name %></h5>
+  <div class="card-text">
+    <%= address.address_line_2 %> <br>
+    <%= address.address_line_1 %>,
   </div>
-  <%= link_to "", edit_user_address_path(current_user.id, address.id), method: "get", class: "stretched-link text-decoration-none" %>
-  <%= link_to "", user_address_path(current_user.id, address.id), method: "delete", data: { confirm: t("button.delete_.are_you_sure") }, class: "delete-icon fas fa-trash color-change-to-danger mt-2 z-index-1" %>
+  <div><%= address.zip_code %> <%= address.city %></div>
 </div>
