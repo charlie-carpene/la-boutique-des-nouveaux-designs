@@ -7,4 +7,5 @@ class Address < ApplicationRecord
 
   belongs_to :user, optional: true
   has_one :shop, required: false
+  has_many :orders
 end

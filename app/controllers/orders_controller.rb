@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
         metadata: {
           customer: @order.user_id,
           shop: @shop.id,
+          address: @order.user.delivery_address
         },
         line_items: @order.add_all_ordered_items_to_stripe_session(@ordered_cart_items),
         mode: 'payment',
@@ -69,9 +70,10 @@ class OrdersController < ApplicationController
     if event['type'] == "checkout.session.completed"
       @user = User.find(event['data']['object']['metadata']['customer'])
       @shop = Shop.find(event['data']['object']['metadata']['shop'])
-      @order = Order.new(user: @user)
+      @address = Address.find(event['data']['object']['metadata']['address'])
+      @order = Order.new(user: @user, address: @address)
 
-      if @order.save
+      if @user.delivery_address == @address.id && @order.save
         @order.create_ordered_items(@shop)
         head 200
       else
