@@ -1,16 +1,19 @@
 <div class="container">
   <h2 class="pt-4 text-center text-primary"><%= t("order.new.your_address") %></h2>
-  <% if @order.user.addresses.exists? %>
-    <%= render(AddressCardComponent.with_collection(@order.user.addresses, user: current_user, buttons_disable: true)) %>
-  <% else %>
-    <div class="d-flex justify-content-center">
-      <%= render(LinkComponent.new(
-        title: t("button.add_address"),
-        link: new_user_address_path(@order.user.id),
-        class_name: "btn btn-primary",
-      )) %>
-    </div>
-  <% end %>
+  <div class="d-flex flex-wrap">
+    <%= render(AddressCardComponent.with_collection(
+      @order.user.addresses,
+      user: current_user,
+      type: :delivery_address
+    )) %>
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= render(LinkComponent.new(
+      title: t("button.add_address"),
+      link: new_user_address_path(@order.user.id),
+      class_name: "btn btn-primary",
+    )) %>
+  </div>
 </div>
 <div class="container">
   <h2 class="pt-4 text-center text-primary"><%= t("order.new.your_order") %></h2>
@@ -32,7 +35,7 @@
     title: t("button.order"),
     link: orders_path,
     data: { session_id: @session.id },
-    disable: !@order.user.addresses.exists?,
+    disable: !@order.user.addresses.exists? || !@order.user.addresses.where(id: @order.user.delivery_address).exists?,
     disable_text: t("button.disabled.add_address")
   )) %>
   </div>

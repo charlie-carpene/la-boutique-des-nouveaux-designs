@@ -1,1 +1,11 @@
-<%= link_to @title, @link, method: @method, class: handle_icon_class, data: @data %>
+<% if @icon %>
+  <% handle_icon %>
+<% end %>
+
+<% if content %>
+  <%= link_to(@link, method: @method, class: @class, data: @data) do %>
+    <%= content %>
+  <% end %>
+<% else %>
+  <%= link_to @title, @link, method: @method, class: @class, data: @data %>
+<% end %>

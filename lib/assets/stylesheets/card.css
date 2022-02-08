@@ -33,6 +33,10 @@
   transform: translate(-50%, -50%) scale(1.2);
 }
 
+.card-selected {
+  background-color: var(--success);
+}
+
 .card-width {
   width: 20vw;
   min-width: 200px;
