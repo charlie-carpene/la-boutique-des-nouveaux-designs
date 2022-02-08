@@ -41,4 +41,4 @@ fr:
       stripe: "Connecter Stripe à ta boutique"
     disable: "Désactivé"
     disabled:
-      add_address: "Veuillez d'abord sélectionner une adresse"
+      add_address: "Il te faut d'abord sélectionner une adresse"

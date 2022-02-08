@@ -1,0 +1,23 @@
+<div class="card border-primary btn-outline-light text-dark m-2" style="width: 16rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @address.first_name %> <%= @address.last_name %></h5>
+    <div class="card-text">
+      <%= @address.address_line_2 %> <br>
+      <%= @address.address_line_1 %>,
+    </div>
+    <div><%= @address.zip_code %> <%= @address.city %></div>
+  </div>
+
+  <% unless @buttons_disable %>
+    <%= render(LinkComponent.new(
+      link: edit_user_address_path(@user.id, @address.id),
+      class_name: "stretched-link text-decoration-none",
+    )) %>
+    <%= render(LinkComponent.new(
+      link: user_address_path(@user.id, @address.id),
+      method: "delete",
+      icon: true,
+      class_name: "mt-2 z-index-1",
+    )) %>
+  <% end %>
+</div>

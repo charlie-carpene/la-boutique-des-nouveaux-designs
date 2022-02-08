@@ -1,14 +1,14 @@
 <div class="container">
   <h2 class="pt-4 text-center text-primary"><%= t("order.new.your_address") %></h2>
-  <% if @order.user.addresses.present? %>
-    <% @order.user.addresses.each do |address| %>
-      <div class="card border-primary btn-outline-light text-dark m-2" style="width: 16rem;">
-        <%= render 'addresses/address_card', address: address %>
-      </div>
-    <% end %>
-  <% elsif %>
+  <% if @order.user.addresses.exists? %>
+    <%= render(AddressCardComponent.with_collection(@order.user.addresses, user: current_user, buttons_disable: true)) %>
+  <% else %>
     <div class="d-flex justify-content-center">
-      <%= button_to t("button.add_address"), new_user_address_path(current_user.id), method: "get", class: "btn btn-primary" %>
+      <%= render(LinkComponent.new(
+        title: t("button.add_address"),
+        link: new_user_address_path(@order.user.id),
+        class_name: "btn btn-primary",
+      )) %>
     </div>
   <% end %>
 </div>
