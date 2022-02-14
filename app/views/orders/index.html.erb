@@ -1,9 +1,18 @@
 <div class="container">
-    <h2 class="pt-4 text-center text-primary"><%= t("order.index.title") %></h2>
-    <ul class="my-3 list-group">
-        <% @orders.each do |order| %>
-            <%= render 'order_row', user: @user, order: order %>
-        <% end %>
-    </ul>
-    <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
+	<h2 class="pt-4 text-center text-primary"><%= t("order.index.title") %></h2>
+	<ul class="my-3 list-group">
+	<% @orders.each do |order| %>
+		<%= render(AccordionComponent.new(
+			title: "##{order.created_at.year}-#{order.id}",
+			overlay: handle_tracking_link(order)
+		)) do %>
+			<% order.order_items.each do |order_item| %>
+				<%= render(OrderedItemComponent.new(order_item: order_item)) %>
+			<% end %>
+		<% end %>
+	<% end %>
+	</ul>
+	<%= link_to t("button.back"), :back, class: "btn btn-primary" %>
 </div>
+
+<%= javascript_pack_tag 'components/accordion' %>

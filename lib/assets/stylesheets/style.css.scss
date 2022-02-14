@@ -25,6 +25,10 @@
 }
 
 /****** BALISE ******/
+.display-inline-block {
+  display: inline-block;
+}
+
 p {
   font-family: inherit;
 }
@@ -124,4 +128,10 @@ p {
 .filter-to-success:hover {
   /*filtered to success*/
   filter: invert(76%) sepia(51%) saturate(6952%) hue-rotate(128deg) brightness(98%) contrast(102%);
+}
+
+@media only screen and (max-device-width: 480px) {
+  label, input {
+    font-size: 2.3rem;
+  }
 }

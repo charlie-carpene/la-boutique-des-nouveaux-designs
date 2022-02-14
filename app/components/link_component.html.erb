@@ -1,11 +1,5 @@
-<% if @icon %>
-  <% handle_icon %>
-<% end %>
+<% handle_icon if @icon %>
 
-<% if content %>
-  <%= link_to(@link, method: @method, class: @class, data: @data) do %>
-    <%= content %>
-  <% end %>
-<% else %>
-  <%= link_to @title, @link, method: @method, class: @class, data: @data %>
+<%= link_to(@link, @html_options) do %>
+  <%= @title ? @title : content %>
 <% end %>

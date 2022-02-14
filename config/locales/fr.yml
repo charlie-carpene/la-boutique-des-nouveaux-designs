@@ -24,3 +24,5 @@ fr:
   shop_images:
     image: "Le(s) document(s)"
     image_nbr_sent: "Le nombre de document(s) envoyé(s)"
+
+  tracking_id: "coucou"

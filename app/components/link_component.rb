@@ -13,21 +13,31 @@ class LinkComponent < ViewComponent::Base
     delete: ICON_DELETE
   }.freeze
 
-  def initialize(title: "", link:, class_name: nil, method: "get", data: {}, icon: false)
+  def initialize(title: "", link:, html_options: {}, icon: nil)
     @title = title
     @link = link
-    @class = class_name
-    @method = method
-    @data = data
+    @html_options = html_options
     @icon = icon
   end
 
   def handle_icon
-    @title = ICON_MAPPINGS[@method]
-    @class << " #{ICON_CLASS}"
+    @title = ICON_MAPPINGS[@icon]
+    add_html_options({ class: " #{ICON_CLASS}"})
 
-    if @method == :delete
-      @data[:confirm] = t("button.delete_.are_you_sure")
+    if @icon == :delete
+      add_html_options(data: { confirm: t("button.delete_.are_you_sure") })
     end
+  end
+
+  def add_html_options(hash)
+    hash.each do |key, value|
+      if key == :class && @html_options[key].present?
+        @html_options[key] += value
+      else
+        @html_options[key] = value
+      end
+    end
+
+    return @html_options
   end
 end

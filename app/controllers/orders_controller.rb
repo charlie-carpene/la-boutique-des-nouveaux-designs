@@ -2,7 +2,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   load_and_authorize_resource :user, only: [:index, :show]
-  load_and_authorize_resource :order, only: [:new, :show]
+  load_and_authorize_resource :order, only: [:new, :show, :update]
 
   skip_before_action :verify_authenticity_token, only: [:create]
 
@@ -84,6 +84,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    if @order.update(order_permitted_params)
+      redirect_back(fallback_location: user_path(current_user.id), status: :see_other)
+    else
+      flash[:error] = @order.errors.full_messages
+      redirect_back(fallback_location: user_path(current_user.id), status: :see_other)
+    end
+  end
+
   def show
   end
 
@@ -91,4 +100,9 @@ class OrdersController < ApplicationController
     @orders = @user.orders.sort_by { |order| [order.created_at] }.reverse
   end
 
+  private
+
+  def order_permitted_params
+    params.require(:order).permit(:tracking_id, :address)
+  end
 end

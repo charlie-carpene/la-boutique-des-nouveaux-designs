@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  validates :tracking_id, length: { in: 11..15 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: I18n.t("validate.errors.only_letters_and_numbers_allowed") }
+
   belongs_to :user
   belongs_to :address
   has_many :order_items, dependent: :destroy

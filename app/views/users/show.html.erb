@@ -23,7 +23,7 @@
     <%= render(LinkComponent.new(
       title: t("button.add_address"),
       link: new_user_address_path(current_user.id),
-      class_name: "btn btn-primary",
+      html_options: { class: "btn btn-primary" },
     )) %>
   </div>
 
