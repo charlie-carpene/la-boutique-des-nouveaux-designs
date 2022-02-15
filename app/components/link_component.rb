@@ -15,11 +15,12 @@ class LinkComponent < ViewComponent::Base
     minus: ICON_MINUS
   }.freeze
 
-  def initialize(title: "", link:, html_options: {}, icon: nil)
+  def initialize(title: "", link:, html_options: {}, icon: nil, render: true)
     @title = title
     @link = link
     @html_options = html_options
     @icon = icon
+    @render = render
   end
 
   def handle_icon
@@ -40,5 +41,9 @@ class LinkComponent < ViewComponent::Base
     end
 
     return @html_options
+  end
+
+  def render?
+    @render
   end
 end

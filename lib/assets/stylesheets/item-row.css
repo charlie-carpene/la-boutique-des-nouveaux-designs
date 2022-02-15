@@ -1,3 +1,7 @@
+.item-row-text p {
+  margin: 0;
+}
+
 @media only screen and (max-device-width: 480px) {
   .item-row-text {
     text-align: center;

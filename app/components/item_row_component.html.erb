@@ -5,6 +5,9 @@
       <% if @order %>
         <p><%= @item.name %></p>
         <p><%= t("order_item.index.item_info", day: @order.created_at.day, month: @order.created_at.month, year: @order.created_at.year, user: @order.user.email) %></p>
+      <% elsif @cart %>
+        <p><%= @item.name %></p>
+        <p><%= t("order.new.item_info_html", price: @item.price, total_price: @cart.cart_items.where(item: @item).first.total_price) %></p>
       <% else %>
         <%= render(LinkComponent.new(
           title: @item.name,
