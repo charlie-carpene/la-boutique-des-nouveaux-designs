@@ -1,13 +1,33 @@
 <% shops.each do |shop| %>
   <div class="m-3 p-4 border-top border-bottom border-dark bg-light">
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-4">
       <%= image_tag shop.show_image, class: "cart-shop-img-resize" %>
     </div>
-    <ul class="list-group mt-4">
-      <% cart.get_cart_items_from_a_specific_shop(shop).each do |cart_item| %>
-        <%= render 'items/item_row', cart_item: cart_item %>
+    <% cart.get_cart_items_from_a_specific_shop(shop).each do |cart_item| %>
+      <%= render(ItemRowComponent.new(
+        item: cart_item.item
+      )) do %>
+        <%= render(LinkComponent.new(
+          link: cart_item_path(cart_item.id, operation: "minus"),
+          icon: :minus,
+          html_options: { method: "put", class: "mx-1 z-index-1", remote: true }
+        )) %>
+        <p id="qty_in_cart_item_<%= cart_item.item.id %>" style="margin-bottom: 0"><%= cart_item.item_qty_in_cart %></p>
+        <%= render(LinkComponent.new(
+          link: cart_item_path(cart_item.id, operation: "plus"),
+          icon: :plus,
+          html_options: { method: "put", class: "mx-1 z-index-1", remote: true }
+        )) %>
+        <div id="total_price_item_<%= cart_item.item.id %>" class="mr-3">
+          = <strong><%= cart_item.total_price %>€</strong>
+        </div>
+        <%= render(LinkComponent.new(
+          link: cart_item_path(cart_item.id),
+          icon: :delete,
+          html_options: { method: "delete", class: "mx-1 z-index-1", remote: true }
+        )) %>
       <% end %>
-    </ul>
+    <% end %>
     <div class="m-3 d-flex justify-content-between">
       <p><%= t("cart.show.shipping_fee_html", href: link_to(t("style.strong_html", content: t("cart.show.adnd_href")), "https://goo.gl/maps/NPUzNAjd2rCjLcVJ8",  { target: "_blank" })) %></p>
       <p id="shop_<%= shop.id %>_total_price"><%= t("cart.show.order_price",  price: cart.get_total_price_from_a_specific_shop(shop)) %></p>

@@ -8,9 +8,9 @@ module OrdersHelper
 			))
     else 
       return render(LinkComponent.new(
-        title: "#{t("order.tracking_id")} #{t("order.tracking_id_missing")}",
+        title: t("order.tracking_id_missing"),
         link: "#",
-        html_options: { style: "color: var(--dark); pointer-events: none" }
+        html_options: { style: "color: var(--dark); pointer-events: none;" }
       ))
     end
   end

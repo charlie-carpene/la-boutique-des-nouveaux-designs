@@ -1,4 +1,4 @@
-<div class="card border-primary btn-outline-light m-2 <%= selected ? "card-selected" : "text-dark" %>" style="width: 16rem;">
+<div class="address-container card border-primary btn-outline-light m-2 <%= selected ? "card-selected" : "text-dark" %>">
   <div class="card-body">
     <h5 class="card-title"><%= @address.first_name %> <%= @address.last_name %></h5>
     <div class="card-text">
@@ -14,7 +14,7 @@
   )) %>
   <%= render(LinkComponent.new(
     link: user_address_path(@user.id, @address.id),
-    html_options: { class: "mt-2 z-index-1" },
+    html_options: { class: "mt-2 z-index-1 display-icon" },
     icon: :delete,
   )) %>
 </div>

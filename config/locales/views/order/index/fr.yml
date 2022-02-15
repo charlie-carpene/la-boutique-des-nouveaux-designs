@@ -4,4 +4,4 @@ fr:
       title: "Historique de tes commandes"
       row: "Commande n°%{id} du %{day} / %{month} / %{year} à %{shop}"
     tracking_id: "N° de suivi :"
-    tracking_id_missing: "n'a pas encore été renseigné par le vendeur."
+    tracking_id_missing: "Ce numéro de suivi n'a pas encore été renseigné par le vendeur."

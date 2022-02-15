@@ -86,6 +86,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_permitted_params)
+      flash[:success] = t("order.success.tracking_id_updated", order_id: "##{@order.created_at.year}-#{@order.id}")
       redirect_back(fallback_location: user_path(current_user.id), status: :see_other)
     else
       flash[:error] = @order.errors.full_messages

@@ -14,14 +14,14 @@
   <p class="text-center">
     <small><%= item.name %></small>
   </p>
-  <div class="delete-icon">
+  <div class="display-icon">
     <% if can? :manage, item %>
-      <%= link_to image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon"), edit_item_path(item.id), class: "mt-2 delete-icon-bg z-index-1" %>
+      <%= link_to image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon-resize"), edit_item_path(item.id), class: "mt-2 display-icon-bg z-index-1" %>
       <% if item.orders.blank? %>
-        <%= link_to image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon"), item_path(item.id), method: "delete", data: { confirm: t("button.delete_.are_you_sure") }, class: "mt-2 delete-icon-bg z-index-1" %>
+        <%= link_to image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon-resize"), item_path(item.id), method: "delete", data: { confirm: t("button.delete_.are_you_sure") }, class: "mt-2 display-icon-bg z-index-1" %>
       <% end %>
     <% elsif current_user.present? && item.available_qty > 0 %>
-      <%= link_to image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon"), cart_items_path(item_id: item, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "mt-2 delete-icon-bg z-index-1" %>
+      <%= link_to image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon-resize"), cart_items_path(item_id: item, cart_id: current_user.cart.id, item_qty_in_cart: 1), method: "post", class: "mt-2 display-icon-bg z-index-1" %>
     <% end %>
   </div>
 </div>

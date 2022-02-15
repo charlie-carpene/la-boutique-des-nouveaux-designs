@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 class LinkComponent < ViewComponent::Base
-  ICON_CLASS = "delete-icon delete-icon-bg".freeze
-
-  ICON_ADD = ActionController::Base.helpers.image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon").freeze
-  ICON_EDIT = ActionController::Base.helpers.image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon").freeze
-  ICON_DELETE = ActionController::Base.helpers.image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon").freeze
+  ICON_ADD = ActionController::Base.helpers.image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon-resize").freeze
+  ICON_EDIT = ActionController::Base.helpers.image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon-resize").freeze
+  ICON_DELETE = ActionController::Base.helpers.image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon-resize").freeze
+  ICON_PLUS = ActionController::Base.helpers.image_tag("icons/plus.svg", class: "color-black-filtered-to-primary filter-to-success cart-icon-resize").freeze
+  ICON_MINUS = ActionController::Base.helpers.image_tag("icons/minus.svg", class: "color-black-filtered-to-primary filter-to-warning cart-icon-resize").freeze
 
   ICON_MAPPINGS = {
     add: ICON_ADD,
     edit: ICON_EDIT,
-    delete: ICON_DELETE
+    delete: ICON_DELETE,
+    plus: ICON_PLUS,
+    minus: ICON_MINUS
   }.freeze
 
   def initialize(title: "", link:, html_options: {}, icon: nil)
@@ -22,7 +24,6 @@ class LinkComponent < ViewComponent::Base
 
   def handle_icon
     @title = ICON_MAPPINGS[@icon]
-    add_html_options({ class: " #{ICON_CLASS}"})
 
     if @icon == :delete
       add_html_options(data: { confirm: t("button.delete_.are_you_sure") })

@@ -14,7 +14,9 @@
 				end
 			)) do %>
 				<% order.order_items.each do |order_item| %>
-					<%= render(OrderedItemComponent.new(order_item: order_item)) %>
+					<%= render(ItemRowComponent.new(item: order_item.item, order: order_item.order)) do %>
+						<p><%= t("order_item.index.price", price: order_item.price) %></p>
+					<% end %>
 				<% end %>
 			<% end %>
 		<% end %>

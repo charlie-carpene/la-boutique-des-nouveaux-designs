@@ -1,0 +1,20 @@
+<div class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
+  <div class="d-flex flex-wrap justify-content-center align-items-center">
+    <%= image_tag @item.cover_picture_with_fallback(:cart), loading: "lazy", style: "width: 100px;" %>
+    <div class="m-2 item-row-text">
+      <% if @order %>
+        <p><%= @item.name %></p>
+        <p><%= t("order_item.index.item_info", day: @order.created_at.day, month: @order.created_at.month, year: @order.created_at.year, user: @order.user.email) %></p>
+      <% else %>
+        <%= render(LinkComponent.new(
+          title: @item.name,
+          link: item_path(@item.id),
+          html_options: { class: "stretched-link" }
+        )) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex align-items-center">
+    <%= content %>
+  </div>
+</div>
