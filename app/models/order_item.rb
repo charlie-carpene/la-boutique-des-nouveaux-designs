@@ -8,10 +8,6 @@ class OrderItem < ApplicationRecord
     CartItem.find_by(cart_id: self.order.user.cart.id, item_id: self.item_id).item_qty_in_cart
   end
 
-  def get_total_price_with_shipping_cost
-    return self.get_item_qty_in_cart * self.item.price
-  end
-
   private
 
   def update_available_item_qty

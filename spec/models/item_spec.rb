@@ -27,10 +27,6 @@ RSpec.describe Item, type: :model do
   end
 
   context 'method' do
-    it 'price_with_shipping_cost' do
-      expect(item.price_with_shipping_cost(15)).to be(34)
-    end
-
     it 'get_qty_in_cart()' do
       create(:cart_item, cart: user_with_items.cart, item: item, item_qty_in_cart: 1)
       expect(item.get_qty_in_cart(user_with_items)).to eq(1)

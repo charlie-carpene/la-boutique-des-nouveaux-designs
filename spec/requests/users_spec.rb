@@ -47,13 +47,15 @@ RSpec.describe "Users", type: :request do
   describe "PUT /users/:id/edit" do
     it 'should fail as user is not admin' do
       sign_in user
-      put user_url(maker.id)
+      put user_url(maker.id), :params => { user: { is_maker: true } }
+      expect(response).to have_http_status(302)
+      expect(request.flash[:error]).to include(I18n.t('error_500.body'))
     end
 
     it 'should pass as user is an admin' do
       Admin.create(user: user)
       sign_in user
-      put user_url(maker.id)
+      put user_url(maker.id), :params => { user: { is_maker: true } }
       expect(response).to have_http_status(302)
       expect(request.flash[:success]).to include(I18n.t("success.validate_user_as_maker", brand: maker.shop.brand, shop_email: maker.shop.email_pro))
     end

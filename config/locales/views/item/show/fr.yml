@@ -2,4 +2,5 @@ fr:
   item:
     show:
       qty: "Quantité : %{qty}"
-      price_html: "Prix : <strong>%{price}€</strong>"
+      price: "Prix :"
+      shipping_fee: "dont %{price}€ de frais d'envoi"

@@ -4,7 +4,7 @@ fr:
       product_name: "Nom du produit"
       price: "Prix"
       available_qty: "Quantité disponible"
-      product_weight:
+      weight:
         title: "Poids de l'article (en grammes)"
         placeholder: "Les frais de port sont calculés automatiquement"
       category: "Catégorie"

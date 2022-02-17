@@ -1,5 +1,7 @@
+require './app/package_helpers/package.rb'
+
 class Order < ApplicationRecord
-  validates :tracking_id, length: { in: 11..15 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: I18n.t("validate.errors.only_letters_and_numbers_allowed") }
+  validates :tracking_id, length: { in: 11..15 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: I18n.t("validate.errors.only_letters_and_numbers_allowed") }, allow_blank: true
 
   belongs_to :user
   belongs_to :address
@@ -51,6 +53,9 @@ class Order < ApplicationRecord
     self.order_items.each do |order_item|
       price += order_item.price * order_item.qty_ordered
     end
+    package = create_package(self.order_items)
+    price += package.shipping_price
+
     return price
   end
 
@@ -62,16 +67,18 @@ class Order < ApplicationRecord
     return total_price
   end
 
-  def order_shipping_price
-    weight = 0
-    self.items.each do |item|
-      weight += item.product_weight
-    end
-    return ApplicationController.helpers.shipping_cost(weight)
-  end
+  def shipping_price(ordered_items)
+    package = create_package(ordered_items)
+    return package.shipping_price
+  end 
 
-  def total_price_with_shipping_cost(ordered_items)
-    return total_price_for_new_order(ordered_items) + self.order_shipping_price
+  def create_package(ordered_items)
+    items = []
+    ordered_items.each do |order_item|
+      items.push(order_item.item)
+    end
+
+    return Package.new.add_all_items_to_package(items)
   end
 
   private

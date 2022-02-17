@@ -3,5 +3,5 @@
     <%= @disable_text %>
   </button>
 <% else %>
-  <%= button_to @title, @link, id: @id, class: "btn #{@class}", data: @data %>
+  <%= button_to(@title, @link, **@html_options) %>
 <% end %>

@@ -2,7 +2,10 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :available_qty, presence: true
-  validates :product_weight, presence: true
+  validates :weight, presence: true
+  validates :width, presence: true
+  validates :height, presence: true
+  validates :depth, presence: true
   validates :rich_description, no_attachments: true
   validates :item_pictures, nbr_of_pictures: true
 
@@ -22,10 +25,6 @@ class Item < ApplicationRecord
   has_many :orders, through: :order_items
 
   has_rich_text :rich_description
-
-  def price_with_shipping_cost(shipping_cost)
-    return shipping_cost + self.price
-  end
 
   def get_qty_in_cart(user)
     self.cart_items.where(cart: user.cart).first.item_qty_in_cart

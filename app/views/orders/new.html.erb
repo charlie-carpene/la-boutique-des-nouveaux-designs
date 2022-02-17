@@ -26,14 +26,13 @@
   </ul>
 
   <div class="d-flex flex-column align-items-end">
-  <p><strong><%= t("order.new.total_price", total_price: @order.total_price_with_shipping_cost(@ordered_cart_items)) %></strong></p>
+  <p><strong><%= t("order.new.total_price", total_price: @order.total_price_for_new_order(@ordered_cart_items) + @order.shipping_price(@ordered_cart_items)) %></strong></p>
 
   <script src="https://js.stripe.com/v3"></script>
   <%= render(ButtonComponent.new(
-    id: "checkout-button",
     title: t("button.order"),
     link: orders_path,
-    data: { session_id: @session.id },
+    html_options: { id: "checkout-button", data: { session_id: @session.id }},
     disable: !@order.user.addresses.exists? || !@order.user.addresses.where(id: @order.user.delivery_address).exists?,
     disable_text: t("button.disabled.add_address")
   )) %>

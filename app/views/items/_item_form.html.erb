@@ -27,8 +27,8 @@
 <p class="mt-4 mx-5 font-italic"><%= t("item.form.shipping_instructions") %><a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank"> <%= t("item.form.shipping_price") %></a></p>
 
 <div class="field mt-4">
-  <%= f.label t("item.form.product_weight.title") %>
-  <%= f.number_field :product_weight, placeholder: t("item.form.product_weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
+  <%= f.label t("item.form.weight.title") %>
+  <%= f.number_field :weight, placeholder: t("item.form.weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
 </div>
 
 <div class="field mt-4">

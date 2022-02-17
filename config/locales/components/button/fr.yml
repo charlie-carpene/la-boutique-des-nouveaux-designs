@@ -42,3 +42,4 @@ fr:
     disable: "Désactivé"
     disabled:
       add_address: "Il te faut d'abord sélectionner une adresse"
+      item_values_error: "%{shop} n'a pas encore renseigné les informations de livraison"
