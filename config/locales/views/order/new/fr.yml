@@ -4,4 +4,3 @@ fr:
       your_order: "Ta commande"
       your_address: "Ton adresse de livraison"
       item_info_html: "%{price}€ l'unité, soit <strong>%{total_price}€</strong>"
-      total_price: "Total à régler : %{total_price}€"

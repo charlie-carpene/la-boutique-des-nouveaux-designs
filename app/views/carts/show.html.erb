@@ -37,19 +37,7 @@
             )) %>
           <% end %>
         <% end %>
-      
-        <% if @package.is_valide %>
-          <div class="m-3 d-flex justify-content-between">
-            <p><%= "#{t("cart.show.shipping_fee")} #{t("currency", price: @package.shipping_price)}" %></p>
-            <p id="shop_<%= shop.id %>_total_price"><%= t("cart.show.order_price") %> <strong><%= t("currency", price: @cart.get_total_price_from_a_specific_shop(shop) + @package.shipping_price) %></strong></p>
-          </div>
-        <% else %>
-          <div class="m-3 d-flex flex-column">
-            <% @package.errors.each do |error| %>
-              <p><%= error %></p>
-            <% end %>
-          </div>
-        <% end %>
+        <%= render(DisplayPriceComponent.new(items: @cart.get_cart_items_from_a_specific_shop(shop))) %>
         <div class="d-flex justify-content-end">
           <%= render(ButtonComponent.new(
             title: t("button.order_.from_shop", shop: shop.brand),

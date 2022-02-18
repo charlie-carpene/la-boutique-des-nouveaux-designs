@@ -25,18 +25,16 @@
     <% end %>
   </ul>
 
-  <div class="d-flex flex-column align-items-end">
-  <p><strong><%= t("order.new.total_price", total_price: @order.total_price_for_new_order(@ordered_cart_items) + @order.shipping_price(@ordered_cart_items)) %></strong></p>
+    <%= render(DisplayPriceComponent.new(items: @ordered_cart_items)) %>
 
-  <script src="https://js.stripe.com/v3"></script>
-  <%= render(ButtonComponent.new(
-    title: t("button.order"),
-    link: orders_path,
-    html_options: { id: "checkout-button", data: { session_id: @session.id }},
-    disable: !@order.user.addresses.exists? || !@order.user.addresses.where(id: @order.user.delivery_address).exists?,
-    disable_text: t("button.disabled.add_address")
-  )) %>
-  </div>
+    <script src="https://js.stripe.com/v3"></script>
+    <%= render(ButtonComponent.new(
+      title: t("button.order"),
+      link: orders_path,
+      html_options: { id: "checkout-button", form_class: "d-flex justify-content-end", data: { session_id: @session.id }},
+      disable: !@order.user.addresses.exists? || !@order.user.addresses.where(id: @order.user.delivery_address).exists?,
+      disable_text: t("button.disabled.add_address")
+    )) %>
 </div>
 
 <%= javascript_pack_tag 'stripe' %>

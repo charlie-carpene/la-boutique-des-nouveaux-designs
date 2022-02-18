@@ -18,6 +18,7 @@
 						<p><%= t("order_item.index.price", price: order_item.price) %></p>
 					<% end %>
 				<% end %>
+				<%= render(DisplayPriceComponent.new(items: order.items)) %>
 			<% end %>
 		<% end %>
 	</div>

@@ -72,12 +72,7 @@ class Order < ApplicationRecord
     return package.shipping_price
   end 
 
-  def create_package(ordered_items)
-    items = []
-    ordered_items.each do |order_item|
-      items.push(order_item.item)
-    end
-
+  def create_package(items)
     return Package.new.add_all_items_to_package(items)
   end
 

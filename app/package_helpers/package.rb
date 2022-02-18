@@ -6,7 +6,9 @@ class Package
     @height = 0
     @depth = 0
     @weight = 0
+    @items_price = 0
     @shipping_price = 0
+    @items = []
     @errors = []
   end
 
@@ -26,12 +28,20 @@ class Package
     @weight
   end
 
+  def items_price
+    @items_price
+  end
+
   def shipping_price
     @shipping_price
   end
 
   def is_valide
     @is_valide
+  end
+
+  def items
+    @items
   end
 
   def errors
@@ -66,6 +76,10 @@ class Package
     else
       return 'unknown side'
     end
+  end
+
+  def add_item_price_to_package(item)
+    @items_price += item.price
   end
 
   def add_item_weight_to_package(item)
@@ -111,6 +125,8 @@ class Package
       end
 
       self.add_item_weight_to_package(item)
+      self.add_item_price_to_package(item)
+      self.save_item_in_package(item)
     else
       self.set_is_valide(false)
       self.add_error(I18n.t("package.values_missing"))
@@ -119,17 +135,25 @@ class Package
   end
 
   def add_all_items_to_package(items)
-    if items.class == Array
+    if items.respond_to?(:each)
       items.each do |item|
-        self.add_item_to_package(item)
+        check_item_type_then_add_it_to_package(item)
       end
     else
-      self.add_item_to_package(items)
+      check_item_type_then_add_it_to_package(items)
     end
 
     self.set_shipping_price
 
     return self
+  end
+
+  def save_item_in_package(item)
+    @items.push(item)
+  end
+  
+  def total_price
+    return self.shipping_price + self.items_price
   end
 
   private
@@ -170,8 +194,20 @@ class Package
 
     return self
   end
-
-  private 
+  
+  def check_item_type_then_add_it_to_package(item)
+    if item.respond_to?(:qty_ordered)
+      item.qty_ordered.times do 
+        self.add_item_to_package(item.item)
+      end
+    elsif item.respond_to?(:item_qty_in_cart)
+      item.item_qty_in_cart.times do 
+        self.add_item_to_package(item.item)
+      end
+    else
+      self.add_item_to_package(item)
+    end
+  end
 
   def item_values_present?(item)
     item.width.present? && item.height.present? && item.depth.present? && item.weight.present?
