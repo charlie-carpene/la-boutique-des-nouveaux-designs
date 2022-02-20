@@ -22,23 +22,28 @@ class AdminMailer < ApplicationMailer
     }])
   end
 
-# Email during the beta-test phase
-
-  def beta_new_order(order)
+  #Email to notify admin when there is a new order. Just as info to make sure we know when the first order is done!
+  
+  def new_order_for_admin(order)
     Mailjet::Send.create(messages: [{
-      'To'=> [{
+      'From'=> {
         'Email'=> admin_email,
+        'Name'=> 'Boutique des Nouveaux Designs'
+      },
+      'To'=> [{
+        'Email'=> "solunacisv@gmail.com",
         'Name'=> 'You'
       }],
       'Variables' => {
-        'customer_email' => order.user.email,
-        'brand' => order.items.first.shop.brand,
         'total_price' => order.total_price,
-        'articles' => add_articles_to_email(order),
+        'customer_email' => order.user.email,
+        'shop_email' => order.items.first.shop.email_pro,
+        'brand' => order.shop.brand,
+        'items' => add_items_to_email(order),
       },
-      'TemplateID'=> 2813727,
+      'TemplateID'=> 3652426,
       'TemplateLanguage'=> true,
-      'Subject'=> 'Nvlle commande Click & Collect - la Boutique des Nouveaux Designs',
+      'Subject'=> 'Suivi admin des commandes - La Boutique des Nouveaux Designs',
     }])
   end
 end

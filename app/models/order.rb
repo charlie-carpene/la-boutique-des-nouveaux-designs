@@ -76,11 +76,15 @@ class Order < ApplicationRecord
     return Package.new.add_all_items_to_package(items)
   end
 
+  def tracking_url
+    return "https://www.laposte.fr/outils/suivre-vos-envois?code=#{self.tracking_id}"
+  end
+
   private
 
   def send_new_order_emails
-    UserMailer.new_order_customer_email(self).deliver_now
-    UserMailer.new_order_shop_email(self).deliver_now
-    AdminMailer.beta_new_order(self).deliver_now
+    UserMailer.new_order_from_customer(self).deliver_now
+    UserMailer.new_order_for_maker(self).deliver_now
+    AdminMailer.new_order_for_admin(self).deliver_now
   end
 end

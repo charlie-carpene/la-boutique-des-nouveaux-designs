@@ -16,7 +16,7 @@ class ApplicationMailer < ActionMailer::Base
     return content_array
   end
 
-  def add_articles_to_email(order)
+  def add_items_to_email(order)
     order_item_names = []
     order.order_items.each do |order_item|
       name_and_price = "#{order_item.item.name} (à #{order_item.item.price}€/unité)"

@@ -3,7 +3,7 @@ module OrdersHelper
     if order.tracking_id.present?
       return render(LinkComponent.new(
 				title: "#{t("order.tracking_id")} #{order.tracking_id}",
-				link: "https://www.laposte.fr/outils/suivre-vos-envois?code=#{order.tracking_id}",
+				link: order.tracking_url,
 				html_options: { target: "_blank", rel: "nofollow" }
 			))
     else 
