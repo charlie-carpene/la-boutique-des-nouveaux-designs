@@ -1,8 +1,8 @@
 class AddDimensionsToItems < ActiveRecord::Migration[6.1]
   def change
-    add_column :items, :width, :integer
-    add_column :items, :height, :integer
-    add_column :items, :depth, :integer
+    add_column :items, :width, :decimal, precision: 5, scale: 2
+    add_column :items, :height, :decimal, precision: 5, scale: 2
+    add_column :items, :depth, :decimal, precision: 5, scale: 2
     add_column :items, :weight, :integer
 
     reversible do |dir|

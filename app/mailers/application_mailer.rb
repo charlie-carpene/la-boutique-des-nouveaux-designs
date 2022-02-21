@@ -17,13 +17,27 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def add_items_to_email(order)
-    order_item_names = []
+    item = []
     order.order_items.each do |order_item|
-      name_and_price = "#{order_item.item.name} (à #{order_item.item.price}€/unité)"
-      order_item_names.push(name_and_price)
+      name_and_price = "#{order_item.item.name} (à #{I18n.t("currency", price: order_item.item.price)}/unité)"
+      item.push(name_and_price)
     end
 
-    return order_item_names.join(", ")
+    return item
+  end
+
+  def formatted_address(address)
+    hash = {
+      'full_name' => "#{address.first_name} #{address.last_name}",
+      'address_line_1' => address.address_line_1,
+      'code_and_city' => "#{address.zip_code} #{address.city}",
+    }
+
+    if address.address_line_2.present?
+      hash['address_line_2'] = address.address_line_2
+    end
+
+    return hash
   end
 
   def website_url(slug)

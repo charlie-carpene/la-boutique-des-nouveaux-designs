@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From'=> {
         'Email'=> admin_email,
-        'Name'=> 'Boutique des Nouveaux Designs'
+        'Name'=> 'La Boutique des Nouveaux Designs'
       },
       'To'=> [{
         'Email'=> user.email,
@@ -24,7 +24,7 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From'=> {
         'Email'=> admin_email,
-        'Name'=> 'Boutique des Nouveaux Designs'
+        'Name'=> 'La Boutique des Nouveaux Designs'
       },
       'To'=> [{
         'Email'=> user.shop.email_pro,
@@ -37,7 +37,7 @@ class UserMailer < ApplicationMailer
       },
       'TemplateID'=> 2222962,
       'TemplateLanguage'=> true,
-      'Subject'=> 'La Boutique des Nouveaux Designs',
+      'Subject'=> 'Demande pour devenir créateur',
       'Attachments'=>
       unless shop_images.blank?
         add_attached_files(shop_images) #method in application_mailer.
@@ -49,7 +49,7 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From'=> {
         'Email'=> admin_email,
-        'Name'=> 'Boutique des Nouveaux Designs'
+        'Name'=> 'La Boutique des Nouveaux Designs'
       },
       'To'=> [{
         'Email'=> shop.email_pro,
@@ -62,7 +62,7 @@ class UserMailer < ApplicationMailer
       },
       'TemplateID'=> 2222965,
       'TemplateLanguage'=> true,
-      'Subject'=> 'La Boutique des Nouveaux Designs',
+      'Subject'=> 'Suivi de ta demande pour devenir créateur',
     }])
   end
 
@@ -70,7 +70,7 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From'=> {
         'Email'=> admin_email,
-        'Name'=> 'Boutique des Nouveaux Designs'
+        'Name'=> 'La Boutique des Nouveaux Designs'
       },
       'To'=> [{
         'Email'=> user.shop.email_pro,
@@ -83,7 +83,7 @@ class UserMailer < ApplicationMailer
       },
       'TemplateID'=> 2222969,
       'TemplateLanguage'=> true,
-      'Subject'=> 'La Boutique des Nouveaux Designs',
+      'Subject'=> 'Suivi de ta demande pour devenir créateur',
     }])
   end
 
@@ -91,7 +91,7 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From'=> {
         'Email'=> admin_email,
-        'Name'=> 'Boutique des Nouveaux Designs'
+        'Name'=> 'La Boutique des Nouveaux Designs'
       },
       'To'=> [{
         'Email'=> order.user.email,
@@ -101,11 +101,11 @@ class UserMailer < ApplicationMailer
         'total_price' => order.total_price,
         'brand' => order.shop.brand,
         'shop_email' => order.shop.email_pro,
-        'url' => website_url("users/#{order.user.id}/orders/#{order.id}")
+        'url' => website_url("users/#{order.user.id}/orders")
       },
       'TemplateID'=> 3652313,
       'TemplateLanguage'=> true,
-      'Subject'=> 'Merci pour ta commande - La Boutique des Nouveaux Designs',
+      'Subject'=> 'Merci pour ta commande',
     }])
   end
 
@@ -113,7 +113,7 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From'=> {
         'Email'=> admin_email,
-        'Name'=> 'Boutique des Nouveaux Designs'
+        'Name'=> 'La Boutique des Nouveaux Designs'
       },
       'To'=> [{
         'Email'=> order.shop.email_pro,
@@ -122,15 +122,12 @@ class UserMailer < ApplicationMailer
       'Variables' => {
         'total_price' => order.total_price,
         'customer_email' => order.user.email,
-        'full_name' => "#{order.address.first_name} #{order.address.last_name}",
-        'address_line_2' => order.address.address_line_2,
-        'address_line_1' => order.address.address_line_2,
-        'code_and_city' => "#{order.address.zip_code} #{order.address.city}",
-        'url' => website_url("order_items")
+        'url' => website_url("order_items"),
+        **formatted_address(order.address),
       },
       'TemplateID'=> 3652327,
       'TemplateLanguage'=> true,
-      'Subject'=> 'Nouvelle commande - La Boutique des Nouveaux Designs',
+      'Subject'=> 'Nouvelle commande',
     }])
   end
 
@@ -138,21 +135,21 @@ class UserMailer < ApplicationMailer
     Mailjet::Send.create(messages: [{
       'From' => {
         'Email' => admin_email,
-        'Name' => 'Boutique des Nouveaux Designs',
+        'Name' => 'La Boutique des Nouveaux Designs',
       },
       'To' => [{
-        'Email' => order.user.mail,
+        'Email' => order.user.email,
         'Name' => 'You',
       }],
-      'Variable' => {
+      'Variables' => {
         'brand' => order.shop.brand,
         'shop_email' => order.shop.email_pro,
-        'url' => website_url("users/#{order.user.id}/orders/#{order.id}"),
         'tracking_url' => order.tracking_url,
+        'url' => website_url("users/#{order.user.id}/orders"),
       },
       'TemplateID'=> 3652463,
       'TemplateLanguage'=> true,
-      'Subject'=> 'Suivi de ta commande - La Boutique des Nouveaux Designs',
+      'Subject'=> 'Suivi de ta commande',
     }])
   end
 end

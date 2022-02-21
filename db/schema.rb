@@ -123,9 +123,9 @@ ActiveRecord::Schema.define(version: 2022_02_16_101512) do
     t.string "stripe_price_id"
     t.string "stripe_product_id"
     t.integer "cover_picture"
-    t.integer "width"
-    t.integer "height"
-    t.integer "depth"
+    t.decimal "width", precision: 5, scale: 2
+    t.decimal "height", precision: 5, scale: 2
+    t.decimal "depth", precision: 5, scale: 2
     t.integer "weight"
     t.index ["shop_id"], name: "index_items_on_shop_id"
   end

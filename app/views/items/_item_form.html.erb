@@ -9,26 +9,43 @@
 
 <div class="row mt-4">
   <div class="col">
-    <%= f.label t("item.form.price") %>
+    <%= f.label t("item.form.price.title") %>
   </div>
   <div class="col">
-    <%= f.label t("item.form.available_qty") %>
+    <%= f.label t("item.form.available_qty.title") %>
   </div>
 </div>
 <div class="row">
   <div class="col">
-    <%= f.number_field :price, placeholder: 30, in: 0.01..5000.00, step: 0.01, class: "form-control" %>
+    <%= f.number_field :price, placeholder: t("item.form.price.placeholder"), in: 0.01..5000.00, step: 0.01, class: "form-control" %>
   </div>
   <div class="col">
-    <%= f.number_field :available_qty, placeholder: 3, step: 1, class: "form-control" %>
+    <%= f.number_field :available_qty, placeholder: t("item.form.available_qty.placeholder"), step: 1, class: "form-control" %>
   </div>
 </div>
 
 <p class="mt-4 mx-5 font-italic"><%= t("item.form.shipping_instructions") %><a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank"> <%= t("item.form.shipping_price") %></a></p>
 
-<div class="field mt-4">
-  <%= f.label t("item.form.weight.title") %>
-  <%= f.number_field :weight, placeholder: t("item.form.weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
+<div class="field mt-4 container">
+  <strong><%= label_tag t("item.form.item_property") %></strong>
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <%= f.label t("item.form.weight.title") %>
+      <%= f.number_field :weight, placeholder: t("item.form.weight.placeholder"), in: 1..30000, step: 1, class: "form-control" %>
+    </div>
+    <div class="col-lg-3 col-6">
+      <%= f.label t("item.form.width.title") %>
+      <%= f.number_field :width, placeholder: t("item.form.width.placeholder"), in: 0.1..100, step: 0.1, class: "form-control" %>
+    </div>
+    <div class="col-lg-3 col-6">
+      <%= f.label t("item.form.height.title") %>
+      <%= f.number_field :height, placeholder: t("item.form.height.placeholder"), in: 0.1..100, step: 0.1, class: "form-control" %>
+    </div>
+    <div class="col-lg-3 col-6">
+      <%= f.label t("item.form.depth.title") %>
+      <%= f.number_field :depth, placeholder: t("item.form.depth.placeholder"), in: 0.1..100, step: 0.1, class: "form-control" %>
+    </div>
+  </div>
 </div>
 
 <div class="field mt-4">

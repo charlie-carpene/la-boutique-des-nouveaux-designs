@@ -3,6 +3,9 @@ require './app/package_helpers/package.rb'
 class Order < ApplicationRecord
   validates :tracking_id, length: { in: 11..15 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: I18n.t("validate.errors.only_letters_and_numbers_allowed") }, allow_blank: true
 
+  after_create :send_create_emails
+  after_update :send_update_email
+
   belongs_to :user
   belongs_to :address
   has_many :order_items, dependent: :destroy
@@ -32,7 +35,6 @@ class Order < ApplicationRecord
     items.each_with_index do |item, index|
       ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user), price: item.price)
     end
-    send_new_order_emails
     return ordered_items
   end
 
@@ -82,9 +84,13 @@ class Order < ApplicationRecord
 
   private
 
-  def send_new_order_emails
+  def send_create_emails
     UserMailer.new_order_from_customer(self).deliver_now
     UserMailer.new_order_for_maker(self).deliver_now
     AdminMailer.new_order_for_admin(self).deliver_now
+  end
+
+  def send_update_email
+    UserMailer.tracking_id_for_customer(self).deliver_now
   end
 end
