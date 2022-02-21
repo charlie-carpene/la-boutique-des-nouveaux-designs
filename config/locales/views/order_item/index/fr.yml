@@ -3,4 +3,4 @@ fr:
     index:
       title: "Mes articles vendus"
       item_info: "vendu le %{day}/%{month}/%{year} à %{user}"
-      price: "%{price}€"
+      price: "%{price} €"
