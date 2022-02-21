@@ -4,4 +4,3 @@ fr:
       qty: "Quantité : %{qty}"
       price: "Prix :"
       shipping_fee: "dont %{price}€ de frais d'envoi"
-      
