@@ -1,14 +1,28 @@
 <div class="container">
-    <h2 class="pt-4 text-center text-primary"><%= t("order_item.index.title") %></h2>
-    <ul class="my-3 list-group">
-        <% @order_items.each do |order_item| %>
-            <li class="my-1 list-group-item list-group-item-primary d-flex justify-content-between">
-                <span><%= t("order_item.index.item_info", name: order_item.item.name, day: order_item.created_at.day, month: order_item.created_at.month, year: order_item.created_at.year, user: order_item.order.user.email) %></span>
-                <div class="d-flex">
-                    <%= t("order_item.index.price", price: order_item.price) %>
-                </div>
-            </li>
-        <% end %>
-    </ul>
-    <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
+	<h2 class="pt-4 text-center text-primary"><%= t("order_item.index.title") %></h2>
+	<div>
+		<% orders.each do |order| %>
+			<%= render(AccordionComponent.new(
+				title: "##{order.created_at.year}-#{order.id}",
+				overlay: render(FormComponent.new(path: order_path(order.id), method: :put, submit_button: t("button.update"), class_name: "d-flex align-items-center")) do
+					render(InputComponent.new(
+						id: "order[tracking_id]",
+						value: order.tracking_id.present? ? order.tracking_id : nil,
+						label: t("order.tracking_id"),
+						class_name: "display-inline-block"
+					))
+				end
+			)) do %>
+				<% order.order_items.each do |order_item| %>
+					<%= render(ItemRowComponent.new(item: order_item.item, order: order_item.order)) do %>
+						<p><%= t("order_item.index.price", price: order_item.price) %></p>
+					<% end %>
+				<% end %>
+				<%= render(DisplayPriceComponent.new(items: order.items)) %>
+			<% end %>
+		<% end %>
+	</div>
+	<%= link_to t("button.back"), :back, class: "btn btn-primary" %>
 </div>
+
+<%= javascript_pack_tag 'components/accordion' %>

@@ -33,6 +33,8 @@ Support documentation relative to Stripe connect payment method:
 
 <div class="d-flex flex-wrap justify-content-center">
   <% @shop.items.sort.each do |item| %>
-    <%= render 'items/item_card', item: item %>
+    <%= render(ItemCardComponent.new(item: item)) do %>
+      <%= render(IconsOverlayComponent.new(item: item, user: current_user))%>
+    <% end %>
   <% end %>
 </div>

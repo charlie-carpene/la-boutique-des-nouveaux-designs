@@ -3,7 +3,6 @@ fr:
     show:
       title: "Mon panier"
       click_and_collect_notice_html: "Toute commande est à venir récupérer à l'%{href}"
-      adnd_href: "Atelier des Nouveaux Designs"
       no_item:  "Aucun article n'a été ajouté au panier"
-      order_price: "Prix de la commande : %{price}€"
-      shipping_fee_html: "Frais de port : Click & Collect (à venir récupérer à l'%{href})."
+      order_price: "Prix total de la commande :"
+      shipping_fee: "Frais d'envoi :"

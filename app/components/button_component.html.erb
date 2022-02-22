@@ -1,0 +1,7 @@
+<% if @disable %>
+  <button type="button" class="btn btn-outline-dark" style="pointer-events: none" disabled>
+    <%= @disable_text %>
+  </button>
+<% else %>
+  <%= button_to(@title, @link, **@html_options) %>
+<% end %>

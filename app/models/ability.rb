@@ -19,6 +19,7 @@ class Ability
         can :manage, Shop, id: user.shop.id
         can :manage, Item, shop_id: user.shop.id
         can :read, OrderItem
+        can :update, Order, shop: { id: user.shop.id }
       end
     end
 

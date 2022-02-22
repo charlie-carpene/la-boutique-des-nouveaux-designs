@@ -1,7 +1,12 @@
 fr:
+  activerecord:
+    attributes:
+      order:
+        tracking_id: 'Le numéro de suivi'
   validate:
     errors:
       email: "doit être un email valide."
       website: "doit correspondre à une adresse de site web valide."
       terms_of_service: "doivent être acceptées."
       must_be_numbers: "doit contenir uniquement des chiffres."
+      only_letters_and_numbers_allowed: "doit contenir uniquement des lettres et des chiffres."

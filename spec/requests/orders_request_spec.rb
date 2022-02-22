@@ -5,6 +5,7 @@ RSpec.describe "Orders", type: :request do
   let(:categories) { create_list(:category, 4) }
   let!(:maker) { maker_with_items_in_shop(items_count: 2, available_qty: 1, categories: categories) }
   let!(:user) { user_with_items_in_cart(items: maker.shop.items) }
+  let!(:address) { create(:address, user: user) }
 
   context 'GET /orders/new (#new)' do    
     it 'should work when items in cart are still available in enough qty when purchased' do
@@ -43,6 +44,9 @@ RSpec.describe "Orders", type: :request do
     after { StripeMock.stop }
 
     it 'should work' do
+      user.delivery_address = user.addresses.first.id
+      user.save
+
       sign_in user
       payload = {
         "id": "evt_test_webhook",
@@ -52,6 +56,7 @@ RSpec.describe "Orders", type: :request do
             "metadata": {
               "customer": user.id,
               "shop": maker.shop.id,
+              "address": user.delivery_address,
             }
           }
         }

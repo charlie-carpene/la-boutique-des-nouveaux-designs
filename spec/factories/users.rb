@@ -5,6 +5,7 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
     is_maker { false }
+    delivery_address { }
 
     trait :is_maker do
       is_maker { true }

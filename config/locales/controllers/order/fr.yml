@@ -1,5 +1,7 @@
 fr:
   order:
+    success:
+      tracking_id_updated: "Le numéro de suivi de la commande %{order_id} a bien été mis à jour."
     errors:
       item_no_longer_available: "Désolé, cet article %{item_name} n'est plus disponible à la vente. Il a été supprimé de ton panier."
       item_available_qty_too_low: "Désolé, cet article %{item_name} n'est disponible qu'en %{qty_available} exemplaire(s). Nous t'invitons à ajuster la quantité pour continuer."

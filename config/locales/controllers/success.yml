@@ -1,3 +1,0 @@
-fr:
-  success:
-    validate_user_as_maker: "La demande de création a été validée. Un message a été envoyé à %{brand} à l'adresse %{shop_email} pour l'avertir."

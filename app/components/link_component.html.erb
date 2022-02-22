@@ -1,0 +1,9 @@
+<% handle_icon if @icon %>
+
+<%= link_to(@link, @html_options) do %>
+  <% if @icon %>
+    <%= image_tag("icons/#{@icon_type}.svg", loading: "lazy", class: "color-black-filtered-to-primary card-icon-resize #{@icon_class}") %>
+  <% else %>
+    <%= @title ? @title : content %>
+  <% end %>
+<% end %>

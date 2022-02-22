@@ -1,0 +1,6 @@
+fr:
+  user:
+    update:
+      success:
+        delivery_address: "L'adresse de livraison a bien été mise à jour"
+        validate_user_as_maker: "La demande de création a été validée. Un message a été envoyé à %{brand} à l'adresse %{shop_email} pour l'avertir."

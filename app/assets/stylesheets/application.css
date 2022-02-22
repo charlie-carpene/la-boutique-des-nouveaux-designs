@@ -24,6 +24,9 @@
  *= require button
  *= require actiontext
  *= require alert
+ *= require accordion
+ *= require item-row
+ *= require address
  *= require @uppy/core/dist/style.css
  *= require @uppy/dashboard/dist/style.css
  *= require @uppy/image-editor/dist/style.css

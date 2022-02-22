@@ -3,6 +3,10 @@ class AdminMailer < ApplicationMailer
 
   def new_shop_request(user, shop_images)
     Mailjet::Send.create(messages: [{
+      'From'=> {
+        'Email'=> admin_email,
+        'Name'=> 'La Boutique des Nouveaux Designs'
+      },
       'To'=> [{
         'Email'=> admin_email,
         'Name'=> 'You'
@@ -14,7 +18,7 @@ class AdminMailer < ApplicationMailer
       },
       'TemplateID'=> 2222960,
       'TemplateLanguage'=> true,
-      'Subject'=> 'Nvlle demande de créateur - la Boutique des Nouveaux Designs',
+      'Subject'=> 'Nvlle demande de créateur',
       'Attachments'=>
       unless shop_images.blank?
         add_attached_files(shop_images) #method in application_mailer.
@@ -22,23 +26,35 @@ class AdminMailer < ApplicationMailer
     }])
   end
 
-# Email during the beta-test phase
-
-  def beta_new_order(order)
+  #Email to notify admin when there is a new order. Just as info to make sure we know when the first order is done!
+  
+  def new_order_for_admin(order)
     Mailjet::Send.create(messages: [{
-      'To'=> [{
+      'From'=> {
         'Email'=> admin_email,
+        'Name'=> 'La Boutique des Nouveaux Designs'
+      },
+      'To'=> [{
+        'Email'=> "charlie.carpene@gmail.com",
         'Name'=> 'You'
       }],
       'Variables' => {
+        'total_price' => I18n.t("currency", price: order.total_price),
         'customer_email' => order.user.email,
-        'brand' => order.items.first.shop.brand,
-        'total_price' => order.total_price,
-        'articles' => add_articles_to_email(order),
+        'shop_email' => order.items.first.shop.email_pro,
+        'brand' => order.shop.brand,
+        'items' => add_items_to_email(order),
+        **formatted_address(order.address),
       },
-      'TemplateID'=> 2813727,
+      'TemplateID'=> 3652426,
       'TemplateLanguage'=> true,
-      'Subject'=> 'Nvlle commande Click & Collect - la Boutique des Nouveaux Designs',
+      'Subject'=> '[BdND - Admin] - Suivi admin des commandes',
+      "TemplateErrorReporting": {
+        "Email": "charliecarpene@gmail.com",
+        "Name": "Charlie"
+      },
+      "TemplateErrorDeliver": true,
+
     }])
   end
 end

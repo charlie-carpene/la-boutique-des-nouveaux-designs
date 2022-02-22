@@ -2,7 +2,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   load_and_authorize_resource :user, only: [:index, :show]
-  load_and_authorize_resource :order, only: [:new, :show]
+  load_and_authorize_resource :order, only: [:new, :show, :update]
 
   skip_before_action :verify_authenticity_token, only: [:create]
 
@@ -26,9 +26,20 @@ class OrdersController < ApplicationController
         metadata: {
           customer: @order.user_id,
           shop: @shop.id,
+          address: @order.user.delivery_address
         },
         line_items: @order.add_all_ordered_items_to_stripe_session(@ordered_cart_items),
         mode: 'payment',
+        shipping_options: [
+          shipping_rate_data: {
+            display_name: 'Colissimo',
+            type: 'fixed_amount',
+            fixed_amount: {
+              amount: (@order.shipping_price(@ordered_cart_items) * 100).to_i,
+              currency: 'EUR',
+            }
+          },
+        ],
         payment_intent_data: {
           #application_fee_amount: (@order.total_price_for_new_order(@ordered_cart_items) * 2.9 + 25).round, #to be change when user.fee is added to User table
           on_behalf_of: @shop.uid,
@@ -69,9 +80,10 @@ class OrdersController < ApplicationController
     if event['type'] == "checkout.session.completed"
       @user = User.find(event['data']['object']['metadata']['customer'])
       @shop = Shop.find(event['data']['object']['metadata']['shop'])
-      @order = Order.new(user: @user)
+      @address = Address.find(event['data']['object']['metadata']['address'])
+      @order = Order.new(user: @user, address: @address)
 
-      if @order.save
+      if @user.delivery_address == @address.id && @order.save
         @order.create_ordered_items(@shop)
         head 200
       else
@@ -82,6 +94,16 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    if @order.update(order_permitted_params)
+      flash[:success] = t("order.success.tracking_id_updated", order_id: "##{@order.created_at.year}-#{@order.id}")
+      redirect_back(fallback_location: user_path(current_user.id), status: :see_other)
+    else
+      flash[:error] = @order.errors.full_messages
+      redirect_back(fallback_location: user_path(current_user.id), status: :see_other)
+    end
+  end
+
   def show
   end
 
@@ -89,4 +111,9 @@ class OrdersController < ApplicationController
     @orders = @user.orders.sort_by { |order| [order.created_at] }.reverse
   end
 
+  private
+
+  def order_permitted_params
+    params.require(:order).permit(:tracking_id, :address)
+  end
 end

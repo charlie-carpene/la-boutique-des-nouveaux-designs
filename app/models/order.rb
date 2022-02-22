@@ -1,5 +1,11 @@
+require './app/package_helpers/package.rb'
+
 class Order < ApplicationRecord
+  
+  after_update :send_update_email
+
   belongs_to :user
+  belongs_to :address
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
 
@@ -27,7 +33,8 @@ class Order < ApplicationRecord
     items.each_with_index do |item, index|
       ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user), price: item.price)
     end
-    send_new_order_emails
+
+    send_create_emails
     return ordered_items
   end
 
@@ -48,6 +55,9 @@ class Order < ApplicationRecord
     self.order_items.each do |order_item|
       price += order_item.price * order_item.qty_ordered
     end
+    package = create_package(self.order_items)
+    price += package.shipping_price
+
     return price
   end
 
@@ -59,23 +69,28 @@ class Order < ApplicationRecord
     return total_price
   end
 
-  def order_shipping_price
-    weight = 0
-    self.items.each do |item|
-      weight += item.product_weight
-    end
-    return ApplicationController.helpers.shipping_cost(weight)
+  def shipping_price(ordered_items)
+    package = create_package(ordered_items)
+    return package.shipping_price
+  end 
+
+  def create_package(items)
+    return Package.new.add_all_items_to_package(items)
   end
 
-  def total_price_with_shipping_cost(ordered_items)
-    return total_price_for_new_order(ordered_items) + self.order_shipping_price
+  def tracking_url
+    return "https://www.laposte.fr/outils/suivre-vos-envois?code=#{self.tracking_id}"
   end
 
   private
 
-  def send_new_order_emails
-    UserMailer.new_order_customer_email(self).deliver_now
-    UserMailer.new_order_shop_email(self).deliver_now
-    AdminMailer.beta_new_order(self).deliver_now
+  def send_create_emails
+    UserMailer.new_order_from_customer(self).deliver_now
+    UserMailer.new_order_for_maker(self).deliver_now
+    AdminMailer.new_order_for_admin(self).deliver_now
+  end
+
+  def send_update_email
+    #UserMailer.tracking_id_for_customer(self).deliver_now
   end
 end
