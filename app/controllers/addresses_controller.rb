@@ -39,7 +39,7 @@ class AddressesController < ApplicationController
   def destroy
     Address.destroy(params[:id])
     flash[:info] = t("address.deleted")
-    redirect_to user_path(current_user), status: :see_other
+    redirect_back(fallback_location: user_path(current_user), status: :see_other)
   end
 
   private

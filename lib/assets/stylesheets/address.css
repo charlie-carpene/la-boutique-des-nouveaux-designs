@@ -1,0 +1,13 @@
+.address-container {
+  width: 16rem;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .address-container {
+    width: 100%;
+  }
+
+  .card {
+    border-width: 2px;
+  }
+}

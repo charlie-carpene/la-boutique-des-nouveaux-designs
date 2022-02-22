@@ -39,3 +39,7 @@ fr:
     connect_:
       yourself: "Se connecter"
       stripe: "Connecter Stripe à ta boutique"
+    disable: "Désactivé"
+    disabled:
+      add_address: "Il te faut d'abord sélectionner une adresse"
+      item_values_error: "%{shop} n'a pas encore renseigné les informations de livraison"

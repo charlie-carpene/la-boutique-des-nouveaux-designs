@@ -42,10 +42,7 @@
       <p><%= @item.rich_description %></p>
       <div class="d-flex flex-column">
         <p><%= t("item.show.qty", qty: @item.available_qty) %></p>
-        <p class="card-text"><%= t("item.show.price_html", price: @item.price) %></p>
-  <!--
-          <strong><%= @item.price_with_shipping_cost(shipping_cost(@item.product_weight)) %> €</strong> <span class="font-italic">dont <%= shipping_cost(@item.product_weight) %> € de frais de port</span>.</p>
-  -->
+        <%= show_total_price %>
         <div>
           <%= link_to t("button.back"), :back, class: "btn btn-primary" %>
           <% if current_user.present? %>

@@ -2,16 +2,30 @@ fr:
   item:
     form:
       product_name: "Nom du produit"
-      price: "Prix"
-      available_qty: "Quantité disponible"
-      product_weight:
-        title: "Poids de l'article (en grammes)"
-        placeholder: "Les frais de port sont calculés automatiquement"
-      category: "Catégorie"
+      price: 
+        title: "Prix"
+        placeholder: "Par exemple : 30"
+      available_qty:
+        title: "Quantité disponible"
+        placeholder: "Par exemple : 3"
+      item_property: "Caractéristiques de l'article une fois préparé pour son envoi :"
+      weight:
+        title: "Poids (en g)"
+        placeholder: "Par exemple : 150"
+      width:
+        title: "Largeur (en cm)"
+        placeholder: "Par exemple : 80"
+      height:
+        title: "Hauteur (en cm)"
+        placeholder: "Par exemple : 0.1"
+      depth:
+        title: "Profondeur (en cm)"
+        placeholder: "Par exemple : 50.5"
+      category: "Catégorie(s)"
       description: "Description"
       pictures: "Photos"
       add_images: "Ajouter des photos :"
-      shipping_instructions: "Les frais de port sont calculés à partir du poids de l'article, en fonction des tarifs Colissimo. L'article doit respecter les dimensions suivantes : la somme de la largeur, de la longueur et de la hauteur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poids de l'article ne peut pas dépasser les 30 kg (30 000 g). Pour plus d'informations, tu peux consulter"
+      shipping_instructions: "Les frais d'envoi sont calculés automatiquement à partir des caractéristiques de l'article après embalage (poids, largeur, hauteur et profondeur), en fonction des tarifs Colissimo. L'article doit respecter les dimensions suivantes : la somme de la largeur, de la hauteur et de la profondeur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poids de l'article ne peut pas dépasser les 30 kg (30 000 g). Pour plus d'informations, tu peux consulter"
       shipping_price: "les tarifs postaux."
       crop_img: "Si tes photos sont trop lourdes, tu peux les redimensionner à partir de"
       crop_img_tool: "cet outil en ligne"

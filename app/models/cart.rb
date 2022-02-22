@@ -25,11 +25,7 @@ class Cart < ApplicationRecord
     return price
   end
 
-  def get_shipping_price(shop)
-    weight = 0
-    self.get_cart_items_from_a_specific_shop(shop).each do |cart_item|
-      weight += cart_item.item_qty_in_cart * cart_item.item.product_weight
-    end
-    return weight
+  def get_items_from_a_specific_shop(shop)
+    self.items.where(shop: shop).sort
   end
 end

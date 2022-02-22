@@ -11,6 +11,6 @@
 
   <div  class="d-flex justify-content-around my-4">
     <%= button_to t("user.edit.button.deny"), shop_path(@user_to_validate.shop.id), method: 'delete', :class => "btn btn-danger btn-lg btn-block py-2" %>
-    <%= button_to t("user.edit.button.accept"), user_path(@user_to_validate.id), method: 'put', :class => "btn btn-success btn-lg btn-block py-2" %>
+    <%= button_to t("user.edit.button.accept"), user_path(@user_to_validate.id, user: { is_maker: true }), method: 'put', :class => "btn btn-success btn-lg btn-block py-2" %>
   </div>
 </div>

@@ -9,7 +9,9 @@
   <h3 class="text-center my-4"><%= t("landing_titles.highlighted_items") %></h3>
   <div class="d-flex flex-wrap justify-content-center">
     <% @items.each do |item| %>
-      <%= render 'items/item_card', item: item %>
+      <%= render(ItemCardComponent.new(item: item)) do %>
+        <%= render(IconsOverlayComponent.new(item: item, user: current_user))%>
+      <% end %>
     <% end %>
   </div>
 </div>

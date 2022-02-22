@@ -348,6 +348,9 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
+    view_component (2.48.0)
+      activesupport (>= 5.0.0, < 8.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -416,6 +419,7 @@ DEPENDENCIES
   table_print
   turbolinks (~> 5)
   tzinfo-data
+  view_component (~> 2.48)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 5.4, >= 5.4.2)

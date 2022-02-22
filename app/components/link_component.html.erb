@@ -1,0 +1,5 @@
+<% handle_icon if @icon %>
+
+<%= link_to(@link, @html_options) do %>
+  <%= @title ? @title : content %>
+<% end %>

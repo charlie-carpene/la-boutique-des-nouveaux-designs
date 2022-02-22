@@ -3,7 +3,9 @@
 <div class="d-flex flex-wrap justify-content-center">
   <% @items.each do |item| %>
     <% if item.available_qty > 0 %>
-      <%= render 'items/item_card', item: item %>
+      <%= render(ItemCardComponent.new(item: item)) do %>
+        <%= render(IconsOverlayComponent.new(item: item, user: current_user))%>
+      <% end %>
     <% end %>
   <% end %>
 </div>

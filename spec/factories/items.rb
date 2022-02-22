@@ -3,7 +3,10 @@ FactoryBot.define do
     name { Faker::Creature::Cat.name }
     rich_description { Faker::Lorem.paragraph(sentence_count: 2) }
     price { 19 }
-    product_weight { Faker::Number.number(digits: 4) }
+    weight { Faker::Number.number(digits: 4) }
+    width { Faker::Number.number(digits: 2) }
+    height { Faker::Number.number(digits: 2) }
+    depth { Faker::Number.number(digits: 2) }
     available_qty { Faker::Number.between(from: 1, to: 10) }
     association :shop
   end

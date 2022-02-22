@@ -1,0 +1,22 @@
+<div class="display-icon">
+  <% if can_user?(:manage, @item) %>
+    <%= render(LinkComponent.new(
+      link: edit_item_path(@item.id),
+      icon: :edit,
+      html_options: { class: "mt-2 display-icon-bg z-index-1" }
+    )) %>
+    <%= render(LinkComponent.new(
+      link: item_path(@item.id),
+      icon: :delete,
+      render: @item.orders.blank?,
+      html_options: { method: :delete, class: "mt-2 display-icon-bg z-index-1" }
+    )) %>
+  <% elsif @user.present? %>
+    <%= render(LinkComponent.new(
+      link: cart_items_path(item_id: @item, cart_id: @user.cart.id, item_qty_in_cart: 1),
+      icon: :add,
+      render: @item.available_qty > 0,
+      html_options: { method: :post, class: "mt-2 display-icon-bg z-index-1" }
+    )) %>
+  <% end %>
+</div>
