@@ -2,7 +2,6 @@ require './app/package_helpers/package.rb'
 
 class Order < ApplicationRecord
 
-  after_create :send_create_emails
   after_update :send_update_email
 
   belongs_to :user
@@ -34,6 +33,8 @@ class Order < ApplicationRecord
     items.each_with_index do |item, index|
       ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user), price: item.price)
     end
+
+    send_create_emails
     return ordered_items
   end
 
@@ -90,6 +91,6 @@ class Order < ApplicationRecord
   end
 
   def send_update_email
-    #UserMailer.tracking_id_for_customer(self).deliver_now
+    UserMailer.tracking_id_for_customer(self).deliver_now
   end
 end
