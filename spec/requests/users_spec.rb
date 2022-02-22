@@ -57,7 +57,7 @@ RSpec.describe "Users", type: :request do
       sign_in user
       put user_url(maker.id), :params => { user: { is_maker: true } }
       expect(response).to have_http_status(302)
-      expect(request.flash[:success]).to include(I18n.t("success.validate_user_as_maker", brand: maker.shop.brand, shop_email: maker.shop.email_pro))
+      expect(request.flash[:success]).to include(I18n.t("user.update.success.validate_user_as_maker", brand: maker.shop.brand, shop_email: maker.shop.email_pro))
     end
   end
 end
