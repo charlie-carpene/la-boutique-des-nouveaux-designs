@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LinkComponent < ViewComponent::Base
+
   ICON_ADD = ActionController::Base.helpers.image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon-resize").freeze
   ICON_EDIT = ActionController::Base.helpers.image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon-resize").freeze
   ICON_DELETE = ActionController::Base.helpers.image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon-resize").freeze
