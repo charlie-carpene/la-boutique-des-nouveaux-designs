@@ -90,6 +90,6 @@ class Order < ApplicationRecord
   end
 
   def send_update_email
-    UserMailer.tracking_id_for_customer(self).deliver_now
+    #UserMailer.tracking_id_for_customer(self).deliver_now
   end
 end
