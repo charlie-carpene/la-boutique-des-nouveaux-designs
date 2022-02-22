@@ -1,7 +1,8 @@
 require './app/package_helpers/package.rb'
 
 class Order < ApplicationRecord
-
+  validates :tracking_id, length: { in: 11..15 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: I18n.t("validate.errors.only_letters_and_numbers_allowed") }, allow_blank: true
+  
   after_update :send_update_email
 
   belongs_to :user
