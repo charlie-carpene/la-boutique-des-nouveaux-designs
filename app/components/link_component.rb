@@ -2,18 +2,12 @@
 
 class LinkComponent < ViewComponent::Base
 
-  ICON_ADD = ActionController::Base.helpers.image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon-resize")
-  ICON_EDIT = ActionController::Base.helpers.image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon-resize")
-  ICON_DELETE = ActionController::Base.helpers.image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon-resize")
-  ICON_PLUS = ActionController::Base.helpers.image_tag("icons/plus.svg", class: "color-black-filtered-to-primary filter-to-success cart-icon-resize")
-  ICON_MINUS = ActionController::Base.helpers.image_tag("icons/minus.svg", class: "color-black-filtered-to-primary filter-to-warning cart-icon-resize")
-
   ICON_MAPPINGS = {
-    add: ICON_ADD,
-    edit: ICON_EDIT,
-    delete: ICON_DELETE,
-    plus: ICON_PLUS,
-    minus: ICON_MINUS
+    add: ["cart_add", "filter-to-success"],
+    edit: ["edit", "filter-to-warning"],
+    delete: ["trash", "filter-to-danger"],
+    plus: ["plus", "filter-to-success"],
+    minus: ["minus", "filter-to-warning"]
   }.freeze
 
   def initialize(title: "", link:, html_options: {}, icon: nil, render: true)
@@ -25,7 +19,8 @@ class LinkComponent < ViewComponent::Base
   end
 
   def handle_icon
-    @title = ICON_MAPPINGS[@icon]
+    @icon_type = ICON_MAPPINGS[@icon][0]
+    @icon_class = ICON_MAPPINGS[@icon][1]
 
     if @icon == :delete
       add_html_options(data: { confirm: t("button.delete_.are_you_sure") })
