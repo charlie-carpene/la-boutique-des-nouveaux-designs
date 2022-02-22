@@ -2,6 +2,10 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :available_qty, presence: true
+  validates :weight, presence: true
+  validates :width, presence: true
+  validates :height, presence: true
+  validates :depth, presence: true
   validates :rich_description, no_attachments: true
   validates :item_pictures, nbr_of_pictures: true
 
