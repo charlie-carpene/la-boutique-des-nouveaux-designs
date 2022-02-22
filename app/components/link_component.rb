@@ -2,11 +2,11 @@
 
 class LinkComponent < ViewComponent::Base
 
-  ICON_ADD = ActionController::Base.helpers.image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon-resize").freeze
-  ICON_EDIT = ActionController::Base.helpers.image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon-resize").freeze
-  ICON_DELETE = ActionController::Base.helpers.image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon-resize").freeze
-  ICON_PLUS = ActionController::Base.helpers.image_tag("icons/plus.svg", class: "color-black-filtered-to-primary filter-to-success cart-icon-resize").freeze
-  ICON_MINUS = ActionController::Base.helpers.image_tag("icons/minus.svg", class: "color-black-filtered-to-primary filter-to-warning cart-icon-resize").freeze
+  ICON_ADD = ActionController::Base.helpers.image_tag("icons/cart_add.svg", class: "color-black-filtered-to-primary filter-to-success card-icon-resize")
+  ICON_EDIT = ActionController::Base.helpers.image_tag("icons/edit.svg", class: "color-black-filtered-to-primary filter-to-warning card-icon-resize")
+  ICON_DELETE = ActionController::Base.helpers.image_tag("icons/trash.svg", class: "color-black-filtered-to-primary filter-to-danger card-icon-resize")
+  ICON_PLUS = ActionController::Base.helpers.image_tag("icons/plus.svg", class: "color-black-filtered-to-primary filter-to-success cart-icon-resize")
+  ICON_MINUS = ActionController::Base.helpers.image_tag("icons/minus.svg", class: "color-black-filtered-to-primary filter-to-warning cart-icon-resize")
 
   ICON_MAPPINGS = {
     add: ICON_ADD,
