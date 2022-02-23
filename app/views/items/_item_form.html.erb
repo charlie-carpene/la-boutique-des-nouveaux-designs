@@ -26,8 +26,14 @@
 
 <p class="mt-4 mx-5 font-italic"><%= t("item.form.shipping_instructions") %><a href="https://tarifs-postaux.fr/tarif-colissimo.htm" target="_blank"> <%= t("item.form.shipping_price") %></a></p>
 
-<div class="field mt-4 container">
+<div class="field mt-4 container flex-column">
   <strong><%= label_tag t("item.form.item_property") %></strong>
+  <div class="m-2">
+    <%= label_tag(t("package.type.letter")) %>
+    <%= radio_button_tag("package_type", "letter") %>
+    <%= label_tag(t("package.type.package")) %>
+    <%= radio_button_tag("package_type", "package", true) %>
+  </div>
   <div class="row">
     <div class="col-lg-3 col-6">
       <%= f.label t("item.form.weight.title") %>
@@ -35,15 +41,15 @@
     </div>
     <div class="col-lg-3 col-6">
       <%= f.label t("item.form.width.title") %>
-      <%= f.number_field :width, placeholder: t("item.form.width.placeholder"), in: 0.1..100, step: 0.1, class: "form-control" %>
+      <%= f.number_field :width, placeholder: t("item.form.width.placeholder"), in: 0..100, step: 0.1, class: "form-control" %>
     </div>
     <div class="col-lg-3 col-6">
       <%= f.label t("item.form.height.title") %>
-      <%= f.number_field :height, placeholder: t("item.form.height.placeholder"), in: 0.1..100, step: 0.1, class: "form-control" %>
+      <%= f.number_field :height, placeholder: t("item.form.height.placeholder"), in: 0..100, step: 0.1, class: "form-control" %>
     </div>
     <div class="col-lg-3 col-6">
       <%= f.label t("item.form.depth.title") %>
-      <%= f.number_field :depth, placeholder: t("item.form.depth.placeholder"), in: 0.1..100, step: 0.1, class: "form-control" %>
+      <%= f.number_field :depth, placeholder: t("item.form.depth.placeholder"), in: 0..100, step: 0.1, class: "form-control" %>
     </div>
   </div>
 </div>
@@ -94,3 +100,4 @@
 
 <%= javascript_pack_tag 'action_text' %>
 <%= javascript_pack_tag 'uppy/application' %>
+<%= javascript_pack_tag 'package_type' %>

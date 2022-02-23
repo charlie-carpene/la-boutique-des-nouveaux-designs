@@ -2,7 +2,6 @@ fr:
   cart:
     show:
       title: "Mon panier"
-      click_and_collect_notice_html: "Toute commande est à venir récupérer à l'%{href}"
       no_item:  "Aucun article n'a été ajouté au panier"
       order_price: "Prix total de la commande :"
       shipping_fee: "Frais d'envoi :"

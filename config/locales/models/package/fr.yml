@@ -4,3 +4,6 @@ fr:
     too_heavy: "Le colis est trop lourd pour être envoyé."
     too_big: "Le colis est trop grand pour être envoyé."
     weigth_missing: "Le poid du colis n'est pas renseigné."
+    type:
+      letter: "Lettre"
+      package: "Colis"

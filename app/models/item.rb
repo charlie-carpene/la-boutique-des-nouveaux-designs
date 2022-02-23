@@ -3,9 +3,9 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :available_qty, presence: true
   validates :weight, presence: true
-  validates :width, presence: true
-  validates :height, presence: true
-  validates :depth, presence: true
+  validates :width, presence: true, inclusion: { in: 0..100, message: I18n.t("item.validation.errors.dimensions")}
+  validates :height, presence: true, inclusion: { in: 0..100, message: I18n.t("item.validation.errors.dimensions")}
+  validates :depth, presence: true, inclusion: { in: 0..100, message: I18n.t("item.validation.errors.dimensions")}
   validates :rich_description, no_attachments: true
   validates :item_pictures, nbr_of_pictures: true
 
