@@ -7,6 +7,7 @@ class Order < ApplicationRecord
 
   belongs_to :user
   belongs_to :address
+  belongs_to :timestamped_user
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
 
