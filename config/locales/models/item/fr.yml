@@ -1,3 +1,6 @@
 fr:
   item:
     not_available: "Non disponible à la commande"
+    validation:
+      errors:
+        dimensions: "doit être compris entre 0 et 100 cm. Valeur reçu : %{value} cm"
