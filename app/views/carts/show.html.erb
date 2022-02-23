@@ -1,6 +1,5 @@
 <div class="cart-container">
   <h2 class="pt-4 text-center text-primary"><%= t("cart.show.title") %></h2>
-  <p class="text-center"><%= t("cart.show.click_and_collect_notice_html", href: link_to(t("adnd"), "https://goo.gl/maps/NPUzNAjd2rCjLcVJ8",  { target: "_blank"})) %></p>
   
   <% if @cart.cart_items.present? %>
     <% @cart.get_items_shops.each do |shop| %>
@@ -28,7 +27,7 @@
               html_options: { method: "put", class: "mx-1 z-index-1", remote: true }
             )) %>
             <div id="total_price_item_<%= cart_item.item.id %>" class="mr-3">
-              = <strong><%= cart_item.total_price %>€</strong>
+              =&nbsp;<strong><%= cart_item.total_price %>€</strong>
             </div>
             <%= render(LinkComponent.new(
               link: cart_item_path(cart_item.id),

@@ -18,6 +18,9 @@ fr:
   price: "Le prix"
   name: "Le nom"
   weight: "Le poids"
+  width: "La largeur"
+  height: "La hauteur"
+  depth: "La profondeur"
 
   image: "Le(s) document(s)"
 
