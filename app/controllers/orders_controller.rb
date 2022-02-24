@@ -81,7 +81,7 @@ class OrdersController < ApplicationController
       @user = User.find(event['data']['object']['metadata']['customer'])
       @shop = Shop.find(event['data']['object']['metadata']['shop'])
       @address = Address.find(event['data']['object']['metadata']['address'])
-      @order = Order.new(user: @user, address: @address)
+      @order = Order.new(user: @user, address: @address, shop: @shop)
 
       if @user.delivery_address == @address.id && @order.save
         @order.create_ordered_items(@shop)

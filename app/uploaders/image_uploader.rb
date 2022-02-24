@@ -15,6 +15,7 @@ class ImageUploader < Shrine
   plugin :upload_endpoint, max_size: MAX_SIZE
   plugin :cached_attachment_data
   plugin :add_metadata
+  plugin :keep_files
   plugin :presign_endpoint, presign_options: -> (request) do
     filename = request.params["filename"]
     type = request.params["type"]
