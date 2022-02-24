@@ -3,6 +3,7 @@ require './app/package_helpers/package.rb'
 class Order < ApplicationRecord
   validates :tracking_id, length: { in: 11..15 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: I18n.t("validate.errors.only_letters_and_numbers_allowed") }, allow_blank: true
   
+  before_validation :timestamp_database
   after_update :send_update_email
 
   belongs_to :user
@@ -94,5 +95,28 @@ class Order < ApplicationRecord
 
   def send_update_email
     UserMailer.tracking_id_for_customer(self).deliver_now
+  end
+
+  def timestamp_database
+    if TimestampedUser.where(old_id: self.user.id).present?
+      timestamped_user = TimestampedUser.where(old_id: self.user.id).first
+    else
+      timestamped_user = TimestampedUser.create(
+        email: self.user.email,
+        old_id: self.user.id
+      )
+    end
+
+    timestamped_address = TimestampedAddress.create(
+      first_name: self.address.first_name,
+      last_name: self.address.last_name,
+      address_line_1: self.address.address_line_1,
+      address_line_2: self.address.address_line_2,
+      zip_code: self.address.zip_code,
+      city: self.address.city,
+      timestamped_user: timestamped_user
+    )
+
+    self.timestamped_user_id = timestamped_user.id 
   end
 end
