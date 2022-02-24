@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_101512) do
+ActiveRecord::Schema.define(version: 2022_02_23_161345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,7 +147,9 @@ ActiveRecord::Schema.define(version: 2022_02_16_101512) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id"
     t.string "tracking_id"
+    t.bigint "timestamped_user_id"
     t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["timestamped_user_id"], name: "index_orders_on_timestamped_user_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -168,6 +170,26 @@ ActiveRecord::Schema.define(version: 2022_02_16_101512) do
     t.string "company_id", default: ""
     t.index ["address_id"], name: "index_shops_on_address_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
+  end
+
+  create_table "timestamped_addresses", force: :cascade do |t|
+    t.bigint "timestamped_user_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "zip_code"
+    t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["timestamped_user_id"], name: "index_timestamped_addresses_on_timestamped_user_id"
+  end
+
+  create_table "timestamped_users", force: :cascade do |t|
+    t.string "email"
+    t.bigint "old_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -197,7 +219,8 @@ ActiveRecord::Schema.define(version: 2022_02_16_101512) do
   add_foreign_key "items", "shops"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "timestamped_users"
   add_foreign_key "shops", "addresses"
   add_foreign_key "shops", "users"
+  add_foreign_key "timestamped_addresses", "timestamped_users"
 end
