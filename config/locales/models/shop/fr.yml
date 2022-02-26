@@ -4,3 +4,5 @@ fr:
     insee_error: "Erreur de connexion au site de l'INSEE."
     insee_company_id_found: "Cet identifiant est enregistré dans les registres de l'INSEE sous le nom %{legal_name}, depuis le %{day} %{month} %{year}."
     dont_exist: "La boutique recherchée n'existe pas."
+    address:
+      pro: "Mon adresse professionnelle"

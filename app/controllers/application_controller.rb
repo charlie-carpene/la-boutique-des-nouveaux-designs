@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-
+  helper_method :translate_error_messages
+  
   private
 
   rescue_from CanCan::AccessDenied do |exception|

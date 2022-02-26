@@ -14,7 +14,8 @@
   )) %>
   <%= render(LinkComponent.new(
     link: user_address_path(@user.id, @address.id),
-    html_options: { class: "mt-2 z-index-1 display-icon" },
+    html_options: { method: :delete, class: "mt-2 z-index-1 display-icon" },
     icon: :delete,
+    render: !@address.shop.present?
   )) %>
 </div>

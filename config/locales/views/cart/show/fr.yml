@@ -3,5 +3,5 @@ fr:
     show:
       title: "Mon panier"
       no_item:  "Aucun article n'a été ajouté au panier"
-      order_price: "Prix total de la commande :"
-      shipping_fee: "Frais d'envoi :"
+      order_price: "Prix total de la commande\u00A0:"
+      shipping_fee: "Frais d'envoi\u00A0:"

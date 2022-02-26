@@ -67,12 +67,26 @@
       <%= f.rich_text_area :rich_description, class: "form-control" %>
     </div>
 
-    <div class="actions mt-4 d-flex justify-content-between">
-      <%= link_to t("button.back"), shop_path(@shop.id), class: "btn btn-primary" %>
-
+    <div class="actions mt-4 d-flex justify-content-end">
       <%= f.submit t("button.edit_.my_info"), class: "btn btn-warning" %>
     </div>
   <% end %>
+</div>
+
+<div class="bg-primary text-light mt-4">
+  <div class="container py-4">
+    <h3 class="text-center m-3"><%= t("shop.address.pro") %></h3>
+    <%= form_with model: shop_address, url: shop_address_url, method: shop_address_method do |f| %>
+      <%= f.hidden_field("shop", value: "#{@shop.id}") %>
+
+      <%= render 'addresses/address_form', f: f %>
+      
+      <div class="actions mt-4 d-flex justify-content-between">
+        <%= link_to t("button.back"), :back, class: "btn btn-info" %>
+        <%= f.submit t("button.#{button_text}"), class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%= javascript_pack_tag 'action_text' %>
