@@ -41,6 +41,7 @@ fr:
       stripe: "Connecter Stripe à ta boutique"
     disable: "Désactivé"
     disabled:
-      add_user_address: "Il te faut d'abord sélectionner une adresse"
+      data_not_filled_in_f: "n'est pas renseignée."
+      data_not_filled_in_m: "n'est pas renseigné."
       add_maker_address: "%{shop} doit renseigner son adresse avant toute commande."
       shipping_not_available: "indisponible(s) à la livraison"
