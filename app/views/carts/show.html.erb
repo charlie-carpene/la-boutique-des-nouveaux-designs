@@ -42,8 +42,8 @@
             title: t("button.order_.from_shop", shop: shop.brand),
             link: new_order_path,
             html_options: { method: :get, params: { shop_id: shop.id } },
-            disable: !@package.is_valide,
-            disable_text: t("button.disabled.item_values_error", shop: shop.brand)
+            disable: disabling_shop_button(shop),
+            disable_text: translate_error_messages(@cart.errors).join(" ")
           )) %>
         </div>
       </div>

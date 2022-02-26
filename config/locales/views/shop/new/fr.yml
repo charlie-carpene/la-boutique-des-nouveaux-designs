@@ -18,7 +18,7 @@ fr:
           title: "Numéro de siret"
           placeholder: "n° à 14 chiffres (sans espaces)"
         description: "Description"
-        bank_notice: "Pour recevoir l’argent de tes ventes, il te faudra ensuite garder à jour tes informations bancaires directement depuis ton compte."
+        bank_notice: "Pour vendre et recevoir l’argent de tes ventes, il te faudra ensuite garder à jour ton adresse professionnelle tout comme tes informations bancaires directement depuis ton compte."
         cgv_agreement: "J’accepte les conditions générales de vente"
       shop_exist:
         p_1-1: "Vous avez déjà fait la demande de création d’une boutique"

@@ -14,4 +14,16 @@ module OrdersHelper
       ))
     end
   end
+
+  def disabling_checkout_button
+    if !@order.user.addresses.exists? || !@order.user.addresses.where(id: @order.user.delivery_address).exists?
+      @order.errors.add(:add_address, t("button.disabled.add_user_address"))
+      return true
+    elsif !@ordered_cart_items.first.item.shop.address.present?
+      @order.errors.add(:maker_shop, t("button.disabled.add_maker_address", shop: @ordered_cart_items.first.item.shop.brand))
+      return true
+    else
+      return false
+    end
+  end
 end

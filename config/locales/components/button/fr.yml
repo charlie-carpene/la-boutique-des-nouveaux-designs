@@ -41,5 +41,6 @@ fr:
       stripe: "Connecter Stripe à ta boutique"
     disable: "Désactivé"
     disabled:
-      add_address: "Il te faut d'abord sélectionner une adresse"
+      add_user_address: "Il te faut d'abord sélectionner une adresse"
+      add_maker_address: "%{shop} doit renseigner son adresse avant toute commande."
       item_values_error: "%{shop} n'a pas encore renseigné les informations de livraison"
