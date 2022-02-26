@@ -22,13 +22,14 @@ fr:
       changes: "Valider les modifications"
     order: "Commander"
     order_:
-      from_shop: "Passer commande à %{shop}"
+      from_shop: "Effectuer une commande à %{shop}"
     back: "Retour"
     update: "Mettre à jour"
     access: "Accéder"
     add_address: "Ajouter une adresse"
+    add_pro_address: "Ajouter une adresse professionnelle"
     see:
-      cgv: "Consulter les condictions générales de vente"
+      cgv: "Consulter les conditions générales de vente"
       shop_info: "Consulter les informations de ma boutique"
     send_form: 
     send: "Envoyer"
@@ -41,5 +42,7 @@ fr:
       stripe: "Connecter Stripe à ta boutique"
     disable: "Désactivé"
     disabled:
-      add_address: "Il te faut d'abord sélectionner une adresse"
-      item_values_error: "%{shop} n'a pas encore renseigné les informations de livraison"
+      data_not_filled_in_f: "n'est pas renseignée."
+      data_not_filled_in_m: "n'est pas renseigné."
+      add_maker_address: "%{shop} doit renseigner son adresse avant toute commande."
+      shipping_not_available: "indisponible(s) à la livraison"

@@ -39,7 +39,7 @@ class AdminMailer < ApplicationMailer
         'Name'=> 'You'
       }],
       'Variables' => {
-        'total_price' => I18n.t("currency", price: order.total_price),
+        'total_price' => I18n.t("currency_html", price: order.total_price),
         'customer_email' => order.user.email,
         'shop_email' => order.items.first.shop.email_pro,
         'brand' => order.shop.brand,

@@ -9,7 +9,13 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_permitted_params)
     @address.user = User.find(params[:user_id])
+    @shop = Shop.all.find(params[:address][:shop]) if params[:address][:shop].present?
+
     if @address.save
+      if params[:address][:shop].present?
+        @shop.address_id = @address.id
+        @shop.save 
+      end
       flash[:success] = t("address.success.created")
       redirect_to user_path(@address.user), status: :see_other
     else

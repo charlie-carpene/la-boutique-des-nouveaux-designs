@@ -3,8 +3,8 @@
     id="shop_<%= @package.items.first.respond_to?(:shop) ? @package.items.first.shop.id : @package.items.first.item.shop.id %>"
     class="m-3 d-flex justify-content-between"
   >
-    <p><%= "#{t("cart.show.shipping_fee")} #{t("currency", price: @package.shipping_price)}" %></p>
-    <p><%= t("cart.show.order_price") %> <strong><%= t("currency", price: @package.total_price) %></strong></p>
+    <p><%= t("cart.show.shipping_fee") %> <%= t("currency_html", price: @package.shipping_price) %></p>
+    <p><%= t("cart.show.order_price") %> <strong><%= t("currency_html", price: @package.total_price) %></strong></p>
   </div>
 <% else %>
   <div class="m-3 d-flex flex-column">

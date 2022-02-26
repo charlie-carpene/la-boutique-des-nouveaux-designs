@@ -7,7 +7,7 @@ module ItemsHelper
     @package = package(@item)
 
     if @package.is_valide 
-      data = "<p>#{t("item.show.price")} <strong>#{t('currency', price: @item.price + @package.shipping_price)}</strong><br/><small class='font-italic'>#{t("item.show.shipping_fee", price: @package.shipping_price)}</small>.</p>"
+      data = "<p>#{t("item.show.price")} <strong>#{t('currency_html', price: @item.price + @package.shipping_price)}</strong><br/><small class='font-italic'>#{t("item.show.shipping_fee", price: @package.shipping_price)}</small>.</p>"
       return data.html_safe
     else
       errors = ""

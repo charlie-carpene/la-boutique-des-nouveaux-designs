@@ -15,7 +15,7 @@
     )) %>
   </div>
 </div>
-<div class="container">
+<div class="container my-4">
   <h2 class="pt-4 text-center text-primary"><%= t("order.new.your_order") %></h2>
   <ul class="my-3 list-group">
     <% @ordered_cart_items.each do |cart_item| %>
@@ -32,8 +32,8 @@
       title: t("button.order"),
       link: orders_path,
       html_options: { id: "checkout-button", form_class: "d-flex justify-content-end", data: { session_id: @session.id }},
-      disable: !@order.user.addresses.exists? || !@order.user.addresses.where(id: @order.user.delivery_address).exists?,
-      disable_text: t("button.disabled.add_address")
+      disable: disabling_checkout_button,
+      disable_text: translate_error_messages(@order.errors).join(" ")
     )) %>
 </div>
 
