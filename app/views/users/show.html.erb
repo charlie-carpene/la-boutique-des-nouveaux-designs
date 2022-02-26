@@ -39,6 +39,15 @@
           <div><%= t("user.show.website") %></div>
           <div><strong><%= @user.shop.website %></strong></div>
         </div>
+        <% if @user.shop.address.present? %>
+          <div class="d-flex flex-wrap justify-content-between">
+            <div class="align-self-center"><%= t("shop.address.pro") %></div>
+            <%= render(AddressCardComponent.new(
+              address: current_user.shop.address,
+              user: current_user,
+            )) %>
+          </div>
+        <% end %>
       </div>
       <div class="d-flex justify-content-end">
         <%= link_to t("button.access"), shop_path(current_user.shop.id), :class=>"btn btn-primary" %>

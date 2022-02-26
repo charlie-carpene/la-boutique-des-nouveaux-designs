@@ -1,5 +1,6 @@
 fr:
   item:
+    one_or_many: "Article(s)"
     not_available: "Non disponible à la commande"
     validation:
       errors:

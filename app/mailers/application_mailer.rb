@@ -19,7 +19,7 @@ class ApplicationMailer < ActionMailer::Base
   def add_items_to_email(order)
     item = []
     order.order_items.each do |order_item|
-      name_and_price = "#{order_item.item.name} (à #{I18n.t("currency", price: order_item.item.price)}/unité)"
+      name_and_price = "#{order_item.item.name} (à #{I18n.t("currency_html", price: order_item.item.price)}/unité)"
       item.push(name_and_price)
     end
 

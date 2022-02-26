@@ -11,6 +11,7 @@ fr:
   email_pro: "L'adresse mail professionel"
   description: "La description"
   company_id: "Le numéro de SIRET"
+  maker_shop: "La boutique"
 
   terms_of_service: "Les conditions générales de vente"
 
@@ -30,4 +31,4 @@ fr:
   
   adnd: "Atelier des Nouveaux Designs"
 
-  currency: "%{price} €"
+  currency_html: "%{price}\u00A0€"

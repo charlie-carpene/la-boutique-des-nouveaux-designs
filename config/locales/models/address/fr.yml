@@ -1,0 +1,5 @@
+fr:
+  address:
+    one: "L'adresse"
+    many: "Les adresses"
+    shipping_address: "L'adresse de livraison"
