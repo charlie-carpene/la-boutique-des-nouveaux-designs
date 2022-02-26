@@ -27,6 +27,7 @@ fr:
     update: "Mettre à jour"
     access: "Accéder"
     add_address: "Ajouter une adresse"
+    add_pro_address: "Ajouter une adresse professionnelle"
     see:
       cgv: "Consulter les conditions générales de vente"
       shop_info: "Consulter les informations de ma boutique"
