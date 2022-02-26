@@ -25,7 +25,7 @@ fr:
       description: "Description"
       pictures: "Photos"
       add_images: "Ajouter des photos :"
-      shipping_instructions: "Les frais d'envoi sont calculés automatiquement à partir des caractéristiques de l'article après embalage (poids, largeur, hauteur et profondeur), en fonction des tarifs Colissimo. L'article doit respecter les dimensions suivantes : la somme de la largeur, de la hauteur et de la profondeur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poids de l'article ne peut pas dépasser les 30 kg (30 000 g). Pour plus d'informations, tu peux consulter"
+      shipping_instructions: "Les frais d'envoi sont calculés automatiquement à partir des caractéristiques de l'article après son emballage (poids, largeur, hauteur et profondeur), en fonction des tarifs Colissimo. L'article doit respecter les dimensions suivantes : la somme de la largeur, de la hauteur et de la profondeur ne doit pas dépasser 150 cm. La longueur ne doit pas excéder 100 cm. Enfin, le poids de l'article ne peut pas dépasser les 30 kg (30 000 g). Pour plus d'informations, tu peux consulter"
       shipping_price: "les tarifs postaux."
       crop_img: "Si tes photos sont trop lourdes, tu peux les redimensionner à partir de"
       crop_img_tool: "cet outil en ligne"
