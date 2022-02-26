@@ -22,13 +22,13 @@ fr:
       changes: "Valider les modifications"
     order: "Commander"
     order_:
-      from_shop: "Passer commande à %{shop}"
+      from_shop: "Effectuer une commande à %{shop}"
     back: "Retour"
     update: "Mettre à jour"
     access: "Accéder"
     add_address: "Ajouter une adresse"
     see:
-      cgv: "Consulter les condictions générales de vente"
+      cgv: "Consulter les conditions générales de vente"
       shop_info: "Consulter les informations de ma boutique"
     send_form: 
     send: "Envoyer"
@@ -42,4 +42,4 @@ fr:
     disable: "Désactivé"
     disabled:
       add_address: "Il te faut d'abord sélectionner une adresse"
-      item_values_error: "%{shop} n'a pas encore renseigné les informations de livraison"
+      item_values_error: "Article(s) indisponible(s) à la livraison"
