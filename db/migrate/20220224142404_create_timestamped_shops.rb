@@ -21,10 +21,14 @@ class CreateTimestampedShops < ActiveRecord::Migration[6.1]
     reversible do |dir|
       dir.up do
         add_foreign_key :orders, :timestamped_shops
-
+        
+        Order.set_callback(:validation, :before, :timestamp_database)
+        
         Order.all.each do |order|
           order.save
         end
+
+        Order.reset_callbacks(:validation)
       end
 
       dir.down do
