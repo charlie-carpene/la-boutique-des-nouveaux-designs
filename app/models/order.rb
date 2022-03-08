@@ -12,6 +12,7 @@ class Order < ApplicationRecord
   belongs_to :timestamped_user
   belongs_to :timestamped_shop
   has_many :order_items, dependent: :destroy
+  has_many :timestamped_items, through: :order_items
   has_many :items, through: :order_items
 
   def find_ordered_items_in_cart(shop)

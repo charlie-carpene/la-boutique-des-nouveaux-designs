@@ -18,6 +18,7 @@ class Shop < ApplicationRecord
   belongs_to :address, optional: true
   has_many :items
   has_many :orders
+  has_many :timestamp_items
   
   has_rich_text :rich_description
 
