@@ -3,12 +3,14 @@ require './app/package_helpers/package.rb'
 class Order < ApplicationRecord
   validates :tracking_id, length: { in: 11..15 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: I18n.t("validate.errors.only_letters_and_numbers_allowed") }, allow_blank: true
   
-  before_validation :timestamp_database
-  after_update :send_update_email
+  before_validation :timestamp_database, on: :create
+  after_update :send_update_email, if: :saved_change_to_tracking_id?
 
   belongs_to :user
   belongs_to :address
+  belongs_to :shop
   belongs_to :timestamped_user
+  belongs_to :timestamped_shop
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
 
@@ -99,24 +101,63 @@ class Order < ApplicationRecord
 
   def timestamp_database
     if TimestampedUser.where(old_id: self.user.id).present?
-      timestamped_user = TimestampedUser.where(old_id: self.user.id).first
+      timestamped_customer = TimestampedUser.where(old_id: self.user.id).first
+      timestamped_customer.update(email: self.user.email) if timestamped_customer.email != self.user.email
     else
-      timestamped_user = TimestampedUser.create(
+      timestamped_customer = TimestampedUser.create(
         email: self.user.email,
         old_id: self.user.id
       )
     end
 
-    timestamped_address = TimestampedAddress.create(
-      first_name: self.address.first_name,
-      last_name: self.address.last_name,
-      address_line_1: self.address.address_line_1,
-      address_line_2: self.address.address_line_2,
-      zip_code: self.address.zip_code,
-      city: self.address.city,
-      timestamped_user: timestamped_user
+    unless self.timestamped_user.present?
+      timestamped_customer_address = TimestampedAddress.create(
+        first_name: self.address.first_name,
+        last_name: self.address.last_name,
+        address_line_1: self.address.address_line_1,
+        address_line_2: self.address.address_line_2,
+        zip_code: self.address.zip_code,
+        city: self.address.city,
+        timestamped_user: timestamped_customer
+      )
+    end
+
+    timestamped_maker = TimestampedUser.new(
+      email: self.shop.user.email,
+      old_id: self.shop.user.id
     )
 
-    self.timestamped_user_id = timestamped_user.id 
+    timestamped_maker_address = TimestampedAddress.new(
+      first_name: self.shop.address.first_name,
+      last_name: self.shop.address.last_name,
+      address_line_1: self.shop.address.address_line_1,
+      address_line_2: self.shop.address.address_line_2,
+      zip_code: self.shop.address.zip_code,
+      city: self.shop.address.city,
+      timestamped_user: timestamped_maker
+    )
+
+    if TimestampedShop.where(company_id: self.shop.company_id).present?
+      timestamped_shop = TimestampedShop.where(company_id: self.shop.company_id).first
+      timestamped_shop.timestamped_user.update(timestamped_maker.attributes.except("id", "created_at", "updated_at"))
+      timestamped_shop.timestamped_user.timestamped_address.update(timestamped_maker_address.attributes.except("id", "timestamped_user_id", "created_at", "updated_at"))
+    else
+      timestamped_maker.save
+      timestamped_maker_address.save
+      timestamped_shop = TimestampedShop.create(
+        brand: self.shop.brand,
+        email_pro: self.shop.email_pro,
+        phone: self.shop.phone,
+        website: self.shop.website,
+        company_id: self.shop.company_id,
+        uid: self.shop.uid,
+        image_data: self.shop.image_data,
+        timestamped_user: timestamped_maker,
+        timestamped_address: timestamped_maker_address,
+      )
+    end
+    
+    self.timestamped_user_id = timestamped_customer.id 
+    self.timestamped_shop_id = timestamped_shop.id
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_23_161345) do
+ActiveRecord::Schema.define(version: 2022_02_24_183422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,7 +148,11 @@ ActiveRecord::Schema.define(version: 2022_02_23_161345) do
     t.bigint "address_id"
     t.string "tracking_id"
     t.bigint "timestamped_user_id"
+    t.bigint "timestamped_shop_id"
+    t.bigint "shop_id"
     t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["shop_id"], name: "index_orders_on_shop_id"
+    t.index ["timestamped_shop_id"], name: "index_orders_on_timestamped_shop_id"
     t.index ["timestamped_user_id"], name: "index_orders_on_timestamped_user_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -168,6 +172,7 @@ ActiveRecord::Schema.define(version: 2022_02_23_161345) do
     t.string "refresh_token"
     t.bigint "address_id"
     t.string "company_id", default: ""
+    t.string "phone"
     t.index ["address_id"], name: "index_shops_on_address_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
@@ -183,6 +188,22 @@ ActiveRecord::Schema.define(version: 2022_02_23_161345) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["timestamped_user_id"], name: "index_timestamped_addresses_on_timestamped_user_id"
+  end
+
+  create_table "timestamped_shops", force: :cascade do |t|
+    t.string "brand"
+    t.string "email_pro"
+    t.string "phone"
+    t.string "website"
+    t.string "company_id"
+    t.string "uid"
+    t.text "image_data"
+    t.bigint "timestamped_user_id", null: false
+    t.bigint "timestamped_address_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["timestamped_address_id"], name: "index_timestamped_shops_on_timestamped_address_id"
+    t.index ["timestamped_user_id"], name: "index_timestamped_shops_on_timestamped_user_id"
   end
 
   create_table "timestamped_users", force: :cascade do |t|
@@ -219,8 +240,11 @@ ActiveRecord::Schema.define(version: 2022_02_23_161345) do
   add_foreign_key "items", "shops"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "timestamped_shops"
   add_foreign_key "orders", "timestamped_users"
   add_foreign_key "shops", "addresses"
   add_foreign_key "shops", "users"
   add_foreign_key "timestamped_addresses", "timestamped_users"
+  add_foreign_key "timestamped_shops", "timestamped_addresses"
+  add_foreign_key "timestamped_shops", "timestamped_users"
 end
