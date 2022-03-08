@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_183422) do
+ActiveRecord::Schema.define(version: 2022_03_01_180407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,8 +137,10 @@ ActiveRecord::Schema.define(version: 2022_02_24_183422) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "qty_ordered"
     t.integer "price"
+    t.bigint "timestamped_item_id"
     t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["timestamped_item_id"], name: "index_order_items_on_timestamped_item_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -188,6 +190,22 @@ ActiveRecord::Schema.define(version: 2022_02_24_183422) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["timestamped_user_id"], name: "index_timestamped_addresses_on_timestamped_user_id"
+  end
+
+  create_table "timestamped_items", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.integer "qty_ordered"
+    t.string "stripe_price_id"
+    t.string "stripe_product_id"
+    t.decimal "width"
+    t.decimal "height"
+    t.decimal "depth"
+    t.integer "weight"
+    t.bigint "timestamped_shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["timestamped_shop_id"], name: "index_timestamped_items_on_timestamped_shop_id"
   end
 
   create_table "timestamped_shops", force: :cascade do |t|
@@ -240,11 +258,13 @@ ActiveRecord::Schema.define(version: 2022_02_24_183422) do
   add_foreign_key "items", "shops"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "timestamped_items"
   add_foreign_key "orders", "timestamped_shops"
   add_foreign_key "orders", "timestamped_users"
   add_foreign_key "shops", "addresses"
   add_foreign_key "shops", "users"
   add_foreign_key "timestamped_addresses", "timestamped_users"
+  add_foreign_key "timestamped_items", "timestamped_shops"
   add_foreign_key "timestamped_shops", "timestamped_addresses"
   add_foreign_key "timestamped_shops", "timestamped_users"
 end
