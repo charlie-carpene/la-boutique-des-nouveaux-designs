@@ -28,6 +28,10 @@ class Order < ApplicationRecord
     return ordered_cart_items
   end
 
+  def shop
+    return self.items.sample.shop
+  end
+
   def create_ordered_items(shop)
     ordered_items = Array.new
     items = self.user.cart.items.where(shop: shop)
@@ -134,7 +138,7 @@ class Order < ApplicationRecord
     )
 
     if TimestampedShop.where(company_id: self.shop.company_id).present?
-      timestamped_shop = TimestampedShop.where(email_pro: self.shop.email_pro).first
+      timestamped_shop = TimestampedShop.where(company_id: self.shop.company_id).first
       timestamped_shop.timestamped_user.update(timestamped_maker.attributes.except("id", "created_at", "updated_at"))
       timestamped_shop.timestamped_user.timestamped_address.update(timestamped_maker_address.attributes.except("id", "timestamped_user_id", "created_at", "updated_at"))
     else
