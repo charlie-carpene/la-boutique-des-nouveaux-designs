@@ -26,10 +26,6 @@ class Order < ApplicationRecord
     return ordered_cart_items
   end
 
-  def shop
-    return self.items.sample.shop
-  end
-
   def create_ordered_items(shop)
     ordered_items = Array.new
     items = self.user.cart.items.where(shop: shop)
