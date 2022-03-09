@@ -30,6 +30,6 @@ class OrderItem < ApplicationRecord
       weight: self.item.weight,
     )
 
-    self.update(timestamped_item_id: timestamped_item.id)
+    self.timestamped_item_id = timestamped_item.id
   end
 end
