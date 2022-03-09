@@ -33,12 +33,7 @@ class Order < ApplicationRecord
     ordered_items = Array.new
     items = self.user.cart.items.where(shop: shop)
     items.each_with_index do |item, index|
-      order_item = OrderItem.new(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user), price: item.price)
-      puts "*" * 30
-      puts order_item.save
-      puts order_item.errors.messages
-      puts "*" * 30
-      ordered_items[index] = order_item
+      ordered_items[index] = OrderItem.create(order: self, item: item, qty_ordered: item.get_qty_in_cart(self.user), price: item.price)
     end
 
     send_create_emails
