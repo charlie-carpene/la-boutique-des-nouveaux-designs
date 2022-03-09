@@ -4,7 +4,11 @@
     <div class="m-2 item-row-text">
       <% if @order %>
         <p><%= @item.name %></p>
-        <p><%= t("order_item.index.item_info", day: @order.created_at.day, month: @order.created_at.month, year: @order.created_at.year, user: @order.user.email) %></p>
+        <% if current_page?(order_items_path) %>
+          <p><%= t("order_item.index.item_info_maker", day: @order.created_at.day, month: @order.created_at.month, year: @order.created_at.year, user: @order.user.email) %></p>
+        <% else %>
+          <p><%= t("order_item.index.item_info_customer", day: @order.created_at.day, month: @order.created_at.month, year: @order.created_at.year, brand: @order.shop.brand) %></p>
+        <% end %>
       <% elsif @cart %>
         <p><%= @item.name %></p>
         <p><%= t("order.new.item_info_html", price: @item.price, total_price: @cart.cart_items.where(item: @item).first.total_price) %></p>

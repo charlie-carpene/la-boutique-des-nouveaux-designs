@@ -2,5 +2,6 @@ fr:
   order_item:
     index:
       title: "Mes articles vendus"
-      item_info: "vendu le %{day}/%{month}/%{year} à %{user}"
+      item_info_maker: "vendu le %{day}/%{month}/%{year} à %{user}"
+      item_info_customer: "acheté le %{day}/%{month}/%{year} à %{brand}"
       price: "%{price} €"
