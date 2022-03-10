@@ -46,3 +46,4 @@ fr:
       data_not_filled_in_m: "n'est pas renseigné."
       add_maker_address: "%{shop} doit renseigner son adresse avant toute commande."
       shipping_not_available: "indisponible(s) à la livraison"
+      user_not_logged_in: "Tu dois être connecté"

@@ -25,12 +25,15 @@
 }
 
 /****** BALISE ******/
-.display-inline-block {
-  display: inline-block;
-}
 
 p {
   font-family: inherit;
+}
+
+/****** SPECIFIC ATTRIBUTES ******/
+
+.display-inline-block {
+  display: inline-block;
 }
 
 .z-index-1 {

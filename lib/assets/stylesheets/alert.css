@@ -1,10 +1,10 @@
 .alert-container {
-    display: flex;
-    justify-content: center;
-    background-color: var(--light);
+	display: flex;
+	justify-content: center;
+	background-color: var(--light);
 }
 
 .alert-container > div {
-    width: 50%;
-    margin: 1rem 0;
+	width: 50%;
+	margin: 1rem 0;
 }
