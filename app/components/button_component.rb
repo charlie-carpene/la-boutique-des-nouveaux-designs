@@ -12,7 +12,7 @@ class ButtonComponent < ViewComponent::Base
     class: "btn btn-success"
   }
 
-  def initialize(id: nil, title:, link:, class_type: :success, html_options: {}, disable: false, disable_text: t("button.disable"))
+  def initialize(id: nil, title:, link:, class_type: :success, html_options: {}, disable: false, disable_text: nil, disable_notice: nil)
     @id = id
     @title = title
     @link = link
@@ -20,6 +20,7 @@ class ButtonComponent < ViewComponent::Base
     @html_options = init_html_options(html_options)
     @disable = disable
     @disable_text = disable_text
+    @disable_notice = disable_notice
   end
 
   def init_html_options(html_options)
