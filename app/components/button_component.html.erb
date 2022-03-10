@@ -1,7 +1,14 @@
 <% if @disable %>
-  <button type="button" class="btn btn-outline-dark" style="pointer-events: none" disabled>
-    <%= @disable_text %>
-  </button>
+  <div class="popover-container">
+    <button type="button" class="btn btn-outline-dark" style="pointer-events: none" disabled>
+      <%= @disable_text ? @disable_text : @title %>
+    </button>
+    <% if @disable_notice %>
+      <p class="popover-content">
+        <%= @disable_notice %>
+      </p>
+    <% end %>
+  </div>
 <% else %>
   <%= button_to(@title, @link, **@html_options) %>
 <% end %>
